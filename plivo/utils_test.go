@@ -22,36 +22,39 @@ func TestHeaders(t *testing.T) {
 	assert.Contains(t, []string{"X-PH-Test1=value1,X-PH-Test2=value2", "X-PH-Test2=value2,X-PH-Test1=value1"}, encoded)
 }
 
-func TestComputeSignature(t *testing.T) {
-	assert.Equal(t,
-		"EJEt0ELanhr8hjMPIJnLNLex0dE=",
-		ComputeSignature("MAXXXXXXXXXXXXXXXXXX", "http://foo.com/answer/", map[string]string{
-			"CallUUID": "97ceeb52-58b6-11e1-86da-77300b68f8bb",
-			"Duration": "300",
-		}))
-}
-
-func TestValidateSignature(t *testing.T) {
-	assert.Equal(t, true,
-		ValidateSignature("MAXXXXXXXXXXXXXXXXXX", "http://foo.com/answer/", map[string]string{
-			"CallUUID": "97ceeb52-58b6-11e1-86da-77300b68f8bb",
-			"Duration": "300",
-		},
-			"EJEt0ELanhr8hjMPIJnLNLex0dE="))
-}
-
-func TestComputeSignatureEncoding(t *testing.T) {
-	assert.Equal(t, "n3Xfo4u+vRFyl3gsH8B0qDUIK5g=",
-		ComputeSignature("MAXXXXXXXXXXXXXXXXXX", "http://foo.com/answer/", map[string]string{
-			"a": "1 2",
-		}))
+func TestComputeSignaturePass(t *testing.T) {
+	assert.Equal(t, "ehV3IKhLysWBxC1sy8INm0qGoQYdYsHwuoKjsX7FsXc=",ComputeSignature(
+		"my_auth_token",
+		"https://answer.url",
+		"12345"
+		)
+	)
 }
 
 func TestComputeSignatureFail(t *testing.T) {
-	assert.Equal(t, false,
-		ValidateSignature("MAXXXXXXXXXXXXXXXXXX", "http://foo.com/answer/", map[string]string{
-			"CallUUID": "97ceeb52-58b6-11e1-86da-77300b6b8f8bb",
-			"Duration": "300",
-		},
-			"EJEt0ELanhr8hjMPIJnLNLex0dE="))
+	assert.Equal(t, "ehV3IKhLysWBxC1sy8INm0qGoQYdYsHwuoKjsX7FsXc=",ComputeSignature(
+		"my_auth_tokens",
+		"https://answer.url",
+		"12345"
+		)
+	)
+}
+
+func TestValidateSignaturePass(t *testing.T) {
+	assert.Equal(t, true,ValidateSignatureV2(
+				"https://answer.url",
+				"12345",
+				"ehV3IKhLysWBxC1sy8INm0qGoQYdYsHwuoKjsX7FsXc=",
+				"my_auth_token"
+			)
+	)
+}
+func TestValidateSignatureV2Fail(t *testing.T) {
+	assert.Equal(t, false,ValidateSignatureV2(
+				"https://answer.url",
+				"12345",
+				"ehV3IKhLysWBxC1sy8INm0qGoQYdYsHwuoKjsX7FsXc=",
+				"my_auth_tokens"
+			)
+	)
 }
