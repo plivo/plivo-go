@@ -3,7 +3,7 @@ language: go
 go:
   - 1.0.x
   - 1.1.x
-  - 1.2.x
+  # - 1.2.x There is a known Timeout error in http.Client. Skipping builds.
   - 1.3.x
   - 1.4.x
   - 1.5.x
@@ -18,4 +18,4 @@ before_script:
   - go get github.com/sirupsen/logrus
   - go get github.com/stretchr/testify/assert
 
-script: go test ./plivo/
+script: go test ./plivo/... -v
