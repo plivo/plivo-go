@@ -13,4 +13,9 @@ go:
   - 1.9.x
   - master
 
+before_script:
+  - go get github.com/google/go-querystring/query
+  - go get github.com/sirupsen/logrus
+  - go get github.com/stretchr/testify/assert
+
 script: go test ./plivo/
