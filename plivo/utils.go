@@ -56,14 +56,19 @@ func Headers(headers map[string]string) string {
 	return headersWithSep(headers, "=", ",", true)
 }
 
-func ComputeSignature(authToken, uri string, params map[string]string) string {
-	originalString := fmt.Sprintf("%s%s", uri, headersWithSep(params, "", "", false))
-	logrus.Infof("originalString: %s\n", originalString)
-	mac := hmac.New(sha1.New, []byte(authToken))
+func ComputeSignature(authToken, uri string, nonce string) string {
+	parsedUrl, err := url.Parse(uri)
+	if err != nil {
+		return "xxxxx"
+    fmt.Printf("\n %s \n",err)
+	}
+  var originalString string = parsedUrl.Scheme + "://" + parsedUrl.Host + parsedUrl.Path + nonce
+  mac := hmac.New(sha256.New, []byte(authToken))
 	mac.Write([]byte(originalString))
-	return base64.StdEncoding.EncodeToString(mac.Sum(nil))
+  var messageMAC string = base64.StdEncoding.EncodeToString(mac.Sum(nil))
+	return messageMAC
 }
 
-func ValidateSignature(authToken, uri string, params map[string]string, signature string) bool {
-	return ComputeSignature(authToken, uri, params) == signature
+func ValidateSignature(uri string, nonce string, signature string, authToken string) bool {
+	return ComputeSignature(authToken, uri, nonce) == signature
 }
