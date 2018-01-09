@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"crypto/hmac"
 	"crypto/sha1"
+	"crypto/sha256"
 	"encoding/base64"
 	"fmt"
 	"github.com/sirupsen/logrus"
@@ -86,5 +87,5 @@ func ComputeSignatureV2(authToken, uri string, nonce string) string {
 }
 
 func ValidateSignatureV2(uri string, nonce string, signature string, authToken string) bool {
-	return ComputeSignature(authToken, uri, nonce) == signature
+	return ComputeSignatureV2(authToken, uri, nonce) == signature
 }

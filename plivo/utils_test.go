@@ -62,8 +62,8 @@ func TestValidateSignatureV2Pass(t *testing.T) {
 			"https://answer.url",
 			"12345",
 			"ehV3IKhLysWBxC1sy8INm0qGoQYdYsHwuoKjsX7FsXc=",
-			"my_auth_token"
-		)
+			"my_auth_token",
+		),
 	)
 }
 func TestValidateSignatureV2Fail(t *testing.T) {
@@ -72,7 +72,7 @@ func TestValidateSignatureV2Fail(t *testing.T) {
 			"https://answer.url",
 			"12345",
 			"ehV3IKhLysWBxC1sy8INm0qGoQYdYsHwuoKjsX7FsXc=",
-			"my_auth_tokens"
-		)
+			"my_auth_tokens",
+		),
 	)
 }
