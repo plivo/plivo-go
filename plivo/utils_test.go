@@ -55,3 +55,24 @@ func TestComputeSignatureFail(t *testing.T) {
 		},
 			"EJEt0ELanhr8hjMPIJnLNLex0dE="))
 }
+
+func TestValidateSignatureV2Pass(t *testing.T) {
+	assert.Equal(t, true,
+		ValidateSignatureV2(
+			"https://answer.url",
+			"12345",
+			"ehV3IKhLysWBxC1sy8INm0qGoQYdYsHwuoKjsX7FsXc=",
+			"my_auth_token"
+		)
+	)
+}
+func TestValidateSignatureV2Fail(t *testing.T) {
+	assert.Equal(t, false,
+		ValidateSignatureV2(
+			"https://answer.url",
+			"12345",
+			"ehV3IKhLysWBxC1sy8INm0qGoQYdYsHwuoKjsX7FsXc=",
+			"my_auth_tokens"
+		)
+	)
+}

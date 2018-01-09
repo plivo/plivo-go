@@ -56,6 +56,8 @@ func Headers(headers map[string]string) string {
 	return headersWithSep(headers, "=", ",", true)
 }
 
+// The old signature validation is deprecated. Will be marked deprecated in the next release.
+
 func ComputeSignature(authToken, uri string, params map[string]string) string {
 	originalString := fmt.Sprintf("%s%s", uri, headersWithSep(params, "", "", false))
 	logrus.Infof("originalString: %s\n", originalString)
@@ -66,4 +68,23 @@ func ComputeSignature(authToken, uri string, params map[string]string) string {
 
 func ValidateSignature(authToken, uri string, params map[string]string, signature string) bool {
 	return ComputeSignature(authToken, uri, params) == signature
+}
+
+// Adding V2 signature validation
+
+func ComputeSignatureV2(authToken, uri string, nonce string) string {
+	parsedUrl, err := url.Parse(uri)
+	if err != nil {
+		panic(err)
+	}
+
+	var originalString string = parsedUrl.Scheme + "://" + parsedUrl.Host + parsedUrl.Path + nonce
+	mac := hmac.New(sha256.New, []byte(authToken))
+	mac.Write([]byte(originalString))
+	var messageMAC string = base64.StdEncoding.EncodeToString(mac.Sum(nil))
+	return messageMAC
+}
+
+func ValidateSignatureV2(uri string, nonce string, signature string, authToken string) bool {
+	return ComputeSignature(authToken, uri, nonce) == signature
 }
