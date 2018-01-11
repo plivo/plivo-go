@@ -8,7 +8,7 @@ The Plivo Go SDK makes it simpler to integrate communications into your Go appli
 
 You can use the SDK using the `go` command.
 
-    $ go get github.com/plivo/plivo-go/plivo
+    $ go get github.com/plivo/plivo-go
 
 You can also install by cloning this repository into your `GOPATH`.
 
@@ -22,7 +22,7 @@ We recommend that you store your credentials in the `PLIVO_AUTH_ID` and the `PLI
 ```go
 package main
 
-import "github.com/plivo/plivo-go/plivo"
+import "github.com/plivo/plivo-go"
 
 func main()  {
   client, err := plivo.NewClient("", "", &plivo.ClientOptions{})
@@ -36,7 +36,7 @@ Alternatively, you can specifiy the authentication credentials while initializin
 ```go
 package main
 
-import "github.com/plivo/plivo-go/plivo"
+import "github.com/plivo/plivo-go"
 
 func main()  {
  client, err := plivo.NewClient("your_auth_id", "your_auth_token", &plivo.ClientOptions{})
@@ -66,7 +66,7 @@ Using `client.Resources.List()` would list the first 20 resources by default (wh
 ```go
 package main
 
-import "github.com/plivo/plivo-go/plivo"
+import "github.com/plivo/plivo-go"
 
 func main()  {
   client, err := plivo.NewClient("", "", &plivo.ClientOptions{})
@@ -86,7 +86,7 @@ func main()  {
 ```go
 package main
 
-import "github.com/plivo/plivo-go/plivo"
+import "github.com/plivo/plivo-go"
 
 func main()  {
   client, err := plivo.NewClient("", "", &plivo.ClientOptions{})
