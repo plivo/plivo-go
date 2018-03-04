@@ -23,6 +23,23 @@ type Application struct {
 	// Additional fields for Modify calls
 	DefaultNumberApp   bool `json:"default_number_app,omitempty" url:"default_number_app,omitempty"`
 	DefaultEndpointApp bool `json:"default_endpoint_app,omitempty" url:"default_endpoint_app,omitempty"`
+
+	//log incoming messages. Default is true
+	LogIncomingMessage *bool `json:"log_incoming_message,omitempty"  url:"log_incoming_message,omitempty"`
+}
+
+// SetLogIncomingMessage sets the field value with the appropriate boolean value.
+func (a *Application) SetLogIncomingMessage(value bool) *Application {
+	field := value
+	a.LogIncomingMessage = &field
+	return a
+}
+
+func (a *Application) GetLogIncomingMessage() bool {
+	if a.LogIncomingMessage != nil {
+		return *a.LogIncomingMessage
+	}
+	return false
 }
 
 //TODO Verify against docs
@@ -45,6 +62,23 @@ type ApplicationCreateParams struct {
 	// Additional fields for Modify calls
 	DefaultNumberApp   bool `json:"default_number_app,omitempty" url:"default_number_app,omitempty"`
 	DefaultEndpointApp bool `json:"default_endpoint_app,omitempty" url:"default_endpoint_app,omitempty"`
+
+	//log incoming messages. Default is true
+	LogIncomingMessage *bool `json:"log_incoming_message,omitempty" url:"default_number_app,omitempty"`
+}
+
+// SetLogIncomingMessage sets the field value with the appropriate boolean value.
+func (acp *ApplicationCreateParams) SetLogIncomingMessage(value bool) *ApplicationCreateParams {
+	field := value
+	acp.LogIncomingMessage = &field
+	return acp
+}
+
+func (acp *ApplicationCreateParams) GetLogIncomingMessage() bool {
+	if acp.LogIncomingMessage != nil {
+		return *acp.LogIncomingMessage
+	}
+	return false
 }
 
 // TODO Check against docs

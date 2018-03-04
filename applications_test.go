@@ -2,8 +2,9 @@ package plivo
 
 import (
 	"errors"
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestApplicationService_Create(t *testing.T) {
