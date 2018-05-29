@@ -20,6 +20,7 @@ type Call struct {
 	CallDuration   int64  `json:"call_duration,omitempty" url:"call_duration,omitempty"`
 	MessageURL     string `json:"message_url,omitempty" url:"message_url,omitempty"`
 	ResourceURI    string `json:"resource_uri,omitempty" url:"resource_uri,omitempty"`
+	CallState      string `json:"call_state,omitempty" url:"call_state,omitempty"`
 }
 
 type LiveCall struct {
@@ -30,6 +31,7 @@ type LiveCall struct {
 	CallerName     string `json:"caller_name,omitempty" url:"caller_name,omitempty"`
 	ParentCallUUID string `json:"parent_call_uuid,omitempty" url:"parent_call_uuid,omitempty"`
 	SessionStart   string `json:"session_start,omitempty" url:"session_start,omitempty"`
+	CallStatus     string `json:"call_status,omitempty" url:"call_status,omitempty"`
 }
 
 type LiveCallIDListResponse struct {
