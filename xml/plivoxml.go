@@ -182,7 +182,7 @@ type DialElement struct {
 
 	Timeout *int `xml:"timeout,attr"`
 
-	CallerID *string `xml:"callerID,attr"`
+	CallerID *string `xml:"callerId,attr"`
 
 	CallerName *string `xml:"callerName,attr"`
 
