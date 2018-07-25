@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.0.1](https://github.com/plivo/plivo-go/tree/v4.0.1) (2018-07-25)
+- Fixed caller id retrieval
+
 ## [4.0.0](https://github.com/plivo/plivo-go/tree/v4.0.0) (2018-01-18)
 - Major restructuring of the repo to bring all go files to repo's root
 - Supports v2 signature validation
