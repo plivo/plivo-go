@@ -71,11 +71,12 @@ type CallCreateResponse struct {
 
 type CallListParams struct {
 	// Query parameters.
-	Subaccount    string `json:"subaccount,omitempty" url:"subaccount,omitempty"`
-	CallDirection string `json:"call_direction,omitempty" url:"call_direction,omitempty"`
-	FromNumber    string `json:"from_number,omitempty" url:"from_number,omitempty"`
-	ToNumber      string `json:"to_number,omitempty" url:"to_number,omitempty"`
-	EndTimeEquals string `json:"end_time,omitempty" url:"end_time,omitempty"`
+	Subaccount     string `json:"subaccount,omitempty" url:"subaccount,omitempty"`
+	CallDirection  string `json:"call_direction,omitempty" url:"call_direction,omitempty"`
+	FromNumber     string `json:"from_number,omitempty" url:"from_number,omitempty"`
+	ToNumber       string `json:"to_number,omitempty" url:"to_number,omitempty"`
+	ParentCallUUID string `json:"parent_call_uuid,omitempty" url:"parent_call_uuid,omitempty"`
+	EndTimeEquals  string `json:"end_time,omitempty" url:"end_time,omitempty"`
 
 	EndTimeLessThan string `json:"end_time__lt,omitempty" url:"end_time__lt,omitempty"`
 
