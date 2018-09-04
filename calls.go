@@ -8,6 +8,10 @@ type LiveCallService struct {
 	client *Client
 }
 
+type QueuedCallService struct {
+	client *Client
+}
+
 type Call struct {
 	FromNumber     string `json:"from_number,omitempty" url:"from_number,omitempty"`
 	ToNumber       string `json:"to_number,omitempty" url:"to_number,omitempty"`
@@ -32,10 +36,27 @@ type LiveCall struct {
 	SessionStart   string `json:"session_start,omitempty" url:"session_start,omitempty"`
 }
 
+type QueuedCall struct {
+	From           string `json:"from,omitempty" url:"from,omitempty"`
+	To             string `json:"to,omitempty" url:"to,omitempty"`
+	Status         string `json:"call_status,omitempty" url:"call_status,omitempty"`
+	CallUUID       string `json:"call_uuid,omitempty" url:"call_uuid,omitempty"`
+	CallerName     string `json:"caller_name,omitempty" url:"caller_name,omitempty"`
+	ParentCallUUID string `json:"parent_call_uuid,omitempty" url:"parent_call_uuid,omitempty"`
+	APIID   	   string `json:"api_id,omitempty" url:"api_id,omitempty"`
+	Direction      string `json:"direction,omitempty" url:"direction,omitempty"`
+}
+
 type LiveCallIDListResponse struct {
 	APIID string   `json:"api_id" url:"api_id"`
 	Calls []string `json:"calls" url:"calls"`
 }
+
+type QueuedCallIDListResponse struct {
+	APIID string   `json:"api_id" url:"api_id"`
+	Calls []string `json:"calls" url:"calls"`
+}
+
 
 type CallCreateParams struct {
 	// Required parameters.
@@ -240,6 +261,30 @@ func (service *LiveCallService) IDList() (response *LiveCallIDListResponse, err 
 		return
 	}
 	response = &LiveCallIDListResponse{}
+	err = service.client.ExecuteRequest(req, response)
+	return
+}
+
+func (service *QueuedCallService) IDList() (response *QueuedCallIDListResponse, err error) {
+	req, err := service.client.NewRequest("GET", struct {
+		Status string `json:"status" url:"status"`
+	}{"live"}, "Call")
+	if err != nil {
+		return
+	}
+	response = &QueuedCallIDListResponse{}
+	err = service.client.ExecuteRequest(req, response)
+	return
+}
+
+func (service *QueuedCallService) Get(QueuedCallId string) (response *QueuedCall, err error) {
+	req, err := service.client.NewRequest("GET", struct {
+		Status string `json:"status" url:"status"`
+	}{"live"}, "Call/%s", QueuedCallId)
+	if err != nil {
+		return
+	}
+	response = &QueuedCall{}
 	err = service.client.ExecuteRequest(req, response)
 	return
 }
