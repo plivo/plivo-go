@@ -267,7 +267,7 @@ func (service *LiveCallService) IDList() (response *LiveCallIDListResponse, err 
 func (service *QueuedCallService) IDList() (response *QueuedCallIDListResponse, err error) {
 	req, err := service.client.NewRequest("GET", struct {
 		Status string `json:"status" url:"status"`
-	}{"live"}, "Call")
+	}{"queued"}, "Call")
 	if err != nil {
 		return
 	}
@@ -279,7 +279,7 @@ func (service *QueuedCallService) IDList() (response *QueuedCallIDListResponse, 
 func (service *QueuedCallService) Get(QueuedCallId string) (response *QueuedCall, err error) {
 	req, err := service.client.NewRequest("GET", struct {
 		Status string `json:"status" url:"status"`
-	}{"live"}, "Call/%s", QueuedCallId)
+	}{"queued"}, "Call/%s", QueuedCallId)
 	if err != nil {
 		return
 	}
