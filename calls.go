@@ -42,7 +42,6 @@ type QueuedCall struct {
 	Status         string `json:"call_status,omitempty" url:"call_status,omitempty"`
 	CallUUID       string `json:"call_uuid,omitempty" url:"call_uuid,omitempty"`
 	CallerName     string `json:"caller_name,omitempty" url:"caller_name,omitempty"`
-	ParentCallUUID string `json:"parent_call_uuid,omitempty" url:"parent_call_uuid,omitempty"`
 	APIID   	   string `json:"api_id,omitempty" url:"api_id,omitempty"`
 	Direction      string `json:"direction,omitempty" url:"direction,omitempty"`
 }

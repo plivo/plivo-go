@@ -39,6 +39,7 @@ type Client struct {
 	Recordings   *RecordingService
 	Calls        *CallService
 	LiveCalls    *LiveCallService
+	QueuedCalls  *QueuedCallService
 	Conferences  *ConferenceService
 
 	RequestInterceptor  func(request *http.Request)
@@ -104,6 +105,7 @@ func NewClient(authId, authToken string, options *ClientOptions) (client *Client
 	client.Recordings = &RecordingService{client: client}
 	client.Calls = &CallService{client: client}
 	client.LiveCalls = &LiveCallService{client: client}
+	client.QueuedCalls = &QueuedCallService{client: client}
 	client.Conferences = &ConferenceService{client: client}
 
 	return
