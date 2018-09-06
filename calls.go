@@ -44,6 +44,7 @@ type QueuedCall struct {
 	CallerName     string `json:"caller_name,omitempty" url:"caller_name,omitempty"`
 	APIID   	   string `json:"api_id,omitempty" url:"api_id,omitempty"`
 	Direction      string `json:"direction,omitempty" url:"direction,omitempty"`
+	RequestUUID    string `json:"request_uuid,omitempty" url:"request_uuid,omitempty"`
 }
 
 type LiveCallIDListResponse struct {
