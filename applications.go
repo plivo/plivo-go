@@ -5,20 +5,21 @@ type ApplicationService struct {
 }
 
 type Application struct {
-	FallbackMethod    string `json:"fallback_method,omitempty" url:"fallback_method,omitempty"`
-	DefaultApp        bool   `json:"default_app,omitempty" url:"default_app,omitempty"`
-	AppName           string `json:"app_name,omitempty" url:"app_name,omitempty"`
-	ProductionApp     bool   `json:"production_app,omitempty" url:"production_app,omitempty"`
-	AppID             string `json:"app_id,omitempty" url:"app_id,omitempty"`
-	HangupURL         string `json:"hangup_url,omitempty" url:"hangup_url,omitempty"`
-	AnswerURL         string `json:"answer_url,omitempty" url:"answer_url,omitempty"`
-	MessageURL        string `json:"message_url,omitempty" url:"message_url,omitempty"`
-	ResourceURI       string `json:"resource_uri,omitempty" url:"resource_uri,omitempty"`
-	HangupMethod      string `json:"hangup_method,omitempty" url:"hangup_method,omitempty"`
-	MessageMethod     string `json:"message_method,omitempty" url:"message_method,omitempty"`
-	FallbackAnswerURL string `json:"fallback_answer_url,omitempty" url:"fallback_answer_url,omitempty"`
-	AnswerMethod      string `json:"answer_method,omitempty" url:"answer_method,omitempty"`
-	ApiID             string `json:"api_id,omitempty" url:"api_id,omitempty"`
+	FallbackMethod      string `json:"fallback_method,omitempty" url:"fallback_method,omitempty"`
+	DefaultApp          bool   `json:"default_app,omitempty" url:"default_app,omitempty"`
+	AppName             string `json:"app_name,omitempty" url:"app_name,omitempty"`
+	ProductionApp       bool   `json:"production_app,omitempty" url:"production_app,omitempty"`
+	AppID               string `json:"app_id,omitempty" url:"app_id,omitempty"`
+	HangupURL           string `json:"hangup_url,omitempty" url:"hangup_url,omitempty"`
+	AnswerURL           string `json:"answer_url,omitempty" url:"answer_url,omitempty"`
+	MessageURL          string `json:"message_url,omitempty" url:"message_url,omitempty"`
+	ResourceURI         string `json:"resource_uri,omitempty" url:"resource_uri,omitempty"`
+	HangupMethod        string `json:"hangup_method,omitempty" url:"hangup_method,omitempty"`
+	MessageMethod       string `json:"message_method,omitempty" url:"message_method,omitempty"`
+	FallbackAnswerURL   string `json:"fallback_answer_url,omitempty" url:"fallback_answer_url,omitempty"`
+	AnswerMethod        string `json:"answer_method,omitempty" url:"answer_method,omitempty"`
+	ApiID               string `json:"api_id,omitempty" url:"api_id,omitempty"`
+	LogIncomingMessages bool   `json:"log_incoming_messages,omitempty" url:"log_incoming_messages,omitempty"`
 
 	// Additional fields for Modify calls
 	DefaultNumberApp   bool `json:"default_number_app,omitempty" url:"default_number_app,omitempty"`
@@ -27,20 +28,21 @@ type Application struct {
 
 //TODO Verify against docs
 type ApplicationCreateParams struct {
-	FallbackMethod    string `json:"fallback_method,omitempty" url:"fallback_method,omitempty"`
-	DefaultApp        bool   `json:"default_app,omitempty" url:"default_app,omitempty"`
-	AppName           string `json:"app_name,omitempty" url:"app_name,omitempty"`
-	ProductionApp     bool   `json:"production_app,omitempty" url:"production_app,omitempty"`
-	AppID             string `json:"app_id,omitempty" url:"app_id,omitempty"`
-	HangupURL         string `json:"hangup_url,omitempty" url:"hangup_url,omitempty"`
-	AnswerURL         string `json:"answer_url,omitempty" url:"answer_url,omitempty"`
-	MessageURL        string `json:"message_url,omitempty" url:"message_url,omitempty"`
-	ResourceURI       string `json:"resource_uri,omitempty" url:"resource_uri,omitempty"`
-	HangupMethod      string `json:"hangup_method,omitempty" url:"hangup_method,omitempty"`
-	MessageMethod     string `json:"message_method,omitempty" url:"message_method,omitempty"`
-	FallbackAnswerURL string `json:"fallback_answer_url,omitempty" url:"fallback_answer_url,omitempty"`
-	AnswerMethod      string `json:"answer_method,omitempty" url:"answer_method,omitempty"`
-	ApiID             string `json:"api_id,omitempty" url:"api_id,omitempty"`
+	FallbackMethod      string `json:"fallback_method,omitempty" url:"fallback_method,omitempty"`
+	DefaultApp          bool   `json:"default_app,omitempty" url:"default_app,omitempty"`
+	AppName             string `json:"app_name,omitempty" url:"app_name,omitempty"`
+	ProductionApp       bool   `json:"production_app,omitempty" url:"production_app,omitempty"`
+	AppID               string `json:"app_id,omitempty" url:"app_id,omitempty"`
+	HangupURL           string `json:"hangup_url,omitempty" url:"hangup_url,omitempty"`
+	AnswerURL           string `json:"answer_url,omitempty" url:"answer_url,omitempty"`
+	MessageURL          string `json:"message_url,omitempty" url:"message_url,omitempty"`
+	ResourceURI         string `json:"resource_uri,omitempty" url:"resource_uri,omitempty"`
+	HangupMethod        string `json:"hangup_method,omitempty" url:"hangup_method,omitempty"`
+	MessageMethod       string `json:"message_method,omitempty" url:"message_method,omitempty"`
+	FallbackAnswerURL   string `json:"fallback_answer_url,omitempty" url:"fallback_answer_url,omitempty"`
+	AnswerMethod        string `json:"answer_method,omitempty" url:"answer_method,omitempty"`
+	ApiID               string `json:"api_id,omitempty" url:"api_id,omitempty"`
+	LogIncomingMessages bool   `json:"log_incoming_messages,omitempty" url:"log_incoming_messages,omitempty"`
 
 	// Additional fields for Modify calls
 	DefaultNumberApp   bool `json:"default_number_app,omitempty" url:"default_number_app,omitempty"`
