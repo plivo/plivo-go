@@ -1,5 +1,11 @@
 # Change Log
 
+## [4.0.2](https://github.com/plivo/plivo-go/tree/v4.0.2) (2018-09-18)
+- Added parent_call_uuid parameter to filter calls.
+- Queued status added for filtering calls in queued status.
+- Added log_incoming_messages parameter to application create and update.
+- Added powerpack support.
+
 ## [4.0.1](https://github.com/plivo/plivo-go/tree/v4.0.1) (2018-07-25)
 - Fixed caller id retrieval
 
