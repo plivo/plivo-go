@@ -9,9 +9,11 @@ type MessageCreateParams struct {
 	Dst  string `json:"dst,omitempty" url:"dst,omitempty"`
 	Text string `json:"text,omitempty" url:"text,omitempty"`
 	// Optional parameters.
-	Type   string `json:"type,omitempty" url:"type,omitempty"`
-	URL    string `json:"url,omitempty" url:"url,omitempty"`
-	Method string `json:"method,omitempty" url:"method,omitempty"`
+	Type      string      `json:"type,omitempty" url:"type,omitempty"`
+	URL       string      `json:"url,omitempty" url:"url,omitempty"`
+	Method    string      `json:"method,omitempty" url:"method,omitempty"`
+	Trackable bool        `json:"trackable,omitempty" url:"trackable,omitempty"`
+	Log       interface{} `json:"log,omitempty" url:"log,omitempty"`
 	// Either one of src and powerpackuuid should be given
 	PowerpackUUID string `json:"powerpack_uuid,omitempty" url:"powerpack_uuid,omitempty"`
 }
