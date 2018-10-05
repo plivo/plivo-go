@@ -24,9 +24,9 @@ type Call struct {
 	CallDuration         int64  `json:"call_duration,omitempty" url:"call_duration,omitempty"`
 	MessageURL           string `json:"message_url,omitempty" url:"message_url,omitempty"`
 	ResourceURI          string `json:"resource_uri,omitempty" url:"resource_uri,omitempty"`
-	PlivoHangupCauseCode int64  `json:"plivo_hangup_cause_code,omitempty" url:"plivo_hangup_cause_code,omitempty"`
-	PlivoHangupCauseName string `json:"plivo_hangup_cause_name,omitempty" url:"plivo_hangup_cause_name,omitempty"`
-	PlivoHangupSource    string `json:"plivo_hangup_source,omitempty" url:"plivo_hangup_source,omitempty"`
+	HangupCauseCode int64  `json:"hangup_cause_code,omitempty" url:"hangup_cause_code,omitempty"`
+	HangupCauseName string `json:"hangup_cause_name,omitempty" url:"hangup_cause_name,omitempty"`
+	HangupSource    string `json:"hangup_source,omitempty" url:"hangup_source,omitempty"`
 }
 
 type LiveCall struct {
@@ -100,8 +100,8 @@ type CallListParams struct {
 	ToNumber             string `json:"to_number,omitempty" url:"to_number,omitempty"`
 	ParentCallUUID       string `json:"parent_call_uuid,omitempty" url:"parent_call_uuid,omitempty"`
 	EndTimeEquals        string `json:"end_time,omitempty" url:"end_time,omitempty"`
-	PlivoHangupCauseCode int64  `json:"plivo_hangup_cause_code,omitempty" url:"plivo_hangup_cause_code,omitempty"`
-	PlivoHangupSource    string `json:"plivo_hangup_source,omitempty" url:"plivo_hangup_source,omitempty"`
+	HangupCauseCode int64  `json:"hangup_cause_code,omitempty" url:"hangup_cause_code,omitempty"`
+	HangupSource    string `json:"hangup_source,omitempty" url:"hangup_source,omitempty"`
 
 	EndTimeLessThan string `json:"end_time__lt,omitempty" url:"end_time__lt,omitempty"`
 
