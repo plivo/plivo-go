@@ -109,13 +109,13 @@ func TestCallService_Delete(t *testing.T) {
 func TestLiveCallService_List(t *testing.T) {
 	expectResponse("LiveCallListGetResponse.json", 200)
 
-	if _, err := client.LiveCalls.IDList(); err != nil {
+	if _, err := client.LiveCalls.IDList(LiveCallFilters{}); err != nil {
 		panic(err)
 	}
 
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.LiveCalls.IDList()
+	_, err := client.LiveCalls.IDList(LiveCallFilters{})
 	if err == nil {
 		client.httpClient = cl
 		panic(errors.New("error expected"))

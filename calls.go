@@ -120,6 +120,13 @@ type CallListParams struct {
 	Offset                     int64  `json:"offset:omitempty" url:"offset:omitempty"`
 }
 
+type LiveCallFilters struct {
+	CallDirection	string	`json:"call_direction,omitempty" url:"call_direction,omitempty"`
+	FromNumber		string	`json:"from_number,omitempty" url:"from_number,omitempty"`
+	ToNumber		string	`json:"to_number,omitempty" url:"to_number,omitempty"`
+	Status			string	`json:"status,omitempty" url:"status,omitempty" default:"live"`
+}
+
 type CallListResponse struct {
 	ApiID   string  `json:"api_id" url:"api_id"`
 	Meta    *Meta   `json:"meta" url:"meta"`
@@ -254,10 +261,9 @@ func (service *LiveCallService) Get(LiveCallId string) (response *LiveCall, err 
 	return
 }
 
-func (service *LiveCallService) IDList() (response *LiveCallIDListResponse, err error) {
-	req, err := service.client.NewRequest("GET", struct {
-		Status string `json:"status" url:"status"`
-	}{"live"}, "Call")
+func (service *LiveCallService) IDList(params LiveCallFilters) (response *LiveCallIDListResponse, err error) {
+	params.Status = "live"
+	req, err := service.client.NewRequest("GET", params, "Call")
 	if err != nil {
 		return
 	}
