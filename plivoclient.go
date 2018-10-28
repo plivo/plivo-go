@@ -11,8 +11,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/google/go-querystring/query"
 	"runtime"
+
+	"github.com/google/go-querystring/query"
 )
 
 const baseUrlString = "https://api.plivo.com/"

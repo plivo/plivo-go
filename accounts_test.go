@@ -130,13 +130,13 @@ func TestSubaccountService_Delete(t *testing.T) {
 	expectResponse("", 202)
 	subauthId := "subauthId"
 
-	if err := client.Subaccounts.Delete(subauthId); err != nil {
+	if err := client.Subaccounts.Delete(subauthId, SubaccountDeleteParams{}); err != nil {
 		panic(err)
 	}
 
 	cl := client.httpClient
 	client.httpClient = nil
-	err := client.Subaccounts.Delete(subauthId)
+	err := client.Subaccounts.Delete(subauthId, SubaccountDeleteParams{})
 	if err == nil {
 		client.httpClient = cl
 		panic(errors.New("error expected"))
