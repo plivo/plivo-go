@@ -17,7 +17,7 @@ import (
 
 const baseUrlString = "https://api.plivo.com/"
 
-const sdkVersion = "4.0.3"
+const sdkVersion = "4.0.4"
 
 type Client struct {
 	httpClient *http.Client

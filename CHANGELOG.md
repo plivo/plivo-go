@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.0.4](https://github.com/plivo/plivo-go/tree/v4.0.4) (2018-10-31)
+- Add live calls filtering by to, from numbers and call direction.
+
 ## [4.0.3](https://github.com/plivo/plivo-go/tree/v4.0.3) (2018-10-01)
 - Added Trackable parameter in messages.
 
