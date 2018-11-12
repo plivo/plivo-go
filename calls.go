@@ -120,8 +120,8 @@ type CallListParams struct {
 	BillDurationLessOrEqual string `json:"bill_duration__lte,omitempty" url:"bill_duration__lte,omitempty"`
 
 	BillDurationGreaterOrEqual string `json:"bill_duration__gte,omitempty" url:"bill_duration__gte,omitempty"`
-	Limit                      int64  `json:"limit:omitempty" url:"limit:omitempty"`
-	Offset                     int64  `json:"offset:omitempty" url:"offset:omitempty"`
+	Limit                      int64  `json:"limit,omitempty" url:"limit,omitempty"`
+	Offset                     int64  `json:"offset,omitempty" url:"offset,omitempty"`
 }
 
 type CallListResponse struct {
