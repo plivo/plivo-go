@@ -15,12 +15,15 @@ import (
 	"runtime"
 )
 
-const baseUrlString = "https://api.plivo.com/"
+const baseUrlString = "https://api.pliv.com/"
+const phloUrlString = "https://phlorunner.plivo.com"
 
+//https://phlorunner.plivo.com/v1/phlo/ebee832f-6467-4e9f-b168-4f296cbc2f09/'
 const sdkVersion = "4.0.4"
 
 type Client struct {
 	httpClient *http.Client
+
 
 	AuthId    string
 	AuthToken string
@@ -41,6 +44,8 @@ type Client struct {
 	LiveCalls    *LiveCallService
 	QueuedCalls  *QueuedCallService
 	Conferences  *ConferenceService
+
+	Phlo 		 *PhloService
 
 	RequestInterceptor  func(request *http.Request)
 	ResponseInterceptor func(response *http.Response)
@@ -90,6 +95,8 @@ func NewClient(authId, authToken string, options *ClientOptions) (client *Client
 		AuthToken: authToken,
 	}
 
+
+
 	if options.HttpClient != nil {
 		client.httpClient = options.HttpClient
 	}
@@ -108,8 +115,51 @@ func NewClient(authId, authToken string, options *ClientOptions) (client *Client
 	client.QueuedCalls = &QueuedCallService{client: client}
 	client.Conferences = &ConferenceService{client: client}
 
+	phloBaseUrl, err := url.Parse(phloUrlString)
+	client.BaseUrl =phloBaseUrl
+	client.Phlo = &PhloService{client:client}
+
 	return
 }
+
+func (client *Client) NewRequestPhlo(method string, params interface{}, formatString string, formatParams ...interface{}) (request *http.Request, err error) {
+	if client == nil || client.httpClient == nil {
+		err = errors.New("client and httpClient cannot be nil")
+		return
+	}
+
+	for i, param := range formatParams {
+		if param == nil || param == "" {
+			err = errors.New(fmt.Sprintf("Request path parameter #%d is nil/empty but should not be so.", i))
+			return
+		}
+	}
+	requestUrl := *client.BaseUrl
+	requestUrl.Path = fmt.Sprintf("v1/phlo/%s", fmt.Sprintf(formatString, formatParams...))
+	var buffer = new(bytes.Buffer)
+	if method == "GET" {
+		var values url.Values
+		if values, err = query.Values(params); err != nil {
+			return
+		}
+
+		requestUrl.RawQuery = values.Encode()
+	} else {
+		if err = json.NewEncoder(buffer).Encode(params); err != nil {
+			return
+		}
+	}
+
+	request, err = http.NewRequest(method, requestUrl.String(), buffer)
+
+	request.Header.Add("User-Agent", client.userAgent)
+	request.Header.Add("Content-Type", "application/json")
+
+	request.SetBasicAuth(client.AuthId, client.AuthToken)
+
+	return
+}
+
 
 func (client *Client) NewRequest(method string, params interface{}, formatString string, formatParams ...interface{}) (request *http.Request, err error) {
 	if client == nil || client.httpClient == nil {
