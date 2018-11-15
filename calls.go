@@ -19,6 +19,7 @@ type Call struct {
 	CallUUID       string `json:"call_uuid,omitempty" url:"call_uuid,omitempty"`
 	ParentCallUUID string `json:"parent_call_uuid,omitempty" url:"parent_call_uuid,omitempty"`
 	EndTime        string `json:"end_time,omitempty" url:"end_time,omitempty"`
+	InitiationTime string `json:"initiation_time,omitempty" url:"initiation_time,omitempty"`
 	TotalAmount    string `json:"total_amount,omitempty" url:"total_amount,omitempty"`
 	CallDirection  string `json:"call_direction,omitempty" url:"call_direction,omitempty"`
 	CallDuration   int64  `json:"call_duration,omitempty" url:"call_duration,omitempty"`
