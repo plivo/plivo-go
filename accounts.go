@@ -137,8 +137,12 @@ func (service *SubaccountService) List(params SubaccountListParams) (response *S
 	return
 }
 
-func (service *SubaccountService) Delete(subauthId string, params SubaccountDeleteParams) (err error) {
-	request, err := service.client.NewRequest("DELETE", params, "Subaccount/%s", subauthId)
+func (service *SubaccountService) Delete(subauthId string, data ...SubaccountDeleteParams) (err error) {
+	var optionalParams interface{}
+	if data != nil {
+		optionalParams = data[0]
+	}
+	request, err := service.client.NewRequest("DELETE", optionalParams, "Subaccount/%s", subauthId)
 	if err != nil {
 		return
 	}
