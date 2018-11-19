@@ -37,14 +37,14 @@ type LiveCall struct {
 }
 
 type QueuedCall struct {
-	From           string `json:"from,omitempty" url:"from,omitempty"`
-	To             string `json:"to,omitempty" url:"to,omitempty"`
-	Status         string `json:"call_status,omitempty" url:"call_status,omitempty"`
-	CallUUID       string `json:"call_uuid,omitempty" url:"call_uuid,omitempty"`
-	CallerName     string `json:"caller_name,omitempty" url:"caller_name,omitempty"`
-	APIID   	   string `json:"api_id,omitempty" url:"api_id,omitempty"`
-	Direction      string `json:"direction,omitempty" url:"direction,omitempty"`
-	RequestUUID    string `json:"request_uuid,omitempty" url:"request_uuid,omitempty"`
+	From        string `json:"from,omitempty" url:"from,omitempty"`
+	To          string `json:"to,omitempty" url:"to,omitempty"`
+	Status      string `json:"call_status,omitempty" url:"call_status,omitempty"`
+	CallUUID    string `json:"call_uuid,omitempty" url:"call_uuid,omitempty"`
+	CallerName  string `json:"caller_name,omitempty" url:"caller_name,omitempty"`
+	APIID       string `json:"api_id,omitempty" url:"api_id,omitempty"`
+	Direction   string `json:"direction,omitempty" url:"direction,omitempty"`
+	RequestUUID string `json:"request_uuid,omitempty" url:"request_uuid,omitempty"`
 }
 
 type LiveCallIDListResponse struct {
@@ -56,7 +56,6 @@ type QueuedCallIDListResponse struct {
 	APIID string   `json:"api_id" url:"api_id"`
 	Calls []string `json:"calls" url:"calls"`
 }
-
 
 type CallCreateParams struct {
 	// Required parameters.
@@ -121,10 +120,10 @@ type CallListParams struct {
 }
 
 type LiveCallFilters struct {
-	CallDirection	string	`json:"call_direction,omitempty" url:"call_direction,omitempty"`
-	FromNumber		string	`json:"from_number,omitempty" url:"from_number,omitempty"`
-	ToNumber		string	`json:"to_number,omitempty" url:"to_number,omitempty"`
-	Status			string	`json:"status,omitempty" url:"status,omitempty" default:"live"`
+	CallDirection string `json:"call_direction,omitempty" url:"call_direction,omitempty"`
+	FromNumber    string `json:"from_number,omitempty" url:"from_number,omitempty"`
+	ToNumber      string `json:"to_number,omitempty" url:"to_number,omitempty"`
+	Status        string `json:"status,omitempty" url:"status,omitempty" default:"live"`
 }
 
 type CallListResponse struct {
@@ -261,9 +260,13 @@ func (service *LiveCallService) Get(LiveCallId string) (response *LiveCall, err 
 	return
 }
 
-func (service *LiveCallService) IDList(params LiveCallFilters) (response *LiveCallIDListResponse, err error) {
-	params.Status = "live"
-	req, err := service.client.NewRequest("GET", params, "Call")
+func (service *LiveCallService) IDList(data ...LiveCallFilters) (response *LiveCallIDListResponse, err error) {
+	var optionalParams LiveCallFilters
+	if data != nil {
+		optionalParams = data[0]
+	}
+	optionalParams.Status = "live"
+	req, err := service.client.NewRequest("GET", optionalParams, "Call")
 	if err != nil {
 		return
 	}
