@@ -8,6 +8,10 @@ type LiveCallService struct {
 	client *Client
 }
 
+type QueuedCallService struct {
+	client *Client
+}
+
 type Call struct {
 	FromNumber     string `json:"from_number,omitempty" url:"from_number,omitempty"`
 	ToNumber       string `json:"to_number,omitempty" url:"to_number,omitempty"`
@@ -21,6 +25,10 @@ type Call struct {
 	MessageURL     string `json:"message_url,omitempty" url:"message_url,omitempty"`
 	ResourceURI    string `json:"resource_uri,omitempty" url:"resource_uri,omitempty"`
 	CallState      string `json:"call_state,omitempty" url:"call_state,omitempty"`
+	HangupCauseCode int64  `json:"hangup_cause_code,omitempty" url:"hangup_cause_code,omitempty"`
+	HangupCauseName string `json:"hangup_cause_name,omitempty" url:"hangup_cause_name,omitempty"`
+	HangupSource    string `json:"hangup_source,omitempty" url:"hangup_source,omitempty"`
+
 }
 
 type LiveCall struct {
@@ -34,7 +42,23 @@ type LiveCall struct {
 	CallStatus     string `json:"call_status,omitempty" url:"call_status,omitempty"`
 }
 
+type QueuedCall struct {
+	From        string `json:"from,omitempty" url:"from,omitempty"`
+	To          string `json:"to,omitempty" url:"to,omitempty"`
+	Status      string `json:"call_status,omitempty" url:"call_status,omitempty"`
+	CallUUID    string `json:"call_uuid,omitempty" url:"call_uuid,omitempty"`
+	CallerName  string `json:"caller_name,omitempty" url:"caller_name,omitempty"`
+	APIID       string `json:"api_id,omitempty" url:"api_id,omitempty"`
+	Direction   string `json:"direction,omitempty" url:"direction,omitempty"`
+	RequestUUID string `json:"request_uuid,omitempty" url:"request_uuid,omitempty"`
+}
+
 type LiveCallIDListResponse struct {
+	APIID string   `json:"api_id" url:"api_id"`
+	Calls []string `json:"calls" url:"calls"`
+}
+
+type QueuedCallIDListResponse struct {
 	APIID string   `json:"api_id" url:"api_id"`
 	Calls []string `json:"calls" url:"calls"`
 }
@@ -73,11 +97,14 @@ type CallCreateResponse struct {
 
 type CallListParams struct {
 	// Query parameters.
-	Subaccount    string `json:"subaccount,omitempty" url:"subaccount,omitempty"`
-	CallDirection string `json:"call_direction,omitempty" url:"call_direction,omitempty"`
-	FromNumber    string `json:"from_number,omitempty" url:"from_number,omitempty"`
-	ToNumber      string `json:"to_number,omitempty" url:"to_number,omitempty"`
-	EndTimeEquals string `json:"end_time,omitempty" url:"end_time,omitempty"`
+	Subaccount      string `json:"subaccount,omitempty" url:"subaccount,omitempty"`
+	CallDirection   string `json:"call_direction,omitempty" url:"call_direction,omitempty"`
+	FromNumber      string `json:"from_number,omitempty" url:"from_number,omitempty"`
+	ToNumber        string `json:"to_number,omitempty" url:"to_number,omitempty"`
+	ParentCallUUID  string `json:"parent_call_uuid,omitempty" url:"parent_call_uuid,omitempty"`
+	EndTimeEquals   string `json:"end_time,omitempty" url:"end_time,omitempty"`
+	HangupCauseCode int64  `json:"hangup_cause_code,omitempty" url:"hangup_cause_code,omitempty"`
+	HangupSource    string `json:"hangup_source,omitempty" url:"hangup_source,omitempty"`
 
 	EndTimeLessThan string `json:"end_time__lt,omitempty" url:"end_time__lt,omitempty"`
 
@@ -96,8 +123,15 @@ type CallListParams struct {
 	BillDurationLessOrEqual string `json:"bill_duration__lte,omitempty" url:"bill_duration__lte,omitempty"`
 
 	BillDurationGreaterOrEqual string `json:"bill_duration__gte,omitempty" url:"bill_duration__gte,omitempty"`
-	Limit                      int64  `json:"limit:omitempty" url:"limit:omitempty"`
-	Offset                     int64  `json:"offset:omitempty" url:"offset:omitempty"`
+	Limit                      int64  `json:"limit,omitempty" url:"limit,omitempty"`
+	Offset                     int64  `json:"offset,omitempty" url:"offset,omitempty"`
+}
+
+type LiveCallFilters struct {
+	CallDirection string `json:"call_direction,omitempty" url:"call_direction,omitempty"`
+	FromNumber    string `json:"from_number,omitempty" url:"from_number,omitempty"`
+	ToNumber      string `json:"to_number,omitempty" url:"to_number,omitempty"`
+	Status        string `json:"status,omitempty" url:"status,omitempty" default:"live"`
 }
 
 type CallListResponse struct {
@@ -234,14 +268,41 @@ func (service *LiveCallService) Get(LiveCallId string) (response *LiveCall, err 
 	return
 }
 
-func (service *LiveCallService) IDList() (response *LiveCallIDListResponse, err error) {
-	req, err := service.client.NewRequest("GET", struct {
-		Status string `json:"status" url:"status"`
-	}{"live"}, "Call")
+func (service *LiveCallService) IDList(data ...LiveCallFilters) (response *LiveCallIDListResponse, err error) {
+	var optionalParams LiveCallFilters
+	if data != nil {
+		optionalParams = data[0]
+	}
+	optionalParams.Status = "live"
+	req, err := service.client.NewRequest("GET", optionalParams, "Call")
 	if err != nil {
 		return
 	}
 	response = &LiveCallIDListResponse{}
+	err = service.client.ExecuteRequest(req, response)
+	return
+}
+
+func (service *QueuedCallService) IDList() (response *QueuedCallIDListResponse, err error) {
+	req, err := service.client.NewRequest("GET", struct {
+		Status string `json:"status" url:"status"`
+	}{"queued"}, "Call")
+	if err != nil {
+		return
+	}
+	response = &QueuedCallIDListResponse{}
+	err = service.client.ExecuteRequest(req, response)
+	return
+}
+
+func (service *QueuedCallService) Get(QueuedCallId string) (response *QueuedCall, err error) {
+	req, err := service.client.NewRequest("GET", struct {
+		Status string `json:"status" url:"status"`
+	}{"queued"}, "Call/%s", QueuedCallId)
+	if err != nil {
+		return
+	}
+	response = &QueuedCall{}
 	err = service.client.ExecuteRequest(req, response)
 	return
 }
