@@ -17,7 +17,6 @@ type Node struct {
 	Name string `json:"name" url:"name"`
 	NodeType string `json:"node_type" url:"node_type"`
 	CreatedOn string `json:"created_on" url:"created_on"`
-	BaseResource
 }
 
 type MultiPartyCall struct {
@@ -35,35 +34,35 @@ type MultiPartyCallMember struct {
 	BaseResource
 }
 
-func (node *Node) update(params interface{}) (response *NodeActionResponse, err error) {
-	req, err := node.client.NewRequest("POST", params,"phlo/%s/%s/%s", node.PhloID, node.NodeType,
-		node.NodeID)
+func (self *MultiPartyCall) update(params MultiPartyCallActionPayload) (response *NodeActionResponse, err error) {
+	req, err := self.client.NewRequest("POST", params,"phlo/%s/%s/%s", self.PhloID, self.NodeType,
+		self.NodeID)
 	if err != nil {
 		return
 	}
 	response = &NodeActionResponse{}
-	err = node.client.ExecuteRequest(req, response)
+	err = self.client.ExecuteRequest(req, response)
 
 	return
 }
 
-func (service *MultiPartyCall) Call(params MultiPartyCallActionPayload) (*NodeActionResponse, error) {
-	return service.update(params)
+func (self *MultiPartyCall) Call(params MultiPartyCallActionPayload) (*NodeActionResponse, error) {
+	return self.update(params)
 }
 
-func (service *MultiPartyCall) WarmTransfer(params MultiPartyCallActionPayload) (response *NodeActionResponse,
+func (self *MultiPartyCall) WarmTransfer(params MultiPartyCallActionPayload) (response *NodeActionResponse,
 	err error) {
-	return service.update(params)
+	return self.update(params)
 }
 
-func (service *MultiPartyCall) ColdTransfer(params MultiPartyCallActionPayload) (response *NodeActionResponse,
+func (self *MultiPartyCall) ColdTransfer(params MultiPartyCallActionPayload) (response *NodeActionResponse,
 	err error) {
-	return service.update(params)
+	return self.update(params)
 }
 
-func (service *MultiPartyCall) Member(memberID string ) (response *MultiPartyCallMember,
+func (self *MultiPartyCall) Member(memberID string ) (response *MultiPartyCallMember,
 	err error) {
-	response = &MultiPartyCallMember{service.NodeID, service.PhloID, service. NodeType,memberID, BaseResource{service.client}}
+	response = &MultiPartyCallMember{self.NodeID, self.PhloID, self. NodeType,memberID, BaseResource{self.client}}
 	return
 }
 

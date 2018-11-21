@@ -28,11 +28,11 @@ type PhloRun struct {
 }
 
 
-func (self *Phlos) Get(phloId string) (response *Phlo, err error) {
-	req, err := self.client.NewRequest("GET", nil,"phlo/%s", phloId)
+func (laddu *Phlos) Get(phloId string) (response *Phlo, err error) {
+	req, err := laddu.client.NewRequest("GET", nil,"phlo/%s", phloId)
 	response = &Phlo{}
-	response.client = self.client // Todo: set this in ExecuteRequest()
-	err = self.client.ExecuteRequest(req, response)
+	response.client = laddu.client // Todo: set this in ExecuteRequest()
+	err = laddu.client.ExecuteRequest(req, response)
 
 	return
 }
@@ -41,7 +41,6 @@ func (self *Phlos) Get(phloId string) (response *Phlo, err error) {
 func (self *Phlo) Node(phloId string, nodeType string, nodeId string) (response *Node, err error) {
 	req, err := self.client.NewRequest("GET", nil,"phlo/%s/%s/%s", phloId, nodeType, nodeId)
 	response = &Node{}
-	response.client = self.client
 	err = self.client.ExecuteRequest(req, response)
 
 	return
@@ -55,7 +54,7 @@ func (self *Phlo) MultiPartyCall(phloId string, nodeType string, nodeId string) 
 	return
 }
 
-func (self *Phlo) Run(data ...interface{}) (response *PhloRun, err error) {
+func (self *Phlo) Run(data map[string]interface{}) (response *PhloRun, err error) {
 	req, err := self.client.NewRequest("POST", data,"account/%s/phlo/%s/", self.client.AuthId, self.PhloId)
 	response = &PhloRun{}
 	err = self.client.ExecuteRequest(req, response)

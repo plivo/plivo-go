@@ -9,7 +9,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"reflect"
 )
 
 //https://phlorunner.plivo.com/v1/phlo/ebee832f-6467-4e9f-b168-4f296cbc2f09/'
@@ -61,11 +60,11 @@ formatParams ...interface{}) (request *http.Request, err error) {
 
 		requestUrl.RawQuery = values.Encode()
 	} else {
-			if !reflect.ValueOf(params).IsNil() {
+			//if !reflect.ValueOf(params).IsNil() {
 				if err = json.NewEncoder(buffer).Encode(params); err != nil {
 					return
 				}
-			}
+			//}
 
 	}
 
