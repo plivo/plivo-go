@@ -7,40 +7,26 @@ import (
 )
 
 func main()  {
-	client, err := plivo.NewPhloClient("MAZMI2NZE5N2EWZDI4MZ", "NzUyYTVhMTY5MDczZmRjNDk1NmI5YTJmNTgwMDI4", &plivo.ClientOptions{})
-
-	phloOut , err := client.Phlos.Get("2e802f94-cc03-4e35-b4c8-5a0328544135")
-	if err != nil {
-		panic(err)
-	}
-//https://phlorunner.plivo.com/v1/account/MAZMI2NZE5N2EWZDI4MZ/phlo/2e802f94-cc03-4e35-b4c8-5a0328544135
-
-	type PhloRunPayLoad struct {
-		To string `to:"to" url:"to"`
-	}
-
-	//prpl := PhloRunPayLoad{"+919503364736"}
-	type runnerParams map[string]interface{}
-	phloRun, err := phloOut.Run(runnerParams{"to":"+919503364736" })
-
-	fmt.Printf("%# v", pretty.Formatter(phloRun))
+	client, _ := plivo.NewPhloClient("MAZMI2NZE5N2EWZDI4MZ", "NzUyYTVhMTY5MDczZmRjNDk1NmI5YTJmNTgwMDI4", &plivo.ClientOptions{})
+	phloOut , _ := client.Phlos.Get("2e802f94-cc03-4e35-b4c8-5a0328544135")
+	type params map[string]interface{}
+	//phloRun1, _ := phloOut.Run(params{"from":"919441456465", "to":"919503364736"})
+	//phloRun, _ := phloOut.Run(nil)
+	//fmt.Printf("Phlo Run OutPut %# v", pretty.Formatter(phloRun))
+	//fmt.Printf("Phlo Error OutPut %# v", pretty.Formatter(phloRun1))
 
 
-
-	mout,err := phloOut.MultiPartyCall("2e802f94-cc03-4e35-b4c8-5a0328544135","multi_party_call","b18848dd-e308-4758-bc5c-fb9c274d5fb7")
-	fmt.Printf("MultiPartyCall output %# v", pretty.Formatter(mout))
-	if err != nil {
-			panic(err)
-		}
+	//payload := plivo.MultiPartyCallActionPayload{"call","919704583677","agent","919503364736"}
+	multipartycall,_ := phloOut.MultiPartyCall("2e802f94-cc03-4e35-b4c8-5a0328544135","multi_party_call","b18848dd-e308-4758-bc5c-fb9c274d5fb7")
+	//nodeOut,_ := multipartycall.Call(payload)
 
 
+	//fmt.Printf("MultiPartyCall output %# v", pretty.Formatter(multipartycall))
+	//fmt.Printf(" NodeResponse output %# v", pretty.Formatter(nodeOut))
 
-	mpcap := plivo.MultiPartyCallActionPayload{"call","+919441456465","agent","+919503364736"}
+	memberPayload := plivo.MultiPartyCallMemberActionPayload{"hold"}
+	memberUpdateCall,_ := multipartycall.Member("919704583677").Hold(memberPayload)
 
-
-	nodeOut,err := mout.Call(mpcap)
-	fmt.Printf(" nodeOut %# v", pretty.Formatter(nodeOut))
-
-
+	fmt.Printf(" NodeResponse output %# v", pretty.Formatter(memberUpdateCall))
 
 }

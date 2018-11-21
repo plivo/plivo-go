@@ -28,11 +28,11 @@ type PhloRun struct {
 }
 
 
-func (laddu *Phlos) Get(phloId string) (response *Phlo, err error) {
-	req, err := laddu.client.NewRequest("GET", nil,"phlo/%s", phloId)
+func (self *Phlos) Get(phloId string) (response *Phlo, err error) {
+	req, err := self.client.NewRequest("GET", nil,"phlo/%s", phloId)
 	response = &Phlo{}
-	response.client = laddu.client // Todo: set this in ExecuteRequest()
-	err = laddu.client.ExecuteRequest(req, response)
+	response.client = self.client // Todo: set this in ExecuteRequest()
+	err = self.client.ExecuteRequest(req, response)
 
 	return
 }
