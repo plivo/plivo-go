@@ -1,21 +1,21 @@
 package plivo
 
 type NodeActionResponse struct {
-	ApiID     string `json:"api_id" url:"api_id"`
-	Error     string `json:"error" url:"error"`
+	ApiID string `json:"api_id" url:"api_id"`
+	Error string `json:"error" url:"error"`
 }
 type MultiPartyCallActionPayload struct {
-	Action     string `json:"action" url:"action"`
-	To     string `json:"to" url:"to"`
-	Role     string `json:"role" url:"role"`
-	TriggerSource     string `json:"trigger_source" url:"trigger_source"`
+	Action        string `json:"action" url:"action"`
+	To            string `json:"to" url:"to"`
+	Role          string `json:"role" url:"role"`
+	TriggerSource string `json:"trigger_source" url:"trigger_source"`
 }
 
 type Node struct {
-	NodeID     string `json:"node_id" url:"node_id"`
-	PhloID string `json:"phlo_id" url:"phlo_id"`
-	Name string `json:"name" url:"name"`
-	NodeType string `json:"node_type" url:"node_type"`
+	NodeID    string `json:"node_id" url:"node_id"`
+	PhloID    string `json:"phlo_id" url:"phlo_id"`
+	Name      string `json:"name" url:"name"`
+	NodeType  string `json:"node_type" url:"node_type"`
 	CreatedOn string `json:"created_on" url:"created_on"`
 }
 
@@ -27,17 +27,17 @@ type MultiPartyCallMemberActionPayload struct {
 	Action string `json:"action" url:"action"`
 }
 type MultiPartyCallMember struct {
-	NodeID     string `json:"node_id" url:"node_id"`
-	PhloID string `json:"phlo_id" url:"phlo_id"`
-	NodeType string `json:"node_type" url:"node_type"`
+	NodeID        string `json:"node_id" url:"node_id"`
+	PhloID        string `json:"phlo_id" url:"phlo_id"`
+	NodeType      string `json:"node_type" url:"node_type"`
 	MemberAddress string `json:"member_address" url:"member_address"`
 	BaseResource
 }
 
 func (self *MultiPartyCall) update(params MultiPartyCallActionPayload) (response *NodeActionResponse, err error) {
-	req, err := self.client.NewRequest("POST", params,"phlo/%s/%s/%s", self.PhloID, self.NodeType,
+	req, err := self.client.NewRequest("POST", params, "phlo/%s/%s/%s", self.PhloID, self.NodeType,
 		self.NodeID)
-	if err != nil {
+	if (err != nil) {
 		return
 	}
 	response = &NodeActionResponse{}
@@ -60,34 +60,35 @@ func (self *MultiPartyCall) ColdTransfer(params MultiPartyCallActionPayload) (re
 	return self.update(params)
 }
 
-func (self *MultiPartyCall) Member(memberID string ) (response *MultiPartyCallMember,
-	) {
-	response = &MultiPartyCallMember{self.NodeID, self.PhloID, self. NodeType,memberID, BaseResource{self.client}}
+func (self *MultiPartyCall) AbortTransfer(params MultiPartyCallActionPayload) (response *NodeActionResponse,
+	err error) {
+	return self.update(params)
+}
+
+func (self *MultiPartyCall) Member(memberID string) (response *MultiPartyCallMember) {
+	response = &MultiPartyCallMember{self.NodeID, self.PhloID, self.NodeType, memberID, BaseResource{self.client}}
 	return
 }
 
-func (service *MultiPartyCallMember) AbortTransfer(params MultiPartyCallMemberActionPayload) (*NodeActionResponse, error) {
-	return service.update(params)
+func (service *MultiPartyCallMember) ResumeCall() (*NodeActionResponse, error) {
+	return service.update(MultiPartyCallMemberActionPayload{"resume_call"})
 }
-func (service *MultiPartyCallMember) ResumeCall(params MultiPartyCallMemberActionPayload) (*NodeActionResponse, error) {
-	return service.update(params)
+func (service *MultiPartyCallMember) VoiceMailDrop() (*NodeActionResponse, error) {
+	return service.update(MultiPartyCallMemberActionPayload{"voicemail_drop"})
 }
-func (service *MultiPartyCallMember) VoiceMailDrop(params MultiPartyCallMemberActionPayload) (*NodeActionResponse, error) {
-	return service.update(params)
+func (service *MultiPartyCallMember) HangUp() (*NodeActionResponse, error) {
+	return service.update(MultiPartyCallMemberActionPayload{"hangup"})
 }
-func (service *MultiPartyCallMember) HangUp(params MultiPartyCallMemberActionPayload) (*NodeActionResponse, error) {
-	return service.update(params)
+func (service *MultiPartyCallMember) Hold() (*NodeActionResponse, error) {
+	return service.update(MultiPartyCallMemberActionPayload{"hold"})
 }
-func (service *MultiPartyCallMember) Hold(params MultiPartyCallMemberActionPayload) (*NodeActionResponse, error) {
-	return service.update(params)
-}
-func (service *MultiPartyCallMember) UnHold(params MultiPartyCallMemberActionPayload) (*NodeActionResponse, error) {
-	return service.update(params)
+func (service *MultiPartyCallMember) UnHold() (*NodeActionResponse, error) {
+	return service.update(MultiPartyCallMemberActionPayload{"unhold"})
 }
 
 func (service *MultiPartyCallMember) update(params MultiPartyCallMemberActionPayload) (response *NodeActionResponse, err error) {
-	req, err := service.client.NewRequest("POST", params,"phlo/%s/%s/%s/members/%s", service.PhloID, service.NodeType,
-		service.NodeID,service.MemberAddress)
+	req, err := service.client.NewRequest("POST", params, "phlo/%s/%s/%s/members/%s", service.PhloID, service.NodeType,
+		service.NodeID, service.MemberAddress)
 	if err != nil {
 		return
 	}

@@ -34,7 +34,7 @@ type BaseClient struct {
 	ResponseInterceptor func(response *http.Response)
 }
 
-func (client *BaseClient) NewRequest(method string, params interface{}, baseRequestString string, formatString string,
+func (client *BaseClient) 	NewRequest(method string, params interface{}, baseRequestString string, formatString string,
 formatParams ...interface{}) (request *http.Request, err error) {
 
 	if client == nil || client.httpClient == nil {
