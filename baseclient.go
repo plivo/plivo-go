@@ -12,7 +12,6 @@ import (
 	"reflect"
 )
 
-//https://phlorunner.plivo.com/v1/phlo/ebee832f-6467-4e9f-b168-4f296cbc2f09/'
 const sdkVersion = "4.0.4"
 
 type ClientOptions struct {
