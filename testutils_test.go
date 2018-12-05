@@ -79,5 +79,5 @@ func init() {
 	phloClient.BaseUrl,_ = url.Parse(server.URL)
 }
 
-var client, _ = NewClient("MAMTK2MGFHNTVINWQYZT", "N2FmNzdhMTc2ZmY5MWEyNzhhMDk1YWEwODM4NzIx", &ClientOptions{})
-var phloClient, _ = NewPhloClient("MAMTK2MGFHNTVINWQYZT", "N2FmNzdhMTc2ZmY5MWEyNzhhMDk1YWEwODM4NzIx", &ClientOptions{})
+var client, _ = NewClient("", "", &ClientOptions{})
+var phloClient, _ = NewPhloClient("", "", &ClientOptions{})
