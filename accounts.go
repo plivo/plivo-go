@@ -55,6 +55,10 @@ type SubaccountCreateParams struct {
 
 type SubaccountUpdateParams SubaccountCreateParams
 
+type SubaccountDeleteParams struct {
+	Cascade bool   `json:"cascade,omitempty" url:"cascade,omitempty"` // Specify if the sub account should be cascade deleted or not. Takes a value of True or False. Defaults to False
+}
+
 type SubaccountCreateResponse struct {
 	BaseResponse
 	AuthId    string `json:"auth_id" url:"auth_id"`
@@ -133,8 +137,12 @@ func (service *SubaccountService) List(params SubaccountListParams) (response *S
 	return
 }
 
-func (service *SubaccountService) Delete(subauthId string) (err error) {
-	request, err := service.client.NewRequest("DELETE", nil, "Subaccount/%s", subauthId)
+func (service *SubaccountService) Delete(subauthId string, data ...SubaccountDeleteParams) (err error) {
+	var optionalParams interface{}
+	if data != nil {
+		optionalParams = data[0]
+	}
+	request, err := service.client.NewRequest("DELETE", optionalParams, "Subaccount/%s", subauthId)
 	if err != nil {
 		return
 	}
