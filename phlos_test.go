@@ -31,15 +31,10 @@ func TestNode_Get(t *testing.T) {
 	testNodeId := "NodeId"
 	phloGet, _ := phloClient.Phlos.Get(testPhloId)
 
-	_, err := phloGet.Node("")
-	if err == nil {
-		panic(errors.New("error expected"))
-	}
-
 	cl := phloClient.httpClient
 	phloClient.httpClient = nil
 
-	_, err = phloGet.Node(testNodeId)
+	_, err := phloGet.Node(testNodeId)
 	if err == nil {
 		phloClient.httpClient = cl
 		panic(errors.New("error expected"))
@@ -78,6 +73,7 @@ func TestPhloRun_Post(t *testing.T) {
 	cl := phloClient.httpClient
 	phloClient.httpClient = nil
 
+	//expectResponse("PhloRunResponse.json", 200)
 	_, err := phloGet.Run(nil)
 	if err == nil {
 		phloClient.httpClient = cl

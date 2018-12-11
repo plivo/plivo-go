@@ -4,7 +4,7 @@ const nodeType = "multi_party_call"
 
 type Phlo struct {
 	BaseResource
-
+	ApiId 	  string `json:"api_id" url:"api_id"`
 	PhloId    string `json:"phlo_id" url:"phlo_id"`
 	Name      string `json:"name" url:"name"`
 	CreatedOn string `json:"created_on" url:"created_on"`
@@ -17,7 +17,6 @@ type Phlos struct {
 func NewPhlos(client *PhloClient) (phlos *Phlos) {
 	phlos = &Phlos{}
 	phlos.client = client
-	//phlos.resourceType = Phlo // TODO: how to set this?
 
 	return
 }
@@ -35,7 +34,7 @@ func (self *Phlos) Get(phloId string) (response *Phlo, err error) {
 		return
 	}
 	response = &Phlo{}
-	response.client = self.client // Todo: set this in ExecuteRequest()
+	response.client = self.client
 	err = self.client.ExecuteRequest(req, response)
 
 	return

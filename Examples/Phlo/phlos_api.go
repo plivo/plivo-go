@@ -19,7 +19,7 @@ import (
 */
 
 func main() {
-	testPhloRunWithParams()
+	testNodeGetter()
 }
 
 func testPhloGetter() {

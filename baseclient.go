@@ -16,8 +16,6 @@ const sdkVersion = "4.0.4"
 
 type ClientOptions struct {
 	HttpClient *http.Client
-	//RequestInterceptor  func(request *http.Request)
-	//ResponseInterceptor func(response *http.Response)
 }
 
 type BaseClient struct {
@@ -91,19 +89,11 @@ func (client *BaseClient) ExecuteRequest(request *http.Request, body interface{}
 		return errors.New("httpClient cannot be nil")
 	}
 
-	//if client.RequestInterceptor != nil {
-	//	client.RequestInterceptor(request)
-	//}
 
 	response, err := client.httpClient.Do(request)
 	if err != nil {
 		return
 	}
-
-	//if client.ResponseInterceptor != nil {
-	//	responseCopy := *response
-	//	client.ResponseInterceptor(&responseCopy)
-	//}
 
 	data, err := ioutil.ReadAll(response.Body)
 	if err == nil && data != nil && len(data) > 0 {
