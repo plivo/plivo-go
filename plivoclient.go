@@ -8,9 +8,7 @@ import (
 	"time"
 
 	"runtime"
-
-	"github.com/google/go-querystring/query"
-)
+	)
 
 const baseUrlString = "https://api.plivo.com/"
 const baseRequestString = "/v1/Account/%s/"
