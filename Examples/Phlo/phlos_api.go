@@ -5,11 +5,19 @@ import (
 	"plivo-go"
 )
 
-// Initialize phloClient using plivo.NewPhloClient("authId, "authToken") as shown below
-// To trigger phlo resource you can call the corresponding resource in main
-// For example to trigger phloGet call testPhloGetter() in main()
-// Sample expected output for PhloGet resource is
-/*
+
+// Initialize the following params with corresponding values to trigger resources
+
+const authId  = "auth_id"
+const authToken = "auth_token"
+const phloId = "phlo_id"
+const nodeId = "node_id"
+
+/* Initialize phloClient using plivo.NewPhloClient("authId, "authToken") as shown below
+  For example to trigger phloGet invoke testPhloGetter() in main()
+
+ Sample expected output for PhloGet resource is
+
 	{
 		BaseResource:{client:xxx}
 		PhloId:xxxx-xxx-xxxx-xxx-xxx
@@ -19,15 +27,15 @@ import (
 */
 
 func main() {
-	testNodeGetter()
+	testPhloGetter()
 }
 
 func testPhloGetter() {
-	phloClient,err := plivo.NewPhloClient("auth_id", "auth_token", &plivo.ClientOptions{})
+	phloClient,err := plivo.NewPhloClient(authId, authToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
 	}
-	response, err := phloClient.Phlos.Get("phlo_id")
+	response, err := phloClient.Phlos.Get(phloId)
 	if err != nil {
 		panic(err)
 	}
@@ -35,15 +43,15 @@ func testPhloGetter() {
 }
 
 func testNodeGetter() {
-	phloClient,err := plivo.NewPhloClient("auth_id", "auth_token", &plivo.ClientOptions{})
+	phloClient,err := plivo.NewPhloClient(authId, authToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
 	}
-	phloGet, err := phloClient.Phlos.Get("phlo_id")
+	phloGet, err := phloClient.Phlos.Get(phloId)
 	if err != nil {
 		panic(err)
 	}
-	response, err := phloGet.Node("node_id")
+	response, err := phloGet.Node(nodeId)
 	if err != nil {
 		panic(err)
 	}
@@ -51,16 +59,21 @@ func testNodeGetter() {
 }
 
 func testPhloRunWithParams() {
-	phloClient,err := plivo.NewPhloClient("auth_id", "auth_token", &plivo.ClientOptions{})
+	phloClient,err := plivo.NewPhloClient(authId, authToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
 	}
-	phloGet, err := phloClient.Phlos.Get("phlo_id")
+	phloGet, err := phloClient.Phlos.Get(phloId)
 	if err != nil {
 		panic(err)
 	}
+	//pass corresponding from and to values
 	type params map[string]interface{}
-	response, err := phloGet.Run(params{"from": "origin", "to": "destination"})
+	response, err := phloGet.Run(params{
+		"from": "111111111",
+		"to": "2222222222",
+	})
+
 	if (err != nil) {
 		println(err)
 	}
@@ -68,11 +81,11 @@ func testPhloRunWithParams() {
 }
 
 func testPhloRunWithoutParams() {
-	phloClient,err := plivo.NewPhloClient("auth_id", "auth_token", &plivo.ClientOptions{})
+	phloClient,err := plivo.NewPhloClient(authId, authToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
 	}
-	phloGet, err := phloClient.Phlos.Get("phlo_id")
+	phloGet, err := phloClient.Phlos.Get(phloId)
 	if err != nil {
 		panic(err)
 	}
@@ -85,15 +98,15 @@ func testPhloRunWithoutParams() {
 }
 
 func testMulitPartyCallGetter() {
-	phloClient,err := plivo.NewPhloClient("auth_id", "auth_token", &plivo.ClientOptions{})
+	phloClient,err := plivo.NewPhloClient(authId, authToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
 	}
-	phloGet, err := phloClient.Phlos.Get("phlo_id")
+	phloGet, err := phloClient.Phlos.Get(phloId)
 	if err != nil {
 		panic(err)
 	}
-	response, err := phloGet.MultiPartyCall("node_id")
+	response, err := phloGet.MultiPartyCall(nodeId)
 	if err != nil {
 		panic(err)
 	}
