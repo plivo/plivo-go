@@ -102,7 +102,11 @@ func (client *BaseClient) ExecuteRequest(request *http.Request, body interface{}
 				err = json.Unmarshal(data, body)
 			}
 		} else {
-			err = errors.New(string(data))
+			if (string(data) == "{}" && response.StatusCode == 404){
+				err = errors.New(string("Resource not found exception \n" + response.Status))
+			}else{
+				err = errors.New(string(data))
+			}
 		}
 	}
 
