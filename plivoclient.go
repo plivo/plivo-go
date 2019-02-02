@@ -11,13 +11,14 @@ import (
 	"os"
 	"time"
 
-	"github.com/google/go-querystring/query"
 	"runtime"
+
+	"github.com/google/go-querystring/query"
 )
 
 const baseUrlString = "https://api.plivo.com/"
 
-const sdkVersion = "4.0.4"
+const sdkVersion = "4.0.5"
 
 type Client struct {
 	httpClient *http.Client

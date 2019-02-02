@@ -1,5 +1,10 @@
 # Change Log
 
+## [4.0.5](https://github.com/plivo/plivo-go/tree/v4.0.5) (2018-11-19)
+- Add hangup party details to CDR. CDR filtering allowed by hangup_source and hangup_cause_code.
+- Add sub-account cascade delete support.
+- Add call status to GET calls and live-calls methods.
+
 ## [4.0.4](https://github.com/plivo/plivo-go/tree/v4.0.4) (2018-10-31)
 - Add live calls filtering by to, from numbers and call direction.
 
