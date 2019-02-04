@@ -1,0 +1,33 @@
+{
+  "account": "MAYTAYYJK2NGVJZTDMZT",
+  "id": "19136127528740",
+  "country_iso": "IN",
+  "salutation": "Mr",
+  "first_name": "name",
+  "last_name": "lastname",
+  "nationality": "NL",
+  "id_number": "22131",
+  "address_line1": "defkeg",
+  "address_line2": "def",
+  "city": "hyderabad",
+  "region": "telangana",
+  "postal_code": "posstalcode",
+  "validation_status": "accepted",
+  "verification_status": "pending",
+  "url": "https://api.test.plivo.com/v1/Account/MAYTAYYJK2NGVJZTDMZT/Verification/Download/Document/19136127528740/",
+  "document_details": {
+    "address_line1": "defkeg",
+    "address_line2": "def",
+    "city": "hyderabad",
+    "first_name": "name",
+    "id_number": "22131",
+    "last_name": "lastname",
+    "nationality": "NL",
+    "number_type": "local",
+    "phone_number_country": "DK",
+    "postal_code": "posstalcode",
+    "proof_type": "passport",
+    "region": "telangana",
+    "salutation": "Mr"
+  }
+}
