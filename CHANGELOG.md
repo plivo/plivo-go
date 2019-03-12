@@ -1,5 +1,13 @@
 # Change Log
 
+## [4.1.0](https://github.com/plivo/plivo-go/tree/v4.1.0) (2019-03-12)
+- Add PHLO support
+- Add Multi-party call triggers
+
+## [4.0.6-beta1](https://github.com/plivo/plivo-go/tree/v4.0.6-beta1) (2019-02-05)
+- Add PHLO support in beta
+- Add Multi-party call triggers
+
 ## [4.0.5](https://github.com/plivo/plivo-go/tree/v4.0.5) (2018-11-19)
 - Add hangup party details to CDR. CDR filtering allowed by hangup_source and hangup_cause_code.
 - Add sub-account cascade delete support.

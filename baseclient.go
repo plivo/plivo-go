@@ -12,7 +12,7 @@ import (
 	"reflect"
 )
 
-const sdkVersion = "4.0.6-beta1"
+const sdkVersion = "4.1.0"
 
 type ClientOptions struct {
 	HttpClient *http.Client
