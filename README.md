@@ -5,6 +5,10 @@
 
 The Plivo Go SDK makes it simpler to integrate communications into your Go applications using the Plivo REST API. Using the SDK, you will be able to make voice calls, send SMS and generate Plivo XML to control your call flows.
 
+## Prerequisites
+
+- Go >= 1.7.x
+
 ## Installation
 
 You can use the SDK using the `go` command.
