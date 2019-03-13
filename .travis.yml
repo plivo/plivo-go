@@ -1,17 +1,14 @@
 language: go
 
 go:
-  - "1.0.x" # Travis build is failing with error "gimme: given '1.1.x' but no release for '1.1' found"
-  - "1.1.x" # Travis build is failing with error "gimme: given '1.1.x' but no release for '1.1' found"
-  - "1.2.x" #There is a known Timeout error in http.Client. Skipping builds.
-  - "1.3.x" #There is an error in Travis env while using logrus for testing.
-  - "1.4.x" 
-  - "1.5.x"
-  - "1.6.x"
-  - "1.7.x"
-  - "1.8.x"
-  - "1.9.x"
-  - "master"
+  - 1.6.x
+  - 1.7.x
+  - 1.8.x
+  - 1.9.x
+  - 1.10.x
+  - 1.11.x
+  - 1.12.x
+  - master
 
 before_script:
   - go get github.com/google/go-querystring/query
