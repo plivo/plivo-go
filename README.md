@@ -13,7 +13,7 @@ The Plivo Go SDK makes it simpler to integrate communications into your Go appli
 
 ### To Install Stable release
 
-You can use the SDK using the `go` command.
+You can use the Stable release using the `go` command.
 
     $ go get github.com/plivo/plivo-go
 
