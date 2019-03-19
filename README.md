@@ -21,11 +21,10 @@ You can also install by cloning this repository into your `GOPATH`.
 
 ### To Install Beta release
 
-1. In the terminal, using the following command, create a new folder called **test-plivo-beta**.
+1. In terminal, using the following command, create a new folder called **test-plivo-beta**.
 
     ```
-    mkdir test-plivo-beta
-
+    $ mkdir test-plivo-beta
     ```
 
 	**Note:** Make sure the new folder is outside your GOPATH.
@@ -34,13 +33,13 @@ You can also install by cloning this repository into your `GOPATH`.
 3. Using the following command, initialize a new module:
 
     ```
-    go mod init github.com/plivo/beta
+    $ go mod init github.com/plivo/beta
     ```
 
     You will see the following return:
 
     ```
-    go mod init github.com/plivo/beta
+    $ go mod init github.com/plivo/beta
     ```
 
 4. Next, create a new go file with the following code:
@@ -78,7 +77,7 @@ You can also install by cloning this repository into your `GOPATH`.
 5. Run the following command to build the packages:
 
     ```
-    go build
+    $ go build
     ```
     <img id="myImg" src="https://s3.amazonaws.com/plivo_blog_uploads/static_assets/images/server_sdks/step5.png" alt="payload_defined" style="border: 1px solid #e8eaf1;">
 
@@ -105,7 +104,7 @@ You can also install by cloning this repository into your `GOPATH`.
 7. Once done, save the go.mod.
 8. Run **go build** to build the packages.
 
-    go.mod will be updated with the beta version.
+    **go.mod** will be updated with the beta version.
 
 You can now use the features available in the Beta branch.
 
@@ -220,6 +219,51 @@ This generates the following XML:
 <Response>
   <Speak>Hello, world!</Speak>
 </Response>
+```
+
+### Run a PHLO
+
+```go
+package main
+
+import (
+	"fmt"
+	"plivo-go"
+)
+
+// Initialize the following params with corresponding values to trigger resources
+
+const authId  = "auth_id"
+const authToken = "auth_token"
+const phloId = "phlo_id"
+
+// with payload in request
+
+func main() {
+	testPhloRunWithParams()
+}
+
+func testPhloRunWithParams() {
+	phloClient,err := plivo.NewPhloClient(authId, authToken, &plivo.ClientOptions{})
+	if err != nil {
+		panic(err)
+	}
+	phloGet, err := phloClient.Phlos.Get(phloId)
+	if err != nil {
+		panic(err)
+	}
+	//pass corresponding from and to values
+	type params map[string]interface{}
+	response, err := phloGet.Run(params{
+		"from": "111111111",
+		"to": "2222222222",
+	})
+
+	if (err != nil) {
+		println(err)
+	}
+	fmt.Printf("Response: %#v\n", response)
+}
 ```
 
 ### More examples
