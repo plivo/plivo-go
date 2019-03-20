@@ -46,8 +46,8 @@ type NumberListParams struct {
 	Services         string `json:"services,omitempty" url:"services,omitempty"`
 	Alias            string `json:"alias,omitempty" url:"alias,omitempty"`
 
-	Limit  int64 `json:"limit:omitempty" url:"limit:omitempty"`
-	Offset int64 `json:"offset:omitempty" url:"offset:omitempty"`
+	Limit  int64 `json:"limit,omitempty" url:"limit,omitempty"`
+	Offset int64 `json:"offset,omitempty" url:"offset,omitempty"`
 }
 
 type NumberListResponse struct {
