@@ -25,7 +25,7 @@ func TestComplexXML(t *testing.T) {
 			new(DTMFElement).SetContents("123").SetAsync(true),
 			new(WaitElement).SetBeep(true).SetLength(10).SetMinSilence(10).SetSilence(true),
 			new(PreAnswerElement).SetContents([]interface{}{
-				new(SpeakElement).SetContents("text").SetLanguage("en").SetLoop(10).SetVoice("MAN"),
+				new(SpeakElement).AddSpeak("text" , "MAN", "en" ,10),
 			}),
 			new(GetDigitsElement).SetPlayBeep(true).SetRedirect(true).SetFinishOnKey("#").SetAction("action").SetDigitTimeout(10).SetNumDigits(10).SetRetries(10).SetTimeout(10).SetValidDigits("123").SetInvalidDigitsSound("sound").SetContents([]interface{}{}),
 			new(GetInputElement).SetAction("action").SetMethod("GET").SetInputType("Speech").SetExecutionTimeout(10).SetDigitEndTimeout(20).SetSpeechEndTimeout(30).SetFinishOnKey("#").SetNumDigits(10).SetSpeechModel("default").SetLanguage("en-us").SetHints("1 2 3").SetInterimSpeechResultsCallback("interimCallback").SetInterimSpeechResultsCallbackMethod("POST").SetRedirect(true).SetLog(false).SetContents([]interface{}{new(SpeakElement).SetContents("Tell us more about your experience").SetVoice("WOMAN").SetLanguage("en-US").SetLoop(1)}),
