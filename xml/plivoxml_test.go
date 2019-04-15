@@ -25,7 +25,7 @@ func TestComplexXML(t *testing.T) {
 			new(DTMFElement).SetContents("123").SetAsync(true),
 			new(WaitElement).SetBeep(true).SetLength(10).SetMinSilence(10).SetSilence(true),
 			new(PreAnswerElement).SetContents([]interface{}{
-				new(SpeakElement).SetContents("text").SetLanguage("en").SetLoop(10).SetVoice("MAN"),
+				new(SpeakElement).AddSpeak("text" , "MAN", "en" ,10),
 			}),
 			new(GetDigitsElement).SetPlayBeep(true).SetRedirect(true).SetFinishOnKey("#").SetAction("action").SetDigitTimeout(10).SetNumDigits(10).SetRetries(10).SetTimeout(10).SetValidDigits("123").SetInvalidDigitsSound("sound").SetContents([]interface{}{}),
 			new(ConferenceElement).SetAction("action").SetRedirect(true).SetCallbackUrl("url").SetCallbackMethod("method").SetContents("name").SetDigitsMatch("123").SetEndConferenceOnExit(true).SetEnterSound("sound").SetExitSound("sound").SetFloorEvent(true).SetHangupOnStar(true).SetMaxMembers(10).SetMethod("method").SetMuted(true).SetRecord(true).SetRecordFileFormat("rff").SetRelayDTMF(true).SetStartConferenceOnEnter(true).SetStayAlone(true).SetTimeLimit(10).SetWaitSound("sound"),

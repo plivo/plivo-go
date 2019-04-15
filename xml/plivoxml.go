@@ -5,8 +5,11 @@ import (
 	"errors"
 	"fmt"
 	"github.com/sirupsen/logrus"
-	"plivo-go"
+	"golang.org/x/text/runes"
+	"golang.org/x/text/transform"
+	"golang.org/x/text/unicode/norm"
 	"strings"
+	"unicode"
 	"unicode/utf8"
 )
 
@@ -714,15 +717,16 @@ func (e SpeakElement) AddSpeak(contents string , voice string, language string, 
 		return e
 	}
 
-	*e.Voice = plivo.TransformString(voice)
-	err := plivo.ValidateLanguageVoice(language, *e.Voice)
+	*e.Voice = TransformString(voice)
+	err := ValidateLanguageVoice(language, *e.Voice)
 	if err !=nil {
 		panic(err)
 	}
 	return e
 }
 
-func (e SpeakElement) SetContents(value string) SpeakElement {
+func (e SpeakElement) ContinueSpeak(value string) SpeakElement {
+	e.checkIsSSMLSupported()
 	e.Contents = fmt.Sprintf("%s %s ",e.Contents, value)
 	return e
 }
@@ -983,4 +987,79 @@ func (e WaitElement) SetMinSilence(value int) WaitElement {
 func (e WaitElement) SetBeep(value bool) WaitElement {
 	e.Beep = &value
 	return e
+}
+
+func getLanguageVoices() map[string][]string {
+	languageVoices := make(map[string][]string)
+	languageVoices["Australian English"] = append(languageVoices["Australian English"], "Nicole", "Russell")
+	languageVoices["Brazilian Portuguese"] = append(languageVoices["Brazilian Portuguese"], "Vitória", "Ricardo")
+	languageVoices["Canadian French"] = append(languageVoices["Canadian French"], "Chantal", "Chantal")
+	languageVoices["Danish"] = append(languageVoices["Danish"], "Naja", "Mads")
+	languageVoices["Dutch"] = append(languageVoices["Dutch"], "Lotte", "Ruben")
+	languageVoices["French"] = append(languageVoices["French"], "Léa", "Céline", "Mathieu")
+	languageVoices["German"] = append(languageVoices["German"], "Vicki", "Hans")
+	languageVoices["Hindi"] = append(languageVoices["Hindi"], "Aditi")
+	languageVoices["Icelandic"] = append(languageVoices["Icelandic"], "Dóra","Karl")
+	languageVoices["Indian English"] = append(languageVoices["Indian English"], "Raveena", "Aditi")
+	languageVoices["Italian"] = append(languageVoices["Italian"], "Carla", "Giorgio")
+	languageVoices["Japanese"] = append(languageVoices["Japanese"], "Mizuki", "Takumi")
+	languageVoices["Korean"] = append(languageVoices["Korean"], "Seoyeon")
+	languageVoices["Mandarin Chinese"] = append(languageVoices["Mandarin Chinese"], "Zhiyu")
+	languageVoices["Norwegian"] = append(languageVoices["Norwegian"], "Liv")
+	languageVoices["Polish"] = append(languageVoices["Polish"], "Ewa", "Maja","Jacek","Jan")
+	languageVoices["Portuguese-Iberic"] = append(languageVoices["Portuguese-Iberic"], "Inês", "Cristiano")
+	languageVoices["Romanian"] = append(languageVoices["Romanian"], "Carmen")
+	languageVoices["Russian"] = append(languageVoices["Russian"], "Tatyana","Maxim")
+	languageVoices["Spanish-Castilian"] = append(languageVoices["Spanish-Castilian"], "Conchita","Enrique")
+	languageVoices["Swedish"] = append(languageVoices["Swedish"], "Astrid")
+	languageVoices["Turkish"] = append(languageVoices["Turkish"], "Filiz")
+	languageVoices["UK English"] = append(languageVoices["UK English"], "Amy","Emma","Brian")
+	languageVoices["US English"] = append(languageVoices["US English"], "Joanna", "Salli", "Kendra", "Kimberly", "Ivy", "Matthew", "Justin", "Joey")
+	languageVoices["US Spanish"] = append(languageVoices["US Spanish"], "Penélope","Miguel")
+	languageVoices["Welsh"] = append(languageVoices["Welsh"], "Gwyneth")
+	languageVoices["Welsh English"] = append(languageVoices["Welsh English"], "Geraint")
+	return languageVoices
+}
+
+func Contains(a []string, x string) bool {
+	for _, n := range a {
+		if x == n {
+			return true
+		}
+	}
+	return false
+}
+
+func ValidateLanguageVoice(language string, voice string) error{
+	voiceparts := strings.Split(voice, ".")
+	if len(voiceparts) != 2 || voiceparts[0] != "Polly" || len(voiceparts[1]) == 0 {
+		return  errors.New("XML Validation Error: Invalid language. Voice " + voice + " is not valid." +
+			" Refer <link> for the list of supported voices.")
+	}
+
+	languageVoicesList := getLanguageVoices()
+
+	if (languageVoicesList[language] == nil) {
+		return  errors.New("XML Validation Error: Invalid language. Language " + language + " is not supported.")
+	}
+
+	availableLanguageVoicesList := languageVoicesList[language]
+
+	for i := range availableLanguageVoicesList {
+		availableLanguageVoicesList[i] = TransformString(availableLanguageVoicesList[i])
+	}
+	transformedVoiceName := TransformString(voiceparts[1])
+
+	if strings.Compare(voiceparts[1], "*") == 0 ||  Contains(availableLanguageVoicesList,transformedVoiceName) == false {
+		return errors.New("XML Validation Error: <Speak> voice '" + voice + "' is not valid. Refer <link> for list of supported voices.")
+	}
+	return nil
+}
+
+func TransformString(s string) string{
+	tc := transform.Chain(norm.NFD, runes.Remove(runes.In(unicode.Mn)), norm.NFC)
+	s, _, _ = transform.String(tc, s)
+	s = strings.Title(s)
+	s = strings.Replace(s, " ", "_", -1)
+	return s
 }
