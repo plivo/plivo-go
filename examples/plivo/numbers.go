@@ -7,24 +7,14 @@ import (
 )
 
 // Initialize the AuthId and AuthToken parameters in go
-// To trigger Number resource methods invoke corresponding helper method in main()
-
-
-// 	To build and run numbers.go
-//  cd  plivo-go/examples/plivo
-//  go run numbers.go credentials.go
-
+// To trigger Number resource methods invoke corresponding helper method in main.go
 
 const number = "1314315XXXX"
-func main() {
-	testSubAccountGet()
-}
-
 
 //Example to get details of number
 //Pass number to fetch the details of a number
 
-func testNumberGet(){
+func TestNumberGet(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -43,7 +33,7 @@ func testNumberGet(){
 //Example to update details of number
 //Passappid of application to be assigned to the phone number, and NumberUpdateParams to update
 
-func testNumberUpdate(){
+func TestNumberUpdate(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -64,7 +54,7 @@ func testNumberUpdate(){
 
 
 //Example to list all numbers
-func testNumberList(){
+func TestNumberList(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -84,7 +74,7 @@ func testNumberList(){
 
 //Example to delete a number
 //Pass the number to delete
-func testNumberDelete(){
+func TestNumberDelete(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -98,7 +88,7 @@ func testNumberDelete(){
 
 // Example to add number from your own carrier,
 // Comma sperated numbers, carrier and region are mandatory params
-func testNumberCreate(){
+func TestNumberCreate(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -122,7 +112,7 @@ func testNumberCreate(){
 
 // Example to list all phone-number are available for purchase
 // Country iso is mandatory param
-func testNumbersList(){
+func TestNumbersList(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -142,7 +132,7 @@ func testNumbersList(){
 
 // Example to buy a phoneNumber
 // Pass the numnber and app_id of application to be assigned to the phone number
-func testPhloneNumberCreate(){
+func TestPhloneNumberCreate(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)

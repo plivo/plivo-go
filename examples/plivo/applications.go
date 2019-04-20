@@ -6,31 +6,22 @@ import (
 	"github.com/plivo/plivo-go"
 )
 
-// Initialize the AuthId and AuthToken parameters in credentialsgo
-// To trigger Application resource methods invoke corresponding helper method in main()
+// Initialize the AuthId and AuthToken parameters in credentials.go
+// To trigger Application resource methods invoke corresponding helper method in main.go
 
-
-//  To build and run accounts.go
-//  cd  plivo-go/examples/plivo
-//  go run accounts.go credentials.go
-
-
-func main(){
-	testApplicationUpdate()
-	testApplicationGet()
-}
 
 // Example to create a Application
 // Pass ApplicationCreateParams to create a application
 // Application name and answer url are mandate params
-func testCreateApplication(){
+
+func TestCreateApplication(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
 	}
 	response, err := client.Applications.Create(
 		plivo.ApplicationCreateParams{
-			AppName: "Test Application suhas test",
+			AppName: "Test Application suhas Test",
 			AnswerURL: "https://answer.url",
 			LogIncomingMessages:false,
 		},
@@ -45,7 +36,7 @@ func testCreateApplication(){
 //Example to get a Application
 //Pass ApplicationID of corresponding application
 
-func testApplicationGet(){
+func TestApplicationGet(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -63,7 +54,7 @@ func testApplicationGet(){
 //Example to update a Application
 //Pass ApplicationUpdateParams and corresponding ApplicationID  to update a application
 
-func testApplicationUpdate(){
+func TestApplicationUpdate(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -84,7 +75,7 @@ func testApplicationUpdate(){
 //Example to delete a Application
 //Pass corresponding ApplicationID to delete a application
 
-func testApplicationDelete(){
+func TestApplicationDelete(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -101,7 +92,7 @@ func testApplicationDelete(){
 //Example to list all Applications
 //Pass offset and limit values to limit the number of applications
 
-func testApplicationList(){
+func TestApplicationList(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)

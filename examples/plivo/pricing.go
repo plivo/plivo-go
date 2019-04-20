@@ -7,19 +7,13 @@ import (
 )
 
 // Initialize the AuthId and AuthToken parameters in credentials.go
-// To trigger Pricing resource methods invoke corresponding helper method in main()
+// To trigger Pricing resource methods invoke corresponding helper method in main.go
 
-// 	To build and run pricing.go
-//  cd  plivo-go/examples/plivo
-//  go run pricing.go credentials.go
-
-func main(){
-	testPricingGet()
-}
 
 // Example to get pricing
 // Country ISO is mandatory param
-func testPricingGet(){
+
+func TestPricingGet(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)

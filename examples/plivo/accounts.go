@@ -7,21 +7,12 @@ import (
 )
 
 // Initialize the AuthId and AuthToken parameters in credentials.go
-// To trigger Account resource methods invoke corresponding helper method in main()
+// To trigger Account resource methods invoke corresponding helper method in main.go
 
-
-// 	To build and run accounts.go
-//  cd  plivo-go/examples/plivo
-//  go run accounts.go credentials.go
-
-
-func main() {
-	testAccountGet()
-}
 
 //Example to get a Account details
 
-func testAccountGet(){
+func TestAccountGet(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -37,7 +28,7 @@ func testAccountGet(){
 //Example to update Account details
 //To update use AccountUpdateParams
 
-func testAccountupdate(){
+func TestAccountupdate(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -59,7 +50,7 @@ func testAccountupdate(){
 //Example to get Sub-Account details
 //To get sub-account details pass sub_account_id
 
-func testSubAccountGet(){
+func TestSubAccountGet(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -75,7 +66,7 @@ func testSubAccountGet(){
 //Example to create sub-account
 //Create a SubAccount with SubaccountCreateParams
 
-func testCreateSubAccount(){
+func TestCreateSubAccount(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -96,7 +87,7 @@ func testCreateSubAccount(){
 //Example to update a sub-ccount
 //Pass sub-account-id and SubaccountUpdateParams to be updated
 
-func testUpdateSubAccount(){
+func TestUpdateSubAccount(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -116,7 +107,7 @@ func testUpdateSubAccount(){
 //Example to delete a sub-account-id
 // Pass corresponding sub-account-id to be deleted
 
-func testDeleteSubAccount(){
+func TestDeleteSubAccount(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -131,7 +122,7 @@ func testDeleteSubAccount(){
 //Example to list sub accounts
 //Pass offset and limit values to limit the number of sub-accounts
 
-func testListAllSubAccount(){
+func TestListAllSubAccount(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)

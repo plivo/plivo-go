@@ -7,30 +7,23 @@ import (
 )
 
 // Initialize the AuthId and AuthToken parameters in credentials.go
-// To trigger Conference resource methods invoke corresponding helper method in main()
+// To trigger Conference resource methods invoke corresponding helper method in main.go
 // Initialize the following the endPointId to trigger appropriate helper methods
-
-// 	To build and run endpoints.go
-//  cd  plivo-go/examples/plivo
-//  go run endpoints.go credentials.go
 
 const endPointId = "373XXXXX03666"
 
-func main(){
-	testEndpointGet()
-}
-
 //Example to create a endpoint
 //Username , Password, Alias are mandatory params
-func testEndpointCreate(){
+
+func TestEndpointCreate(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
 	}
 	response, err := client.Endpoints.Create(
 		plivo.EndpointCreateParams{
-			Username: "testusername",
-			Password: "testpassword",
+			Username: "Testusername",
+			Password: "Testpassword",
 			Alias: "Test Account",
 		},
 	)
@@ -43,7 +36,7 @@ func testEndpointCreate(){
 
 //Example to get details a endpoint
 //Pass corresponding endpointID to fetch endpoint details
-func testEndpointGet(){
+func TestEndpointGet(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -61,7 +54,7 @@ func testEndpointGet(){
 
 //Example to update a endpoint
 //Pass corresponding endpointID to update
-func testEndpointUpdate(){
+func TestEndpointUpdate(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -81,7 +74,7 @@ func testEndpointUpdate(){
 
 //Example to list all  endpoints
 
-func testEndpointList(){
+func TestEndpointList(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -98,7 +91,7 @@ func testEndpointList(){
 
 //Example to delete a endpoint
 //Pass corresponding endpointID to delete
-func testEndpointDelete(){
+func TestEndpointDelete(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)

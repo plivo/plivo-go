@@ -7,21 +7,13 @@ import (
 )
 
 // Initialize the AuthId and AuthToken parameters in credentials.go
-// To trigger Recording resource methods invoke corresponding helper method in main()
-
-// 	To build and run recording.go
-//  cd  plivo-go/examples/plivo
-//  go run recording.go credentials.go
+// To trigger Recording resource methods invoke corresponding helper method in main.go
 
 const recordingId="1ca34b00-XXXXX-XXXX-06bcf6c57c65'"
 
-func main(){
-	testRecordingGet()
-}
-
 // Example to get details of a recording
 // Pass recordingID to fetch the details
-func testRecordingGet(){
+func TestRecordingGet(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -40,7 +32,7 @@ func testRecordingGet(){
 // Example to delete  a recording
 // Pass recordingID to delete
 
-func testRecordingDelete(){
+func TestRecordingDelete(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -57,7 +49,7 @@ func testRecordingDelete(){
 
 
 // Example to list all recordings
-func testRecordingList(){
+func TestRecordingList(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)

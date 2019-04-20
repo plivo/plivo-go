@@ -7,20 +7,13 @@ import (
 )
 
 // Initialize the AuthId and AuthToken parameters in credentials.go
-// To trigger Message resource methods invoke corresponding helper method in main()
+// To trigger Message resource methods invoke corresponding helper method in main.go
 
-
-// 	To build and run messages.go
-//  cd  plivo-go/examples/plivo
-//  go run messages.go credentials.go
-
-func main(){
-	testMessageCreate()
-}
 
 //Example to create messsage
 //The following source, destination and text are mandatory params to send a message
-func testMessageCreate(){
+
+func TestMessageCreate(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -41,7 +34,7 @@ func testMessageCreate(){
 
 // Example to get a  messsage
 // Pass appropriate messageUUID to get details of a message
-func testMessageGet(){
+func TestMessageGet(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -57,7 +50,7 @@ func testMessageGet(){
 }
 
 //Example to list all messsages
-func testMessageList(){
+func TestMessageList(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)

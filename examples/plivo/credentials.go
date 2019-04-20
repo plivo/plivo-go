@@ -1,8 +1,9 @@
 package main
 
+// Initialise the following AuthId and AuthToken with your live credentials
 
-var AuthId = "MAZMI2NZE5N2EWZDI4MZ"
-var AuthToken  = "NzUyYTVhMTY5MDczZmRjNDk1NmI5YTJmNTgwMDI4"
+var AuthId = "ABCDEFGHIGEWZDI4MZ"
+var AuthToken  = "NzUyYTABCDEFGHIGDk1NmI5YTJmNTgwMDI4"
 
 
 

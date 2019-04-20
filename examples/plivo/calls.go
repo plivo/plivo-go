@@ -7,23 +7,13 @@ import (
 )
 
 // Initialize the AuthId and AuthToken parameters in credentials.go
-// To trigger Call resource methods invoke corresponding helper method in main()
+// To trigger Call resource methods invoke corresponding helper method in main.go
 
-
-
-//  To build and run calls.go
-//  cd  plivo-go/examples/plivo
-//  go run calls.go credentials.go
-
-
-func main(){
-	testCreateCall()
-}
 
 //Example to create a Call
 //Use CallCreateParams to create a Call
 
-func testCreateCall(){
+func TestCreateCall(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -48,7 +38,7 @@ func testCreateCall(){
 //Example to get a Call
 //Pass corresponding callID to get details of a call
 
-func testGetCall(){
+func TestGetCall(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -66,7 +56,7 @@ func testGetCall(){
 //Example to update a Call
 //Pass corresponding callID and update CallUpdateParams to update details of a call
 
-func testUpdateCallDetails(){
+func TestUpdateCallDetails(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -89,7 +79,7 @@ func testUpdateCallDetails(){
 //Example to delete a Call
 //Pass corresponding callID to delete details of a call
 
-func testCallDelete(){
+func TestCallDelete(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -106,7 +96,7 @@ func testCallDelete(){
 //Example to list all Calls
 //Pass offset and limit values to limit the number of call details
 
-func testGetCallList(){
+func TestGetCallList(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -127,7 +117,7 @@ func testGetCallList(){
 //Example to get Live call details
 //Pass corresponding liveCallID to get details of a liveCall
 
-func testLiveCallGet(){
+func TestLiveCallGet(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -145,7 +135,7 @@ func testLiveCallGet(){
 //Example to get Live call lsit
 //Pass corresponding liveCallID to get details of a liveCall
 
-func testLiveCallIdList(){
+func TestLiveCallIdList(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -167,7 +157,7 @@ func testLiveCallIdList(){
 // Example to get retrieve details of a specific queued call.
 // Pass caller_id param
 
-func testLiveQueuedCallGet(){
+func TestLiveQueuedCallGet(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -183,7 +173,7 @@ func testLiveQueuedCallGet(){
 // Example to retrieve details of all queued calls
 // Pass caller_id param
 
-func testLiveQueuedCallIdList(){
+func TestLiveQueuedCallIdList(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -199,7 +189,7 @@ func testLiveQueuedCallIdList(){
 //Example to start recording a call.
 // Pass caller_id param
 
-func testCallRecord() {
+func TestCallRecord() {
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -226,7 +216,7 @@ func testCallRecord() {
 //Example to stop call record
 // Pass caller_id param
 
-func testStopCallRecord() {
+func TestStopCallRecord() {
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -241,7 +231,7 @@ func testStopCallRecord() {
 // Example to call
 // Pass caller_id param
 
-func testCallSpeak(){
+func TestCallSpeak(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -249,7 +239,7 @@ func testCallSpeak(){
 	response, err := client.Calls.Speak(
 		"3a2e4c90-dcee-4931-8a59-f123",
 		plivo.CallSpeakParams{
-			Text: "Hello test",
+			Text: "Hello Test",
 		},
 	)
 	if err != nil {
@@ -261,7 +251,7 @@ func testCallSpeak(){
 // Example to stop call speak
 // Pass caller_id param
 
-func testStopCallSpeaking(){
+func TestStopCallSpeaking(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -276,10 +266,10 @@ func testStopCallSpeaking(){
 
 }
 
-// Example to test call play
+// Example to Test call play
 // Pass caller_id param
 
-func testCallPlay() {
+func TestCallPlay() {
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -287,7 +277,7 @@ func testCallPlay() {
 	response, err := client.Calls.Play(
 		"3a2e4c90-dcee-4931-8a59-f123",
 		plivo.CallPlayParams{
-			URLs: "https://tests.mp3",
+			URLs: "https://Tests.mp3",
 		},
 	)
 	if err != nil {
@@ -299,7 +289,7 @@ func testCallPlay() {
 // Example to stop call playing
 // Pass caller_id param
 
-func testStopCallPlaying(){
+func TestStopCallPlaying(){
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -316,7 +306,7 @@ func testStopCallPlaying(){
 // Example to send digits
 // Pass caller_id param
 
-func testSendDigits() {
+func TestSendDigits() {
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
@@ -336,7 +326,7 @@ func testSendDigits() {
 // Example to cancel call request
 // Pass caller_id param
 
-func testCallCancelRequest() {
+func TestCallCancelRequest() {
 	client, err := plivo.NewClient(AuthId, AuthToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
