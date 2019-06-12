@@ -13,7 +13,6 @@ func TestMultiPartyCallMemberAbortTransfer_Post(t *testing.T) {
 	phloGet, _ := phloClient.Phlos.Get(testPhloId)
 	multiPartyCallGet, err := phloGet.MultiPartyCall(testNodeId)
 
-
 	cl := phloClient.httpClient
 	phloClient.httpClient = nil
 	expectResponse("multiPartyCallMemberActionResponse.json", 200)

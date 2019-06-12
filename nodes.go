@@ -13,5 +13,3 @@ type Node struct {
 	NodeType  string `json:"node_type" url:"node_type"`
 	CreatedOn string `json:"created_on" url:"created_on"`
 }
-
-

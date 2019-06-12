@@ -12,11 +12,10 @@ type MultiPartyCallActionPayload struct {
 	TriggerSource string `json:"trigger_source" url:"trigger_source"`
 }
 
-
 func (self *MultiPartyCall) update(params MultiPartyCallActionPayload) (response *NodeActionResponse, err error) {
 	req, err := self.client.NewRequest("POST", params, "phlo/%s/%s/%s", self.PhloID, self.NodeType,
 		self.NodeID)
-	if (err != nil) {
+	if err != nil {
 		return
 	}
 	response = &NodeActionResponse{}

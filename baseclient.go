@@ -31,8 +31,8 @@ type BaseClient struct {
 	ResponseInterceptor func(response *http.Response)
 }
 
-func (client *BaseClient) 	NewRequest(method string, params interface{}, baseRequestString string, formatString string,
-formatParams ...interface{}) (request *http.Request, err error) {
+func (client *BaseClient) NewRequest(method string, params interface{}, baseRequestString string, formatString string,
+	formatParams ...interface{}) (request *http.Request, err error) {
 
 	if client == nil || client.httpClient == nil {
 		err = errors.New("client and httpClient cannot be nil")
@@ -58,11 +58,11 @@ formatParams ...interface{}) (request *http.Request, err error) {
 
 		requestUrl.RawQuery = values.Encode()
 	} else {
-		if(reflect.ValueOf(params).Kind().String() != "map"){
+		if reflect.ValueOf(params).Kind().String() != "map" {
 			if err = json.NewEncoder(buffer).Encode(params); err != nil {
 				return
 			}
-		}else if (reflect.ValueOf(params).Kind().String() == "map" && !reflect.ValueOf(params).IsNil()) {
+		} else if reflect.ValueOf(params).Kind().String() == "map" && !reflect.ValueOf(params).IsNil() {
 			if err = json.NewEncoder(buffer).Encode(params); err != nil {
 				return
 			}
@@ -89,7 +89,6 @@ func (client *BaseClient) ExecuteRequest(request *http.Request, body interface{}
 		return errors.New("httpClient cannot be nil")
 	}
 
-
 	response, err := client.httpClient.Do(request)
 	if err != nil {
 		return
@@ -102,9 +101,9 @@ func (client *BaseClient) ExecuteRequest(request *http.Request, body interface{}
 				err = json.Unmarshal(data, body)
 			}
 		} else {
-			if (string(data) == "{}" && response.StatusCode == 404){
+			if string(data) == "{}" && response.StatusCode == 404 {
 				err = errors.New(string("Resource not found exception \n" + response.Status))
-			}else{
+			} else {
 				err = errors.New(string(data))
 			}
 		}

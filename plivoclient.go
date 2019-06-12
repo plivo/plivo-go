@@ -8,11 +8,10 @@ import (
 	"time"
 
 	"runtime"
-	)
+)
 
 const baseUrlString = "https://api.plivo.com/"
 const baseRequestString = "/v1/Account/%s/"
-
 
 type Client struct {
 	BaseClient
@@ -90,7 +89,7 @@ func NewClient(authId, authToken string, options *ClientOptions) (client *Client
 }
 
 func (client *Client) NewRequest(method string, params interface{}, formatString string,
-formatParams ...interface{}) (*http.Request, error) {
+	formatParams ...interface{}) (*http.Request, error) {
 	formatParams = append([]interface{}{client.AuthId}, formatParams...)
 	formatString = fmt.Sprintf("%s/%s", "%s", formatString)
 	return client.BaseClient.NewRequest(method, params, baseRequestString, formatString, formatParams...)

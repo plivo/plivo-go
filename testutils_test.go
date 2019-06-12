@@ -18,9 +18,8 @@ var expectedResponse = ""
 var requestUrl *url.URL
 var requestMethod string
 var requestHeader http.Header
-var testAuthId="AuthId"
-var testAuthToken="AuthId"
-
+var testAuthId = "AuthId"
+var testAuthToken = "AuthId"
 
 var server = httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	requestUrl = r.URL
@@ -79,8 +78,8 @@ func assertPhloRequest(t *testing.T, method, path string, params ...interface{})
 
 func init() {
 	client.BaseUrl, _ = url.Parse(server.URL)
-	phloClient.BaseUrl,_ = url.Parse(server.URL)
+	phloClient.BaseUrl, _ = url.Parse(server.URL)
 }
 
 var client, _ = NewClient(testAuthId, testAuthToken, &ClientOptions{})
-var phloClient, _ = NewPhloClient(testAuthId,testAuthToken , &ClientOptions{})
+var phloClient, _ = NewPhloClient(testAuthId, testAuthToken, &ClientOptions{})

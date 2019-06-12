@@ -7,7 +7,6 @@ const RESUME_CALL = "resume_call"
 const ABORT_TRANSFER = "abort_transfer"
 const VOICEMAIL_DROP = "voicemail_drop"
 
-
 type MultiPartyCallMemberActionPayload struct {
 	Action string `json:"action" url:"action"`
 }
@@ -25,7 +24,7 @@ func (self *MultiPartyCall) Member(memberID string) (response *MultiPartyCallMem
 	return
 }
 
-func (self *MultiPartyCallMember) AbortTransfer() (*NodeActionResponse,error) {
+func (self *MultiPartyCallMember) AbortTransfer() (*NodeActionResponse, error) {
 	return self.update(MultiPartyCallMemberActionPayload{ABORT_TRANSFER})
 }
 
