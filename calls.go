@@ -89,10 +89,11 @@ type CallCreateParams struct {
 
 // Stores response for making a call.
 type CallCreateResponse struct {
-	Message     string `json:"message" url:"message"`
-	ApiID       string `json:"api_id" url:"api_id"`
-	AppID       string `json:"app_id" url:"app_id"`
-	RequestUUID string `json:"request_uuid" url:"request_uuid"`
+	Message        string      `json:"message" url:"message"`
+	ApiID          string      `json:"api_id" url:"api_id"`
+	AppID          string      `json:"app_id" url:"app_id"`
+	InvalidNumbers []string    `json:"invalid_numbers" url:"invalid_numbers"`
+	RequestUUID    interface{} `json:"request_uuid" url:"request_uuid"`
 }
 
 type CallListParams struct {
