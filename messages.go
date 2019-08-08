@@ -38,6 +38,7 @@ type MessageCreateResponseBody struct {
 	ApiID       string   `json:"api_id" url:"api_id"`
 	MessageUUID []string `json:"message_uuid" url:"message_uuid"`
 	Error       string   `json:"error" url:"error"`
+	InvalidNumber []string `json:"invalid_number, omitempty" url:"invalid_number,omitempty"`
 }
 
 type MessageList struct {
