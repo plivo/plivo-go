@@ -2,6 +2,8 @@
 
 ## [4.1.1] (https://github.com/plivo/plivo-go/tree/v4.1.1) (2019-08-08)
 - Add logic to handle invalid numbers for bulk SMS
+- Add test case to handle invalid numbers for bulk SMS
+- Add missing params for Make a call
 
 ## [4.1.0](https://github.com/plivo/plivo-go/tree/v4.1.0) (2019-03-12)
 - Add PHLO support
