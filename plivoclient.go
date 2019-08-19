@@ -11,8 +11,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/google/go-querystring/query"
 	"runtime"
+
+	"github.com/google/go-querystring/query"
 )
 
 const baseUrlString = "https://api.plivo.com/"
@@ -41,6 +42,7 @@ type Client struct {
 	LiveCalls    *LiveCallService
 	QueuedCalls  *QueuedCallService
 	Conferences  *ConferenceService
+	Powerpack    *PowerpackService
 
 	RequestInterceptor  func(request *http.Request)
 	ResponseInterceptor func(response *http.Response)
@@ -107,6 +109,7 @@ func NewClient(authId, authToken string, options *ClientOptions) (client *Client
 	client.LiveCalls = &LiveCallService{client: client}
 	client.QueuedCalls = &QueuedCallService{client: client}
 	client.Conferences = &ConferenceService{client: client}
+	client.Powerpack = &PowerpackService{client: client}
 
 	return
 }
