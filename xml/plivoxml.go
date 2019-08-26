@@ -2,7 +2,15 @@ package xml
 
 import (
 	"encoding/xml"
+	"errors"
+	"fmt"
 	"github.com/sirupsen/logrus"
+	"golang.org/x/text/runes"
+	"golang.org/x/text/transform"
+	"golang.org/x/text/unicode/norm"
+	"strings"
+	"unicode"
+	"unicode/utf8"
 )
 
 type ResponseElement struct {
@@ -684,35 +692,270 @@ func (e RedirectElement) SetContents(value string) RedirectElement {
 
 type SpeakElement struct {
 	Contents string `xml:",innerxml"`
-
+	Children []interface{} `xml:",xmlvalue"`
 	Voice *string `xml:"voice,attr"`
-
 	Language *string `xml:"language,attr"`
-
 	Loop *int `xml:"loop,attr"`
-
 	XMLName xml.Name `xml:"Speak"`
 }
 
-func (e SpeakElement) SetVoice(value string) SpeakElement {
-	e.Voice = &value
+func (e SpeakElement) AddSpeak(contents string , voice string, language string, loop int) (SpeakElement) {
+
+	e.Contents = fmt.Sprintf("%s %s ",e.Contents, contents)
+	e.Voice = &voice
+	e.Language = &language
+	e.Loop = &loop
+
+	if len(*e.Voice) == 0 {
+		*e.Voice = "WOMAN"
+		e.validateContentLength()
+		return e
+	}
+
+	if strings.EqualFold(*e.Voice, "MAN") == true || strings.EqualFold(*e.Voice, "WOMAN") == true  {
+		e.validateContentLength()
+		return e
+	}
+
+	*e.Voice = TransformString(voice)
+	err := ValidateLanguageVoice(language, *e.Voice)
+	if err !=nil {
+		panic(err)
+	}
 	return e
 }
 
-func (e SpeakElement) SetLanguage(value string) SpeakElement {
-	e.Language = &value
+func (e SpeakElement) ContinueSpeak(value string) SpeakElement {
+	e.checkIsSSMLSupported()
+	e.Contents = fmt.Sprintf("%s %s ",e.Contents, value)
 	return e
 }
 
-func (e SpeakElement) SetLoop(value int) SpeakElement {
-	e.Loop = &value
+
+func (e SpeakElement) checkIsSSMLSupported()  {
+	if len(*e.Voice) == 0 || strings.EqualFold(*e.Voice, "MAN") == true ||
+		strings.EqualFold(*e.Voice, "WOMAN") == true {
+		panic(errors.New("SSML support is available only for Amazon Polly!"))
+	}
+
+}
+
+func (e SpeakElement) validateContentLength()  {
+	if (utf8.RuneCountInString(e.Contents) > 3000){
+		panic("XML Validation Error: <Speak> text exceeds upper limit of 3000 characters.")
+	}
+}
+
+type BreakElement struct {
+	Contents string  `xml:",innerxml"`
+	Strength *string `xml:"strength,attr"`
+	Time     *string `xml:"time,attr"`
+	XMLName xml.Name `xml:"break"`
+}
+
+func (e SpeakElement) AddBreak(contents string , strength string, time string) SpeakElement {
+	e.checkIsSSMLSupported()
+	break_element := BreakElement{
+		Contents:contents,
+		Strength:&strength,
+		Time:&time,
+	}
+	bytes, err := xml.Marshal(break_element)
+	if err != nil {
+		logrus.Errorln(err.Error())
+	}
+	e.Contents = fmt.Sprintf("%s %s ",e.Contents, string(bytes))
 	return e
 }
 
-func (e SpeakElement) SetContents(value string) SpeakElement {
-	e.Contents = value
+type EmphasisElement struct {
+	Contents string  `xml:",innerxml"`
+	Level *string `xml:"level,attr"`
+	XMLName xml.Name `xml:"emphasis"`
+}
+
+func (e SpeakElement) AddEmphasis(contents string , level string) SpeakElement {
+	e.checkIsSSMLSupported()
+	emphasis_element := EmphasisElement{
+		Contents:contents,
+		Level:&level,
+	}
+	bytes, err := xml.Marshal(emphasis_element)
+	if err != nil {
+		logrus.Errorln(err.Error())
+	}
+	e.Contents = fmt.Sprintf("%s %s ",e.Contents, string(bytes))
 	return e
 }
+
+type LangElement struct {
+	Contents string  `xml:",innerxml"`
+	Lang *string `xml:"lang,attr"`
+	XMLName xml.Name `xml:"lang"`
+}
+
+func (e SpeakElement) AddLang(contents string , lang string) SpeakElement {
+	e.checkIsSSMLSupported()
+	lang_element := LangElement{
+		Contents:contents,
+		Lang:&lang,
+	}
+	bytes, err := xml.Marshal(lang_element)
+	if err != nil {
+		logrus.Errorln(err.Error())
+	}
+	e.Contents = fmt.Sprintf("%s %s ",e.Contents, string(bytes))
+	return e
+}
+
+type PElement struct{
+	Contents string  `xml:",innerxml"`
+	XMLName xml.Name `xml:"p"`
+}
+
+func (e SpeakElement) AddP(contents string) SpeakElement {
+	e.checkIsSSMLSupported()
+	p_element := PElement{
+		Contents:contents,
+	}
+	bytes, err := xml.Marshal(p_element)
+	if err != nil {
+		logrus.Errorln(err.Error())
+	}
+	e.Contents = fmt.Sprintf("%s %s ",e.Contents, string(bytes))
+	return e
+}
+
+type PhonemeElement struct {
+	Contents string  `xml:",innerxml"`
+	Alphabet *string  `xml:"alphabet,attr"`
+	Ph *string  `xml:"ph,attr"`
+	XMLName xml.Name `xml:"phoneme"`
+}
+
+func (e SpeakElement) AddPhoneMe(contents string, alphabet string, ph string) SpeakElement {
+	e.checkIsSSMLSupported()
+	phone_element := PhonemeElement{
+		Contents:contents,
+		Alphabet:&alphabet,
+		Ph:&ph,
+	}
+	bytes, err := xml.Marshal(phone_element)
+	if err != nil {
+		logrus.Errorln(err.Error())
+	}
+	e.Contents = fmt.Sprintf("%s %s ",e.Contents, string(bytes))
+	return e
+}
+
+type ProsodyElement struct {
+	Contents string  `xml:",innerxml"`
+	Volume *string  `xml:"volume,attr"`
+	Rate *string  `xml:"rate,attr"`
+	Pitch *string  `xml:"pitch,attr"`
+	XMLName xml.Name `xml:"prosody"`
+}
+
+func (e SpeakElement) AddProsody(contents string, volume string, rate string , pitch string) SpeakElement {
+	e.checkIsSSMLSupported()
+	prosody_element := ProsodyElement{
+		Contents:contents,
+		Volume:&volume,
+		Rate:&rate,
+		Pitch:&pitch,
+	}
+	bytes, err := xml.Marshal(prosody_element)
+	if err != nil {
+		logrus.Errorln(err.Error())
+	}
+	e.Contents = fmt.Sprintf("%s %s ",e.Contents, string(bytes))
+	return e
+}
+
+type SElement struct {
+	Contents string  `xml:",innerxml"`
+	XMLName xml.Name `xml:"s"`
+}
+
+func (e SpeakElement) AddS(contents string) SpeakElement {
+	e.checkIsSSMLSupported()
+	s_element := SElement{
+		Contents:contents,
+	}
+	bytes, err := xml.Marshal(s_element)
+	if err != nil {
+		logrus.Errorln(err.Error())
+	}
+	e.Contents = fmt.Sprintf("%s %s ",e.Contents, string(bytes))
+	return e
+}
+
+type SayAsElement struct {
+	Contents string  `xml:",innerxml"`
+	InterpretAs *string  `xml:"interpretAs,attr"`
+	Format *string  `xml:"format,attr"`
+	XMLName xml.Name `xml:"say-as"`
+}
+
+func (e SpeakElement) AddSayAs(contents string, interpretAs string , format string) SpeakElement {
+	e.checkIsSSMLSupported()
+	say_as_element := SayAsElement{
+		Contents:contents,
+		InterpretAs:&interpretAs,
+		Format:&format,
+	}
+	bytes, err := xml.Marshal(say_as_element)
+	if err != nil {
+		logrus.Errorln(err.Error())
+	}
+	e.Contents = fmt.Sprintf("%s %s ",e.Contents, string(bytes))
+	return e
+}
+
+type SubElement struct {
+	Contents string  `xml:",innerxml"`
+	Alias *string  `xml:"alias,attr"`
+	XMLName xml.Name `xml:"sub"`
+}
+
+
+func (e SpeakElement) AddSub(contents string, alias string ) SpeakElement {
+	e.checkIsSSMLSupported()
+	sub_element := SubElement{
+		Contents:contents,
+		Alias:&alias,
+	}
+	bytes, err := xml.Marshal(sub_element)
+	if err != nil {
+		logrus.Errorln(err.Error())
+	}
+	e.Contents = fmt.Sprintf("%s %s ",e.Contents, string(bytes))
+	return e
+}
+
+
+type WElement struct {
+	Contents string  `xml:",innerxml"`
+	Role *string  `xml:"role,attr"`
+	XMLName xml.Name `xml:"w"`
+}
+
+
+func (e SpeakElement) AddW(contents string, role string ) SpeakElement {
+	e.checkIsSSMLSupported()
+	w_element := WElement{
+		Contents:contents,
+		Role:&role,
+	}
+	bytes, err := xml.Marshal(w_element)
+	if err != nil {
+		logrus.Errorln(err.Error())
+	}
+	e.Contents = fmt.Sprintf("%s %s ",e.Contents, string(bytes))
+	return e
+}
+
+
 
 type WaitElement struct {
 	Length *int `xml:"length,attr"`
@@ -744,4 +987,79 @@ func (e WaitElement) SetMinSilence(value int) WaitElement {
 func (e WaitElement) SetBeep(value bool) WaitElement {
 	e.Beep = &value
 	return e
+}
+
+func getLanguageVoices() map[string][]string {
+	languageVoices := make(map[string][]string)
+	languageVoices["Australian English"] = append(languageVoices["Australian English"], "Nicole", "Russell")
+	languageVoices["Brazilian Portuguese"] = append(languageVoices["Brazilian Portuguese"], "Vitória", "Ricardo")
+	languageVoices["Canadian French"] = append(languageVoices["Canadian French"], "Chantal", "Chantal")
+	languageVoices["Danish"] = append(languageVoices["Danish"], "Naja", "Mads")
+	languageVoices["Dutch"] = append(languageVoices["Dutch"], "Lotte", "Ruben")
+	languageVoices["French"] = append(languageVoices["French"], "Léa", "Céline", "Mathieu")
+	languageVoices["German"] = append(languageVoices["German"], "Vicki", "Hans")
+	languageVoices["Hindi"] = append(languageVoices["Hindi"], "Aditi")
+	languageVoices["Icelandic"] = append(languageVoices["Icelandic"], "Dóra","Karl")
+	languageVoices["Indian English"] = append(languageVoices["Indian English"], "Raveena", "Aditi")
+	languageVoices["Italian"] = append(languageVoices["Italian"], "Carla", "Giorgio")
+	languageVoices["Japanese"] = append(languageVoices["Japanese"], "Mizuki", "Takumi")
+	languageVoices["Korean"] = append(languageVoices["Korean"], "Seoyeon")
+	languageVoices["Mandarin Chinese"] = append(languageVoices["Mandarin Chinese"], "Zhiyu")
+	languageVoices["Norwegian"] = append(languageVoices["Norwegian"], "Liv")
+	languageVoices["Polish"] = append(languageVoices["Polish"], "Ewa", "Maja","Jacek","Jan")
+	languageVoices["Portuguese-Iberic"] = append(languageVoices["Portuguese-Iberic"], "Inês", "Cristiano")
+	languageVoices["Romanian"] = append(languageVoices["Romanian"], "Carmen")
+	languageVoices["Russian"] = append(languageVoices["Russian"], "Tatyana","Maxim")
+	languageVoices["Spanish-Castilian"] = append(languageVoices["Spanish-Castilian"], "Conchita","Enrique")
+	languageVoices["Swedish"] = append(languageVoices["Swedish"], "Astrid")
+	languageVoices["Turkish"] = append(languageVoices["Turkish"], "Filiz")
+	languageVoices["UK English"] = append(languageVoices["UK English"], "Amy","Emma","Brian")
+	languageVoices["US English"] = append(languageVoices["US English"], "Joanna", "Salli", "Kendra", "Kimberly", "Ivy", "Matthew", "Justin", "Joey")
+	languageVoices["US Spanish"] = append(languageVoices["US Spanish"], "Penélope","Miguel")
+	languageVoices["Welsh"] = append(languageVoices["Welsh"], "Gwyneth")
+	languageVoices["Welsh English"] = append(languageVoices["Welsh English"], "Geraint")
+	return languageVoices
+}
+
+func Contains(a []string, x string) bool {
+	for _, n := range a {
+		if x == n {
+			return true
+		}
+	}
+	return false
+}
+
+func ValidateLanguageVoice(language string, voice string) error{
+	voiceparts := strings.Split(voice, ".")
+	if len(voiceparts) != 2 || voiceparts[0] != "Polly" || len(voiceparts[1]) == 0 {
+		return  errors.New("XML Validation Error: Invalid language. Voice " + voice + " is not valid." +
+			" Refer <link> for the list of supported voices.")
+	}
+
+	languageVoicesList := getLanguageVoices()
+
+	if (languageVoicesList[language] == nil) {
+		return  errors.New("XML Validation Error: Invalid language. Language " + language + " is not supported.")
+	}
+
+	availableLanguageVoicesList := languageVoicesList[language]
+
+	for i := range availableLanguageVoicesList {
+		availableLanguageVoicesList[i] = TransformString(availableLanguageVoicesList[i])
+	}
+	transformedVoiceName := TransformString(voiceparts[1])
+
+	if strings.Compare(voiceparts[1], "*") == 0 ||  Contains(availableLanguageVoicesList,transformedVoiceName) == false {
+		return errors.New("XML Validation Error: <Speak> voice '" + voice + "' is not valid. Refer <link> for list of supported voices.")
+	}
+	return nil
+}
+
+func TransformString(s string) string{
+	tc := transform.Chain(norm.NFD, runes.Remove(runes.In(unicode.Mn)), norm.NFC)
+	s, _, _ = transform.String(tc, s)
+	s = strings.Title(s)
+	s = strings.Replace(s, " ", "_", -1)
+	return s
 }
