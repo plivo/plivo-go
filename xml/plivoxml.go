@@ -3,14 +3,12 @@ package xml
 import (
 	"encoding/xml"
 	"errors"
-	"fmt"
 	"github.com/sirupsen/logrus"
 	"golang.org/x/text/runes"
 	"golang.org/x/text/transform"
 	"golang.org/x/text/unicode/norm"
 	"strings"
 	"unicode"
-	"unicode/utf8"
 )
 
 type ResponseElement struct {
@@ -23,7 +21,7 @@ func (element ResponseElement) String() string {
 	if err != nil {
 		logrus.Errorln(err.Error())
 	}
-	return string(bytes)
+	return strings.ReplaceAll(strings.ReplaceAll(string(bytes), "<Contents>", ""), "</Contents>", "")
 }
 
 type ConferenceElement struct {
@@ -691,7 +689,7 @@ func (e RedirectElement) SetContents(value string) RedirectElement {
 }
 
 type SpeakElement struct {
-	Contents string `xml:",innerxml"`
+	Contents []interface{} `xml:",innerxml"`
 	Voice *string `xml:"voice,attr"`
 	Language *string `xml:"language,attr"`
 	Loop *int `xml:"loop,attr"`
@@ -700,19 +698,17 @@ type SpeakElement struct {
 
 func (e SpeakElement) AddSpeak(contents string , voice string, language string, loop int) (SpeakElement) {
 
-	e.Contents = fmt.Sprintf("%s %s ",e.Contents, contents)
+	e.Contents = append(e.Contents, contents)
 	e.Voice = &voice
 	e.Language = &language
 	e.Loop = &loop
 
 	if len(*e.Voice) == 0 {
 		*e.Voice = "WOMAN"
-		e.validateContentLength()
 		return e
 	}
 
 	if strings.EqualFold(*e.Voice, "MAN") == true || strings.EqualFold(*e.Voice, "WOMAN") == true  {
-		e.validateContentLength()
 		return e
 	}
 
@@ -726,10 +722,15 @@ func (e SpeakElement) AddSpeak(contents string , voice string, language string, 
 
 func (e SpeakElement) ContinueSpeak(value string) SpeakElement {
 	e.checkIsSSMLSupported()
-	e.Contents = fmt.Sprintf("%s %s ",e.Contents, value)
+	e.Contents = append(e.Contents, value)
 	return e
 }
 
+func (e SpeakElement) AddContents(values... interface{}) SpeakElement {
+	e.checkIsSSMLSupported()
+	e.Contents = append(e.Contents, values)
+	return e
+}
 
 func (e SpeakElement) checkIsSSMLSupported()  {
 	if len(*e.Voice) == 0 || strings.EqualFold(*e.Voice, "MAN") == true ||
@@ -739,36 +740,24 @@ func (e SpeakElement) checkIsSSMLSupported()  {
 
 }
 
-func (e SpeakElement) validateContentLength()  {
-	if (utf8.RuneCountInString(e.Contents) > 3000){
-		panic("XML Validation Error: <Speak> text exceeds upper limit of 3000 characters.")
-	}
-}
-
 type BreakElement struct {
-	Contents string  `xml:",innerxml"`
 	Strength *string `xml:"strength,attr"`
 	Time     *string `xml:"time,attr"`
 	XMLName xml.Name `xml:"break"`
 }
 
-func (e SpeakElement) AddBreak(contents string , strength string, time string) SpeakElement {
+func (e SpeakElement) AddBreak(strength string, time string) SpeakElement {
 	e.checkIsSSMLSupported()
 	break_element := BreakElement{
-		Contents:contents,
 		Strength:&strength,
 		Time:&time,
 	}
-	bytes, err := xml.Marshal(break_element)
-	if err != nil {
-		logrus.Errorln(err.Error())
-	}
-	e.Contents = fmt.Sprintf("%s %s ",e.Contents, string(bytes))
+	e.Contents = append(e.Contents, break_element)
 	return e
 }
 
 type EmphasisElement struct {
-	Contents string  `xml:",innerxml"`
+	Contents []interface{}  `xml:",innerxml"`
 	Level *string `xml:"level,attr"`
 	XMLName xml.Name `xml:"emphasis"`
 }
@@ -776,52 +765,40 @@ type EmphasisElement struct {
 func (e SpeakElement) AddEmphasis(contents string , level string) SpeakElement {
 	e.checkIsSSMLSupported()
 	emphasis_element := EmphasisElement{
-		Contents:contents,
+		Contents:[]interface{}{contents},
 		Level:&level,
 	}
-	bytes, err := xml.Marshal(emphasis_element)
-	if err != nil {
-		logrus.Errorln(err.Error())
-	}
-	e.Contents = fmt.Sprintf("%s %s ",e.Contents, string(bytes))
+	e.Contents = append(e.Contents, emphasis_element)
 	return e
 }
 
 type LangElement struct {
-	Contents string  `xml:",innerxml"`
-	Lang *string `xml:"lang,attr"`
+	Contents []interface{}  `xml:",innerxml"`
+	Lang *string `xml:"xml:lang,attr"`
 	XMLName xml.Name `xml:"lang"`
 }
 
 func (e SpeakElement) AddLang(contents string , lang string) SpeakElement {
 	e.checkIsSSMLSupported()
 	lang_element := LangElement{
-		Contents:contents,
+		Contents:[]interface{}{contents},
 		Lang:&lang,
 	}
-	bytes, err := xml.Marshal(lang_element)
-	if err != nil {
-		logrus.Errorln(err.Error())
-	}
-	e.Contents = fmt.Sprintf("%s %s ",e.Contents, string(bytes))
+	e.Contents = append(e.Contents, lang_element)
 	return e
 }
 
 type PElement struct{
-	Contents string  `xml:",innerxml"`
+	Contents []interface{}  `xml:",innerxml"`
 	XMLName xml.Name `xml:"p"`
 }
 
 func (e SpeakElement) AddP(contents string) SpeakElement {
 	e.checkIsSSMLSupported()
 	p_element := PElement{
-		Contents:contents,
+		Contents:[]interface{}{contents},
 	}
-	bytes, err := xml.Marshal(p_element)
-	if err != nil {
-		logrus.Errorln(err.Error())
-	}
-	e.Contents = fmt.Sprintf("%s %s ",e.Contents, string(bytes))
+	e.Contents = append(e.Contents, p_element)
 	return e
 }
 
@@ -832,23 +809,19 @@ type PhonemeElement struct {
 	XMLName xml.Name `xml:"phoneme"`
 }
 
-func (e SpeakElement) AddPhoneMe(contents string, alphabet string, ph string) SpeakElement {
+func (e SpeakElement) AddPhoneme(contents string, alphabet string, ph string) SpeakElement {
 	e.checkIsSSMLSupported()
-	phone_element := PhonemeElement{
+	phoneme_element := PhonemeElement{
 		Contents:contents,
 		Alphabet:&alphabet,
 		Ph:&ph,
 	}
-	bytes, err := xml.Marshal(phone_element)
-	if err != nil {
-		logrus.Errorln(err.Error())
-	}
-	e.Contents = fmt.Sprintf("%s %s ",e.Contents, string(bytes))
+	e.Contents = append(e.Contents, phoneme_element)
 	return e
 }
 
 type ProsodyElement struct {
-	Contents string  `xml:",innerxml"`
+	Contents []interface{}  `xml:",innerxml"`
 	Volume *string  `xml:"volume,attr"`
 	Rate *string  `xml:"rate,attr"`
 	Pitch *string  `xml:"pitch,attr"`
@@ -858,34 +831,26 @@ type ProsodyElement struct {
 func (e SpeakElement) AddProsody(contents string, volume string, rate string , pitch string) SpeakElement {
 	e.checkIsSSMLSupported()
 	prosody_element := ProsodyElement{
-		Contents:contents,
+		Contents:[]interface{}{contents},
 		Volume:&volume,
 		Rate:&rate,
 		Pitch:&pitch,
 	}
-	bytes, err := xml.Marshal(prosody_element)
-	if err != nil {
-		logrus.Errorln(err.Error())
-	}
-	e.Contents = fmt.Sprintf("%s %s ",e.Contents, string(bytes))
+	e.Contents = append(e.Contents, prosody_element)
 	return e
 }
 
 type SElement struct {
-	Contents string  `xml:",innerxml"`
+	Contents []interface{}  `xml:",innerxml"`
 	XMLName xml.Name `xml:"s"`
 }
 
 func (e SpeakElement) AddS(contents string) SpeakElement {
 	e.checkIsSSMLSupported()
 	s_element := SElement{
-		Contents:contents,
+		Contents:[]interface{}{contents},
 	}
-	bytes, err := xml.Marshal(s_element)
-	if err != nil {
-		logrus.Errorln(err.Error())
-	}
-	e.Contents = fmt.Sprintf("%s %s ",e.Contents, string(bytes))
+	e.Contents = append(e.Contents, s_element)
 	return e
 }
 
@@ -903,11 +868,7 @@ func (e SpeakElement) AddSayAs(contents string, interpretAs string , format stri
 		InterpretAs:&interpretAs,
 		Format:&format,
 	}
-	bytes, err := xml.Marshal(say_as_element)
-	if err != nil {
-		logrus.Errorln(err.Error())
-	}
-	e.Contents = fmt.Sprintf("%s %s ",e.Contents, string(bytes))
+	e.Contents = append(e.Contents, say_as_element)
 	return e
 }
 
@@ -924,17 +885,13 @@ func (e SpeakElement) AddSub(contents string, alias string ) SpeakElement {
 		Contents:contents,
 		Alias:&alias,
 	}
-	bytes, err := xml.Marshal(sub_element)
-	if err != nil {
-		logrus.Errorln(err.Error())
-	}
-	e.Contents = fmt.Sprintf("%s %s ",e.Contents, string(bytes))
+	e.Contents = append(e.Contents, sub_element)
 	return e
 }
 
 
 type WElement struct {
-	Contents string  `xml:",innerxml"`
+	Contents []interface{}  `xml:",innerxml"`
 	Role *string  `xml:"role,attr"`
 	XMLName xml.Name `xml:"w"`
 }
@@ -943,17 +900,12 @@ type WElement struct {
 func (e SpeakElement) AddW(contents string, role string ) SpeakElement {
 	e.checkIsSSMLSupported()
 	w_element := WElement{
-		Contents:contents,
+		Contents:[]interface{}{contents},
 		Role:&role,
 	}
-	bytes, err := xml.Marshal(w_element)
-	if err != nil {
-		logrus.Errorln(err.Error())
-	}
-	e.Contents = fmt.Sprintf("%s %s ",e.Contents, string(bytes))
+	e.Contents = append(e.Contents, w_element)
 	return e
 }
-
 
 
 type WaitElement struct {
