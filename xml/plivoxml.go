@@ -832,9 +832,15 @@ func (e SpeakElement) AddProsody(contents string, volume string, rate string , p
 	e.checkIsSSMLSupported()
 	prosody_element := ProsodyElement{
 		Contents:[]interface{}{contents},
-		Volume:&volume,
-		Rate:&rate,
-		Pitch:&pitch,
+	}
+	if volume != "" {
+		prosody_element.Volume = &volume
+	}
+	if rate != "" {
+		prosody_element.Rate = &rate
+	}
+	if pitch != "" {
+		prosody_element.Pitch = &pitch
 	}
 	e.Contents = append(e.Contents, prosody_element)
 	return e
@@ -866,7 +872,9 @@ func (e SpeakElement) AddSayAs(contents string, interpretAs string , format stri
 	say_as_element := SayAsElement{
 		Contents:contents,
 		InterpretAs:&interpretAs,
-		Format:&format,
+	}
+	if format != "" {
+		say_as_element.Format = &format
 	}
 	e.Contents = append(e.Contents, say_as_element)
 	return e
