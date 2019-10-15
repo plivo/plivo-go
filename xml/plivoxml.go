@@ -462,6 +462,122 @@ func (e GetDigitsElement) SetContents(value []interface{}) GetDigitsElement {
 	return e
 }
 
+type GetInputElement struct {
+	Contents []interface{} `xml:",innerxml"`
+
+	Action *string `xml:"action,attr"`
+
+	Method *string `xml:"method,attr"`
+
+	InputType *string `xml:"inputType,attr"`
+
+	ExecutionTimeout *int `xml:"executionTimeout,attr"`
+
+	DigitEndTimeout *int `xml:"digitEndTimeout,attr"`
+
+	SpeechEndTimeout *int `xml:"speechEndTimeout,attr"`
+
+	FinishOnKey *string `xml:"finishOnKey,attr"`
+
+	NumDigits *int `xml:"numDigits,attr"`
+
+	SpeechModel *string `xml:"speechModel,attr"`
+
+	Hints *string `xml:"hints,attr"`
+
+	Language *string `xml:"language,attr"`
+
+	InterimSpeechResultsCallback *string `xml:"interimSpeechResultsCallback,attr"`
+
+	InterimSpeechResultsCallbackMethod *string `xml:"interimSpeechResultsCallbackMethod,attr"`
+
+	Redirect *bool `xml:"redirect,attr"`
+
+	Log *bool `xml:"log,attr"`
+
+	XMLName xml.Name `xml:"GetInput"`
+}
+
+func (e GetInputElement) SetAction(value string) GetInputElement {
+	e.Action = &value
+	return e
+}
+
+func (e GetInputElement) SetMethod(value string) GetInputElement {
+	e.Method = &value
+	return e
+}
+
+func (e GetInputElement) SetInputType(value string) GetInputElement {
+	e.InputType = &value
+	return e
+}
+
+func (e GetInputElement) SetExecutionTimeout(value int) GetInputElement {
+	e.ExecutionTimeout = &value
+	return e
+}
+
+func (e GetInputElement) SetDigitEndTimeout(value int) GetInputElement {
+	e.DigitEndTimeout = &value
+	return e
+}
+
+func (e GetInputElement) SetSpeechEndTimeout(value int) GetInputElement {
+	e.SpeechEndTimeout = &value
+	return e
+}
+
+func (e GetInputElement) SetFinishOnKey(value string) GetInputElement {
+	e.FinishOnKey = &value
+	return e
+}
+
+func (e GetInputElement) SetNumDigits(value int) GetInputElement {
+	e.NumDigits = &value
+	return e
+}
+
+func (e GetInputElement) SetSpeechModel(value string) GetInputElement {
+	e.SpeechModel = &value
+	return e
+}
+
+func (e GetInputElement) SetHints(value string) GetInputElement {
+	e.Hints = &value
+	return e
+}
+
+func (e GetInputElement) SetLanguage(value string) GetInputElement {
+	e.Language = &value
+	return e
+}
+
+func (e GetInputElement) SetInterimSpeechResultsCallback(value string) GetInputElement {
+	e.InterimSpeechResultsCallback = &value
+	return e
+}
+
+func (e GetInputElement) SetInterimSpeechResultsCallbackMethod(value string) GetInputElement {
+	e.InterimSpeechResultsCallbackMethod = &value
+	return e
+}
+
+func (e GetInputElement) SetRedirect(value bool) GetInputElement {
+	e.Redirect = &value
+	return e
+}
+
+func (e GetInputElement) SetLog(value bool) GetInputElement {
+	e.Log = &value
+	return e
+}
+
+func (e GetInputElement) SetContents(value []interface{}) GetInputElement {
+	e.Contents = value
+	return e
+}
+
 type HangupElement struct {
 	Reason *string `xml:"reason,attr"`
 
