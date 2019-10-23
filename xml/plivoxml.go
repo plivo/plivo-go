@@ -496,7 +496,7 @@ type GetInputElement struct {
 
 	Log *bool `xml:"log,attr"`
 
-	ProfanityFilter *string `xml:"profanityFilter,attr"`
+	ProfanityFilter *bool `xml:"profanityFilter,attr"`
 
 	XMLName xml.Name `xml:"GetInput"`
 }
@@ -576,7 +576,7 @@ func (e GetInputElement) SetLog(value bool) GetInputElement {
 	return e
 }
 
-func (e GetInputElement) SetProfanityFilter(value string) GetInputElement {
+func (e GetInputElement) SetProfanityFilter(value bool) GetInputElement {
 	e.ProfanityFilter = &value
 	return e
 }
