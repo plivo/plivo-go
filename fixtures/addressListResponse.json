@@ -1,0 +1,96 @@
+{
+  "api_id": "d16f41b6-27e6-11e9-91a6-0242ac110002",
+  "meta": {
+    "Previous": null,
+    "Next": "https://api.test.plivo.com/v1/Account/MAYTAYYJK2NGVJZTDMZT/Verification/Address/?limit=3&offset=3",
+    "TotalCount": 0,
+    "Offset": 0,
+    "Limit": 3
+  },
+  "objects": [
+    {
+      "account": "MAYTAYYJK2NGVJZTDMZT",
+      "address_line1": "whateveer",
+      "address_line2": "add2",
+      "city": "hyderabad",
+      "country_iso": "IN",
+      "document_details": {
+        "address_line1": "whateveer",
+        "address_line2": "add2",
+        "city": "hyderabad",
+        "first_name": "ABC",
+        "last_name": "CCD",
+        "number_type": "local",
+        "phone_number_country": "DK",
+        "postal_code": "hyderabad",
+        "region": "hyderabad",
+        "salutation": "Mr"
+      },
+      "first_name": "ABC",
+      "last_name": "CCD",
+      "id": "27227078368521",
+      "region": "hyderabad",
+      "postal_code": "hyderabad",
+      "salutation": "Mr",
+      "url": "https://api.test.plivo.com/v1/Account/MAYTAYYJK2NGVJZTDMZT/Verification/Download/Document/27227078368521/",
+      "validation_status": "accepted",
+      "verification_status": "pending"
+    },
+    {
+      "account": "MAYTAYYJK2NGVJZTDMZT",
+      "address_line1": "whateveer",
+      "address_line2": "add2",
+      "city": "Hyde",
+      "country_iso": "IN",
+      "document_details": {
+        "address_line1": "whateveer",
+        "address_line2": "add2",
+        "city": "Hyde",
+        "first_name": "ABC",
+        "last_name": "CCD",
+        "number_type": "local",
+        "phone_number_country": "DK",
+        "postal_code": "345656",
+        "region": "telan",
+        "salutation": "Mr"
+      },
+      "first_name": "ABC",
+      "last_name": "CCD",
+      "id": "25169680446075",
+      "region": "telan",
+      "postal_code": "345656",
+      "salutation": "Mr",
+      "url": "https://api.test.plivo.com/v1/Account/MAYTAYYJK2NGVJZTDMZT/Verification/Download/Document/25169680446075/",
+      "validation_status": "accepted",
+      "verification_status": "pending"
+    },
+    {
+      "account": "MAYTAYYJK2NGVJZTDMZT",
+      "address_line1": "whateveer",
+      "address_line2": "add2",
+      "city": "Hyde",
+      "country_iso": "IN",
+      "document_details": {
+        "address_line1": "whateveer",
+        "address_line2": "add2",
+        "city": "Hyde",
+        "first_name": "ABC",
+        "last_name": "CCD",
+        "number_type": "local",
+        "phone_number_country": "DK",
+        "postal_code": "345656",
+        "region": "telan",
+        "salutation": "Mr"
+      },
+      "first_name": "ABC",
+      "last_name": "CCD",
+      "id": "17377266556401",
+      "region": "telan",
+      "postal_code": "345656",
+      "salutation": "Mr",
+      "url": "https://api.test.plivo.com/v1/Account/MAYTAYYJK2NGVJZTDMZT/Verification/Download/Document/17377266556401/",
+      "validation_status": "accepted",
+      "verification_status": "pending"
+    }
+  ]
+}
