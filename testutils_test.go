@@ -18,6 +18,9 @@ var expectedResponse = ""
 var requestUrl *url.URL
 var requestMethod string
 var requestHeader http.Header
+var testAuthId="AuthId"
+var testAuthToken="AuthId"
+
 
 var server = httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	requestUrl = r.URL
@@ -49,7 +52,21 @@ func expectResponse(fixturePath string, statusCode int) {
 }
 
 func assertRequest(t *testing.T, method, path string, params ...interface{}) {
+
 	path = fmt.Sprintf("/v1/Account/%s/%s/", client.AuthId, fmt.Sprintf(path, params...))
+	expectedUrl, _ := url.Parse(path)
+
+	if expectedUrl.Path != requestUrl.Path || method != requestMethod {
+		log.Printf("expectedUrl: %s, requestUrl %s\nexpectedMethod: %s, requestMethod: %s\n", expectedUrl, requestUrl, method, requestMethod)
+		t.FailNow()
+	}
+
+	assert.Contains(t, requestHeader.Get("User-Agent"), "plivo-go")
+}
+
+func assertPhloRequest(t *testing.T, method, path string, params ...interface{}) {
+
+	path = fmt.Sprintf("/v1/%s", fmt.Sprintf(path, params...))
 	expectedUrl, _ := url.Parse(path)
 
 	if expectedUrl.Path != requestUrl.Path || method != requestMethod {
@@ -62,6 +79,8 @@ func assertRequest(t *testing.T, method, path string, params ...interface{}) {
 
 func init() {
 	client.BaseUrl, _ = url.Parse(server.URL)
+	phloClient.BaseUrl,_ = url.Parse(server.URL)
 }
 
-var client, _ = NewClient("", "", &ClientOptions{})
+var client, _ = NewClient(testAuthId, testAuthToken, &ClientOptions{})
+var phloClient, _ = NewPhloClient(testAuthId,testAuthToken , &ClientOptions{})

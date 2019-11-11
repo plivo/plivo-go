@@ -1,5 +1,27 @@
 # Change Log
 
+## [4.1.1](https://github.com/plivo/plivo-go/tree/v4.1.1) (2019-11-05)
+- Add SSML support
+
+## [4.1.0](https://github.com/plivo/plivo-go/tree/v4.1.0) (2019-03-12)
+- Add PHLO support
+- Add Multi-party call triggers
+
+## [4.0.6-beta1](https://github.com/plivo/plivo-go/tree/v4.0.6-beta1) (2019-02-05)
+- Add PHLO support in beta
+- Add Multi-party call triggers
+
+## [4.0.5](https://github.com/plivo/plivo-go/tree/v4.0.5) (2018-11-19)
+- Add hangup party details to CDR. CDR filtering allowed by hangup_source and hangup_cause_code.
+- Add sub-account cascade delete support.
+- Add call status to GET calls and live-calls methods.
+
+## [4.0.4](https://github.com/plivo/plivo-go/tree/v4.0.4) (2018-10-31)
+- Add live calls filtering by to, from numbers and call direction.
+
+## [4.0.3](https://github.com/plivo/plivo-go/tree/v4.0.3) (2018-10-01)
+- Added Trackable parameter in messages.
+
 ## [4.0.2](https://github.com/plivo/plivo-go/tree/v4.0.2) (2018-09-18)
 - Added parent_call_uuid parameter to filter calls.
 - Queued status added for filtering calls in queued status.
