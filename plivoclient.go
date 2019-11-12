@@ -7,7 +7,6 @@ import (
 	"os"
 	"time"
 	"runtime"
-	"github.com/google/go-querystring/query"
 )
 
 
