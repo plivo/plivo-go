@@ -1,0 +1,4 @@
+---
+parent: central
+serviceName: plivo-go
+language: go-sdk
