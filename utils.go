@@ -17,7 +17,6 @@ func Numbers(numbers ...string) string {
 	return strings.Join(numbers, "<")
 }
 
-
 func headersWithSep(headers map[string]string, keyValSep, itemSep string, escape bool) string {
 	v := url.Values{}
 	for key, value := range headers {
