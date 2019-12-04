@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.1.3](https://github.com/plivo/plivo-go/tree/v4.1.3) (2019-12-04)
+- Add MMS support
+
 ## [4.1.2](https://github.com/plivo/plivo-go/tree/v4.1.2) (2019-11-13)
 - Add GetInput XML support
 
