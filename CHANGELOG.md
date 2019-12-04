@@ -1,5 +1,11 @@
 # Change Log
 
+## [4.1.2](https://github.com/plivo/plivo-go/tree/v4.1.2) (2019-11-13)
+- Add GetInput XML support
+
+## [4.1.1](https://github.com/plivo/plivo-go/tree/v4.1.1) (2019-11-05)
+- Add SSML support
+
 ## [4.1.0](https://github.com/plivo/plivo-go/tree/v4.1.0) (2019-03-12)
 - Add PHLO support
 - Add Multi-party call triggers
