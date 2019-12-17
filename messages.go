@@ -67,10 +67,6 @@ type MessageListParams struct {
 	Limit  int `url:"limit,omitempty"`
 	Offset int `url:"offset,omitempty"`
 }
-type GetMediaParams struct {
-	MediaID     string `url:"media_id,omitempty"`
-	MessageUUID string `url:"message_uuid,omitempty"`
-}
 
 func (service *MessageService) List(params MessageListParams) (response *MessageList, err error) {
 	req, err := service.client.NewRequest("GET", params, "Message")
@@ -117,15 +113,6 @@ func (service *MessageService) DeleteMedia(messageUuid string) (response *MediaD
 		return
 	}
 	response = &MediaDeleteResponse{}
-	err = service.client.ExecuteRequest(req, response)
-	return
-}
-func (service *MessageService) GetMedia(params GetMediaParams) (response *MMSMedia, err error) {
-	req, err := service.client.NewRequest("GET", nil, "Message/%s/Media/%s/", params.MessageUUID, params.MediaID)
-	if err != nil {
-		return
-	}
-	response = &MMSMedia{}
 	err = service.client.ExecuteRequest(req, response)
 	return
 }
