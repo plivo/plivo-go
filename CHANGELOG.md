@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.1.4](https://github.com/plivo/plivo-go/tree/v4.1.4) (2019-12-20)
+- Add Powerpack support
+
 ## [4.1.3](https://github.com/plivo/plivo-go/tree/v4.1.3) (2019-12-04)
 - Add MMS support
 
