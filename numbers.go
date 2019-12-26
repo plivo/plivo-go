@@ -19,6 +19,13 @@ type Number struct {
 	ResourceURI       string `json:"resource_uri,omitempty" url:"resource_uri,omitempty"`
 	VoiceRate         string `json:"voice_rate,omitempty" url:"voice_rate,omitempty"`
 	SMSRate           string `json:"sms_rate,omitempty" url:"sms_rate,omitempty"`
+	Active            bool   `json:"active,omitempty" url:"active,omitempty"`
+	ApiID             string `json:"api_id,omitempty" url:"api_id,omitempty"`
+	City              string `json:"city,omitempty" url:"city,omitempty"`
+	Country           string `json:"country,omitempty" url:"country,omitempty"`
+	Region            string `json:"region,omitempty" url:"region,omitempty"`
+	Subaccount        string `json:"sub_account,omitempty" url:"sub_account,omitempty"`
+	Type              string `json:"type,omitempty" url:"type,omitempty"`
 }
 
 type NumberCreateParams struct {
