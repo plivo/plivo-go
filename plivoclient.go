@@ -6,7 +6,6 @@ import (
 	"net/url"
 	"os"
 	"time"
-
 	"runtime"
 )
 
@@ -29,6 +28,11 @@ type Client struct {
 	LiveCalls    *LiveCallService
 	QueuedCalls  *QueuedCallService
 	Conferences  *ConferenceService
+	Powerpack    *PowerpackService
+	Addresses    *AddressService
+	Identities   *IdentityService
+	RequestInterceptor  func(request *http.Request)
+	ResponseInterceptor func(response *http.Response)
 }
 
 /*
@@ -84,7 +88,9 @@ func NewClient(authId, authToken string, options *ClientOptions) (client *Client
 	client.LiveCalls = &LiveCallService{client: client}
 	client.QueuedCalls = &QueuedCallService{client: client}
 	client.Conferences = &ConferenceService{client: client}
-
+	client.Powerpack = &PowerpackService{client: client}
+	client.Addresses = &AddressService{client:client}
+	client.Identities = &IdentityService{client:client}
 	return
 }
 

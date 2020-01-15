@@ -5,14 +5,15 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/google/go-querystring/query"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"reflect"
+
+	"github.com/google/go-querystring/query"
 )
 
-const sdkVersion = "4.1.0"
+const sdkVersion = "4.1.4"
 
 type ClientOptions struct {
 	HttpClient *http.Client
