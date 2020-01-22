@@ -97,6 +97,17 @@ func (client *BaseClient) ExecuteRequest(request *http.Request, body interface{}
 
 	data, err := ioutil.ReadAll(response.Body)
 	if err == nil && data != nil && len(data) > 0 {
+		v := reflect.ValueOf(body).Elem().FieldByName("StatusCode")
+		//fmt.Println("fields: ", reflect.ValueOf(body).Elem().NumField()) 
+		ptr := v.Addr().Interface().(*int)
+		*ptr = response.StatusCode
+
+		// origin := body.(*MessageCreateResponseBody)
+		// origin.StatusCode = response.StatusCode
+		// fmt.Printf("%v\n",origin.StatusCode)
+
+
+
 		if response.StatusCode >= 200 && response.StatusCode < 300 {
 			if body != nil {
 				err = json.Unmarshal(data, body)

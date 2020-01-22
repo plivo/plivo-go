@@ -5,6 +5,7 @@ type RecordingService struct {
 }
 
 type Recording struct {
+	StatusCode	int      `json:"StatusCode" url:"StatusCode"`
 	AddTime             string `json:"add_time,omitempty" url:"add_time,omitempty"`
 	CallUUID            string `json:"call_uuid,omitempty" url:"call_uuid,omitempty"`
 	RecordingID         string `json:"recording_id,omitempty" url:"recording_id,omitempty"`
@@ -36,6 +37,7 @@ type RecordingListParams struct {
 }
 
 type RecordingListResponse struct {
+	StatusCode	int      `json:"StatusCode" url:"StatusCode"`
 	ApiID   string       `json:"api_id" url:"api_id"`
 	Meta    *Meta        `json:"meta" url:"meta"`
 	Objects []*Recording `json:"objects" url:"objects"`

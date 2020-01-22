@@ -34,6 +34,7 @@ type Message struct {
 
 // Stores response for ending a message.
 type MessageCreateResponseBody struct {
+	StatusCode	int      `json:"StatusCode" url:"StatusCode"`
 	Message     string   `json:"message" url:"message"`
 	ApiID       string   `json:"api_id" url:"api_id"`
 	MessageUUID []string `json:"message_uuid" url:"message_uuid"`

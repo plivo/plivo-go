@@ -5,6 +5,7 @@ type EndpointService struct {
 }
 
 type Endpoint struct {
+	StatusCode	int      `json:"StatusCode" url:"StatusCode"`
 	Alias       string `json:"alias,omitempty" url:"alias,omitempty"`
 	EndpointID  string `json:"endpoint_id,omitempty" url:"endpoint_id,omitempty"`
 	Password    string `json:"password,omitempty" url:"password,omitempty"`
@@ -29,6 +30,7 @@ type EndpointCreateParams struct {
 }
 
 type EndpointCreateResponse struct {
+	StatusCode	int      `json:"StatusCode" url:"StatusCode"`
 	BaseResponse
 	Alias      string `json:"alias,omitempty" url:"alias,omitempty"`
 	EndpointID string `json:"endpoint_id,omitempty" url:"endpoint_id,omitempty"`
@@ -36,11 +38,15 @@ type EndpointCreateResponse struct {
 }
 
 type EndpointListResponse struct {
+	StatusCode	int      `json:"StatusCode" url:"StatusCode"`
 	BaseListResponse
 	Objects []*Endpoint `json:"objects" url:"objects"`
 }
 
-type EndpointUpdateResponse BaseResponse
+type EndpointUpdateResponse struct{
+	StatusCode	int      `json:"StatusCode" url:"StatusCode"`
+	BaseResponse
+}
 
 type EndpointListParams struct {
 	Limit  int `url:"limit,omitempty"`
