@@ -1,12 +1,12 @@
 package plivo
 
 type Meta struct {
-	Previous *string
-	Next     *string
+	Previous *string `json:"previous" url:"previous"`
+	Next     *string `json:"next" url:"next"`
 
-	TotalCount int64
-	Offset     int64
-	Limit      int64
+	TotalCount int64 `json:"total_count" url:"total_count"`
+	Offset     int64 `json:"offset" url:"offset"`
+	Limit      int64 `json:"limit" url:"limit"`
 }
 
 type BaseListResponse struct {
