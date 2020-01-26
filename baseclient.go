@@ -96,6 +96,8 @@ func (client *BaseClient) ExecuteRequest(request *http.Request, body interface{}
 	}
 
 	data, err := ioutil.ReadAll(response.Body)
+	defer resp.Body.Close()
+
 	if err == nil && data != nil && len(data) > 0 {
 		if response.StatusCode >= 200 && response.StatusCode < 300 {
 			if body != nil {
