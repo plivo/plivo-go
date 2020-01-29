@@ -24,8 +24,8 @@ type CallFeedbackParams struct {
 }
 
 type CallFeedbackCreateResponse struct {
-	Message string `json:data`
-	Status  string `json:status`
+	Data   string `json:data`
+	Status string `json:status`
 }
 
 func (service *CallFeedbackService) Create(params CallFeedbackParams) (response *CallFeedbackCreateResponse, err error) {
