@@ -5,14 +5,12 @@ import (
 	"net/http"
 	"net/url"
 	"os"
-	"time"
-
 	"runtime"
-	)
+	"time"
+)
 
 const baseUrlString = "https://api.plivo.com/"
 const baseRequestString = "/v1/Account/%s/"
-
 
 type Client struct {
 	BaseClient
@@ -31,6 +29,7 @@ type Client struct {
 	QueuedCalls  *QueuedCallService
 	Conferences  *ConferenceService
 	CallFeedback *CallFeedbackService
+	Powerpack    *PowerpackService
 }
 
 /*
@@ -87,12 +86,12 @@ func NewClient(authId, authToken string, options *ClientOptions) (client *Client
 	client.QueuedCalls = &QueuedCallService{client: client}
 	client.Conferences = &ConferenceService{client: client}
 	client.CallFeedback = &CallFeedbackService{client: client}
-
+	client.Powerpack = &PowerpackService{client: client}
 	return
 }
 
 func (client *Client) NewRequest(method string, params interface{}, formatString string,
-formatParams ...interface{}) (*http.Request, error) {
+	formatParams ...interface{}) (*http.Request, error) {
 	formatParams = append([]interface{}{client.AuthId}, formatParams...)
 	formatString = fmt.Sprintf("%s/%s", "%s", formatString)
 	return client.BaseClient.NewRequest(method, params, baseRequestString, formatString, formatParams...)

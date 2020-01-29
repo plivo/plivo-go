@@ -1,4 +1,12 @@
 # Change Log
+## [4.1.5](https://github.com/plivo/plivo-go/tree/v4.1.5) (2020-01-24)
+- Hot fix for go build
+
+## [4.1.4](https://github.com/plivo/plivo-go/tree/v4.1.4) (2019-12-20)
+- Add Powerpack support
+
+## [4.1.3](https://github.com/plivo/plivo-go/tree/v4.1.3) (2019-12-04)
+- Add MMS support
 
 ## [4.1.2](https://github.com/plivo/plivo-go/tree/v4.1.2) (2019-11-13)
 - Add GetInput XML support
