@@ -10,13 +10,13 @@ import (
 func TestMedia_List(t *testing.T) {
 	expectResponse("MediaListResponse.json", 200)
 
-	if _, err := client.Media.List(MediaListParams{}); err != nil {
+	if _, err := client.Media.List(MediaListParams{Limit: 0, Offset: 20}); err != nil {
 		panic(err)
 	}
 
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Media.List(MediaListParams{})
+	_, err := client.Media.List(MediaListParams{Limit: 0, Offset: 20})
 	if err == nil {
 		client.httpClient = cl
 		panic(errors.New("error expected"))
@@ -26,7 +26,7 @@ func TestMedia_List(t *testing.T) {
 	assertRequest(t, "GET", "Media")
 }
 
-func TestNumberService_Get(t *testing.T) {
+func TestMedia_Get(t *testing.T) {
 	expectResponse("MediaGetResponse.json", 200)
 	MediaID := "MediaID"
 

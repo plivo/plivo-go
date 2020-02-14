@@ -16,6 +16,7 @@ type MessageCreateParams struct {
 	Trackable bool        `json:"trackable,omitempty" url:"trackable,omitempty"`
 	Log       interface{} `json:"log,omitempty" url:"log,omitempty"`
 	MediaUrls []string    `json:"media_urls" url:"media_urls,omitempty"`
+	MediaIds  []string    `json:"media_ids" url:"media_ids,omitempty"`
 	// Either one of src and powerpackuuid should be given
 	PowerpackUUID string `json:"powerpack_uuid,omitempty" url:"powerpack_uuid,omitempty"`
 }
