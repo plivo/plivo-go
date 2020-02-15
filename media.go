@@ -21,8 +21,6 @@ type Media struct {
 	Size        int    `json:"size,omitempty" url:"size,omitempty"`
 	UploadTime  string `json:"upload_time,omitempty" url:"upload_time,omitempty"`
 	URL         string `json:"url,omitempty" url:"url,omitempty"`
-	Status      string `json:"status,omitempty" url:"status,omitempty"`
-	StatusCode  string `json:"status_code,omitempty" url:"status_code,omitempty"`
 }
 
 type MediaMeta struct {
@@ -33,14 +31,14 @@ type MediaMeta struct {
 	Limit      int `json:"limit,omitempty" url:"limit,omitempty"`
 }
 type MediaResponseBody struct {
-	Media []string `json:"objects" url:"objcts"`
+	Media []string `json:"objects" url:"objects"`
 	ApiID string   `json:"api_id" url:"api_id"`
 }
 
 type BaseListMediaResponse struct {
 	ApiID string    `json:"api_id" url:"api_id"`
 	Meta  MediaMeta `json:"meta" url:"meta"`
-	Media []string  `json:"objects" url:"objcts"`
+	Media []Media   `json:"objects" url:"objects"`
 }
 
 type MediaUpload struct {
