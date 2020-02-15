@@ -23,6 +23,19 @@ type Media struct {
 	URL         string `json:"url,omitempty" url:"url,omitempty"`
 }
 
+type MediaUploadResponse struct {
+	ContentType  string `json:"content_type,omitempty" url:"content_type,omitempty"`
+	FileName     string `json:"file_name,omitempty" url:"file_name,omitempty"`
+	MediaID      string `json:"media_id,omitempty" url:"media_id,omitempty"`
+	Size         int    `json:"size,omitempty" url:"size,omitempty"`
+	UploadTime   string `json:"upload_time,omitempty" url:"upload_time,omitempty"`
+	URL          string `json:"url,omitempty" url:"url,omitempty"`
+	Status       string `json:"status,omitempty" url:"status,omitempty"`
+	StatusCode   int    `json:"status_code,omitempty" url:"status_code,omitempty"`
+	ErrorMessage string `json:"error_message,omitempty" url:"error_message,omitempty"`
+	ErrorCode    int    `json:"error_code,omitempty" url:"error_code,omitempty"`
+}
+
 type MediaMeta struct {
 	Previous   *string
 	Next       *string
@@ -31,8 +44,8 @@ type MediaMeta struct {
 	Limit      int `json:"limit,omitempty" url:"limit,omitempty"`
 }
 type MediaResponseBody struct {
-	Media []string `json:"objects" url:"objects"`
-	ApiID string   `json:"api_id" url:"api_id"`
+	Media []MediaUploadResponse `json:"objects" url:"objects"`
+	ApiID string                `json:"api_id" url:"api_id"`
 }
 
 type BaseListMediaResponse struct {
