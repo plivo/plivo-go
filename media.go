@@ -6,8 +6,10 @@ import (
 	"io"
 	"mime/multipart"
 	"net/http"
+	"net/textproto"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 type MediaService struct {
@@ -55,7 +57,11 @@ type BaseListMediaResponse struct {
 }
 
 type MediaUpload struct {
-	FileName []string
+	UploadFiles []UploadFiles
+}
+type UploadFiles struct {
+	FilePath    string
+	ContentType string
 }
 
 type MediaListParams struct {
@@ -63,13 +69,24 @@ type MediaListParams struct {
 	Offset int `url:"offset,omitempty"`
 }
 
+var quoteEscaper = strings.NewReplacer("\\", "\\\\", `"`, "\\\"")
+
+func escapeQuotes(s string) string {
+	return quoteEscaper.Replace(s)
+}
 func (service *MediaService) Upload(params MediaUpload) (response *MediaResponseBody, err error) {
 	payload := &bytes.Buffer{}
 	writer := multipart.NewWriter(payload)
-	for i := 0; i < len(params.FileName); i++ {
-		file, errFile1 := os.Open(params.FileName[i])
+	for i := 0; i < len(params.UploadFiles); i++ {
+		file, errFile1 := os.Open(params.UploadFiles[i].FilePath)
 		defer file.Close()
-		part1, errFile1 := writer.CreateFormFile("file", filepath.Base(params.FileName[i]))
+		filename := filepath.Base(params.UploadFiles[i].FilePath)
+		h := make(textproto.MIMEHeader)
+		h.Set("Content-Disposition",
+			fmt.Sprintf(`form-data; name="%s"; filename="%s"`,
+				escapeQuotes("file"), escapeQuotes(filename)))
+		h.Set("Content-Type", params.UploadFiles[i].ContentType)
+		part1, errFile1 := writer.CreatePart(h)
 		_, errFile1 = io.Copy(part1, file)
 		if errFile1 != nil {
 			return nil, errFile1
@@ -83,10 +100,11 @@ func (service *MediaService) Upload(params MediaUpload) (response *MediaResponse
 	requestUrl.Path = fmt.Sprintf(baseRequestString, fmt.Sprintf(service.client.AuthId+"/Media"))
 	request, err := http.NewRequest("POST", requestUrl.String(), payload)
 	if err != nil {
-		return
+		return nil, err
 	}
 	request.Header.Set("Content-Type", writer.FormDataContentType())
 	request.SetBasicAuth(service.client.AuthId, service.client.AuthToken)
+	response = &MediaResponseBody{}
 	err = service.client.ExecuteRequest(request, response)
 	return
 }
