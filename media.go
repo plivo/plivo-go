@@ -57,9 +57,9 @@ type BaseListMediaResponse struct {
 }
 
 type MediaUpload struct {
-	UploadFiles []UploadFiles
+	UploadFiles []Files
 }
-type UploadFiles struct {
+type Files struct {
 	FilePath    string
 	ContentType string
 }
