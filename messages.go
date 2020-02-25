@@ -108,12 +108,3 @@ func (service *MessageService) ListMedia(messageUuid string) (response *MediaLis
 	err = service.client.ExecuteRequest(req, response)
 	return
 }
-func (service *MessageService) DeleteMedia(messageUuid string) (response *MediaDeleteResponse, err error) {
-	req, err := service.client.NewRequest("DELETE", nil, "Message/%s/Media/", messageUuid)
-	if err != nil {
-		return
-	}
-	response = &MediaDeleteResponse{}
-	err = service.client.ExecuteRequest(req, response)
-	return
-}
