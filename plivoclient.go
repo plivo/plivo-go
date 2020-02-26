@@ -29,6 +29,7 @@ type Client struct {
 	QueuedCalls  *QueuedCallService
 	Conferences  *ConferenceService
 	Powerpack    *PowerpackService
+	Media        *MediaService
 }
 
 /*
@@ -85,6 +86,7 @@ func NewClient(authId, authToken string, options *ClientOptions) (client *Client
 	client.QueuedCalls = &QueuedCallService{client: client}
 	client.Conferences = &ConferenceService{client: client}
 	client.Powerpack = &PowerpackService{client: client}
+	client.Media = &MediaService{client: client}
 	return
 }
 
