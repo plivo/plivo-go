@@ -13,6 +13,7 @@ type QueuedCallService struct {
 }
 
 type Call struct {
+	StatusCode	int      `json:"StatusCode" url:"StatusCode"`
 	FromNumber     string `json:"from_number,omitempty" url:"from_number,omitempty"`
 	ToNumber       string `json:"to_number,omitempty" url:"to_number,omitempty"`
 	AnswerURL      string `json:"answer_url,omitempty" url:"answer_url,omitempty"`
@@ -32,6 +33,7 @@ type Call struct {
 }
 
 type LiveCall struct {
+	StatusCode	int      `json:"StatusCode" url:"StatusCode"`
 	From           string `json:"from,omitempty" url:"from,omitempty"`
 	To             string `json:"to,omitempty" url:"to,omitempty"`
 	AnswerURL      string `json:"answer_url,omitempty" url:"answer_url,omitempty"`
@@ -43,6 +45,7 @@ type LiveCall struct {
 }
 
 type QueuedCall struct {
+	StatusCode	int      `json:"StatusCode" url:"StatusCode"`
 	From        string `json:"from,omitempty" url:"from,omitempty"`
 	To          string `json:"to,omitempty" url:"to,omitempty"`
 	Status      string `json:"call_status,omitempty" url:"call_status,omitempty"`
@@ -54,11 +57,13 @@ type QueuedCall struct {
 }
 
 type LiveCallIDListResponse struct {
+	StatusCode	int      `json:"StatusCode" url:"StatusCode"`
 	APIID string   `json:"api_id" url:"api_id"`
 	Calls []string `json:"calls" url:"calls"`
 }
 
 type QueuedCallIDListResponse struct {
+	StatusCode	int      `json:"StatusCode" url:"StatusCode"`
 	APIID string   `json:"api_id" url:"api_id"`
 	Calls []string `json:"calls" url:"calls"`
 }
@@ -78,17 +83,21 @@ type CallCreateParams struct {
 	FallbackMethod       string `json:"fallback_method,omitempty" url:"fallback_method,omitempty"`
 	CallerName           string `json:"caller_name,omitempty" url:"caller_name,omitempty"`
 	SendDigits           string `json:"send_digits,omitempty" url:"send_digits,omitempty"`
-	SendOnPreanswer      bool   `json:"send_on_preanswer,omitempty" url:"send_on_preanswer,omitempty"`
+	SendOnPreanswer      string   `json:"send_on_preanswer,omitempty" url:"send_on_preanswer,omitempty"`
 	TimeLimit            int64  `json:"time_limit,omitempty" url:"time_limit,omitempty"`
 	HangupOnRing         int64  `json:"hangup_on_ring,omitempty" url:"hangup_on_ring,omitempty"`
 	MachineDetection     string `json:"machine_detection,omitempty" url:"machine_detection,omitempty"`
 	MachineDetectionTime int64  `json:"machine_detection_time,omitempty" url:"machine_detection_time,omitempty"`
+	MachineDetectionMethod string `json:"machine_detection_method,omitempty" url:"machine_detection_method,omitempty"`
 	SipHeaders           string `json:"sip_headers,omitempty" url:"sip_headers,omitempty"`
 	RingTimeout          int64  `json:"ring_timeout,omitempty" url:"ring_timeout,omitempty"`
+	ParentCallUUID		 string `json:"parent_call_uuid,omitempty" url:"parent_call_uuid,omitempty"`
+	ErrorIfParentNotFound string `json:"error_if_parent_not_found,omitempty" url:"error_if_parent_not_found,omitempty"` 
 }
 
 // Stores response for making a call.
 type CallCreateResponse struct {
+	StatusCode	int      `json:"StatusCode" url:"StatusCode"`
 	Message     string `json:"message" url:"message"`
 	ApiID       string `json:"api_id" url:"api_id"`
 	AppID       string `json:"app_id" url:"app_id"`
@@ -102,9 +111,10 @@ type CallListParams struct {
 	FromNumber      string `json:"from_number,omitempty" url:"from_number,omitempty"`
 	ToNumber        string `json:"to_number,omitempty" url:"to_number,omitempty"`
 	ParentCallUUID  string `json:"parent_call_uuid,omitempty" url:"parent_call_uuid,omitempty"`
-	EndTimeEquals   string `json:"end_time,omitempty" url:"end_time,omitempty"`
 	HangupCauseCode int64  `json:"hangup_cause_code,omitempty" url:"hangup_cause_code,omitempty"`
 	HangupSource    string `json:"hangup_source,omitempty" url:"hangup_source,omitempty"`
+
+	EndTimeEquals   string `json:"end_time,omitempty" url:"end_time,omitempty"`
 
 	EndTimeLessThan string `json:"end_time__lt,omitempty" url:"end_time__lt,omitempty"`
 
@@ -123,6 +133,7 @@ type CallListParams struct {
 	BillDurationLessOrEqual string `json:"bill_duration__lte,omitempty" url:"bill_duration__lte,omitempty"`
 
 	BillDurationGreaterOrEqual string `json:"bill_duration__gte,omitempty" url:"bill_duration__gte,omitempty"`
+
 	Limit                      int64  `json:"limit,omitempty" url:"limit,omitempty"`
 	Offset                     int64  `json:"offset,omitempty" url:"offset,omitempty"`
 }
@@ -135,6 +146,7 @@ type LiveCallFilters struct {
 }
 
 type CallListResponse struct {
+	StatusCode	int      `json:"StatusCode" url:"StatusCode"`
 	ApiID   string  `json:"api_id" url:"api_id"`
 	Meta    *Meta   `json:"meta" url:"meta"`
 	Objects []*Call `json:"objects" url:"objects"`
@@ -149,6 +161,7 @@ type CallUpdateParams struct {
 }
 
 type CallUpdateResponse struct {
+	StatusCode	int      `json:"StatusCode" url:"StatusCode"`
 	ApiID   string `json:"api_id" url:"api_id"`
 	Message string `json:"message" url:"message"`
 }
@@ -164,6 +177,7 @@ type CallRecordParams struct {
 }
 
 type CallRecordResponse struct {
+	StatusCode	int      `json:"StatusCode" url:"StatusCode"`
 	Message     string `json:"message,omitempty" url:"message,omitempty"`
 	URL         string `json:"url,omitempty" url:"url,omitempty"`
 	APIID       string `json:"api_id,omitempty" url:"api_id,omitempty"`
@@ -172,27 +186,29 @@ type CallRecordResponse struct {
 
 type CallPlayParams struct {
 	URLs   string `json:"urls" url:"urls"`
-	Length string `json:"length,omitempty" url:"length,omitempty"`
+	Length int `json:"length,omitempty" url:"length,omitempty"`
 	Legs   string `json:"legs,omitempty" url:"legs,omitempty"`
 	Loop   bool   `json:"loop,omitempty" url:"loop,omitempty"`
 	Mix    bool   `json:"mix,omitempty" url:"mix,omitempty"`
 }
 
 type CallPlayResponse struct {
+	StatusCode	int      `json:"StatusCode" url:"StatusCode"`
 	Message string `json:"message,omitempty" url:"message,omitempty"`
 	ApiID   string `json:"api_id,omitempty" url:"api_id,omitempty"`
 }
 
 type CallSpeakParams struct {
 	Text     string `json:"text" url:"text"`
-	Voice    string `json:"length,omitempty" url:"length,omitempty"`
+	Voice    string `json:”voice,omitempty" url:"voice,omitempty"`
 	Language string `json:"language,omitempty" url:"language,omitempty"`
 	Legs     string `json:"legs,omitempty" url:"legs,omitempty"`
-	Loop     bool   `json:"loop,omitempty" url:"loop,omitempty"`
-	Mix      bool   `json:"mix,omitempty" url:"mix,omitempty"`
+	Loop     string   `json:"loop,omitempty" url:"loop,omitempty"`
+	Mix      string   `json:"mix,omitempty" url:"mix,omitempty"`
 }
 
 type CallSpeakResponse struct {
+	StatusCode	int      `json:"StatusCode" url:"StatusCode"`
 	Message string `json:"message,omitempty" url:"message,omitempty"`
 	ApiID   string `json:"api_id,omitempty" url:"api_id,omitempty"`
 }
@@ -203,6 +219,7 @@ type CallDTMFParams struct {
 }
 
 type CallDTMFResponseBody struct {
+	StatusCode	int      `json:"StatusCode" url:"StatusCode"`
 	Message string `json:"message,omitempty" url:"message,omitempty"`
 	ApiID   string `json:"api_id,omitempty" url:"api_id,omitempty"`
 }
