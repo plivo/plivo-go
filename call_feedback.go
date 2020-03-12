@@ -24,8 +24,9 @@ type CallFeedbackParams struct {
 }
 
 type CallFeedbackCreateResponse struct {
-	Data   string `json:data`
-	Status string `json:status`
+	ApiID   string `json:"api_id"`
+	Message string `json:"message"`
+	Status  string `json:"status"`
 }
 
 func (service *CallFeedbackService) Create(params CallFeedbackParams) (response *CallFeedbackCreateResponse, err error) {
