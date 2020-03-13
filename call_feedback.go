@@ -38,6 +38,10 @@ func (service *CallFeedbackService) Create(params CallFeedbackParams) (response 
 		err = errors.New("CallUUID cannot be nil")
 		return
 	}
+	if params.Rating == nil {
+		err = errors.New("rating cannot be nil")
+		return
+	}
 	var buffer = new(bytes.Buffer)
 	if err = json.NewEncoder(buffer).Encode(params); err != nil {
 		return
