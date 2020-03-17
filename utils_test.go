@@ -66,6 +66,39 @@ func TestValidateSignatureV2Pass(t *testing.T) {
 		),
 	)
 }
+
+func TestValidateSignatureV3Pass(t *testing.T) {
+	assert.Equal(t, true,
+		ValidateSignatureV3(
+			"https://answer.url",
+			"12345",
+			"GET",
+			"rXj4UwTSVxH6Kj+W0qX8LaCvVOOvmzPGzY8sQVn3d1I=",
+			"my_auth_token",
+			map[string]string{
+				"CallUUID": "97ceeb52-58b6-11e1-86da-77300b68f8bb",
+				"Duration": "300",
+			},
+		),
+	)
+}
+
+func TestValidateSignatureV3Fail(t *testing.T) {
+	assert.Equal(t, false,
+		ValidateSignatureV3(
+			"https://answer.url",
+			"12345",
+			"GET",
+			"rXj4UwTSVxH6Kj+W0qX8LaCvVOOvmzPGzY8sQVn3d1I+",
+			"my_auth_token",
+			map[string]string{
+				"CallUUID": "97ceeb52-58b6-11e1-86da-77300b68f8bb",
+				"Duration": "300",
+			},
+		),
+	)
+}
+
 func TestValidateSignatureV2Fail(t *testing.T) {
 	assert.Equal(t, false,
 		ValidateSignatureV2(

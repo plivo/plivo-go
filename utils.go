@@ -128,7 +128,7 @@ func GetKeysFromMap(params map[string]string, isSort bool) []string {
 	return keys
 }
 
-func ComputerSignatureV3(authToken, uri, method string, nonce string, params map[string]string) string {
+func ComputeSignatureV3(authToken, uri, method string, nonce string, params map[string]string) string {
 	var newUrl = GenerateUrl(uri, params, method) + "." + nonce
 	mac := hmac.New(sha256.New, []byte(authToken))
 	mac.Write([]byte(newUrl))
@@ -137,5 +137,15 @@ func ComputerSignatureV3(authToken, uri, method string, nonce string, params map
 }
 
 func ValidateSignatureV3(uri, nonce, method, signature, authToken string, params map[string]string) bool {
-	return ComputerSignatureV3(authToken, uri, method, nonce, params) == signature
+	multipleSignatures := strings.Split(signature, ",")
+	return Find(ComputeSignatureV3(authToken, uri, method, nonce, params), multipleSignatures)
+}
+
+func Find(val string, slice []string) bool {
+	for _, item := range slice {
+		if item == val {
+			return true
+		}
+	}
+	return false
 }
