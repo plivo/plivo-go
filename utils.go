@@ -89,3 +89,53 @@ func ComputeSignatureV2(authToken, uri string, nonce string) string {
 func ValidateSignatureV2(uri string, nonce string, signature string, authToken string) bool {
 	return ComputeSignatureV2(authToken, uri, nonce) == signature
 }
+
+func GenerateUrl(uri string, params map[string]string, method string) string {
+	parsedUrl, err := url.Parse(uri)
+	if err != nil {
+		panic(err)
+	}
+	paramString := ""
+	if method == "GET" {
+		keys := GetKeysFromMap(params, false)
+		for _, key := range keys {
+			paramString += key + "=" + params[key] + "&"
+		}
+		strings.Trim(paramString, "&")
+		if parsedUrl.RawQuery == "" {
+			uri += "/?" + paramString
+		} else {
+			uri += "&" + paramString
+		}
+	} else {
+		keys := GetKeysFromMap(params, true)
+		for _, key := range keys {
+			paramString += key + params[key]
+		}
+		uri += "." + paramString
+	}
+	return uri
+}
+
+func GetKeysFromMap(params map[string]string, isSort bool) []string {
+	keys := make([]string, 0, len(params))
+	for param := range params {
+		keys = append(keys, param)
+	}
+	if isSort {
+		sort.Strings(keys)
+	}
+	return keys
+}
+
+func ComputerSignatureV3(authToken, uri, method string, nonce string, params map[string]string) string {
+	var newUrl = GenerateUrl(uri, params, method) + "." + nonce
+	mac := hmac.New(sha256.New, []byte(authToken))
+	mac.Write([]byte(newUrl))
+	var messageMAC = base64.StdEncoding.EncodeToString(mac.Sum(nil))
+	return messageMAC
+}
+
+func ValidateSignatureV3(uri, nonce, method, signature, authToken string, params map[string]string) bool {
+	return ComputerSignatureV3(authToken, uri, method, nonce, params) == signature
+}
