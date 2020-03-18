@@ -1,4 +1,7 @@
 # Change Log
+## [4.1.7](https://github.com/plivo/plivo-go/tree/v4.1.7) (2020-03-18)
+- Fix for mulitple file media upload 
+
 ## [4.1.6](https://github.com/plivo/plivo-go/tree/v4.1.6) (2020-02-25)
 - Add Media support
 
