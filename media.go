@@ -91,10 +91,10 @@ func (service *MediaService) Upload(params MediaUpload) (response *MediaResponse
 		if errFile1 != nil {
 			return nil, errFile1
 		}
-		filerror := writer.Close()
-		if filerror != nil {
-			return nil, filerror
-		}
+	}
+	filerror := writer.Close()
+	if filerror != nil {
+		return nil, filerror
 	}
 	requestUrl := service.client.BaseUrl
 	requestUrl.Path = fmt.Sprintf(baseRequestString, fmt.Sprintf(service.client.AuthId+"/Media"))
