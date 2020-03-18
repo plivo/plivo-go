@@ -129,7 +129,7 @@ func GetKeysFromMap(params map[string]string, isSort bool) []string {
 }
 
 func ComputeSignatureV3(authToken, uri, method string, nonce string, params map[string]string) string {
-	var newUrl = GenerateUrl(uri, params, method) + "." + nonce
+	var newUrl = GenerateUrl(strings.Trim(uri, "/"), params, method) + "." + nonce
 	mac := hmac.New(sha256.New, []byte(authToken))
 	mac.Write([]byte(newUrl))
 	var messageMAC = base64.StdEncoding.EncodeToString(mac.Sum(nil))
