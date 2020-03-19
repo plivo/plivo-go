@@ -67,13 +67,29 @@ func TestValidateSignatureV2Pass(t *testing.T) {
 	)
 }
 
-func TestValidateSignatureV3Pass(t *testing.T) {
+func TestValidateSignatureV3Pass1(t *testing.T) {
 	assert.Equal(t, true,
 		ValidateSignatureV3(
 			"https://answer.url",
 			"12345",
 			"GET",
-			"rXj4UwTSVxH6Kj+W0qX8LaCvVOOvmzPGzY8sQVn3d1I=",
+			"pETJPPuss8j7tRO1V76pMhutvY1EbD905bph1xlJQhE=",
+			"my_auth_token",
+			map[string]string{
+				"Duration": "300",
+				"CallUUID": "97ceeb52-58b6-11e1-86da-77300b68f8bb",
+			},
+		),
+	)
+}
+
+func TestValidateSignatureV3Pass2(t *testing.T) {
+	assert.Equal(t, true,
+		ValidateSignatureV3(
+			"https://answer.url",
+			"12345",
+			"POST",
+			"oU2FndD/RdBLcBReK1rNidA6c6kh9+luV1RcvXJ/ciw=",
 			"my_auth_token",
 			map[string]string{
 				"CallUUID": "97ceeb52-58b6-11e1-86da-77300b68f8bb",
@@ -83,12 +99,28 @@ func TestValidateSignatureV3Pass(t *testing.T) {
 	)
 }
 
-func TestValidateSignatureV3Fail(t *testing.T) {
+func TestValidateSignatureV3Fail1(t *testing.T) {
 	assert.Equal(t, false,
 		ValidateSignatureV3(
 			"https://answer.url",
 			"12345",
 			"GET",
+			"rXj4UwTSVxH6Kj+W0qX8LaCvVOOvmzPGzY8sQVn3d1I+",
+			"my_auth_token",
+			map[string]string{
+				"CallUUID": "97ceeb52-58b6-11e1-86da-77300b68f8bb",
+				"Duration": "300",
+			},
+		),
+	)
+}
+
+func TestValidateSignatureV3Fail2(t *testing.T) {
+	assert.Equal(t, false,
+		ValidateSignatureV3(
+			"https://answer.url",
+			"12345",
+			"POST",
 			"rXj4UwTSVxH6Kj+W0qX8LaCvVOOvmzPGzY8sQVn3d1I+",
 			"my_auth_token",
 			map[string]string{

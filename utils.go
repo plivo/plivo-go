@@ -96,19 +96,18 @@ func GenerateUrl(uri string, params map[string]string, method string) string {
 		panic(err)
 	}
 	paramString := ""
+	keys := GetKeysFromMap(params)
 	if method == "GET" {
-		keys := GetKeysFromMap(params, false)
 		for _, key := range keys {
 			paramString += key + "=" + params[key] + "&"
 		}
-		strings.Trim(paramString, "&")
-		if parsedUrl.RawQuery == "" {
+		paramString := strings.Trim(paramString, "&")
+		if len(parsedUrl.RawQuery) == 0 {
 			uri += "/?" + paramString
 		} else {
 			uri += "&" + paramString
 		}
 	} else {
-		keys := GetKeysFromMap(params, true)
 		for _, key := range keys {
 			paramString += key + params[key]
 		}
@@ -117,14 +116,12 @@ func GenerateUrl(uri string, params map[string]string, method string) string {
 	return uri
 }
 
-func GetKeysFromMap(params map[string]string, isSort bool) []string {
+func GetKeysFromMap(params map[string]string) []string {
 	keys := make([]string, 0, len(params))
 	for param := range params {
 		keys = append(keys, param)
 	}
-	if isSort {
-		sort.Strings(keys)
-	}
+	sort.Strings(keys)
 	return keys
 }
 
