@@ -72,7 +72,7 @@ type ApplicationList struct {
 }
 
 type ApplicationDeleteParams struct {
-	Cascade                bool   `json:"cascade,omitempty" url:"cascade,omitempty"` // Specify if the Application should be cascade deleted or not. Takes a value of True or False
+	Cascade                bool   `json:"cascade" url:"cascade"` // Specify if the Application should be cascade deleted or not. Takes a value of True or False
 	NewEndpointApplication string `json:"new_endpoint_application,omitempty" url:"new_endpoint_application,omitempty"`
 }
 
