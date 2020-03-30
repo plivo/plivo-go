@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.3.0](https://github.com/plivo/plivo-go/tree/v4.3.0) (2020-03-30)
+- Add Tollfree support for Powerpack
+
 ## [4.2.0](https://github.com/plivo/plivo-go/tree/v4.2.0) (2020-03-27)
 - Add post call quality feedback API support.
 
