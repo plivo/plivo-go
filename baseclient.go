@@ -15,6 +15,7 @@ import (
 
 const sdkVersion = "4.1.7"
 
+
 type ClientOptions struct {
 	HttpClient *http.Client
 }

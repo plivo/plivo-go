@@ -1,6 +1,10 @@
 # Change Log
+
 ## [4.1.7](https://github.com/plivo/plivo-go/tree/v4.1.7) (2020-03-30)
 - Add Tollfree support for Powerpack
+
+## [4.1.6](https://github.com/plivo/plivo-go/tree/v4.1.6) (2020-02-25)
+- Add Media support
 
 ## [4.1.5](https://github.com/plivo/plivo-go/tree/v4.1.5) (2020-01-24)
 - Hot fix for go build

@@ -145,13 +145,13 @@ func TestPowerpack_RemoveNumber(t *testing.T) {
 	expectResponse("powerpackDeleteResponse.json", 200)
 	numberpool_uuid := "numberpool_uuid"
 	number := "number"
-	if _, err := client.Powerpack.Remove_number(number, true); err != nil {
+	if _, err := client.Powerpack.Remove_number(number, NumberRemoveParams{Unrent: false}); err != nil {
 		panic(err)
 	}
 
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.Remove_number(number, true)
+	_, err := client.Powerpack.Remove_number(number, NumberRemoveParams{Unrent: false})
 	if err == nil {
 		client.httpClient = cl
 		panic(errors.New("error expected"))
