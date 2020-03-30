@@ -13,8 +13,7 @@ import (
 	"github.com/google/go-querystring/query"
 )
 
-const sdkVersion = "4.1.7"
-
+const sdkVersion = "4.3.0"
 
 type ClientOptions struct {
 	HttpClient *http.Client
@@ -41,7 +40,13 @@ func (client *BaseClient) NewRequest(method string, params interface{}, baseRequ
 		return
 	}
 
+	isCallInsightsRequest := false
+	var requestPath string
+
 	for i, param := range formatParams {
+		if !isCallInsightsRequest {
+			isCallInsightsRequest, requestPath = checkAndFetchCallInsightsRequestDetails(param)
+		}
 		if param == nil || param == "" {
 			err = errors.New(fmt.Sprintf("Request path parameter #%d is nil/empty but should not be so.", i))
 			return
@@ -49,8 +54,13 @@ func (client *BaseClient) NewRequest(method string, params interface{}, baseRequ
 	}
 
 	requestUrl := *client.BaseUrl
-
 	requestUrl.Path = fmt.Sprintf(baseRequestString, fmt.Sprintf(formatString, formatParams...))
+
+	if isCallInsightsRequest {
+		requestUrl.Host = CallInsightsBaseURL
+		requestUrl.Path = requestPath
+	}
+
 	var buffer = new(bytes.Buffer)
 	if method == "GET" {
 		var values url.Values
