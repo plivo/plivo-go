@@ -108,10 +108,12 @@ func GenerateUrl(uri string, params map[string]string, method string) string {
 			uri += "&" + paramString
 		}
 	} else {
-		for _, key := range keys {
-			paramString += key + params[key]
+		if len(keys) > 0 {
+			for _, key := range keys {
+				paramString += key + params[key]
+			}
+			uri += "." + paramString
 		}
-		uri += "." + paramString
 	}
 	return uri
 }
