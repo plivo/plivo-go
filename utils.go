@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"github.com/sirupsen/logrus"
 	"net/url"
+	"reflect"
 	"sort"
 	"strings"
 )
@@ -147,4 +148,17 @@ func Find(val string, slice []string) bool {
 		}
 	}
 	return false
+}
+
+func checkAndFetchCallInsightsRequestDetails(param interface{}) (isCallInsightsRequest bool, requestPath string) {
+	isCallInsightsRequest = false
+	if reflect.TypeOf(param).Kind() == reflect.Map {
+		if reflect.TypeOf(param).Key().Kind() == reflect.String {
+			if _, ok := param.(map[string]interface{})[CallInsightsParams]; ok {
+				isCallInsightsRequest = true
+				requestPath = param.(map[string]interface{})[CallInsightsParams].(map[string]interface{})[CallInsightsRequestPath].(string)
+			}
+		}
+	}
+	return
 }
