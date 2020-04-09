@@ -71,6 +71,11 @@ type ApplicationList struct {
 	Objects []Application `json:"objects" url:"objects"`
 }
 
+type ApplicationDeleteParams struct {
+	Cascade                bool   `json:"cascade" url:"cascade"` // Specify if the Application should be cascade deleted or not. Takes a value of True or False
+	NewEndpointApplication string `json:"new_endpoint_application,omitempty" url:"new_endpoint_application,omitempty"`
+}
+
 type ApplicationUpdateResponse BaseResponse
 
 func (service *ApplicationService) Create(params ApplicationCreateParams) (response *ApplicationCreateResponseBody, err error) {
@@ -113,8 +118,12 @@ func (service *ApplicationService) Update(appId string, params ApplicationUpdate
 	return
 }
 
-func (service *ApplicationService) Delete(appId string) (err error) {
-	request, err := service.client.NewRequest("DELETE", nil, "Application/%s", appId)
+func (service *ApplicationService) Delete(appId string, data ...ApplicationDeleteParams) (err error) {
+	var optionalParams interface{}
+	if data != nil {
+		optionalParams = data[0]
+	}
+	request, err := service.client.NewRequest("DELETE", optionalParams, "Application/%s", appId)
 	if err != nil {
 		return
 	}
