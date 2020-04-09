@@ -118,7 +118,6 @@ func GenerateUrl(uri string, params map[string]string, method string) string {
 			uri += GetSortedQueryParamString(params, false)
 		}
 	}
-	logrus.Info(uri)
 	return uri
 }
 
