@@ -119,7 +119,6 @@ func GenerateUrl(uri string, params map[string]string, method string) string {
 			uri += GetSortedQueryParamString(params, false)
 		}
 	}
-	logrus.Info(uri, "===")
 	return uri
 }
 
@@ -169,7 +168,6 @@ func ComputeSignatureV3(authToken, uri, method string, nonce string, params map[
 
 func ValidateSignatureV3(uri, nonce, method, signature, authToken string, params map[string]string) bool {
 	multipleSignatures := strings.Split(signature, ",")
-	logrus.Infof(ComputeSignatureV3(authToken, uri, method, nonce, params))
 	return Find(ComputeSignatureV3(authToken, uri, method, nonce, params), multipleSignatures)
 }
 
