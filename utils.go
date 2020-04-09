@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"github.com/sirupsen/logrus"
 	"net/url"
-	"reflect"
+	//"reflect"
 	"sort"
 	"strings"
 )
@@ -107,7 +107,6 @@ func GenerateUrl(uri string, params map[string]string, method string) string {
 				queryParamMap[k] = v
 			}
 			uri += GetSortedQueryParamString(queryParamMap, true)
-			uri = strings.TrimRight(uri, "&")
 		} else {
 			uri += GetSortedQueryParamString(getMapFromQueryString(parsedUrl.RawQuery), true) + "." + GetSortedQueryParamString(params, false)
 			uri = strings.TrimRight(uri, ".")
@@ -119,6 +118,7 @@ func GenerateUrl(uri string, params map[string]string, method string) string {
 			uri += GetSortedQueryParamString(params, false)
 		}
 	}
+	logrus.Info(uri)
 	return uri
 }
 
@@ -180,15 +180,15 @@ func Find(val string, slice []string) bool {
 	return false
 }
 
-func checkAndFetchCallInsightsRequestDetails(param interface{}) (isCallInsightsRequest bool, requestPath string) {
-	isCallInsightsRequest = false
-	if reflect.TypeOf(param).Kind() == reflect.Map {
-		if reflect.TypeOf(param).Key().Kind() == reflect.String {
-			if _, ok := param.(map[string]interface{})[CallInsightsParams]; ok {
-				isCallInsightsRequest = true
-				requestPath = param.(map[string]interface{})[CallInsightsParams].(map[string]interface{})[CallInsightsRequestPath].(string)
-			}
-		}
-	}
-	return
-}
+//func checkAndFetchCallInsightsRequestDetails(param interface{}) (isCallInsightsRequest bool, requestPath string) {
+//	isCallInsightsRequest = false
+//	if reflect.TypeOf(param).Kind() == reflect.Map {
+//		if reflect.TypeOf(param).Key().Kind() == reflect.String {
+//			if _, ok := param.(map[string]interface{})[CallInsightsParams]; ok {
+//				isCallInsightsRequest = true
+//				requestPath = param.(map[string]interface{})[CallInsightsParams].(map[string]interface{})[CallInsightsRequestPath].(string)
+//			}
+//		}
+//	}
+//	return
+//}
