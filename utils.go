@@ -95,40 +95,71 @@ func GenerateUrl(uri string, params map[string]string, method string) string {
 	if err != nil {
 		panic(err)
 	}
-	paramString := ""
-	keys := GetKeysFromMap(params)
-	if method == "GET" {
-		for _, key := range keys {
-			paramString += key + "=" + params[key] + "&"
-		}
-		paramString := strings.Trim(paramString, "&")
-		if len(parsedUrl.RawQuery) == 0 {
-			uri += "/?" + paramString
+	uri = parsedUrl.Scheme + "://" + parsedUrl.Host + parsedUrl.Path
+	if len(params) > 0 || len(parsedUrl.RawQuery) > 0 {
+		uri += "?"
+	}
+	if len(parsedUrl.RawQuery) > 0 {
+		if method == "GET" {
+			queryParamMap := getMapFromQueryString(parsedUrl.RawQuery)
+			for k, v := range params {
+				queryParamMap[k] = v
+			}
+			uri += GetSortedQueryParamString(queryParamMap, true)
+			uri = strings.TrimRight(uri, "&")
 		} else {
-			uri += "&" + paramString
+			uri += GetSortedQueryParamString(getMapFromQueryString(parsedUrl.RawQuery), true) + "." + GetSortedQueryParamString(params, false)
+			uri = strings.TrimRight(uri, ".")
 		}
 	} else {
-		if len(keys) > 0 {
-			for _, key := range keys {
-				paramString += key + params[key]
-			}
-			uri += "." + paramString
+		if method == "GET" {
+			uri += GetSortedQueryParamString(params, true)
+		} else {
+			uri += GetSortedQueryParamString(params, false)
 		}
 	}
+	logrus.Info(uri, "===")
 	return uri
 }
 
-func GetKeysFromMap(params map[string]string) []string {
+func getMapFromQueryString(query string) map[string]string {
+	mp := make(map[string]string, 0)
+	if len(query) == 0 {
+		return mp
+	}
+	keyValuePairs := strings.Split(query, "&")
+	sort.Strings(keyValuePairs)
+	for _, element := range keyValuePairs {
+		params := strings.Split(element, "=")
+		if len(params) == 2 {
+			mp[params[0]] = params[1]
+		}
+	}
+	return mp
+}
+
+func GetSortedQueryParamString(params map[string]string, queryParams bool) string {
+	url := ""
 	keys := make([]string, 0, len(params))
 	for param := range params {
 		keys = append(keys, param)
 	}
 	sort.Strings(keys)
-	return keys
+	if queryParams {
+		for _, key := range keys {
+			url += key + "=" + params[key] + "&"
+		}
+		url = strings.TrimRight(url, "&")
+	} else {
+		for _, key := range keys {
+			url += key + params[key]
+		}
+	}
+	return url
 }
 
 func ComputeSignatureV3(authToken, uri, method string, nonce string, params map[string]string) string {
-	var newUrl = GenerateUrl(strings.Trim(uri, "/"), params, method) + "." + nonce
+	var newUrl = GenerateUrl(uri, params, method) + "." + nonce
 	mac := hmac.New(sha256.New, []byte(authToken))
 	mac.Write([]byte(newUrl))
 	var messageMAC = base64.StdEncoding.EncodeToString(mac.Sum(nil))
@@ -137,6 +168,7 @@ func ComputeSignatureV3(authToken, uri, method string, nonce string, params map[
 
 func ValidateSignatureV3(uri, nonce, method, signature, authToken string, params map[string]string) bool {
 	multipleSignatures := strings.Split(signature, ",")
+	logrus.Infof(ComputeSignatureV3(authToken, uri, method, nonce, params))
 	return Find(ComputeSignatureV3(authToken, uri, method, nonce, params), multipleSignatures)
 }
 
