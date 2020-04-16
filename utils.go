@@ -129,7 +129,7 @@ func getMapFromQueryString(query string) map[string]string {
 	keyValuePairs := strings.Split(query, "&")
 	sort.Strings(keyValuePairs)
 	for _, element := range keyValuePairs {
-		params := strings.Split(element, "=")
+		params := strings.SplitN(element, "=", 2)
 		if len(params) == 2 {
 			mp[params[0]] = params[1]
 		}
@@ -140,8 +140,8 @@ func getMapFromQueryString(query string) map[string]string {
 func GetSortedQueryParamString(params map[string]string, queryParams bool) string {
 	url := ""
 	keys := make([]string, 0, len(params))
-	for param := range params {
-		keys = append(keys, param)
+	for key, _ := range params {
+		keys = append(keys, key)
 	}
 	sort.Strings(keys)
 	if queryParams {
