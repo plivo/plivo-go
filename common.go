@@ -1,10 +1,9 @@
 package plivo
 
 type Meta struct {
-	Previous *string
-	Next     *string
-
-	TotalCount int64
+	Previous   *string
+	Next       *string
+	TotalCount int64 `json:"total_count"`
 	Offset     int64
 	Limit      int64
 }
