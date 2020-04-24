@@ -92,6 +92,7 @@ func ValidateSignatureV2(uri string, nonce string, signature string, authToken s
 }
 
 func GenerateUrl(uri string, params map[string]string, method string) string {
+	uri, err := url.QueryUnescape(uri)
 	parsedUrl, err := url.Parse(uri)
 	if err != nil {
 		panic(err)
@@ -162,12 +163,17 @@ func ComputeSignatureV3(authToken, uri, method string, nonce string, params map[
 	mac := hmac.New(sha256.New, []byte(authToken))
 	mac.Write([]byte(newUrl))
 	var messageMAC = base64.StdEncoding.EncodeToString(mac.Sum(nil))
+	logrus.Info(messageMAC)
 	return messageMAC
 }
 
-func ValidateSignatureV3(uri, nonce, method, signature, authToken string, params map[string]string) bool {
+func ValidateSignatureV3(uri, nonce, method, signature, authToken string, params ...map[string]string) bool {
+	parameters := map[string]string{}
+	if len(params) != 0 {
+		parameters = params[0]
+	}
 	multipleSignatures := strings.Split(signature, ",")
-	return Find(ComputeSignatureV3(authToken, uri, method, nonce, params), multipleSignatures)
+	return Find(ComputeSignatureV3(authToken, uri, method, nonce, parameters), multipleSignatures)
 }
 
 func Find(val string, slice []string) bool {
