@@ -1,5 +1,26 @@
 # Change Log
 
+## [4.4.0](https://github.com/plivo/plivo-go/tree/v4.4.0) (2020-03-31)
+- Add application cascade delete support.
+
+## [4.3.0](https://github.com/plivo/plivo-go/tree/v4.3.0) (2020-03-30)
+- Add Tollfree support for Powerpack
+
+## [4.2.0](https://github.com/plivo/plivo-go/tree/v4.2.0) (2020-03-27)
+- Add post call quality feedback API support.
+
+## [4.1.6](https://github.com/plivo/plivo-go/tree/v4.1.6) (2020-02-25)
+- Add Media support
+
+## [4.1.5](https://github.com/plivo/plivo-go/tree/v4.1.5) (2020-01-24)
+- Hot fix for go build
+
+## [4.1.4](https://github.com/plivo/plivo-go/tree/v4.1.4) (2019-12-20)
+- Add Powerpack support
+
+## [4.1.3](https://github.com/plivo/plivo-go/tree/v4.1.3) (2019-12-04)
+- Add MMS support
+
 ## [4.1.2](https://github.com/plivo/plivo-go/tree/v4.1.2) (2019-11-13)
 - Add GetInput XML support
 

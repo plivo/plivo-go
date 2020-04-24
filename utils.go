@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"github.com/sirupsen/logrus"
 	"net/url"
+	"reflect"
 	"sort"
 	"strings"
 )
@@ -88,4 +89,17 @@ func ComputeSignatureV2(authToken, uri string, nonce string) string {
 
 func ValidateSignatureV2(uri string, nonce string, signature string, authToken string) bool {
 	return ComputeSignatureV2(authToken, uri, nonce) == signature
+}
+
+func checkAndFetchCallInsightsRequestDetails(param interface{}) (isCallInsightsRequest bool, requestPath string) {
+	isCallInsightsRequest = false
+	if reflect.TypeOf(param).Kind() == reflect.Map {
+		if reflect.TypeOf(param).Key().Kind() == reflect.String {
+			if _, ok := param.(map[string]interface{})[CallInsightsParams]; ok {
+				isCallInsightsRequest = true
+				requestPath = param.(map[string]interface{})[CallInsightsParams].(map[string]interface{})[CallInsightsRequestPath].(string)
+			}
+		}
+	}
+	return
 }
