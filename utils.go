@@ -103,13 +103,13 @@ func GenerateUrl(uri string, params map[string]string, method string) string {
 	}
 	if len(parsedUrl.RawQuery) > 0 {
 		if method == "GET" {
-			queryParamMap := getMapFromQueryString(parsedUrl.RawQuery)
+			queryParamMap := getMapFromQueryString(parsedUrl.Query())
 			for k, v := range params {
 				queryParamMap[k] = v
 			}
 			uri += GetSortedQueryParamString(queryParamMap, true)
 		} else {
-			uri += GetSortedQueryParamString(getMapFromQueryString(parsedUrl.RawQuery), true) + "." + GetSortedQueryParamString(params, false)
+			uri += GetSortedQueryParamString(getMapFromQueryString(parsedUrl.Query()), true) + "." + GetSortedQueryParamString(params, false)
 			uri = strings.TrimRight(uri, ".")
 		}
 	} else {
@@ -122,18 +122,17 @@ func GenerateUrl(uri string, params map[string]string, method string) string {
 	return uri
 }
 
-func getMapFromQueryString(query string) map[string]string {
+func getMapFromQueryString(query url.Values) map[string]string {
+	/*
+		Example: input  "a=b&c=d&z=x"
+		output (string): {"z":x", "c": "d", "a": "b"}
+	*/
 	mp := make(map[string]string, 0)
 	if len(query) == 0 {
 		return mp
 	}
-	keyValuePairs := strings.Split(query, "&")
-	sort.Strings(keyValuePairs)
-	for _, element := range keyValuePairs {
-		params := strings.SplitN(element, "=", 2)
-		if len(params) == 2 {
-			mp[params[0]] = params[1]
-		}
+	for key, val := range query {
+		mp[key] = val[0]
 	}
 	return mp
 }
