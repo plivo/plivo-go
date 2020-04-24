@@ -92,7 +92,6 @@ func ValidateSignatureV2(uri string, nonce string, signature string, authToken s
 }
 
 func GenerateUrl(uri string, params map[string]string, method string) string {
-	uri, err := url.QueryUnescape(uri)
 	parsedUrl, err := url.Parse(uri)
 	if err != nil {
 		panic(err)
