@@ -10,7 +10,7 @@ import (
 func TestJwt(t *testing.T) {
 	token := AccessToken{}
 	err := token.New("MADADADADADADADADADA", "qwerty", "username", time.Unix(12121212, 0), time.Duration(30) * time.Second, time.Time{}, "username-12345")
-	assert.EqualError(t, err, "lifetime out of [180, 84600]")
+	assert.EqualError(t, err, "lifetime out of [180, 86400]")
 	_ = token.New("MADADADADADADADADADA", "qwerty", "username", time.Unix(12121212, 0), time.Duration(300) * time.Second, time.Time{}, "username-12345")
 	token.AddVoiceGrants(VoiceGrants{true, true})
 	assert.Equal(t,

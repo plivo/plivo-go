@@ -53,14 +53,14 @@ func (acctkn *AccessToken) New(authId string, authToken string, username string,
 	}
 	acctkn.Username = username
 
-	if lifetime < 180*time.Second || lifetime > 84600*time.Second {
-		return errors.New("lifetime out of [180, 84600]")
+	if lifetime < 180*time.Second || lifetime > 86400*time.Second {
+		return errors.New("lifetime out of [180, 86400]")
 	}
 
 	if validFrom.IsZero() {
 		acctkn.Lifetime = lifetime
 		if lifetime == 0 {
-			acctkn.Lifetime = 84600 * time.Second
+			acctkn.Lifetime = 86400 * time.Second
 		}
 		if validTill.IsZero() {
 			acctkn.ValidFrom = time.Now()
@@ -70,7 +70,7 @@ func (acctkn *AccessToken) New(authId string, authToken string, username string,
 	} else if validTill.IsZero() {
 		acctkn.Lifetime = lifetime
 		if lifetime == 0 {
-			acctkn.Lifetime = 84600 * time.Second
+			acctkn.Lifetime = 86400 * time.Second
 		}
 		acctkn.ValidFrom = validFrom
 
