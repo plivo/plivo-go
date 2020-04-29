@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.5.0](https://github.com/plivo/plivo-go/tree/v4.5.0) (2020-04-29)
+- Add V3 signature helper functions.
+
 ## [4.4.0](https://github.com/plivo/plivo-go/tree/v4.4.0) (2020-03-31)
 - Add application cascade delete support.
 
