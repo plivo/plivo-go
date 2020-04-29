@@ -1,5 +1,9 @@
 # Change Log
 
+
+## [4.6.0](https://github.com/plivo/plivo-go/tree/v4.6.0) (2020-04-29)
+- Add V3 signature helper functions.
+
 ## [4.5.0](https://github.com/plivo/plivo-go/tree/v4.5.0) (2020-04-24)
 - Add city and mms filter support for Number Search API
 - Add city, country and mms into List Number and Number Search API's Response

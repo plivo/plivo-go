@@ -91,6 +91,98 @@ func ValidateSignatureV2(uri string, nonce string, signature string, authToken s
 	return ComputeSignatureV2(authToken, uri, nonce) == signature
 }
 
+func GenerateUrl(uri string, params map[string]string, method string) string {
+	parsedUrl, err := url.Parse(uri)
+	if err != nil {
+		panic(err)
+	}
+	uri = parsedUrl.Scheme + "://" + parsedUrl.Host + parsedUrl.Path
+	if len(params) > 0 || len(parsedUrl.RawQuery) > 0 {
+		uri += "?"
+	}
+	if len(parsedUrl.RawQuery) > 0 {
+		if method == "GET" {
+			queryParamMap := getMapFromQueryString(parsedUrl.Query())
+			for k, v := range params {
+				queryParamMap[k] = v
+			}
+			uri += GetSortedQueryParamString(queryParamMap, true)
+		} else {
+			uri += GetSortedQueryParamString(getMapFromQueryString(parsedUrl.Query()), true) + "." + GetSortedQueryParamString(params, false)
+			uri = strings.TrimRight(uri, ".")
+		}
+	} else {
+		if method == "GET" {
+			uri += GetSortedQueryParamString(params, true)
+		} else {
+			uri += GetSortedQueryParamString(params, false)
+		}
+	}
+	return uri
+}
+
+func getMapFromQueryString(query url.Values) map[string]string {
+	/*
+		Example: input  "a=b&c=d&z=x"
+		output (string): {"z":x", "c": "d", "a": "b"}
+	*/
+	mp := make(map[string]string, 0)
+	if len(query) == 0 {
+		return mp
+	}
+	for key, val := range query {
+		mp[key] = val[0]
+	}
+	return mp
+}
+
+func GetSortedQueryParamString(params map[string]string, queryParams bool) string {
+	url := ""
+	keys := make([]string, 0, len(params))
+	for key, _ := range params {
+		keys = append(keys, key)
+	}
+	sort.Strings(keys)
+	if queryParams {
+		for _, key := range keys {
+			url += key + "=" + params[key] + "&"
+		}
+		url = strings.TrimRight(url, "&")
+	} else {
+		for _, key := range keys {
+			url += key + params[key]
+		}
+	}
+	return url
+}
+
+func ComputeSignatureV3(authToken, uri, method string, nonce string, params map[string]string) string {
+	var newUrl = GenerateUrl(uri, params, method) + "." + nonce
+	mac := hmac.New(sha256.New, []byte(authToken))
+	mac.Write([]byte(newUrl))
+	var messageMAC = base64.StdEncoding.EncodeToString(mac.Sum(nil))
+	logrus.Info(messageMAC)
+	return messageMAC
+}
+
+func ValidateSignatureV3(uri, nonce, method, signature, authToken string, params ...map[string]string) bool {
+	parameters := map[string]string{}
+	if len(params) != 0 {
+		parameters = params[0]
+	}
+	multipleSignatures := strings.Split(signature, ",")
+	return Find(ComputeSignatureV3(authToken, uri, method, nonce, parameters), multipleSignatures)
+}
+
+func Find(val string, slice []string) bool {
+	for _, item := range slice {
+		if item == val {
+			return true
+		}
+	}
+	return false
+}
+
 func checkAndFetchCallInsightsRequestDetails(param interface{}) (isCallInsightsRequest bool, requestPath string) {
 	isCallInsightsRequest = false
 	if reflect.TypeOf(param).Kind() == reflect.Map {
