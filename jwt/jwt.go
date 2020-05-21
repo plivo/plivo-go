@@ -53,7 +53,7 @@ func (acctkn *AccessToken) New(authId string, authToken string, username string,
 	}
 	acctkn.Username = username
 
-	if lifetime < 180*time.Second || lifetime > 86400*time.Second {
+	if lifetime != 0 && (lifetime < 180*time.Second || lifetime > 86400*time.Second) {
 		return errors.New("lifetime out of [180, 86400]")
 	}
 
