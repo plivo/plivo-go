@@ -1,7 +1,15 @@
 # Change Log
 
-## [4.5.0](https://github.com/plivo/plivo-go/tree/v4.5.0) (2020-05-04)
+## [4.7.0](https://github.com/plivo/plivo-go/tree/v4.7.0) (2020-05-28)
 - Add JWT helper functions.
+
+## [4.6.0](https://github.com/plivo/plivo-go/tree/v4.6.0) (2020-04-29)
+- Add V3 signature helper functions.
+
+## [4.5.0](https://github.com/plivo/plivo-go/tree/v4.5.0) (2020-04-24)
+- Add city and mms filter support for Number Search API
+- Add city, country and mms into List Number and Number Search API's Response
+- Fix for TotalCount in Number API's Response
 
 ## [4.4.0](https://github.com/plivo/plivo-go/tree/v4.4.0) (2020-03-31)
 - Add application cascade delete support.

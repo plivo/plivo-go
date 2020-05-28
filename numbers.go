@@ -8,8 +8,11 @@ type Number struct {
 	Alias             string `json:"alias,omitempty" url:"alias,omitempty"`
 	VoiceEnabled      bool   `json:"voice_enabled,omitempty" url:"voice_enabled,omitempty"`
 	SMSEnabled        bool   `json:"sms_enabled,omitempty" url:"sms_enabled,omitempty"`
+	MMSEnabled        bool   `json:"mms_enabled,omitempty" url:"mms_enabled,omitempty"`
 	Description       string `json:"description,omitempty" url:"description,omitempty"`
 	PlivoNumber       bool   `json:"plivo_number,omitempty" url:"plivo_number,omitempty"`
+	City              string `json:"city,omitempty" url:"city,omitempty"`
+	Country           string `json:"country,omitempty" url:"country,omitempty"`
 	Carrier           string `json:"carrier,omitempty" url:"carrier,omitempty"`
 	Number            string `json:"number,omitempty" url:"number,omitempty"`
 	NumberType        string `json:"number_type,omitempty" url:"number_type,omitempty"`
@@ -19,6 +22,7 @@ type Number struct {
 	ResourceURI       string `json:"resource_uri,omitempty" url:"resource_uri,omitempty"`
 	VoiceRate         string `json:"voice_rate,omitempty" url:"voice_rate,omitempty"`
 	SMSRate           string `json:"sms_rate,omitempty" url:"sms_rate,omitempty"`
+	MMSRate           string `json:"mms_rate,omitempty" url:"mms_rate,omitempty"`
 }
 
 type NumberCreateParams struct {
@@ -45,9 +49,8 @@ type NumberListParams struct {
 	Subaccount       string `json:"subaccount,omitempty" url:"subaccount,omitempty"`
 	Services         string `json:"services,omitempty" url:"services,omitempty"`
 	Alias            string `json:"alias,omitempty" url:"alias,omitempty"`
-
-	Limit  int64 `json:"limit:omitempty" url:"limit:omitempty"`
-	Offset int64 `json:"offset:omitempty" url:"offset:omitempty"`
+	Limit            int64  `json:"limit,omitempty" url:"limit,omitempty"`
+	Offset           int64  `json:"offset,omitempty" url:"offset,omitempty"`
 }
 
 type NumberListResponse struct {
@@ -107,6 +110,7 @@ func (service *NumberService) Delete(NumberId string) (err error) {
 
 type PhoneNumber struct {
 	Country           string `json:"country" url:"country"`
+	City              string `json:"city" url:"city"`
 	Lata              int    `json:"lata" url:"lata"`
 	MonthlyRentalRate string `json:"monthly_rental_rate" url:"monthly_rental_rate"`
 	Number            string `json:"number" url:"number"`
@@ -120,6 +124,8 @@ type PhoneNumber struct {
 	SetupRate         string `json:"setup_rate" url:"setup_rate"`
 	SmsEnabled        bool   `json:"sms_enabled" url:"sms_enabled"`
 	SmsRate           string `json:"sms_rate" url:"sms_rate"`
+	MmsEnabled        bool   `json:"mms_enabled" url:"mms_enabled"`
+	MmsRate           string `json:"mms_rate" url:"mms_rate"`
 	VoiceEnabled      bool   `json:"voice_enabled" url:"voice_enabled"`
 	VoiceRate         string `json:"voice_rate" url:"voice_rate"`
 }
@@ -132,6 +138,7 @@ type PhoneNumberListParams struct {
 	Services   string `json:"services,omitempty" url:"services,omitempty"`
 	LATA       string `json:"lata,omitempty" url:"lata,omitempty"`
 	RateCenter string `json:"rate_center,omitempty" url:"rate_center,omitempty"`
+	City       string `json:"city,omitempty" url:"city,omitempty"`
 	Limit      int    `json:"limit,omitempty" url:"limit,omitempty"`
 	Offset     int    `json:"offset,omitempty" url:"offset,omitempty"`
 }
