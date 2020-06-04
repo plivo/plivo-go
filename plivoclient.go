@@ -10,27 +10,31 @@ import (
 )
 
 const baseUrlString = "https://api.plivo.com/"
+const voiceBaseUrlString = "api-qa.voice.plivodev.com"
+const voiceBaseUrlStringFallback1 = "api-qa-usw1.voice.plivodev.com"
+const voiceBaseUrlStringFallback2 = "api-qa-use1.voice.plivodev.com"
 const baseRequestString = "/v1/Account/%s/"
 
 type Client struct {
 	BaseClient
 
-	Messages     *MessageService
-	Accounts     *AccountService
-	Subaccounts  *SubaccountService
-	Applications *ApplicationService
-	Endpoints    *EndpointService
-	Numbers      *NumberService
-	PhoneNumbers *PhoneNumberService
-	Pricing      *PricingService // TODO Rename?
-	Recordings   *RecordingService
-	Calls        *CallService
-	LiveCalls    *LiveCallService
-	QueuedCalls  *QueuedCallService
-	Conferences  *ConferenceService
-	CallFeedback *CallFeedbackService
-	Powerpack    *PowerpackService
-	Media        *MediaService
+	Messages       *MessageService
+	Accounts       *AccountService
+	Subaccounts    *SubaccountService
+	Applications   *ApplicationService
+	Endpoints      *EndpointService
+	Numbers        *NumberService
+	PhoneNumbers   *PhoneNumberService
+	Pricing        *PricingService // TODO Rename?
+	Recordings     *RecordingService
+	Calls          *CallService
+	LiveCalls      *LiveCallService
+	QueuedCalls    *QueuedCallService
+	Conferences    *ConferenceService
+	CallFeedback   *CallFeedbackService
+	Powerpack      *PowerpackService
+	Media          *MediaService
+	MultiPartyCall *MultiPartyCallService
 }
 
 /*
@@ -89,6 +93,7 @@ func NewClient(authId, authToken string, options *ClientOptions) (client *Client
 	client.CallFeedback = &CallFeedbackService{client: client}
 	client.Powerpack = &PowerpackService{client: client}
 	client.Media = &MediaService{client: client}
+	client.MultiPartyCall = &MultiPartyCallService{client: client}
 	return
 }
 
@@ -96,5 +101,6 @@ func (client *Client) NewRequest(method string, params interface{}, formatString
 	formatParams ...interface{}) (*http.Request, error) {
 	formatParams = append([]interface{}{client.AuthId}, formatParams...)
 	formatString = fmt.Sprintf("%s/%s", "%s", formatString)
+	fmt.Printf(formatString)
 	return client.BaseClient.NewRequest(method, params, baseRequestString, formatString, formatParams...)
 }

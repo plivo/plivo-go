@@ -94,7 +94,10 @@ func (service *ApplicationService) List(params ApplicationListParams) (response 
 		return
 	}
 	response = &ApplicationList{}
-	err = service.client.ExecuteRequest(request, response)
+	extra := make(map[string]interface{})
+	extra["is_voice_request"] = true
+	extra["retry"] = 0
+	err = service.client.ExecuteRequest(request, response, extra)
 	return
 }
 
