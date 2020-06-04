@@ -195,3 +195,10 @@ func checkAndFetchCallInsightsRequestDetails(param interface{}) (isCallInsightsR
 	}
 	return
 }
+
+func isVoiceRequest() (extraData map[string]interface{}) {
+	extraData = make(map[string]interface{})
+	extraData["is_voice_request"] = true
+	extraData["retry"] = 0
+	return extraData
+}
