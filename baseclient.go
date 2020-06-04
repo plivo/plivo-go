@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/sirupsen/logrus"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -92,7 +93,22 @@ func (client *BaseClient) NewRequest(method string, params interface{}, baseRequ
 	return
 }
 
-func (client *BaseClient) ExecuteRequest(request *http.Request, body interface{}) (err error) {
+func (client *BaseClient) ExecuteRequest(request *http.Request, body interface{}, extra ...map[string]interface{}) (err error) {
+	var isVoiceRequest bool = false
+	if extra != nil {
+		if _, ok := extra[0]["is_voice_request"]; ok {
+			isVoiceRequest = true
+			if extra[0]["retry"] == 0 {
+				request.URL.Host = voiceBaseUrlString
+			} else if extra[0]["retry"] == 1 {
+				request.URL.Host = voiceBaseUrlStringFallback1
+			} else if extra[0]["retry"] == 2 {
+				request.URL.Host = voiceBaseUrlStringFallback2
+			}
+		}
+		logrus.Infof("fallback %v to %v", extra[0]["retry"], request.URL.Host)
+	}
+
 	if client == nil {
 		return errors.New("client cannot be nil")
 	}
@@ -108,7 +124,18 @@ func (client *BaseClient) ExecuteRequest(request *http.Request, body interface{}
 
 	data, err := ioutil.ReadAll(response.Body)
 	if err == nil && data != nil && len(data) > 0 {
-		if response.StatusCode >= 200 && response.StatusCode < 300 {
+		if isVoiceRequest && response.StatusCode >= 200 {
+			if extra[0]["retry"] == 3 {
+				if string(data) == "{}" && response.StatusCode == 404 {
+					err = errors.New(string("Resource not found exception \n" + response.Status))
+				} else {
+					err = errors.New(string(data))
+				}
+				return
+			}
+			extra[0]["retry"] = extra[0]["retry"].(int64) + 1
+			_ = client.ExecuteRequest(request, body, extra...)
+		} else if response.StatusCode >= 200 && response.StatusCode < 300 {
 			if body != nil {
 				err = json.Unmarshal(data, body)
 			}
