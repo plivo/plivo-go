@@ -84,7 +84,7 @@ func (service *ApplicationService) Create(params ApplicationCreateParams) (respo
 		return
 	}
 	response = &ApplicationCreateResponseBody{}
-	err = service.client.ExecuteRequest(request, response)
+	err = service.client.ExecuteRequest(request, response, isVoiceRequest())
 	return
 }
 
@@ -94,10 +94,7 @@ func (service *ApplicationService) List(params ApplicationListParams) (response 
 		return
 	}
 	response = &ApplicationList{}
-	extra := make(map[string]interface{})
-	extra["is_voice_request"] = true
-	extra["retry"] = 0
-	err = service.client.ExecuteRequest(request, response, extra)
+	err = service.client.ExecuteRequest(request, response, isVoiceRequest())
 	return
 }
 
@@ -107,7 +104,7 @@ func (service *ApplicationService) Get(appId string) (response *Application, err
 		return
 	}
 	response = &Application{}
-	err = service.client.ExecuteRequest(request, response)
+	err = service.client.ExecuteRequest(request, response, isVoiceRequest())
 	return
 }
 
@@ -117,7 +114,7 @@ func (service *ApplicationService) Update(appId string, params ApplicationUpdate
 		return
 	}
 	response = &ApplicationUpdateResponse{}
-	err = service.client.ExecuteRequest(request, response)
+	err = service.client.ExecuteRequest(request, response, isVoiceRequest())
 	return
 }
 
@@ -130,6 +127,6 @@ func (service *ApplicationService) Delete(appId string, data ...ApplicationDelet
 	if err != nil {
 		return
 	}
-	err = service.client.ExecuteRequest(request, nil)
+	err = service.client.ExecuteRequest(request, nil, isVoiceRequest())
 	return
 }
