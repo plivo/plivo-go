@@ -100,12 +100,15 @@ func (client *BaseClient) ExecuteRequest(request *http.Request, body interface{}
 			if extra[0]["retry"] == 0 {
 				request.URL.Host = voiceBaseUrlString
 				request.Host = voiceBaseUrlString
+				request.URL.Scheme = HttpsScheme
 			} else if extra[0]["retry"] == 1 {
 				request.URL.Host = voiceBaseUrlStringFallback1
 				request.Host = voiceBaseUrlStringFallback2
+				request.URL.Scheme = HttpsScheme
 			} else if extra[0]["retry"] == 2 {
 				request.URL.Host = voiceBaseUrlStringFallback2
 				request.Host = voiceBaseUrlStringFallback2
+				request.URL.Scheme = HttpsScheme
 			}
 		}
 	}
