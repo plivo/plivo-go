@@ -1,7 +1,6 @@
 package plivo
 
 import (
-	"errors"
 	"fmt"
 	"github.com/sirupsen/logrus"
 	"testing"
@@ -14,26 +13,17 @@ func TestMPCService_List(t *testing.T) {
 		panic(err)
 	}
 
-	cl := client.httpClient
-	client.httpClient = nil
-	_, err := client.MultiPartyCall.List(MultiPartyCallListParams{})
-	if err == nil {
-		client.httpClient = cl
-		panic(errors.New("error expected"))
-	}
-	client.httpClient = cl
-
 	assertRequest(t, "GET", "MultiPartyCall")
 }
 
 func TestMPCService_Get(t *testing.T) {
 	expectResponse("MPCGetResponse.json", 200)
 
-	if _, err := client.MultiPartyCall.Get(MultiPartyCallBasicParams{"ebacced2-21ab-466d-9df4-67339991761b", "thanos_test"}); err != nil {
+	if _, err := client.MultiPartyCall.Get(MultiPartyCallBasicParams{"b1e37275-b8e2-42cd-ae63-fffcc54a50b5", "thanos_test"}); err != nil {
 		panic(err)
 	}
 
-	assertRequest(t, "GET", "MultiPartyCall/%s", "uuid_ebacced2-21ab-466d-9df4-67339991761b")
+	assertRequest(t, "GET", "MultiPartyCall/%s", "uuid_b1e37275-b8e2-42cd-ae63-fffcc54a50b5")
 }
 
 func TestMPCService_AddParticipant(t *testing.T) {
@@ -87,8 +77,6 @@ func TestMPCService_StopRecord(t *testing.T) {
 }
 
 func TestMPCService_ResumeRecord(t *testing.T) {
-	expectResponse("MPCResumeResponse.json", 200)
-
 	if _, err := client.MultiPartyCall.ResumeRecording(MultiPartyCallBasicParams{"ebacced2-21ab-466d-9df4-67339991761b", "name_thanos"}); err != nil {
 		panic(err)
 	}
