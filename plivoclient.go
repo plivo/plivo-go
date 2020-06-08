@@ -10,6 +10,7 @@ import (
 )
 
 const baseUrlString = "https://api.plivo.com/"
+const HttpsScheme = "https"
 const voiceBaseUrlString = "api-qa.voice.plivodev.com"
 const voiceBaseUrlStringFallback1 = "api-qa-usw1.voice.plivodev.com"
 const voiceBaseUrlStringFallback2 = "api-qa-use1.voice.plivodev.com"
