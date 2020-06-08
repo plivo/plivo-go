@@ -61,11 +61,11 @@ type MultiPartyCallListParams struct {
 	endTimeLt            string
 	endTimeLte           string
 	endTime              string
-	startTimeGt          string
-	startTimeGte         string
-	startTimeLt          string
-	startTimeLte         string
-	startTime            string
+	creationTimeGt       string
+	creationTimeGte      string
+	creationTimeLt       string
+	creationTimeLte      string
+	creationTime         string
 	limit                string
 	offset               string
 }
