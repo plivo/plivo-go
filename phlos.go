@@ -50,12 +50,12 @@ func (self *Phlo) Node(nodeId string) (response *Node, err error) {
 	return
 }
 
-func (self *Phlo) MultiPartyCall(nodeId string) (response *MultiPartyCall, err error) {
+func (self *Phlo) MultiPartyCall(nodeId string) (response *PhloMultiPartyCall, err error) {
 	req, err := self.client.NewRequest("GET", nil, "phlo/%s/%s/%s", self.PhloId, nodeType, nodeId)
 	if (err != nil) {
 		return
 	}
-	response = &MultiPartyCall{}
+	response = &PhloMultiPartyCall{}
 	response.client = self.client
 	err = self.client.ExecuteRequest(req, response)
 	return
