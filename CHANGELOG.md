@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.7.1](https://github.com/plivo/plivo-go/tree/v4.7.1) (2020-06-30)
+- Fix Call Create & Retrieve Call details API responses.
+
 ## [4.7.0](https://github.com/plivo/plivo-go/tree/v4.7.0) (2020-05-28)
 - Add JWT helper functions.
 
