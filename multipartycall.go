@@ -82,7 +82,7 @@ type MultiPartyCallListParticipantParams struct {
 
 type MultiPartyCallParticipantParams struct {
 	MultiPartyCallBasicParams
-	participantId string
+	memberId string
 }
 
 type MultiPartyCallUpdateParticipantParams struct {
@@ -250,7 +250,7 @@ func (service *MultiPartyCallService) ListParticipants(params MultiPartyCallList
 
 func (service *MultiPartyCallService) UpdateParticipant(params MultiPartyCallUpdateParticipantParams) (response *MultiPartyCallAddParticipantResponse, err error) {
 	mpcId := MakeMPCId(params.mpcUuid, params.friendlyName)
-	req, err := service.client.NewRequest("POST", params, "MultiPartyCall/%s/Participant/%s", mpcId, params.participantId)
+	req, err := service.client.NewRequest("POST", params, "MultiPartyCall/%s/Participant/%s", mpcId, params.memberId)
 	if err != nil {
 		return
 	}
@@ -261,7 +261,7 @@ func (service *MultiPartyCallService) UpdateParticipant(params MultiPartyCallUpd
 
 func (service *MultiPartyCallService) KickParticipant(params MultiPartyCallParticipantParams) (response *MultiPartyCallAddParticipantResponse, err error) {
 	mpcId := MakeMPCId(params.mpcUuid, params.friendlyName)
-	req, err := service.client.NewRequest("DELETE", nil, "MultiPartyCall/%s/Participant/%s", mpcId, params.participantId)
+	req, err := service.client.NewRequest("DELETE", nil, "MultiPartyCall/%s/Participant/%s", mpcId, params.memberId)
 	if err != nil {
 		return
 	}
@@ -272,7 +272,7 @@ func (service *MultiPartyCallService) KickParticipant(params MultiPartyCallParti
 
 func (service *MultiPartyCallService) GetParticipant(params MultiPartyCallParticipantParams) (response *MultiPartyCallAddParticipantResponse, err error) {
 	mpcId := MakeMPCId(params.mpcUuid, params.friendlyName)
-	req, err := service.client.NewRequest("GET", nil, "MultiPartyCall/%s/Participant/%s", mpcId, params.participantId)
+	req, err := service.client.NewRequest("GET", nil, "MultiPartyCall/%s/Participant/%s", mpcId, params.memberId)
 	if err != nil {
 		return
 	}

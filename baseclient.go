@@ -128,7 +128,7 @@ func (client *BaseClient) ExecuteRequest(request *http.Request, body interface{}
 
 	data, err := ioutil.ReadAll(response.Body)
 	if err == nil && data != nil && len(data) > 0 {
-		if isVoiceRequest && response.StatusCode >= 400 {
+		if isVoiceRequest && response.StatusCode >= 500 {
 			if extra[0]["retry"] == 2 {
 				if string(data) == "{}" && response.StatusCode == 404 {
 					err = errors.New(string("Resource not found exception \n" + response.Status))
