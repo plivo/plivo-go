@@ -201,8 +201,8 @@ func (service *PowerpackService) List(params PowerpackListParams) (response *Pow
 	return
 }
 
-func (service *PowerpackService) Get(powerpackUUID string, params ServiceType) (response *PowerpackService, err error) {
-	req, err := service.client.NewRequest("GET", params, "Powerpack/%s/", powerpackUUID)
+func (service *PowerpackService) Get(powerpackUUID string) (response *PowerpackService, err error) {
+	req, err := service.client.NewRequest("GET", nil, "Powerpack/%s/", powerpackUUID)
 	if err != nil {
 		return
 	}
