@@ -11,9 +11,9 @@ import (
 
 const baseUrlString = "https://api.plivo.com/"
 const HttpsScheme = "https"
-const voiceBaseUrlString = "api-qa.voice.plivodev.com"
-const voiceBaseUrlStringFallback1 = "api-qa-usw1.voice.plivodev.com"
-const voiceBaseUrlStringFallback2 = "api-qa-use1.voice.plivodev.com"
+const voiceBaseUrlString = "voice.plivo.com"
+const voiceBaseUrlStringFallback1 = "voice-usw1.plivo.com"
+const voiceBaseUrlStringFallback2 = "voice-use1.plivo.com"
 const baseRequestString = "/v1/Account/%s/"
 
 type Client struct {

@@ -121,31 +121,42 @@ func (client *BaseClient) ExecuteRequest(request *http.Request, body interface{}
 		return errors.New("httpClient cannot be nil")
 	}
 
+	bodyCopy, _ := ioutil.ReadAll(request.Body)
+	request.Body = ioutil.NopCloser(bytes.NewReader(bodyCopy))
 	response, err := client.httpClient.Do(request)
+
 	if err != nil {
 		return
 	}
 
 	data, err := ioutil.ReadAll(response.Body)
+	defer request.Body.Close()
 	if err == nil && data != nil && len(data) > 0 {
 		if isVoiceRequest && response.StatusCode >= 500 {
 			if extra[0]["retry"] == 2 {
 				if string(data) == "{}" && response.StatusCode == 404 {
-					err = errors.New(string("Resource not found exception \n" + response.Status))
+					err = errors.New("Resource not found exception \n" + response.Status)
 				} else {
 					err = errors.New(string(data))
 				}
 				return
 			}
 			extra[0]["retry"] = extra[0]["retry"].(int) + 1
-			err = client.ExecuteRequest(request, body, extra...)
+
+			newRequest, _ := http.NewRequest(request.Method, request.URL.String(), bytes.NewReader(bodyCopy))
+			newRequest.Header.Add("User-Agent", client.userAgent)
+			newRequest.Header.Add("Content-Type", "application/json")
+			newRequest.SetBasicAuth(client.AuthId, client.AuthToken)
+			var body interface{}
+
+			_ = client.ExecuteRequest(newRequest, body, extra...)
 		} else if response.StatusCode >= 200 && response.StatusCode < 300 {
 			if body != nil {
 				err = json.Unmarshal(data, body)
 			}
 		} else {
 			if string(data) == "{}" && response.StatusCode == 404 {
-				err = errors.New(string("Resource not found exception \n" + response.Status))
+				err = errors.New("Resource not found exception \n" + response.Status)
 			} else {
 				err = errors.New(string(data))
 			}
