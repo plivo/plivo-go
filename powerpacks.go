@@ -48,6 +48,7 @@ type ShortCode struct {
 	Shortcode        string `json:"shortcode,omitempty"`
 	Country_iso2     string `json:"country_iso2,omitempty"`
 	Added_on         string `json:"added_on,omitempty"`
+	Service          string `json:"service,omitempty"`
 }
 
 type Tollfree struct {
@@ -55,6 +56,7 @@ type Tollfree struct {
 	Tollfree       string `json:"number,omitempty"`
 	Country_iso2   string `json:"country_iso2,omitempty"`
 	Added_on       string `json:"added_on,omitempty"`
+	Service        string `json:"service,omitempty"`
 }
 
 type ShortCodeResponse struct {
@@ -123,6 +125,10 @@ type NumberRemoveParams struct {
 	Unrent bool `json:"unrent,omitempty"`
 }
 
+type ServiceType struct {
+	Service string `json:"service,omitempty" url:"service,omitempty"`
+}
+
 type PowerpackCreateResponseBody struct {
 	ApiID string  `json:"api_id,omitempty"`
 	Error *string `json:"error,omitempty" url:"error"`
@@ -140,8 +146,9 @@ type PowerpackList struct {
 }
 
 type PowerpackListParams struct {
-	Limit  int `url:"limit,omitempty"`
-	Offset int `url:"offset,omitempty"`
+	Limit   int    `url:"limit,omitempty"`
+	Offset  int    `url:"offset,omitempty"`
+	Service string `url:"service,omitempty"`
 }
 type PowerpackSearchParam struct {
 	Starts_with  string `json:"starts_with,omitempty" url:"starts_with,omitempty"`
@@ -149,6 +156,7 @@ type PowerpackSearchParam struct {
 	Type         string `json:"type,omitempty" url:"type,omitempty"`
 	Limit        string `json:"limit,omitempty" url:"limit,omitempty"`
 	Offset       string `json:"offset,omitempty" url:"offset,omitempty"`
+	Service      string `json:"service,omitempty" url:"service,omitempty"`
 }
 type PowerpackPhoneResponseBody struct {
 	BaseListPPKResponse
@@ -174,10 +182,12 @@ type BuyPhoneNumberParam struct {
 	Type         string `json:"type,omitempty"`
 	Region       string `json:"region,omitempty"`
 	Pattern      string `json:"pattern,omitempty"`
+	Service      string `json:"service,omitempty"`
 }
 
 type RentNumber struct {
-	Rent string `json:"rent,omitempty"`
+	Rent    string `json:"rent,omitempty"`
+	Service string `json:"service,omitempty"`
 }
 
 // returns the List.. of all powerpack
@@ -191,8 +201,8 @@ func (service *PowerpackService) List(params PowerpackListParams) (response *Pow
 	return
 }
 
-func (service *PowerpackService) Get(powerpackUUID string) (response *PowerpackService, err error) {
-	req, err := service.client.NewRequest("GET", nil, "Powerpack/%s/", powerpackUUID)
+func (service *PowerpackService) Get(powerpackUUID string, params ServiceType) (response *PowerpackService, err error) {
+	req, err := service.client.NewRequest("GET", params, "Powerpack/%s/", powerpackUUID)
 	if err != nil {
 		return
 	}
@@ -266,10 +276,10 @@ func (service *PowerpackService) Count_numbers(params PowerpackSearchParam) (cou
 	return count, nil
 }
 
-func (service *PowerpackService) Find_numbers(number string) (response *NumberResponse, err error) {
+func (service *PowerpackService) Find_numbers(number string, params ServiceType) (response *NumberResponse, err error) {
 	numberpool_path := service.Powerpack.NumberPoolUUID
 	uriSegments := strings.Split(numberpool_path, "/")
-	req, err := service.client.NewRequest("GET", nil, "NumberPool/%s/Number/%s/", uriSegments[5], number)
+	req, err := service.client.NewRequest("GET", params, "NumberPool/%s/Number/%s/", uriSegments[5], number)
 	if err != nil {
 		return
 	}
@@ -277,10 +287,10 @@ func (service *PowerpackService) Find_numbers(number string) (response *NumberRe
 	err = service.client.ExecuteRequest(req, response)
 	return
 }
-func (service *PowerpackService) Add_number(number string) (response *NumberResponse, err error) {
+func (service *PowerpackService) Add_number(number string, params ServiceType) (response *NumberResponse, err error) {
 	numberpool_path := service.Powerpack.NumberPoolUUID
 	uriSegments := strings.Split(numberpool_path, "/")
-	req, err := service.client.NewRequest("POST", nil, "NumberPool/%s/Number/%s", uriSegments[5], number)
+	req, err := service.client.NewRequest("POST", params, "NumberPool/%s/Number/%s", uriSegments[5], number)
 	if err != nil {
 		return
 	}
@@ -289,10 +299,10 @@ func (service *PowerpackService) Add_number(number string) (response *NumberResp
 	return
 }
 
-func (service *PowerpackService) Add_tollfree(tollfree string) (response *NumberResponse, err error) {
+func (service *PowerpackService) Add_tollfree(tollfree string, params ServiceType) (response *NumberResponse, err error) {
 	numberpoolUUID := service.Powerpack.NumberPoolUUID
 	uriSegments := strings.Split(numberpoolUUID, "/")
-	req, err := service.client.NewRequest("POST", nil, "NumberPool/%s/Tollfree/%s", uriSegments[5], tollfree)
+	req, err := service.client.NewRequest("POST", params, "NumberPool/%s/Tollfree/%s", uriSegments[5], tollfree)
 	if err != nil {
 		return
 	}
@@ -337,10 +347,10 @@ func (service *PowerpackService) Remove_shortcode(shortcode string) (response *S
 	return
 }
 
-func (service *PowerpackService) List_shortcodes() (response *ShortCodeResponse, err error) {
+func (service *PowerpackService) List_shortcodes(params ServiceType) (response *ShortCodeResponse, err error) {
 	numberpool_path := service.Powerpack.NumberPoolUUID
 	uriSegments := strings.Split(numberpool_path, "/")
-	req, err := service.client.NewRequest("GET", nil, "NumberPool/%s/Shortcode", uriSegments[5])
+	req, err := service.client.NewRequest("GET", params, "NumberPool/%s/Shortcode", uriSegments[5])
 	if err != nil {
 		return
 	}
@@ -349,10 +359,10 @@ func (service *PowerpackService) List_shortcodes() (response *ShortCodeResponse,
 	return
 }
 
-func (service *PowerpackService) List_tollfree() (response *TollfreeResponse, err error) {
+func (service *PowerpackService) List_tollfree(params ServiceType) (response *TollfreeResponse, err error) {
 	numberpoolUUID := service.Powerpack.NumberPoolUUID
 	uriSegments := strings.Split(numberpoolUUID, "/")
-	req, err := service.client.NewRequest("GET", nil, "NumberPool/%s/Tollfree", uriSegments[5])
+	req, err := service.client.NewRequest("GET", params, "NumberPool/%s/Tollfree", uriSegments[5])
 	if err != nil {
 		return
 	}
@@ -360,10 +370,10 @@ func (service *PowerpackService) List_tollfree() (response *TollfreeResponse, er
 	err = service.client.ExecuteRequest(req, response)
 	return
 }
-func (service *PowerpackService) Find_shortcode(shortcode string) (response *FindShortCodeResponse, err error) {
+func (service *PowerpackService) Find_shortcode(shortcode string, params ServiceType) (response *FindShortCodeResponse, err error) {
 	numberpool_path := service.Powerpack.NumberPoolUUID
 	uriSegments := strings.Split(numberpool_path, "/")
-	req, err := service.client.NewRequest("GET", nil, "NumberPool/%s/Shortcode/%s/", uriSegments[5], shortcode)
+	req, err := service.client.NewRequest("GET", params, "NumberPool/%s/Shortcode/%s/", uriSegments[5], shortcode)
 	if err != nil {
 		return
 	}
@@ -372,10 +382,10 @@ func (service *PowerpackService) Find_shortcode(shortcode string) (response *Fin
 	return
 }
 
-func (service *PowerpackService) Find_tollfree(tollfree string) (response *FindTollfreeResponse, err error) {
+func (service *PowerpackService) Find_tollfree(tollfree string, params ServiceType) (response *FindTollfreeResponse, err error) {
 	numberpoolUUID := service.Powerpack.NumberPoolUUID
 	uriSegments := strings.Split(numberpoolUUID, "/")
-	req, err := service.client.NewRequest("GET", nil, "NumberPool/%s/Tollfree/%s/", uriSegments[5], tollfree)
+	req, err := service.client.NewRequest("GET", params, "NumberPool/%s/Tollfree/%s/", uriSegments[5], tollfree)
 	if err != nil {
 		return
 	}
@@ -389,6 +399,10 @@ func (service *PowerpackService) Buy_add_number(phoneParam BuyPhoneNumberParam) 
 	uriSegments := strings.Split(numberpool_path, "/")
 	payload := RentNumber{
 		Rent: "true",
+	}
+
+	if phoneParam.Service != "" {
+		payload.Service = phoneParam.Service
 	}
 	number := phoneParam.Number
 	if number != "" {
@@ -408,6 +422,9 @@ func (service *PowerpackService) Buy_add_number(phoneParam BuyPhoneNumberParam) 
 			Region:     region,
 			Pattern:    pattern,
 			CountryISO: countryiso,
+		}
+		if phoneParam.Service != "" {
+			params.Services = phoneParam.Service
 		}
 		responsephoneNo, err := service.client.PhoneNumbers.List(params)
 		if err != nil {
