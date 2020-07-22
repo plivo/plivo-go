@@ -52,6 +52,13 @@ type ShortCode struct {
 	Service          string `json:"service,omitempty"`
 }
 
+type FindTollfree struct {
+	NumberPoolUUID string `json:"number_pool_uuid,omitempty"`
+	Tollfree       string `json:"number,omitempty"`
+	Country_iso2   string `json:"country_iso2,omitempty"`
+	Added_on       string `json:"added_on,omitempty"`
+}
+
 type Tollfree struct {
 	NumberPoolUUID string `json:"number_pool_uuid,omitempty"`
 	Tollfree       string `json:"number,omitempty"`
@@ -75,7 +82,7 @@ type FindShortCodeResponse struct {
 }
 type FindTollfreeResponse struct {
 	ApiID string `json:"api_id,omitempty"`
-	Tollfree
+	FindTollfree
 	Error string `json:"error,omitempty"`
 }
 
