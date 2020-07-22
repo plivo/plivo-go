@@ -130,15 +130,10 @@ func (client *BaseClient) ExecuteRequest(request *http.Request, body interface{}
 	}
 
 	data, err := ioutil.ReadAll(response.Body)
-	defer request.Body.Close()
 	if err == nil && data != nil && len(data) > 0 {
 		if isVoiceRequest && response.StatusCode >= 500 {
 			if extra[0]["retry"] == 2 {
-				if string(data) == "{}" && response.StatusCode == 404 {
-					err = errors.New("Resource not found exception \n" + response.Status)
-				} else {
-					err = errors.New(string(data))
-				}
+				err = errors.New(string(data))
 				return
 			}
 			extra[0]["retry"] = extra[0]["retry"].(int) + 1
@@ -147,7 +142,6 @@ func (client *BaseClient) ExecuteRequest(request *http.Request, body interface{}
 			newRequest.Header.Add("User-Agent", client.userAgent)
 			newRequest.Header.Add("Content-Type", "application/json")
 			newRequest.SetBasicAuth(client.AuthId, client.AuthToken)
-			var body interface{}
 
 			_ = client.ExecuteRequest(newRequest, body, extra...)
 		} else if response.StatusCode >= 200 && response.StatusCode < 300 {
