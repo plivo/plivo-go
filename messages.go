@@ -2,6 +2,7 @@ package plivo
 
 type MessageService struct {
 	client *Client
+	Message
 }
 
 type MessageCreateParams struct {
@@ -14,6 +15,8 @@ type MessageCreateParams struct {
 	Method    string      `json:"method,omitempty" url:"method,omitempty"`
 	Trackable bool        `json:"trackable,omitempty" url:"trackable,omitempty"`
 	Log       interface{} `json:"log,omitempty" url:"log,omitempty"`
+	MediaUrls []string    `json:"media_urls" url:"media_urls,omitempty"`
+	MediaIds  []string    `json:"media_ids" url:"media_ids,omitempty"`
 	// Either one of src and powerpackuuid should be given
 	PowerpackUUID string `json:"powerpack_uuid,omitempty" url:"powerpack_uuid,omitempty"`
 }
@@ -40,9 +43,25 @@ type MessageCreateResponseBody struct {
 	Error       string   `json:"error" url:"error"`
 }
 
+type MediaDeleteResponse struct {
+	Error string `json:"error,omitempty"`
+}
+type MMSMedia struct {
+	ApiID       string `json:"api_id,omitempty"`
+	ContentType string `json:"content_type,omitempty"`
+	MediaID     string `json:"media_id,omitempty"`
+	MediaURL    string `json:"media_url,omitempty"`
+	MessageUUID string `json:"message_uuid,omitempty"`
+	Size        int64  `json:"size,omitempty"`
+}
+
 type MessageList struct {
 	BaseListResponse
 	Objects []Message `json:"objects" url:"objects"`
+}
+
+type MediaListResponseBody struct {
+	Objects []MMSMedia `json:"objects" url:"objects"`
 }
 
 type MessageListParams struct {
@@ -76,6 +95,16 @@ func (service *MessageService) Create(params MessageCreateParams) (response *Mes
 		return
 	}
 	response = &MessageCreateResponseBody{}
+	err = service.client.ExecuteRequest(req, response)
+	return
+}
+
+func (service *MessageService) ListMedia(messageUuid string) (response *MediaListResponseBody, err error) {
+	req, err := service.client.NewRequest("GET", nil, "Message/%s/Media/", messageUuid)
+	if err != nil {
+		return
+	}
+	response = &MediaListResponseBody{}
 	err = service.client.ExecuteRequest(req, response)
 	return
 }
