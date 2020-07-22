@@ -33,6 +33,7 @@ type NumberPoolResponse struct {
 	Number                        string `json:"number,omitempty"`
 	Type                          string `json:"Type,omitempty"`
 	Country_iso2                  string `json:"country_iso2,omitempty"`
+	Service                       string `json:"service,omitempty"`
 	Added_on                      string `json:"added_on,omitempty"`
 	Account_phone_number_resource string `json:"account_phone_number_resource,omitempty"`
 }

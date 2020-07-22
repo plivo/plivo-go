@@ -104,14 +104,15 @@ func TestPowerpack_delete(t *testing.T) {
 func TestPowerpack_find_number(t *testing.T) {
 	expectResponse("numberpoolSingleNoResponse.json", 200)
 	numberpool_uuid := "numberpool_uuid"
+	params := ServiceType{}
 	number := "number"
-	if _, err := client.Powerpack.Find_numbers(number); err != nil {
+	if _, err := client.Powerpack.Find_numbers(number, params); err != nil {
 		panic(err)
 	}
 
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.Find_numbers(number)
+	_, err := client.Powerpack.Find_numbers(number, params)
 	if err == nil {
 		client.httpClient = cl
 		panic(errors.New("error expected"))
@@ -124,14 +125,15 @@ func TestPowerpack_find_number(t *testing.T) {
 func TestPowerpack_AddNumber(t *testing.T) {
 	expectResponse("numberpoolSingleNoResponse.json", 200)
 	numberpool_uuid := "numberpool_uuid"
+	params := ServiceType{}
 	number := "number"
-	if _, err := client.Powerpack.Add_number(number); err != nil {
+	if _, err := client.Powerpack.Add_number(number, params); err != nil {
 		panic(err)
 	}
 
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.Add_number(number)
+	_, err := client.Powerpack.Add_number(number, params)
 	if err == nil {
 		client.httpClient = cl
 		panic(errors.New("error expected"))
@@ -184,13 +186,14 @@ func TestPowerpack_ListNumbers(t *testing.T) {
 func TestListShortCode(t *testing.T) {
 	expectResponse("numberpoolShortCodeResponse.json", 200)
 	numberpooluuid := "numberpool_uuid"
-	if _, err := client.Powerpack.List_shortcodes(); err != nil {
+	params := ServiceType{}
+	if _, err := client.Powerpack.List_shortcodes(params); err != nil {
 		panic(err)
 	}
 
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.List_shortcodes()
+	_, err := client.Powerpack.List_shortcodes(params)
 	if err == nil {
 		client.httpClient = cl
 		panic(errors.New("error expected"))
@@ -243,14 +246,15 @@ func TestBuyAddNumber(t *testing.T) {
 func TestFindTollfree(t *testing.T) {
 	expectResponse("numberpoolSingleTollfreeResponse.json", 200)
 	numberpooluuid := "numberpool_uuid"
+	params := ServiceType{}
 	tollfree := "tollfree"
-	if _, err := client.Powerpack.Find_tollfree(tollfree); err != nil {
+	if _, err := client.Powerpack.Find_tollfree(tollfree, params); err != nil {
 		panic(err)
 	}
 
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.Find_tollfree(tollfree)
+	_, err := client.Powerpack.Find_tollfree(tollfree, params)
 	if err == nil {
 		client.httpClient = cl
 		panic(errors.New("error expected"))
@@ -264,13 +268,14 @@ func TestFindTollfree(t *testing.T) {
 func TestListTollfree(t *testing.T) {
 	expectResponse("numberpoolTollfreeResponse.json", 200)
 	numberpooluuid := "numberpool_uuid"
-	if _, err := client.Powerpack.List_tollfree(); err != nil {
+	params := ServiceType{}
+	if _, err := client.Powerpack.List_tollfree(params); err != nil {
 		panic(err)
 	}
 
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.List_tollfree()
+	_, err := client.Powerpack.List_tollfree(params)
 	if err == nil {
 		client.httpClient = cl
 		panic(errors.New("error expected"))
@@ -324,14 +329,15 @@ func TestPowerpack_RemoveShortcode(t *testing.T) {
 func TestPowerpack_AddTollfree(t *testing.T) {
 	expectResponse("numberpoolSingleTollfreeResponse.json", 200)
 	numberpool_uuid := "numberpool_uuid"
+	params := ServiceType{}
 	tollfree := "tollfree"
-	if _, err := client.Powerpack.Add_tollfree(tollfree); err != nil {
+	if _, err := client.Powerpack.Add_tollfree(tollfree, params); err != nil {
 		panic(err)
 	}
 
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.Add_tollfree(tollfree)
+	_, err := client.Powerpack.Add_tollfree(tollfree, params)
 	if err == nil {
 		client.httpClient = cl
 		panic(errors.New("error expected"))
