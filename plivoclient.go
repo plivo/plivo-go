@@ -10,6 +10,10 @@ import (
 )
 
 const baseUrlString = "https://api.plivo.com/"
+const HttpsScheme = "https"
+const voiceBaseUrlString = "voice.plivo.com"
+const voiceBaseUrlStringFallback1 = "voice-usw1.plivo.com"
+const voiceBaseUrlStringFallback2 = "voice-use1.plivo.com"
 const baseRequestString = "/v1/Account/%s/"
 
 type Client struct {
