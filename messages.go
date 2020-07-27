@@ -1,9 +1,9 @@
 package plivo
 
-const {
+const (
 	SMS = "sms"
 	MMS = "mms"
-}
+)
 
 type MessageService struct {
 	client *Client
