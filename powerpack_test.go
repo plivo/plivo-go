@@ -406,13 +406,13 @@ func TestListTollfreeWithOptions(t *testing.T) {
 	params := ListTollfreeOptions{
 		Service: "mms",
 	}
-	if _, err := client.Powerpack.ListTollfreeWithOptios(params); err != nil {
+	if _, err := client.Powerpack.ListTollfreeWithOptions(params); err != nil {
 		panic(err)
 	}
 
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.ListTollfreeWithOptios(params)
+	_, err := client.Powerpack.ListTollfreeWithOptions(params)
 	if err == nil {
 		client.httpClient = cl
 		panic(errors.New("error expected"))

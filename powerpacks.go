@@ -417,11 +417,11 @@ func (service *PowerpackService) ListShortcodesWithOptions(params ListShortcodeO
 
 func (service *PowerpackService) List_tollfree() (response *TollfreeResponse, err error) {
 	params := ListTollfreeOptions{}
-	response, err = service.ListTollfreeWithOptios(params)
+	response, err = service.ListTollfreeWithOptions(params)
 	return
 }
 
-func (service *PowerpackService) ListTollfreeWithOptios(params ListTollfreeOptions) (response *TollfreeResponse, err error) {
+func (service *PowerpackService) ListTollfreeWithOptions(params ListTollfreeOptions) (response *TollfreeResponse, err error) {
 	numberpoolUUID := service.Powerpack.NumberPoolUUID
 	uriSegments := strings.Split(numberpoolUUID, "/")
 	req, err := service.client.NewRequest("GET", params, "NumberPool/%s/Tollfree", uriSegments[5])
