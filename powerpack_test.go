@@ -124,8 +124,8 @@ func TestPowerpack_find_number(t *testing.T) {
 func TestPowerpack_FindNumbersWithOptions(t *testing.T) {
 	expectResponse("numberpoolSingleNoResponse.json", 200)
 	numberpool_uuid := "numberpool_uuid"
-	params := FindNumberOptions{
-		Service: "mms",
+	params := PowerpackFindNumberOptions{
+		Service: MMS,
 	}
 	number := "number"
 	if _, err := client.Powerpack.FindNumbersWithOptions(number, params); err != nil {
@@ -167,8 +167,8 @@ func TestPowerpack_AddNumber(t *testing.T) {
 func TestPowerpack_AddNumberWithOptions(t *testing.T) {
 	expectResponse("numberpoolSingleNoResponse.json", 200)
 	numberpool_uuid := "numberpool_uuid"
-	params := AddNumberOptions{
-		Service: "mms",
+	params := PowerpackAddNumberOptions{
+		Service: MMS,
 	}
 	number := "number"
 	if _, err := client.Powerpack.AddNumberWithOptions(number, params); err != nil {
@@ -250,8 +250,8 @@ func TestListShortCode(t *testing.T) {
 func TestListShortCodeWithOptions(t *testing.T) {
 	expectResponse("numberpoolShortCodeResponse.json", 200)
 	numberpooluuid := "numberpool_uuid"
-	params := ListShortcodeOptions{
-		Service: "mms",
+	params := PowerpackListShortcodeOptions{
+		Service: MMS,
 	}
 	if _, err := client.Powerpack.ListShortcodesWithOptions(params); err != nil {
 		panic(err)
@@ -294,8 +294,8 @@ func TestFindShortCode(t *testing.T) {
 func TestFindShortCodeWithOptions(t *testing.T) {
 	expectResponse("numberpoolSingleShortcodeResponse.json", 200)
 	numberpooluuid := "numberpool_uuid"
-	param := FindShortcodeOptions{
-		Service: "mms",
+	param := PowerpackFindShortcodeOptions{
+		Service: MMS,
 	}
 	shortcode := "shortcode"
 	if _, err := client.Powerpack.FindShortcodeWithOptions(shortcode, param); err != nil {
@@ -358,8 +358,8 @@ func TestFindTollfree(t *testing.T) {
 func TestFindTollfreeWithOptions(t *testing.T) {
 	expectResponse("numberpoolSingleTollfreeResponse.json", 200)
 	numberpooluuid := "numberpool_uuid"
-	params := FindTollfreeOptions{
-		Service: "mms",
+	params := PowerpackFindTollfreeOptions{
+		Service: MMS,
 	}
 	tollfree := "tollfree"
 	if _, err := client.Powerpack.FindTollfreeWithOptions(tollfree, params); err != nil {
@@ -403,8 +403,8 @@ func TestListTollfree(t *testing.T) {
 func TestListTollfreeWithOptions(t *testing.T) {
 	expectResponse("numberpoolTollfreeResponse.json", 200)
 	numberpooluuid := "numberpool_uuid"
-	params := ListTollfreeOptions{
-		Service: "mms",
+	params := PowerpackListTollfreeOptions{
+		Service: MMS,
 	}
 	if _, err := client.Powerpack.ListTollfreeWithOptions(params); err != nil {
 		panic(err)
@@ -486,8 +486,8 @@ func TestPowerpack_AddTollfree(t *testing.T) {
 func TestPowerpack_AddTollfreeWithOptions(t *testing.T) {
 	expectResponse("numberpoolSingleTollfreeResponse.json", 200)
 	numberpool_uuid := "numberpool_uuid"
-	params := AddTollfreeOptions{
-		Service: "mms",
+	params := PowerpackAddTollfreeOptions{
+		Service: MMS,
 	}
 	tollfree := "tollfree"
 	if _, err := client.Powerpack.AddTollfreeWithOptions(tollfree, params); err != nil {
