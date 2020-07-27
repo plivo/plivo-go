@@ -436,7 +436,7 @@ func (service *PowerpackService) ListTollfreeWithOptions(params PowerpackListTol
 
 func (service *PowerpackService) Find_shortcode(shortcode string) (response *FindShortCodeResponse, err error) {
 	params := PowerpackFindShortcodeOptions{}
-	response, err = service.FindShortcodeWithOptions(service, params)
+	response, err = service.FindShortcodeWithOptions(shortcode, params)
 	return
 }
 
