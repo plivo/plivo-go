@@ -336,15 +336,14 @@ func TestBuyAddNumber(t *testing.T) {
 func TestFindTollfree(t *testing.T) {
 	expectResponse("numberpoolSingleTollfreeResponse.json", 200)
 	numberpooluuid := "numberpool_uuid"
-	params := ServiceType{}
 	tollfree := "tollfree"
-	if _, err := client.Powerpack.Find_tollfree(tollfree, params); err != nil {
+	if _, err := client.Powerpack.Find_tollfree(tollfree); err != nil {
 		panic(err)
 	}
 
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.Find_tollfree(tollfree, params)
+	_, err := client.Powerpack.Find_tollfree(tollfree)
 	if err == nil {
 		client.httpClient = cl
 		panic(errors.New("error expected"))
@@ -382,14 +381,13 @@ func TestFindTollfreeWithOptions(t *testing.T) {
 func TestListTollfree(t *testing.T) {
 	expectResponse("numberpoolTollfreeResponse.json", 200)
 	numberpooluuid := "numberpool_uuid"
-	params := ServiceType{}
-	if _, err := client.Powerpack.List_tollfree(params); err != nil {
+	if _, err := client.Powerpack.List_tollfree(); err != nil {
 		panic(err)
 	}
 
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.List_tollfree(params)
+	_, err := client.Powerpack.List_tollfree()
 	if err == nil {
 		client.httpClient = cl
 		panic(errors.New("error expected"))

@@ -398,7 +398,7 @@ func (service *PowerpackService) Remove_shortcode(shortcode string) (response *S
 	return
 }
 
-func (service *PowerpackService) List_shortcodes(params ServiceType) (response *ShortCodeResponse, err error) {
+func (service *PowerpackService) List_shortcodes() (response *ShortCodeResponse, err error) {
 	params := PowerpackListShortcodeOptions{}
 	response, err = service.ListShortcodesWithOptions(params)
 	return
