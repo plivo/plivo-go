@@ -127,37 +127,37 @@ type NumberRemoveParams struct {
 }
 
 type PowerpackAddNumberOptions struct {
-	//Service can be 'sms' or 'mms'. Default 'sms' when not set.
+	//Service can be 'sms' or 'mms'. Default to 'sms' when not set.
 	Service string `json:"service,omitempty" url:"service,omitempty"`
 }
 
 type PowerpackFindNumberOptions struct {
-	//Service can be 'sms' or 'mms'. Default 'sms' when not set.
+	//Service can be 'sms' or 'mms'. Default to 'sms' when not set.
 	Service string `json:"service,omitempty" url:"service,omitempty"`
 }
 
 type PowerpackAddTollfreeOptions struct {
-	//Service can be 'sms' or 'mms'. Default 'sms' when not set.
+	//Service can be 'sms' or 'mms'. Default to 'sms' when not set.
 	Service string `json:"service,omitempty" url:"service,omitempty"`
 }
 
 type PowerpackListShortcodeOptions struct {
-	//Service can be 'sms' or 'mms'. Default 'sms' when not set.
+	//Service can be 'sms' or 'mms'. Default to 'sms' when not set.
 	Service string `json:"service,omitempty" url:"service,omitempty"`
 }
 
 type PowerpackListTollfreeOptions struct {
-	//Service can be 'sms' or 'mms'
+	//Service can be 'sms' or 'mms'. Default to 'sms' when not set.
 	Service string `json:"service,omitempty" url:"service,omitempty"`
 }
 
 type PowerpackFindShortcodeOptions struct {
-	//Service can be 'sms' or 'mms'. Default 'sms' when not set.
+	//Service can be 'sms' or 'mms'. Default to 'sms' when not set.
 	Service string `json:"service,omitempty" url:"service,omitempty"`
 }
 
 type PowerpackFindTollfreeOptions struct {
-	//Service can be 'sms' or 'mms'. Default 'sms' when not set.
+	//Service can be 'sms' or 'mms'. Default to 'sms' when not set.
 	Service string `json:"service,omitempty" url:"service,omitempty"`
 }
 
@@ -477,9 +477,7 @@ func (service *PowerpackService) Buy_add_number(phoneParam BuyPhoneNumberParam) 
 		Rent: "true",
 	}
 
-	if phoneParam.Service != "" {
-		payload.Service = phoneParam.Service
-	}
+	payload.Service = phoneParam.Service
 	number := phoneParam.Number
 	if number != "" {
 		req, err := service.client.NewRequest("POST", payload, "NumberPool/%s/Number/%s", uriSegments[5], number)
@@ -493,14 +491,13 @@ func (service *PowerpackService) Buy_add_number(phoneParam BuyPhoneNumberParam) 
 		region := phoneParam.Region
 		pattern := phoneParam.Pattern
 		countryiso := phoneParam.Country_iso2
+		serviceType := phoneParam.Service
 		params := PhoneNumberListParams{
 			Type:       Type,
 			Region:     region,
 			Pattern:    pattern,
 			CountryISO: countryiso,
-		}
-		if phoneParam.Service != "" {
-			params.Services = phoneParam.Service
+			Services:   serviceType,
 		}
 		responsephoneNo, err := service.client.PhoneNumbers.List(params)
 		if err != nil {
