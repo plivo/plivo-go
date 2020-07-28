@@ -474,10 +474,10 @@ func (service *PowerpackService) Buy_add_number(phoneParam BuyPhoneNumberParam) 
 	numberpool_path := service.Powerpack.NumberPoolUUID
 	uriSegments := strings.Split(numberpool_path, "/")
 	payload := RentNumber{
-		Rent: "true",
+		Rent:    "true",
+		Service: phoneParam.Service,
 	}
 
-	payload.Service = phoneParam.Service
 	number := phoneParam.Number
 	if number != "" {
 		req, err := service.client.NewRequest("POST", payload, "NumberPool/%s/Number/%s", uriSegments[5], number)
