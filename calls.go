@@ -91,7 +91,6 @@ type CallCreateParams struct {
 type CallCreateResponse struct {
 	Message     string      `json:"message" url:"message"`
 	ApiID       string      `json:"api_id" url:"api_id"`
-	AppID       string      `json:"app_id" url:"app_id"`
 	RequestUUID interface{} `json:"request_uuid" url:"request_uuid"`
 }
 
@@ -213,7 +212,7 @@ func (service *CallService) List(params CallListParams) (response *CallListRespo
 		return
 	}
 	response = &CallListResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -223,7 +222,7 @@ func (service *CallService) Create(params CallCreateParams) (response *CallCreat
 		return
 	}
 	response = &CallCreateResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -233,7 +232,7 @@ func (service *CallService) Get(CallId string) (response *Call, err error) {
 		return
 	}
 	response = &Call{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -242,7 +241,7 @@ func (service *CallService) Delete(CallId string) (err error) {
 	if err != nil {
 		return
 	}
-	err = service.client.ExecuteRequest(req, nil)
+	err = service.client.ExecuteRequest(req, nil, isVoiceRequest())
 	return
 }
 
@@ -252,7 +251,7 @@ func (service *CallService) Update(CallId string, params CallUpdateParams) (resp
 		return
 	}
 	response = &CallUpdateResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -264,7 +263,7 @@ func (service *LiveCallService) Get(LiveCallId string) (response *LiveCall, err 
 		return
 	}
 	response = &LiveCall{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -279,7 +278,7 @@ func (service *LiveCallService) IDList(data ...LiveCallFilters) (response *LiveC
 		return
 	}
 	response = &LiveCallIDListResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -291,7 +290,7 @@ func (service *QueuedCallService) IDList() (response *QueuedCallIDListResponse, 
 		return
 	}
 	response = &QueuedCallIDListResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -303,7 +302,7 @@ func (service *QueuedCallService) Get(QueuedCallId string) (response *QueuedCall
 		return
 	}
 	response = &QueuedCall{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -313,7 +312,7 @@ func (service *CallService) Record(callId string, params CallRecordParams) (resp
 		return
 	}
 	response = &CallRecordResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -322,7 +321,7 @@ func (service *CallService) StopRecording(callId string) (err error) {
 	if err != nil {
 		return
 	}
-	err = service.client.ExecuteRequest(req, nil)
+	err = service.client.ExecuteRequest(req, nil, isVoiceRequest())
 	return
 }
 
@@ -332,7 +331,7 @@ func (service *CallService) Speak(callId string, params CallSpeakParams) (respon
 		return
 	}
 	response = &CallSpeakResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -341,7 +340,7 @@ func (service *CallService) StopSpeaking(callId string) (err error) {
 	if err != nil {
 		return
 	}
-	err = service.client.ExecuteRequest(req, nil)
+	err = service.client.ExecuteRequest(req, nil, isVoiceRequest())
 	return
 }
 
@@ -351,7 +350,7 @@ func (service *CallService) Play(callId string, params CallPlayParams) (response
 		return
 	}
 	response = &CallPlayResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -360,7 +359,7 @@ func (service *CallService) StopPlaying(callId string) (err error) {
 	if err != nil {
 		return
 	}
-	err = service.client.ExecuteRequest(req, nil)
+	err = service.client.ExecuteRequest(req, nil, isVoiceRequest())
 	return
 }
 
@@ -370,7 +369,7 @@ func (service *CallService) SendDigits(callId string, params CallDTMFParams) (re
 		return
 	}
 	response = &CallDTMFResponseBody{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -379,6 +378,6 @@ func (service *CallService) CancelRequest(requestId string) (err error) {
 	if err != nil {
 		return
 	}
-	err = service.client.ExecuteRequest(req, nil)
+	err = service.client.ExecuteRequest(req, nil, isVoiceRequest())
 	return
 }

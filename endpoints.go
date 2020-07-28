@@ -53,7 +53,7 @@ func (service *EndpointService) Create(params EndpointCreateParams) (response *E
 		return
 	}
 	response = &EndpointCreateResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -63,7 +63,7 @@ func (service *EndpointService) Get(endpointId string) (response *Endpoint, err 
 		return
 	}
 	response = &Endpoint{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -72,7 +72,7 @@ func (service *EndpointService) Delete(endpointId string) (err error) {
 	if err != nil {
 		return
 	}
-	err = service.client.ExecuteRequest(req, nil)
+	err = service.client.ExecuteRequest(req, nil, isVoiceRequest())
 	return
 }
 
@@ -82,7 +82,7 @@ func (service *EndpointService) Update(endpointId string, params EndpointUpdateP
 		return
 	}
 	response = &EndpointUpdateResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -92,6 +92,6 @@ func (service *EndpointService) List(params EndpointListParams) (response *Endpo
 		return
 	}
 	response = &EndpointListResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }

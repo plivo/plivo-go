@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.8.0](https://github.com/plivo/plivo-go/tree/v4.8.0) (2020-07-23)
+- Add retries to multiple regions for voice requests.
+
 ## [4.7.1](https://github.com/plivo/plivo-go/tree/v4.7.1) (2020-07-13)
 - Fix Call Create & Retrieve Call details API responses.
 

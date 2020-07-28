@@ -47,7 +47,7 @@ func (service *RecordingService) Get(RecordingId string) (response *Recording, e
 		return
 	}
 	response = &Recording{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -56,7 +56,7 @@ func (service *RecordingService) Delete(RecordingId string) (err error) {
 	if err != nil {
 		return
 	}
-	err = service.client.ExecuteRequest(req, nil)
+	err = service.client.ExecuteRequest(req, nil, isVoiceRequest())
 	return
 }
 
@@ -66,6 +66,6 @@ func (service *RecordingService) List(params RecordingListParams) (response *Rec
 		return
 	}
 	response = &RecordingListResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
