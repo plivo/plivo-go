@@ -424,23 +424,18 @@ func TestListTollfreeWithOptions(t *testing.T) {
 func TestPowerpack_RemoveTollfree(t *testing.T) {
 	expectResponse("powerpackDeleteResponse.json", 200)
 	numberpool_uuid := "numberpool_uuid"
-	param := NumberRemoveParams{
-		Unrent: true,
-	}
 	tollfree := "tollfree"
-	if _, err := client.Powerpack.Remove_tollfree(tollfree, param); err != nil {
+	if _, err := client.Powerpack.Remove_tollfree(tollfree, NumberRemoveParams{Unrent: false}); err != nil {
 		panic(err)
 	}
-
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.Remove_tollfree(tollfree, param)
+	_, err := client.Powerpack.Remove_tollfree(tollfree, NumberRemoveParams{Unrent: false})
 	if err == nil {
 		client.httpClient = cl
 		panic(errors.New("error expected"))
 	}
 	client.httpClient = cl
-
 	assertRequest(t, "DELETE", "NumberPool/%s/Tollfree/%s/", numberpool_uuid, tollfree)
 }
 
@@ -451,7 +446,6 @@ func TestPowerpack_RemoveShortcode(t *testing.T) {
 	if _, err := client.Powerpack.Remove_shortcode(shortcode); err != nil {
 		panic(err)
 	}
-
 	cl := client.httpClient
 	client.httpClient = nil
 	_, err := client.Powerpack.Remove_shortcode(shortcode)
@@ -460,7 +454,6 @@ func TestPowerpack_RemoveShortcode(t *testing.T) {
 		panic(errors.New("error expected"))
 	}
 	client.httpClient = cl
-
 	assertRequest(t, "DELETE", "NumberPool/%s/Shortcode/%s/", numberpool_uuid, shortcode)
 }
 

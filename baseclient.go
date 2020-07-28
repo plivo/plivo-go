@@ -13,7 +13,7 @@ import (
 	"github.com/google/go-querystring/query"
 )
 
-const sdkVersion = "4.7.1"
+const sdkVersion = "4.8.0"
 
 type ClientOptions struct {
 	HttpClient *http.Client
@@ -92,7 +92,27 @@ func (client *BaseClient) NewRequest(method string, params interface{}, baseRequ
 	return
 }
 
-func (client *BaseClient) ExecuteRequest(request *http.Request, body interface{}) (err error) {
+func (client *BaseClient) ExecuteRequest(request *http.Request, body interface{}, extra ...map[string]interface{}) (err error) {
+	isVoiceRequest := false
+	if extra != nil {
+		if _, ok := extra[0]["is_voice_request"]; ok {
+			isVoiceRequest = true
+			if extra[0]["retry"] == 0 {
+				request.URL.Host = voiceBaseUrlString
+				request.Host = voiceBaseUrlString
+				request.URL.Scheme = HttpsScheme
+			} else if extra[0]["retry"] == 1 {
+				request.URL.Host = voiceBaseUrlStringFallback1
+				request.Host = voiceBaseUrlStringFallback2
+				request.URL.Scheme = HttpsScheme
+			} else if extra[0]["retry"] == 2 {
+				request.URL.Host = voiceBaseUrlStringFallback2
+				request.Host = voiceBaseUrlStringFallback2
+				request.URL.Scheme = HttpsScheme
+			}
+		}
+	}
+
 	if client == nil {
 		return errors.New("client cannot be nil")
 	}
@@ -101,20 +121,36 @@ func (client *BaseClient) ExecuteRequest(request *http.Request, body interface{}
 		return errors.New("httpClient cannot be nil")
 	}
 
+	bodyCopy, _ := ioutil.ReadAll(request.Body)
+	request.Body = ioutil.NopCloser(bytes.NewReader(bodyCopy))
 	response, err := client.httpClient.Do(request)
+
 	if err != nil {
 		return
 	}
 
 	data, err := ioutil.ReadAll(response.Body)
 	if err == nil && data != nil && len(data) > 0 {
-		if response.StatusCode >= 200 && response.StatusCode < 300 {
+		if isVoiceRequest && response.StatusCode >= 500 {
+			if extra[0]["retry"] == 2 {
+				err = errors.New(string(data))
+				return
+			}
+			extra[0]["retry"] = extra[0]["retry"].(int) + 1
+
+			newRequest, _ := http.NewRequest(request.Method, request.URL.String(), bytes.NewReader(bodyCopy))
+			newRequest.Header.Add("User-Agent", client.userAgent)
+			newRequest.Header.Add("Content-Type", "application/json")
+			newRequest.SetBasicAuth(client.AuthId, client.AuthToken)
+
+			_ = client.ExecuteRequest(newRequest, body, extra...)
+		} else if response.StatusCode >= 200 && response.StatusCode < 300 {
 			if body != nil {
 				err = json.Unmarshal(data, body)
 			}
 		} else {
 			if string(data) == "{}" && response.StatusCode == 404 {
-				err = errors.New(string("Resource not found exception \n" + response.Status))
+				err = errors.New("Resource not found exception \n" + response.Status)
 			} else {
 				err = errors.New(string(data))
 			}
