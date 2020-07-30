@@ -127,37 +127,37 @@ type NumberRemoveParams struct {
 }
 
 type PowerpackAddNumberOptions struct {
-	//Service can be 'sms' or 'mms'. Default to 'sms' when not set.
+	//Service can be 'sms' or 'mms'. Defaults to 'sms' when not set.
 	Service string `json:"service,omitempty" url:"service,omitempty"`
 }
 
 type PowerpackFindNumberOptions struct {
-	//Service can be 'sms' or 'mms'. Default to 'sms' when not set.
+	//Service can be 'sms' or 'mms'. Defaults to 'sms' when not set.
 	Service string `json:"service,omitempty" url:"service,omitempty"`
 }
 
 type PowerpackAddTollfreeOptions struct {
-	//Service can be 'sms' or 'mms'. Default to 'sms' when not set.
+	//Service can be 'sms' or 'mms'. Defaults to 'sms' when not set.
 	Service string `json:"service,omitempty" url:"service,omitempty"`
 }
 
 type PowerpackListShortcodeOptions struct {
-	//Service can be 'sms' or 'mms'. Default to 'sms' when not set.
+	//Service can be 'sms' or 'mms'. Defaults to 'sms' when not set.
 	Service string `json:"service,omitempty" url:"service,omitempty"`
 }
 
 type PowerpackListTollfreeOptions struct {
-	//Service can be 'sms' or 'mms'. Default to 'sms' when not set.
+	//Service can be 'sms' or 'mms'. Defaults to 'sms' when not set.
 	Service string `json:"service,omitempty" url:"service,omitempty"`
 }
 
 type PowerpackFindShortcodeOptions struct {
-	//Service can be 'sms' or 'mms'. Default to 'sms' when not set.
+	//Service can be 'sms' or 'mms'. Defaults to 'sms' when not set.
 	Service string `json:"service,omitempty" url:"service,omitempty"`
 }
 
 type PowerpackFindTollfreeOptions struct {
-	//Service can be 'sms' or 'mms'. Default to 'sms' when not set.
+	//Service can be 'sms' or 'mms'. Defaults to 'sms' when not set.
 	Service string `json:"service,omitempty" url:"service,omitempty"`
 }
 
