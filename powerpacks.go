@@ -136,31 +136,6 @@ type PowerpackFindNumberOptions struct {
 	Service string `json:"service,omitempty" url:"service,omitempty"`
 }
 
-type PowerpackAddTollfreeOptions struct {
-	//Service can be 'sms' or 'mms'. Defaults to 'sms' when not set.
-	Service string `json:"service,omitempty" url:"service,omitempty"`
-}
-
-type PowerpackListShortcodeOptions struct {
-	//Service can be 'sms' or 'mms'. Defaults to 'sms' when not set.
-	Service string `json:"service,omitempty" url:"service,omitempty"`
-}
-
-type PowerpackListTollfreeOptions struct {
-	//Service can be 'sms' or 'mms'. Defaults to 'sms' when not set.
-	Service string `json:"service,omitempty" url:"service,omitempty"`
-}
-
-type PowerpackFindShortcodeOptions struct {
-	//Service can be 'sms' or 'mms'. Defaults to 'sms' when not set.
-	Service string `json:"service,omitempty" url:"service,omitempty"`
-}
-
-type PowerpackFindTollfreeOptions struct {
-	//Service can be 'sms' or 'mms'. Defaults to 'sms' when not set.
-	Service string `json:"service,omitempty" url:"service,omitempty"`
-}
-
 type PowerpackCreateResponseBody struct {
 	ApiID string  `json:"api_id,omitempty"`
 	Error *string `json:"error,omitempty" url:"error"`
@@ -345,15 +320,9 @@ func (service *PowerpackService) AddNumberWithOptions(number string, params Powe
 }
 
 func (service *PowerpackService) Add_tollfree(tollfree string) (response *NumberResponse, err error) {
-	params := PowerpackAddTollfreeOptions{}
-	response, err = service.AddTollfreeWithOptions(tollfree, params)
-	return
-}
-
-func (service *PowerpackService) AddTollfreeWithOptions(tollfree string, params PowerpackAddTollfreeOptions) (response *NumberResponse, err error) {
 	numberpoolUUID := service.Powerpack.NumberPoolUUID
 	uriSegments := strings.Split(numberpoolUUID, "/")
-	req, err := service.client.NewRequest("POST", params, "NumberPool/%s/Tollfree/%s", uriSegments[5], tollfree)
+	req, err := service.client.NewRequest("POST", nil, "NumberPool/%s/Tollfree/%s", uriSegments[5], tollfree)
 	if err != nil {
 		return
 	}
@@ -399,15 +368,9 @@ func (service *PowerpackService) Remove_shortcode(shortcode string) (response *S
 }
 
 func (service *PowerpackService) List_shortcodes() (response *ShortCodeResponse, err error) {
-	params := PowerpackListShortcodeOptions{}
-	response, err = service.ListShortcodesWithOptions(params)
-	return
-}
-
-func (service *PowerpackService) ListShortcodesWithOptions(params PowerpackListShortcodeOptions) (response *ShortCodeResponse, err error) {
 	numberpool_path := service.Powerpack.NumberPoolUUID
 	uriSegments := strings.Split(numberpool_path, "/")
-	req, err := service.client.NewRequest("GET", params, "NumberPool/%s/Shortcode", uriSegments[5])
+	req, err := service.client.NewRequest("GET", nil, "NumberPool/%s/Shortcode", uriSegments[5])
 	if err != nil {
 		return
 	}
@@ -417,15 +380,9 @@ func (service *PowerpackService) ListShortcodesWithOptions(params PowerpackListS
 }
 
 func (service *PowerpackService) List_tollfree() (response *TollfreeResponse, err error) {
-	params := PowerpackListTollfreeOptions{}
-	response, err = service.ListTollfreeWithOptions(params)
-	return
-}
-
-func (service *PowerpackService) ListTollfreeWithOptions(params PowerpackListTollfreeOptions) (response *TollfreeResponse, err error) {
 	numberpoolUUID := service.Powerpack.NumberPoolUUID
 	uriSegments := strings.Split(numberpoolUUID, "/")
-	req, err := service.client.NewRequest("GET", params, "NumberPool/%s/Tollfree", uriSegments[5])
+	req, err := service.client.NewRequest("GET", nil, "NumberPool/%s/Tollfree", uriSegments[5])
 	if err != nil {
 		return
 	}
@@ -435,15 +392,9 @@ func (service *PowerpackService) ListTollfreeWithOptions(params PowerpackListTol
 }
 
 func (service *PowerpackService) Find_shortcode(shortcode string) (response *FindShortCodeResponse, err error) {
-	params := PowerpackFindShortcodeOptions{}
-	response, err = service.FindShortcodeWithOptions(shortcode, params)
-	return
-}
-
-func (service *PowerpackService) FindShortcodeWithOptions(shortcode string, params PowerpackFindShortcodeOptions) (response *FindShortCodeResponse, err error) {
 	numberpool_path := service.Powerpack.NumberPoolUUID
 	uriSegments := strings.Split(numberpool_path, "/")
-	req, err := service.client.NewRequest("GET", params, "NumberPool/%s/Shortcode/%s/", uriSegments[5], shortcode)
+	req, err := service.client.NewRequest("GET", nil, "NumberPool/%s/Shortcode/%s/", uriSegments[5], shortcode)
 	if err != nil {
 		return
 	}
@@ -453,15 +404,9 @@ func (service *PowerpackService) FindShortcodeWithOptions(shortcode string, para
 }
 
 func (service *PowerpackService) Find_tollfree(tollfree string) (response *FindTollfreeResponse, err error) {
-	params := PowerpackFindTollfreeOptions{}
-	response, err = service.FindTollfreeWithOptions(tollfree, params)
-	return
-}
-
-func (service *PowerpackService) FindTollfreeWithOptions(tollfree string, params PowerpackFindTollfreeOptions) (response *FindTollfreeResponse, err error) {
 	numberpoolUUID := service.Powerpack.NumberPoolUUID
 	uriSegments := strings.Split(numberpoolUUID, "/")
-	req, err := service.client.NewRequest("GET", params, "NumberPool/%s/Tollfree/%s/", uriSegments[5], tollfree)
+	req, err := service.client.NewRequest("GET", nil, "NumberPool/%s/Tollfree/%s/", uriSegments[5], tollfree)
 	if err != nil {
 		return
 	}

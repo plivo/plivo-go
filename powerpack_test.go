@@ -247,29 +247,6 @@ func TestListShortCode(t *testing.T) {
 
 }
 
-func TestListShortCodeWithOptions(t *testing.T) {
-	expectResponse("numberpoolShortCodeResponse.json", 200)
-	numberpooluuid := "numberpool_uuid"
-	params := PowerpackListShortcodeOptions{
-		Service: MMS,
-	}
-	if _, err := client.Powerpack.ListShortcodesWithOptions(params); err != nil {
-		panic(err)
-	}
-
-	cl := client.httpClient
-	client.httpClient = nil
-	_, err := client.Powerpack.ListShortcodesWithOptions(params)
-	if err == nil {
-		client.httpClient = cl
-		panic(errors.New("error expected"))
-	}
-	client.httpClient = cl
-
-	assertRequest(t, "GET", "NumberPool/%s/Shortcode/", numberpooluuid)
-
-}
-
 func TestFindShortCode(t *testing.T) {
 	expectResponse("numberpoolSingleShortcodeResponse.json", 200)
 	numberpooluuid := "numberpool_uuid"
@@ -291,29 +268,6 @@ func TestFindShortCode(t *testing.T) {
 
 }
 
-func TestFindShortCodeWithOptions(t *testing.T) {
-	expectResponse("numberpoolSingleShortcodeResponse.json", 200)
-	numberpooluuid := "numberpool_uuid"
-	param := PowerpackFindShortcodeOptions{
-		Service: MMS,
-	}
-	shortcode := "shortcode"
-	if _, err := client.Powerpack.FindShortcodeWithOptions(shortcode, param); err != nil {
-		panic(err)
-	}
-
-	cl := client.httpClient
-	client.httpClient = nil
-	_, err := client.Powerpack.FindShortcodeWithOptions(shortcode, param)
-	if err == nil {
-		client.httpClient = cl
-		panic(errors.New("error expected"))
-	}
-	client.httpClient = cl
-
-	assertRequest(t, "GET", "NumberPool/%s/Shortcode/%s/", numberpooluuid, shortcode)
-
-}
 func TestBuyAddNumber(t *testing.T) {
 	expectResponse("numberpoolSingleNoResponse.json", 200)
 	numberpooluuid := "numberpool_uuid"
@@ -354,30 +308,6 @@ func TestFindTollfree(t *testing.T) {
 
 }
 
-func TestFindTollfreeWithOptions(t *testing.T) {
-	expectResponse("numberpoolSingleTollfreeResponse.json", 200)
-	numberpooluuid := "numberpool_uuid"
-	params := PowerpackFindTollfreeOptions{
-		Service: MMS,
-	}
-	tollfree := "tollfree"
-	if _, err := client.Powerpack.FindTollfreeWithOptions(tollfree, params); err != nil {
-		panic(err)
-	}
-
-	cl := client.httpClient
-	client.httpClient = nil
-	_, err := client.Powerpack.FindTollfreeWithOptions(tollfree, params)
-	if err == nil {
-		client.httpClient = cl
-		panic(errors.New("error expected"))
-	}
-	client.httpClient = cl
-
-	assertRequest(t, "GET", "NumberPool/%s/Tollfree/%s/", numberpooluuid, tollfree)
-
-}
-
 func TestListTollfree(t *testing.T) {
 	expectResponse("numberpoolTollfreeResponse.json", 200)
 	numberpooluuid := "numberpool_uuid"
@@ -388,29 +318,6 @@ func TestListTollfree(t *testing.T) {
 	cl := client.httpClient
 	client.httpClient = nil
 	_, err := client.Powerpack.List_tollfree()
-	if err == nil {
-		client.httpClient = cl
-		panic(errors.New("error expected"))
-	}
-	client.httpClient = cl
-
-	assertRequest(t, "GET", "NumberPool/%s/Tollfree/", numberpooluuid)
-
-}
-
-func TestListTollfreeWithOptions(t *testing.T) {
-	expectResponse("numberpoolTollfreeResponse.json", 200)
-	numberpooluuid := "numberpool_uuid"
-	params := PowerpackListTollfreeOptions{
-		Service: MMS,
-	}
-	if _, err := client.Powerpack.ListTollfreeWithOptions(params); err != nil {
-		panic(err)
-	}
-
-	cl := client.httpClient
-	client.httpClient = nil
-	_, err := client.Powerpack.ListTollfreeWithOptions(params)
 	if err == nil {
 		client.httpClient = cl
 		panic(errors.New("error expected"))
@@ -468,29 +375,6 @@ func TestPowerpack_AddTollfree(t *testing.T) {
 	cl := client.httpClient
 	client.httpClient = nil
 	_, err := client.Powerpack.Add_tollfree(tollfree)
-	if err == nil {
-		client.httpClient = cl
-		panic(errors.New("error expected"))
-	}
-	client.httpClient = cl
-
-	assertRequest(t, "POST", "NumberPool/%s/Tollfree/%s/", numberpool_uuid, tollfree)
-}
-
-func TestPowerpack_AddTollfreeWithOptions(t *testing.T) {
-	expectResponse("numberpoolSingleTollfreeResponse.json", 200)
-	numberpool_uuid := "numberpool_uuid"
-	params := PowerpackAddTollfreeOptions{
-		Service: MMS,
-	}
-	tollfree := "tollfree"
-	if _, err := client.Powerpack.AddTollfreeWithOptions(tollfree, params); err != nil {
-		panic(err)
-	}
-
-	cl := client.httpClient
-	client.httpClient = nil
-	_, err := client.Powerpack.AddTollfreeWithOptions(tollfree, params)
 	if err == nil {
 		client.httpClient = cl
 		panic(errors.New("error expected"))
