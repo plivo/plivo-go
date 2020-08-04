@@ -121,6 +121,29 @@ func TestPowerpack_find_number(t *testing.T) {
 	assertRequest(t, "GET", "NumberPool/%s/%s/", numberpool_uuid, number)
 }
 
+func TestPowerpack_FindNumbersWithOptions(t *testing.T) {
+	expectResponse("numberpoolSingleNoResponse.json", 200)
+	numberpool_uuid := "numberpool_uuid"
+	params := PowerpackFindNumberOptions{
+		Service: MMS,
+	}
+	number := "number"
+	if _, err := client.Powerpack.FindNumbersWithOptions(number, params); err != nil {
+		panic(err)
+	}
+
+	cl := client.httpClient
+	client.httpClient = nil
+	_, err := client.Powerpack.FindNumbersWithOptions(number, params)
+	if err == nil {
+		client.httpClient = cl
+		panic(errors.New("error expected"))
+	}
+	client.httpClient = cl
+
+	assertRequest(t, "GET", "NumberPool/%s/%s/", numberpool_uuid, number)
+}
+
 func TestPowerpack_AddNumber(t *testing.T) {
 	expectResponse("numberpoolSingleNoResponse.json", 200)
 	numberpool_uuid := "numberpool_uuid"
@@ -132,6 +155,29 @@ func TestPowerpack_AddNumber(t *testing.T) {
 	cl := client.httpClient
 	client.httpClient = nil
 	_, err := client.Powerpack.Add_number(number)
+	if err == nil {
+		client.httpClient = cl
+		panic(errors.New("error expected"))
+	}
+	client.httpClient = cl
+
+	assertRequest(t, "POST", "NumberPool/%s/%s/", numberpool_uuid, number)
+}
+
+func TestPowerpack_AddNumberWithOptions(t *testing.T) {
+	expectResponse("numberpoolSingleNoResponse.json", 200)
+	numberpool_uuid := "numberpool_uuid"
+	params := PowerpackAddNumberOptions{
+		Service: MMS,
+	}
+	number := "number"
+	if _, err := client.Powerpack.AddNumberWithOptions(number, params); err != nil {
+		panic(err)
+	}
+
+	cl := client.httpClient
+	client.httpClient = nil
+	_, err := client.Powerpack.AddNumberWithOptions(number, params)
 	if err == nil {
 		client.httpClient = cl
 		panic(errors.New("error expected"))
@@ -221,6 +267,7 @@ func TestFindShortCode(t *testing.T) {
 	assertRequest(t, "GET", "NumberPool/%s/Shortcode/%s/", numberpooluuid, shortcode)
 
 }
+
 func TestBuyAddNumber(t *testing.T) {
 	expectResponse("numberpoolSingleNoResponse.json", 200)
 	numberpooluuid := "numberpool_uuid"

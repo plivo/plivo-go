@@ -33,6 +33,7 @@ type NumberPoolResponse struct {
 	Number                        string `json:"number,omitempty"`
 	Type                          string `json:"Type,omitempty"`
 	Country_iso2                  string `json:"country_iso2,omitempty"`
+	Service                       string `json:"service,omitempty"`
 	Added_on                      string `json:"added_on,omitempty"`
 	Account_phone_number_resource string `json:"account_phone_number_resource,omitempty"`
 }
@@ -48,6 +49,7 @@ type ShortCode struct {
 	Shortcode        string `json:"shortcode,omitempty"`
 	Country_iso2     string `json:"country_iso2,omitempty"`
 	Added_on         string `json:"added_on,omitempty"`
+	Service          string `json:"service,omitempty"`
 }
 
 type Tollfree struct {
@@ -55,6 +57,7 @@ type Tollfree struct {
 	Tollfree       string `json:"number,omitempty"`
 	Country_iso2   string `json:"country_iso2,omitempty"`
 	Added_on       string `json:"added_on,omitempty"`
+	Service        string `json:"service,omitempty"`
 }
 
 type ShortCodeResponse struct {
@@ -123,6 +126,16 @@ type NumberRemoveParams struct {
 	Unrent bool `json:"unrent,omitempty"`
 }
 
+type PowerpackAddNumberOptions struct {
+	//Service can be 'sms' or 'mms'. Defaults to 'sms' when not set.
+	Service string `json:"service,omitempty" url:"service,omitempty"`
+}
+
+type PowerpackFindNumberOptions struct {
+	//Service can be 'sms' or 'mms'. Defaults to 'sms' when not set.
+	Service string `json:"service,omitempty" url:"service,omitempty"`
+}
+
 type PowerpackCreateResponseBody struct {
 	ApiID string  `json:"api_id,omitempty"`
 	Error *string `json:"error,omitempty" url:"error"`
@@ -140,8 +153,9 @@ type PowerpackList struct {
 }
 
 type PowerpackListParams struct {
-	Limit  int `url:"limit,omitempty"`
-	Offset int `url:"offset,omitempty"`
+	Limit   int    `url:"limit,omitempty"`
+	Offset  int    `url:"offset,omitempty"`
+	Service string `url:"service,omitempty"`
 }
 type PowerpackSearchParam struct {
 	Starts_with  string `json:"starts_with,omitempty" url:"starts_with,omitempty"`
@@ -149,6 +163,7 @@ type PowerpackSearchParam struct {
 	Type         string `json:"type,omitempty" url:"type,omitempty"`
 	Limit        string `json:"limit,omitempty" url:"limit,omitempty"`
 	Offset       string `json:"offset,omitempty" url:"offset,omitempty"`
+	Service      string `json:"service,omitempty" url:"service,omitempty"`
 }
 type PowerpackPhoneResponseBody struct {
 	BaseListPPKResponse
@@ -174,10 +189,12 @@ type BuyPhoneNumberParam struct {
 	Type         string `json:"type,omitempty"`
 	Region       string `json:"region,omitempty"`
 	Pattern      string `json:"pattern,omitempty"`
+	Service      string `json:"service,omitempty"`
 }
 
 type RentNumber struct {
-	Rent string `json:"rent,omitempty"`
+	Rent    string `json:"rent,omitempty"`
+	Service string `json:"service,omitempty"`
 }
 
 // returns the List.. of all powerpack
@@ -267,9 +284,15 @@ func (service *PowerpackService) Count_numbers(params PowerpackSearchParam) (cou
 }
 
 func (service *PowerpackService) Find_numbers(number string) (response *NumberResponse, err error) {
+	params := PowerpackFindNumberOptions{}
+	response, err = service.FindNumbersWithOptions(number, params)
+	return
+}
+
+func (service *PowerpackService) FindNumbersWithOptions(number string, params PowerpackFindNumberOptions) (response *NumberResponse, err error) {
 	numberpool_path := service.Powerpack.NumberPoolUUID
 	uriSegments := strings.Split(numberpool_path, "/")
-	req, err := service.client.NewRequest("GET", nil, "NumberPool/%s/Number/%s/", uriSegments[5], number)
+	req, err := service.client.NewRequest("GET", params, "NumberPool/%s/Number/%s/", uriSegments[5], number)
 	if err != nil {
 		return
 	}
@@ -277,10 +300,17 @@ func (service *PowerpackService) Find_numbers(number string) (response *NumberRe
 	err = service.client.ExecuteRequest(req, response)
 	return
 }
+
 func (service *PowerpackService) Add_number(number string) (response *NumberResponse, err error) {
+	params := PowerpackAddNumberOptions{}
+	response, err = service.AddNumberWithOptions(number, params)
+	return
+}
+
+func (service *PowerpackService) AddNumberWithOptions(number string, params PowerpackAddNumberOptions) (response *NumberResponse, err error) {
 	numberpool_path := service.Powerpack.NumberPoolUUID
 	uriSegments := strings.Split(numberpool_path, "/")
-	req, err := service.client.NewRequest("POST", nil, "NumberPool/%s/Number/%s", uriSegments[5], number)
+	req, err := service.client.NewRequest("POST", params, "NumberPool/%s/Number/%s", uriSegments[5], number)
 	if err != nil {
 		return
 	}
@@ -360,6 +390,7 @@ func (service *PowerpackService) List_tollfree() (response *TollfreeResponse, er
 	err = service.client.ExecuteRequest(req, response)
 	return
 }
+
 func (service *PowerpackService) Find_shortcode(shortcode string) (response *FindShortCodeResponse, err error) {
 	numberpool_path := service.Powerpack.NumberPoolUUID
 	uriSegments := strings.Split(numberpool_path, "/")
@@ -388,8 +419,10 @@ func (service *PowerpackService) Buy_add_number(phoneParam BuyPhoneNumberParam) 
 	numberpool_path := service.Powerpack.NumberPoolUUID
 	uriSegments := strings.Split(numberpool_path, "/")
 	payload := RentNumber{
-		Rent: "true",
+		Rent:    "true",
+		Service: phoneParam.Service,
 	}
+
 	number := phoneParam.Number
 	if number != "" {
 		req, err := service.client.NewRequest("POST", payload, "NumberPool/%s/Number/%s", uriSegments[5], number)
@@ -403,11 +436,13 @@ func (service *PowerpackService) Buy_add_number(phoneParam BuyPhoneNumberParam) 
 		region := phoneParam.Region
 		pattern := phoneParam.Pattern
 		countryiso := phoneParam.Country_iso2
+		serviceType := phoneParam.Service
 		params := PhoneNumberListParams{
 			Type:       Type,
 			Region:     region,
 			Pattern:    pattern,
 			CountryISO: countryiso,
+			Services:   serviceType,
 		}
 		responsephoneNo, err := service.client.PhoneNumbers.List(params)
 		if err != nil {
