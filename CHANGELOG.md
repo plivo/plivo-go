@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.9.1](https://github.com/plivo/plivo-go/tree/v4.9.1) (2020-08-10)
+- Fix Get Details of a Call API response.
+
 ## [4.9.0](https://github.com/plivo/plivo-go/tree/v4.9.0) (2020-08-04)
 - Add service type support(SMS/MMS) for Powerpack API.
 
