@@ -29,6 +29,7 @@ type Call struct {
 	HangupCauseName string `json:"hangup_cause_name,omitempty" url:"hangup_cause_name,omitempty"`
 	HangupSource    string `json:"hangup_source,omitempty" url:"hangup_source,omitempty"`
 	TotalRate       string `json:"total_rate,omitempty" url:"total_rate,omitempty"`
+	ConferenceUUID  string `json:"conference_uuid,omitempty"`
 }
 
 type LiveCall struct {
