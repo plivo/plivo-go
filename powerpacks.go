@@ -11,9 +11,9 @@ type PowerpackService struct {
 }
 
 type Priority struct {
-	Priority1 *string `json:"priority1"`
-	Priority2 *string `json:"priority2"`
-	Priority3 *string `json:"priority3"`
+	Priority1 string `json:"priority1"`
+	Priority2 string `json:"priority2"`
+	Priority3 string `json:"priority3"`
 }
 
 type NumberPriority struct {
