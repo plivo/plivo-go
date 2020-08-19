@@ -60,7 +60,7 @@ func (service *ConferenceService) Get(ConferenceId string) (response *Conference
 		return
 	}
 	response = &Conference{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -70,7 +70,7 @@ func (service *ConferenceService) Record(ConferenceId string, Params ConferenceR
 		return
 	}
 	response = &ConferenceRecordResponseBody{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -79,7 +79,7 @@ func (service *ConferenceService) RecordStop(ConferenceId string) (err error) {
 	if err != nil {
 		return
 	}
-	err = service.client.ExecuteRequest(req, nil)
+	err = service.client.ExecuteRequest(req, nil, isVoiceRequest())
 	return
 }
 
@@ -88,7 +88,7 @@ func (service *ConferenceService) Delete(ConferenceId string) (err error) {
 	if err != nil {
 		return
 	}
-	err = service.client.ExecuteRequest(req, nil)
+	err = service.client.ExecuteRequest(req, nil, isVoiceRequest())
 	return
 }
 
@@ -97,7 +97,7 @@ func (service *ConferenceService) DeleteAll() (err error) {
 	if err != nil {
 		return
 	}
-	err = service.client.ExecuteRequest(req, nil)
+	err = service.client.ExecuteRequest(req, nil, isVoiceRequest())
 	return
 }
 
@@ -107,7 +107,7 @@ func (service *ConferenceService) IDList() (response *ConferenceIDListResponseBo
 		return
 	}
 	response = &ConferenceIDListResponseBody{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -123,7 +123,7 @@ func (service *ConferenceService) MemberHangup(conferenceId, memberId string) (r
 		return
 	}
 	response = &ConferenceMemberActionResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -133,7 +133,7 @@ func (service *ConferenceService) MemberKick(conferenceId, memberId string) (res
 		return
 	}
 	response = &ConferenceMemberActionResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -143,7 +143,7 @@ func (service *ConferenceService) MemberMute(conferenceId, memberId string) (res
 		return
 	}
 	response = &ConferenceMemberActionResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -153,7 +153,7 @@ func (service *ConferenceService) MemberUnmute(conferenceId, memberId string) (r
 		return
 	}
 	response = &ConferenceMemberActionResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -163,7 +163,7 @@ func (service *ConferenceService) MemberDeaf(conferenceId, memberId string) (res
 		return
 	}
 	response = &ConferenceMemberActionResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -173,7 +173,7 @@ func (service *ConferenceService) MemberUndeaf(conferenceId, memberId string) (r
 		return
 	}
 	response = &ConferenceMemberActionResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -185,7 +185,7 @@ func (service *ConferenceService) MemberPlay(conferenceId, memberId, url string)
 		return
 	}
 	response = &ConferenceMemberActionResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -195,7 +195,7 @@ func (service *ConferenceService) MemberPlayStop(conferenceId, memberId string) 
 		return
 	}
 	response = &ConferenceMemberActionResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -211,7 +211,7 @@ func (service *ConferenceService) MemberSpeak(conferenceId, memberId string, par
 		return
 	}
 	response = &ConferenceMemberActionResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -221,6 +221,6 @@ func (service *ConferenceService) MemberSpeakStop(conferenceId, memberId string)
 		return
 	}
 	response = &ConferenceMemberActionResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
