@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.0.0](https://github.com/plivo/plivo-go/tree/v5.0.0) (2020-08-19)
+- Internal changes in Phlo for MultiPartyCall component.
+- Rename MultiPartyCall struct to PhloMultiPartyCall.
+
 ## [4.9.1](https://github.com/plivo/plivo-go/tree/v4.9.1) (2020-08-10)
 - Fix Get Details of a Call API response.
 
