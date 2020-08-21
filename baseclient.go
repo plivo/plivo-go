@@ -13,7 +13,7 @@ import (
 	"github.com/google/go-querystring/query"
 )
 
-const sdkVersion = "4.9.1"
+const sdkVersion = "5.0.0"
 
 type ClientOptions struct {
 	HttpClient *http.Client
