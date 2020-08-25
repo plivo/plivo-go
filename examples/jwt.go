@@ -4,7 +4,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/plivo/plivo-go/plivo/jwt"
+	"github.com/plivo/plivo-go/jwt"
 )
 
 func main() {
