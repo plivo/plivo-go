@@ -19,22 +19,23 @@ const baseRequestString = "/v1/Account/%s/"
 type Client struct {
 	BaseClient
 
-	Messages     *MessageService
-	Accounts     *AccountService
-	Subaccounts  *SubaccountService
-	Applications *ApplicationService
-	Endpoints    *EndpointService
-	Numbers      *NumberService
-	PhoneNumbers *PhoneNumberService
-	Pricing      *PricingService // TODO Rename?
-	Recordings   *RecordingService
-	Calls        *CallService
-	LiveCalls    *LiveCallService
-	QueuedCalls  *QueuedCallService
-	Conferences  *ConferenceService
-	CallFeedback *CallFeedbackService
-	Powerpack    *PowerpackService
-	Media        *MediaService
+	Messages              *MessageService
+	Accounts              *AccountService
+	Subaccounts           *SubaccountService
+	Applications          *ApplicationService
+	Endpoints             *EndpointService
+	Numbers               *NumberService
+	PhoneNumbers          *PhoneNumberService
+	Pricing               *PricingService // TODO Rename?
+	Recordings            *RecordingService
+	Calls                 *CallService
+	LiveCalls             *LiveCallService
+	QueuedCalls           *QueuedCallService
+	Conferences           *ConferenceService
+	CallFeedback          *CallFeedbackService
+	Powerpack             *PowerpackService
+	Media                 *MediaService
+	RegulatoryCompliances *RegulatoryComplianceService
 }
 
 /*
