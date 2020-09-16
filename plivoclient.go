@@ -19,23 +19,26 @@ const baseRequestString = "/v1/Account/%s/"
 type Client struct {
 	BaseClient
 
-	Messages              *MessageService
-	Accounts              *AccountService
-	Subaccounts           *SubaccountService
-	Applications          *ApplicationService
-	Endpoints             *EndpointService
-	Numbers               *NumberService
-	PhoneNumbers          *PhoneNumberService
-	Pricing               *PricingService // TODO Rename?
-	Recordings            *RecordingService
-	Calls                 *CallService
-	LiveCalls             *LiveCallService
-	QueuedCalls           *QueuedCallService
-	Conferences           *ConferenceService
-	CallFeedback          *CallFeedbackService
-	Powerpack             *PowerpackService
-	Media                 *MediaService
-	RegulatoryCompliances *RegulatoryComplianceService
+	Messages                   *MessageService
+	Accounts                   *AccountService
+	Subaccounts                *SubaccountService
+	Applications               *ApplicationService
+	Endpoints                  *EndpointService
+	Numbers                    *NumberService
+	PhoneNumbers               *PhoneNumberService
+	Pricing                    *PricingService // TODO Rename?
+	Recordings                 *RecordingService
+	Calls                      *CallService
+	LiveCalls                  *LiveCallService
+	QueuedCalls                *QueuedCallService
+	Conferences                *ConferenceService
+	CallFeedback               *CallFeedbackService
+	Powerpack                  *PowerpackService
+	Media                      *MediaService
+	EndUsers                   *EndUserService
+	ComplianceDocumentTypes    *ComplianceDocumentTypeService
+	ComplianceRequirements     *ComplianceRequirementService
+	// TODO add other regulatory compliance service here
 }
 
 /*
@@ -94,6 +97,7 @@ func NewClient(authId, authToken string, options *ClientOptions) (client *Client
 	client.CallFeedback = &CallFeedbackService{client: client}
 	client.Powerpack = &PowerpackService{client: client}
 	client.Media = &MediaService{client: client}
+	// Add client here
 	return
 }
 
