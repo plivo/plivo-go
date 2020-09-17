@@ -1,6 +1,15 @@
 package plivo
 
-import "time"
+import (
+	"bytes"
+	"fmt"
+	"io/ioutil"
+	"mime/multipart"
+	"net/http"
+	"os"
+	"reflect"
+	"time"
+)
 
 type ComplianceDocumentService struct {
 	client *Client
@@ -47,13 +56,24 @@ type ListComplianceDocumentResponse struct {
 }
 
 type CreateComplianceDocumentParams struct {
-
+	file Files
+	EndUserID      string `json:"end_user_id,omitempty"`
+	DocumentTypeID string `json:"document_type_id,omitempty"`
+	Alias          string `json:"alias,omitempty"`
+	LastName       string `json:"last_name,omitempty"`
+	FirstName      string `json:"first_name,omitempty"`
+	DateOfBirth    string `json:"date_of_birth,omitempty"`
 }
 
 type UpdateComplianceDocumentParams struct {
-	CreateEndUserParams
-	EndUserID string `json:"end_user_id"`
+	ComplianceDocumentID string `json:compliance_document_id`
+	CreateComplianceDocumentParams
 }
+
+//type UpdateComplianceDocumentParams struct {
+//	CreateEndUserParams
+//	EndUserID string `json:"end_user_id"`
+//}
 
 func (service *ComplianceDocumentService) Get(complianceDocumentId string) (response *GetComplianceDocumentResponse, err error) {
 	req, err := service.client.NewRequest("GET", nil, "ComplianceDocument/%s/", complianceDocumentId)
@@ -72,24 +92,84 @@ func (service *ComplianceDocumentService) List(params EndUserListParams) (respon
 	return
 }
 
-func (service *ComplianceDocumentService) Create(params CreateEndUserParams) (response *CreateEndUserResponse, err error) {
-	// TODO
-	request, err := service.client.NewRequest("POST", params, "ComplianceDocument/")
+func newfileUploadRequest(uri string, params map[string]string, paramName, path string) (*http.Request, error) {
+	file, err := os.Open(path)
+	if err != nil {
+		return nil, err
+	}
+	fileContents, err := ioutil.ReadAll(file)
+	if err != nil {
+		return nil, err
+	}
+	fi, err := file.Stat()
+	if err != nil {
+		return nil, err
+	}
+	file.Close()
+
+	body := new(bytes.Buffer)
+	writer := multipart.NewWriter(body)
+	part, err := writer.CreateFormFile(paramName, fi.Name())
+	if err != nil {
+		return nil, err
+	}
+	part.Write(fileContents)
+
+	for key, val := range params {
+		_ = writer.WriteField(key, val)
+	}
+	err = writer.Close()
+	if err != nil {
+		return nil, err
+	}
+
+	return http.NewRequest("POST", uri, body)
+}
+
+func (service *ComplianceDocumentService) Create(params CreateComplianceDocumentParams) (response *GetComplianceDocumentResponse, err error) {
+	requestUrl := service.client.BaseUrl
+	requestUrl.Path = fmt.Sprintf(baseRequestString, fmt.Sprintf(service.client.AuthId+"/ComplianceDocument/"))
+
+	var requestParams map[string]string
+	fields := reflect.TypeOf(params)
+	values := reflect.ValueOf(params)
+	num := fields.NumField()
+	for i:=0; i<num; i++ {
+		field := fields.Field(i)
+		value := values.Field(i)
+		requestParams[field.Name] = value.String()
+	}
+
+	request, err := newfileUploadRequest(requestUrl.String(), requestParams, "file", params.file.FilePath)
+	//request, err := service.client.NewRequest("POST", params, "ComplianceDocument/")
 	if err != nil {
 		return
 	}
-	response = &CreateEndUserResponse{}
+	response = &GetComplianceDocumentResponse{}
 	err = service.client.ExecuteRequest(request, response)
 	return
 }
 
-func (service *ComplianceDocumentService) Update(params UpdateEndUserParams) (response *CreateEndUserResponse, err error) {
-	// TODO: file upload
-	request, err := service.client.NewRequest("POST", params, "ComplianceDocument/%s/", )
+func (service *ComplianceDocumentService) Update(params UpdateComplianceDocumentParams) (response *GetComplianceDocumentResponse, err error) {
+	requestUrl := service.client.BaseUrl
+	requestUrl.Path = fmt.Sprintf(baseRequestString, fmt.Sprintf(service.client.AuthId+"/ComplianceDocument/"+params.ComplianceDocumentID+"/"))
+
+	var requestParams map[string]string
+	fields := reflect.TypeOf(params)
+	values := reflect.ValueOf(params)
+	num := fields.NumField()
+	for i:=0; i<num; i++ {
+		field := fields.Field(i)
+		value := values.Field(i)
+		requestParams[field.Name] = value.String()
+	}
+
+	request, err := newfileUploadRequest(requestUrl.String(), requestParams, "file", params.file.FilePath)
+	//request, err := service.client.NewRequest("POST", params, "ComplianceDocument/%s/", params.ComplianceDocumentID)
 	if err != nil {
 		return
 	}
-	response = &CreateEndUserResponse{}
+	response = &GetComplianceDocumentResponse{}
 	err = service.client.ExecuteRequest(request, response)
 	return
 }
