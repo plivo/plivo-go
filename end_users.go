@@ -87,6 +87,6 @@ func (service *EndUserService) Delete(endUserId string) (err error) {
 	if err != nil {
 		return
 	}
-	err = service.client.ExecuteRequest(req, nil, isVoiceRequest())
+	err = service.client.ExecuteRequest(req, nil)
 	return
 }
