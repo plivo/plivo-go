@@ -25,7 +25,7 @@ type EndUserListResponse struct {
 	Objects []EndUserGetResponse `json:"objects" url:"objects"`
 }
 
-type CreateEndUserParams struct {
+type EndUserParams struct {
 	Name        string `json:"name,omitempty" url:"name,omitempty"`
 	LastName    string `json:"last_name,omitempty" url:"last_name,omitempty"`
 	EndUserType string `json:"end_user_type,omitempty" url:"end_user_type,omitempty"`
@@ -41,7 +41,7 @@ type CreateEndUserResponse struct {
 }
 
 type UpdateEndUserParams struct {
-	CreateEndUserParams
+	EndUserParams
 	EndUserID string `json:"end_user_id"`
 }
 
