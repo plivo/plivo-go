@@ -12,7 +12,6 @@ type EndUserGetResponse struct {
 	Name        string    `json:"name"`
 	LastName    string    `json:"last_name"`
 	EndUserType string    `json:"end_user_type"`
-	APIID       string    `json:"api_id"`
 }
 
 type EndUserListParams struct {
