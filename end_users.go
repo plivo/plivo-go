@@ -62,7 +62,7 @@ func (service *EndUserService) List(params EndUserListParams) (response *EndUser
 	return
 }
 
-func (service *EndUserService) Create(params CreateEndUserParams) (response *CreateEndUserResponse, err error) {
+func (service *EndUserService) Create(params EndUserParams) (response *CreateEndUserResponse, err error) {
 	request, err := service.client.NewRequest("POST", params, "EndUser/")
 	if err != nil {
 		return
