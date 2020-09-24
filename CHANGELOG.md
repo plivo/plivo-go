@@ -1,5 +1,8 @@
 # Change Log
 
+## [5.1.0](https://github.com/plivo/plivo-go/tree/v5.1.0) (2020-09-24)
+- Add "publicURI" optional param support for Application API.
+
 ## [5.0.0](https://github.com/plivo/plivo-go/tree/v5.0.0) (2020-08-19)
 - Internal changes in Phlo for MultiPartyCall component.
 - **BREAKING**: Rename MultiPartyCall struct to PhloMultiPartyCall.
