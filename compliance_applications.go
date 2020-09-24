@@ -50,8 +50,12 @@ type ComplianceApplicationResponse struct {
 	EndUserID               string    `json:"end_user_id"`
 	ComplianceRequirementID string    `json:"compliance_requirement_id"`
 	Documents               []struct {
-		DocumentID string `json:"document_id"`
-		Name       string `json:"name"`
+		DocumentID       string `json:"document_id"`
+		Name             string `json:"name"`
+		DocumentName     string `json:"document_name"`
+		DocumentTypeID   string `json:"document_type_id"`
+		DocumentTypeName string `json:"document_type_name"`
+		Scope            string `json:"scope"`
 	} `json:"documents"`
 }
 
