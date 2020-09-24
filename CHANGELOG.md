@@ -1,5 +1,8 @@
 # Change Log
 
+## [5.2.0](https://github.com/plivo/plivo-go/tree/v5.2.0) (2020-09-25)
+- Add Lookup API support.
+
 ## [5.1.0](https://github.com/plivo/plivo-go/tree/v5.1.0) (2020-09-24)
 - Add "publicURI" optional param support for Application API.
 
