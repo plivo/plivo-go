@@ -13,23 +13,24 @@ type QueuedCallService struct {
 }
 
 type Call struct {
-	FromNumber      string `json:"from_number,omitempty" url:"from_number,omitempty"`
-	ToNumber        string `json:"to_number,omitempty" url:"to_number,omitempty"`
-	AnswerURL       string `json:"answer_url,omitempty" url:"answer_url,omitempty"`
-	CallUUID        string `json:"call_uuid,omitempty" url:"call_uuid,omitempty"`
-	ParentCallUUID  string `json:"parent_call_uuid,omitempty" url:"parent_call_uuid,omitempty"`
-	EndTime         string `json:"end_time,omitempty" url:"end_time,omitempty"`
-	TotalAmount     string `json:"total_amount,omitempty" url:"total_amount,omitempty"`
-	CallDirection   string `json:"call_direction,omitempty" url:"call_direction,omitempty"`
-	CallDuration    int64  `json:"call_duration,omitempty" url:"call_duration,omitempty"`
-	MessageURL      string `json:"message_url,omitempty" url:"message_url,omitempty"`
-	ResourceURI     string `json:"resource_uri,omitempty" url:"resource_uri,omitempty"`
-	CallState       string `json:"call_state,omitempty" url:"call_state,omitempty"`
-	HangupCauseCode int64  `json:"hangup_cause_code,omitempty" url:"hangup_cause_code,omitempty"`
-	HangupCauseName string `json:"hangup_cause_name,omitempty" url:"hangup_cause_name,omitempty"`
-	HangupSource    string `json:"hangup_source,omitempty" url:"hangup_source,omitempty"`
-	TotalRate       string `json:"total_rate,omitempty" url:"total_rate,omitempty"`
-	ConferenceUUID  string `json:"conference_uuid,omitempty"`
+	FromNumber        string `json:"from_number,omitempty" url:"from_number,omitempty"`
+	ToNumber          string `json:"to_number,omitempty" url:"to_number,omitempty"`
+	AnswerURL         string `json:"answer_url,omitempty" url:"answer_url,omitempty"`
+	CallUUID          string `json:"call_uuid,omitempty" url:"call_uuid,omitempty"`
+	ParentCallUUID    string `json:"parent_call_uuid,omitempty" url:"parent_call_uuid,omitempty"`
+	EndTime           string `json:"end_time,omitempty" url:"end_time,omitempty"`
+	TotalAmount       string `json:"total_amount,omitempty" url:"total_amount,omitempty"`
+	CallDirection     string `json:"call_direction,omitempty" url:"call_direction,omitempty"`
+	CallDuration      int64  `json:"call_duration,omitempty" url:"call_duration,omitempty"`
+	MessageURL        string `json:"message_url,omitempty" url:"message_url,omitempty"`
+	ResourceURI       string `json:"resource_uri,omitempty" url:"resource_uri,omitempty"`
+	CallState         string `json:"call_state,omitempty" url:"call_state,omitempty"`
+	HangupCauseCode   int64  `json:"hangup_cause_code,omitempty" url:"hangup_cause_code,omitempty"`
+	HangupCauseName   string `json:"hangup_cause_name,omitempty" url:"hangup_cause_name,omitempty"`
+	HangupSource      string `json:"hangup_source,omitempty" url:"hangup_source,omitempty"`
+	TotalRate         string `json:"total_rate,omitempty" url:"total_rate,omitempty"`
+	ConferenceUUID    string `json:"conference_uuid,omitempty"`
+	VoiceNetworkGroup string `json:"voice_network_group,omitempty" url:"voice_network_group,omitempty"`
 }
 
 type LiveCall struct {
