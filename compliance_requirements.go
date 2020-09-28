@@ -21,7 +21,6 @@ type GetComplianceRequirementResponse struct {
 }
 
 type ListComplianceRequirementParams struct {
-	EndUserListParams
 	CountryIso2 string `json:"country_iso2,omitempty" url:"country_iso2,omitempty"`
 	NumberType  string `json:"number_type,omitempty" url:"number_type,omitempty"`
 	EndUserType string `json:"end_user_type,omitempty" url:"end_user_type,omitempty"`

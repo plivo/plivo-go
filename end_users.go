@@ -30,14 +30,7 @@ type EndUserParams struct {
 	EndUserType string `json:"end_user_type,omitempty" url:"end_user_type,omitempty"`
 }
 
-type CreateEndUserResponse struct {
-	CreatedAt   time.Time `json:"created_at"`
-	EndUserID   string    `json:"end_user_id"`
-	Name        string    `json:"name"`
-	LastName    string    `json:"last_name"`
-	EndUserType string    `json:"end_user_type"`
-	APIID       string    `json:"api_id"`
-}
+type CreateEndUserResponse BaseResponse
 
 type UpdateEndUserParams struct {
 	EndUserParams

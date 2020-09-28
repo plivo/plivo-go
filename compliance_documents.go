@@ -23,9 +23,24 @@ type GetComplianceDocumentResponse struct {
 	Alias           string `json:"alias"`
 	FileName        string `json:"file_name"`
 	MetaInformation struct {
-		LastName    string `json:"last_name"`
-		FirstName   string `json:"first_name"`
-		DateOfBirth string `json:"date_of_birth"`
+		LastName                   string `json:"last_name"`
+		FirstName                  string `json:"first_name"`
+		DateOfBirth                string `json:"date_of_birth,omitempty"`
+		AddressLine1               string `json:"address_line_1,omitempty"`
+		AddressLine2               string `json:"address_line_2,omitempty"`
+		City                       string `json:"city,omitempty"`
+		Country                    string `json:"country,omitempty"`
+		PostalCode                 string `json:"postal_code,omitempty"`
+		UniqueIdentificationNumber string `json:"unique_identification_number,omitempty"`
+		Nationality                string `json:"nationality,omitempty"`
+		PlaceOfBirth               string `json:"place_of_birth,omitempty"`
+		DateOfIssue                string `json:"date_of_issue,omitempty"`
+		DateOfExpiration           string `json:"date_of_expiration,omitempty"`
+		TypeOfUtility              string `json:"type_of_utility,omitempty"`
+		BillingId                  string `json:"billing_id,omitempty"`
+		BillingDate                string `json:"billing_date,omitempty"`
+		BusinessName               string `json:"business_name,omitempty"`
+		TypeOfId                   string `json:"type_of_id,omitempty"`
 	} `json:"meta_information"`
 	CreatedAt string `json:"created_at"`
 }
@@ -45,9 +60,24 @@ type ListComplianceDocumentResponse struct {
 		ComplianceDocumentID string    `json:"compliance_document_id"`
 		Alias                string    `json:"alias"`
 		MetaInformation      struct {
-			LastName    string `json:"last_name"`
-			FirstName   string `json:"first_name"`
-			DateOfBirth string `json:"date_of_birth"`
+			LastName                   string `json:"last_name"`
+			FirstName                  string `json:"first_name"`
+			DateOfBirth                string `json:"date_of_birth,omitempty"`
+			AddressLine1               string `json:"address_line_1,omitempty"`
+			AddressLine2               string `json:"address_line_2,omitempty"`
+			City                       string `json:"city,omitempty"`
+			Country                    string `json:"country,omitempty"`
+			PostalCode                 string `json:"postal_code,omitempty"`
+			UniqueIdentificationNumber string `json:"unique_identification_number,omitempty"`
+			Nationality                string `json:"nationality,omitempty"`
+			PlaceOfBirth               string `json:"place_of_birth,omitempty"`
+			DateOfIssue                string `json:"date_of_issue,omitempty"`
+			DateOfExpiration           string `json:"date_of_expiration,omitempty"`
+			TypeOfUtility              string `json:"type_of_utility,omitempty"`
+			BillingId                  string `json:"billing_id,omitempty"`
+			BillingDate                string `json:"billing_date,omitempty"`
+			BusinessName               string `json:"business_name,omitempty"`
+			TypeOfId                   string `json:"type_of_id,omitempty"`
 		} `json:"meta_information"`
 		File           string `json:"file"`
 		EndUserID      string `json:"end_user_id"`
@@ -56,13 +86,28 @@ type ListComplianceDocumentResponse struct {
 }
 
 type CreateComplianceDocumentParams struct {
-	file Files
-	EndUserID      string `json:"end_user_id,omitempty"`
-	DocumentTypeID string `json:"document_type_id,omitempty"`
-	Alias          string `json:"alias,omitempty"`
-	LastName       string `json:"last_name,omitempty"`
-	FirstName      string `json:"first_name,omitempty"`
-	DateOfBirth    string `json:"date_of_birth,omitempty"`
+	file                       Files
+	EndUserID                  string `json:"end_user_id,omitempty"`
+	DocumentTypeID             string `json:"document_type_id,omitempty"`
+	Alias                      string `json:"alias,omitempty"`
+	LastName                   string `json:"last_name,omitempty"`
+	FirstName                  string `json:"first_name,omitempty"`
+	DateOfBirth                string `json:"date_of_birth,omitempty"`
+	AddressLine1               string `json:"address_line_1,omitempty"`
+	AddressLine2               string `json:"address_line_2,omitempty"`
+	City                       string `json:"city,omitempty"`
+	Country                    string `json:"country,omitempty"`
+	PostalCode                 string `json:"postal_code,omitempty"`
+	UniqueIdentificationNumber string `json:"unique_identification_number,omitempty"`
+	Nationality                string `json:"nationality,omitempty"`
+	PlaceOfBirth               string `json:"place_of_birth,omitempty"`
+	DateOfIssue                string `json:"date_of_issue,omitempty"`
+	DateOfExpiration           string `json:"date_of_expiration,omitempty"`
+	TypeOfUtility              string `json:"type_of_utility,omitempty"`
+	BillingId                  string `json:"billing_id,omitempty"`
+	BillingDate                string `json:"billing_date,omitempty"`
+	BusinessName               string `json:"business_name,omitempty"`
+	TypeOfId                   string `json:"type_of_id,omitempty"`
 }
 
 type UpdateComplianceDocumentParams struct {
