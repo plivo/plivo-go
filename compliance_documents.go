@@ -79,14 +79,14 @@ type ListComplianceDocumentResponse struct {
 			BusinessName               string `json:"business_name,omitempty"`
 			TypeOfId                   string `json:"type_of_id,omitempty"`
 		} `json:"meta_information"`
-		File           string `json:"file"`
+		FileName       string `json:"file_name,omitempty"`
 		EndUserID      string `json:"end_user_id"`
 		DocumentTypeID string `json:"document_type_id"`
 	} `json:"objects"`
 }
 
 type CreateComplianceDocumentParams struct {
-	file                       Files
+	FileName                   string
 	EndUserID                  string `json:"end_user_id,omitempty"`
 	DocumentTypeID             string `json:"document_type_id,omitempty"`
 	Alias                      string `json:"alias,omitempty"`
@@ -138,32 +138,34 @@ func (service *ComplianceDocumentService) List(params EndUserListParams) (respon
 }
 
 func newfileUploadRequest(uri string, params map[string]string, paramName, path string) (*http.Request, error) {
-	file, err := os.Open(path)
-	if err != nil {
-		return nil, err
-	}
-	fileContents, err := ioutil.ReadAll(file)
-	if err != nil {
-		return nil, err
-	}
-	fi, err := file.Stat()
-	if err != nil {
-		return nil, err
-	}
-	file.Close()
-
 	body := new(bytes.Buffer)
 	writer := multipart.NewWriter(body)
-	part, err := writer.CreateFormFile(paramName, fi.Name())
-	if err != nil {
-		return nil, err
+	if path != "" {
+		file, err := os.Open(path)
+		if err != nil {
+			return nil, err
+		}
+		fileContents, err := ioutil.ReadAll(file)
+		if err != nil {
+			return nil, err
+		}
+		fi, err := file.Stat()
+		if err != nil {
+			return nil, err
+		}
+		file.Close()
+
+		part, err := writer.CreateFormFile(paramName, fi.Name())
+		if err != nil {
+			return nil, err
+		}
+		part.Write(fileContents)
 	}
-	part.Write(fileContents)
 
 	for key, val := range params {
 		_ = writer.WriteField(key, val)
 	}
-	err = writer.Close()
+	err := writer.Close()
 	if err != nil {
 		return nil, err
 	}
@@ -185,7 +187,7 @@ func (service *ComplianceDocumentService) Create(params CreateComplianceDocument
 		requestParams[field.Name] = value.String()
 	}
 
-	request, err := newfileUploadRequest(requestUrl.String(), requestParams, "file", params.file.FilePath)
+	request, err := newfileUploadRequest(requestUrl.String(), requestParams, "file", params.FileName)
 	//request, err := service.client.NewRequest("POST", params, "ComplianceDocument/")
 	if err != nil {
 		return
@@ -209,7 +211,7 @@ func (service *ComplianceDocumentService) Update(params UpdateComplianceDocument
 		requestParams[field.Name] = value.String()
 	}
 
-	request, err := newfileUploadRequest(requestUrl.String(), requestParams, "file", params.file.FilePath)
+	request, err := newfileUploadRequest(requestUrl.String(), requestParams, "file", params.FileName)
 	//request, err := service.client.NewRequest("POST", params, "ComplianceDocument/%s/", params.ComplianceDocumentID)
 	if err != nil {
 		return
