@@ -24,18 +24,28 @@ type EndUserListResponse struct {
 	Objects []EndUserGetResponse `json:"objects" url:"objects"`
 }
 
+type CreateEndUserResponse struct {
+	CreatedAt   time.Time `json:"created_at"`
+	EndUserID   string    `json:"end_user_id"`
+	Name        string    `json:"name"`
+	LastName    string    `json:"last_name"`
+	EndUserType string    `json:"end_user_type"`
+	APIID       string    `json:"api_id"`
+	Message     string    `json:"message"`
+}
+
 type EndUserParams struct {
 	Name        string `json:"name,omitempty" url:"name,omitempty"`
 	LastName    string `json:"last_name,omitempty" url:"last_name,omitempty"`
 	EndUserType string `json:"end_user_type,omitempty" url:"end_user_type,omitempty"`
 }
 
-type CreateEndUserResponse BaseResponse
-
 type UpdateEndUserParams struct {
 	EndUserParams
 	EndUserID string `json:"end_user_id"`
 }
+
+type UpdateEndUserResponse BaseResponse
 
 func (service *EndUserService) Get(endUserId string) (response *EndUserGetResponse, err error) {
 	req, err := service.client.NewRequest("GET", nil, "EndUser/%s/", endUserId)
@@ -64,12 +74,12 @@ func (service *EndUserService) Create(params EndUserParams) (response *CreateEnd
 	return
 }
 
-func (service *EndUserService) Update(params UpdateEndUserParams) (response *CreateEndUserResponse, err error) {
+func (service *EndUserService) Update(params UpdateEndUserParams) (response *UpdateEndUserResponse, err error) {
 	request, err := service.client.NewRequest("POST", params, "EndUser/%s/", params.EndUserID)
 	if err != nil {
 		return
 	}
-	response = &CreateEndUserResponse{}
+	response = &UpdateEndUserResponse{}
 	err = service.client.ExecuteRequest(request, response)
 	return
 }
