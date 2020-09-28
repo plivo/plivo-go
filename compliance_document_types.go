@@ -20,6 +20,7 @@ type GetComplianceDocumentTypeResponse struct {
 		MaxLength    int    `json:"max_length,omitempty"`
 		MinLength    int    `json:"min_length,omitempty"`
 		Format       string `json:"format,omitempty"`
+		Enums        []string `json:"enums,omitempty"`
 	} `json:"information"`
 	ProofRequired interface{} `json:"proof_required"`
 }
