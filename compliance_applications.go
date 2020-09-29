@@ -91,8 +91,8 @@ type ListComplianceApplicationResponse struct {
 	} `json:"objects"`
 }
 
-func (service *ComplianceApplicationService) Get(complianceDocumentId string) (response *ComplianceApplicationResponse, err error) {
-	req, err := service.client.NewRequest("GET", nil, "ComplianceDocument/%s/", complianceDocumentId)
+func (service *ComplianceApplicationService) Get(complianceApplicationId string) (response *ComplianceApplicationResponse, err error) {
+	req, err := service.client.NewRequest("GET", nil, "ComplianceApplication/%s/", complianceApplicationId)
 	response = &ComplianceApplicationResponse{}
 	err = service.client.ExecuteRequest(req, response)
 	return
