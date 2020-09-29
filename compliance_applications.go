@@ -28,6 +28,8 @@ type UpdateComplianceApplicationParams struct {
 	DocumentIds             []string `json:"document_ids"`
 }
 
+type UpdateComplianceApplicationResponse BaseResponse
+
 type CreateComplianceApplicationParams struct {
 	ComplianceRequirementId string   `json:"compliance_requirement_id,omitempty" url:"compliance_requirement_id,omitempty"`
 	EndUserId               string   `json:"end_user_id,omitempty" url:"end_user_id,omitempty"`
@@ -52,10 +54,10 @@ type ComplianceApplicationResponse struct {
 	Documents               []struct {
 		DocumentID       string `json:"document_id"`
 		Name             string `json:"name"`
-		DocumentName     string `json:"document_name"`
-		DocumentTypeID   string `json:"document_type_id"`
-		DocumentTypeName string `json:"document_type_name"`
-		Scope            string `json:"scope"`
+		DocumentName     string `json:"document_name,omitempty"`
+		DocumentTypeID   string `json:"document_type_id,omitempty"`
+		DocumentTypeName string `json:"document_type_name,omitempty"`
+		Scope            string `json:"scope,omitempty"`
 	} `json:"documents"`
 }
 
@@ -116,12 +118,12 @@ func (service *ComplianceApplicationService) Create(params CreateComplianceAppli
 	return
 }
 
-func (service *ComplianceApplicationService) Update(params UpdateComplianceApplicationParams) (response *ComplianceApplicationResponse, err error) {
+func (service *ComplianceApplicationService) Update(params UpdateComplianceApplicationParams) (response *UpdateComplianceApplicationResponse, err error) {
 	request, err := service.client.NewRequest("POST", params, "ComplianceApplication/%s/", params.ComplianceApplicationId)
 	if err != nil {
 		return
 	}
-	response = &ComplianceApplicationResponse{}
+	response = &UpdateComplianceApplicationResponse{}
 	err = service.client.ExecuteRequest(request, response)
 	return
 }
