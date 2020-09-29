@@ -9,6 +9,7 @@ import (
 	"os"
 	"reflect"
 	"time"
+	"strings"
 )
 
 type ComplianceDocumentService struct {
@@ -16,12 +17,12 @@ type ComplianceDocumentService struct {
 }
 
 type GetComplianceDocumentResponse struct {
-	APIID           string `json:"api_id"`
-	DocumentID      string `json:"document_id"`
-	EndUserID       string `json:"end_user_id"`
-	DocumentTypeID  string `json:"document_type_id"`
-	Alias           string `json:"alias"`
-	FileName        string `json:"file_name"`
+	APIID          string `json:"api_id"`
+	DocumentID     string `json:"document_id"`
+	EndUserID      string `json:"end_user_id"`
+	DocumentTypeID string `json:"document_type_id"`
+	Alias          string `json:"alias"`
+	FileName       string `json:"file_name"`
 	MetaInformation struct {
 		LastName                   string `json:"last_name"`
 		FirstName                  string `json:"first_name"`
@@ -79,14 +80,14 @@ type ListComplianceDocumentResponse struct {
 			BusinessName               string `json:"business_name,omitempty"`
 			TypeOfId                   string `json:"type_of_id,omitempty"`
 		} `json:"meta_information"`
-		FileName       string `json:"file_name,omitempty"`
+		File           string `json:"file,omitempty"`
 		EndUserID      string `json:"end_user_id"`
 		DocumentTypeID string `json:"document_type_id"`
 	} `json:"objects"`
 }
 
 type CreateComplianceDocumentParams struct {
-	FileName                   string
+	File                       string `json:"file,omitempty"`
 	EndUserID                  string `json:"end_user_id,omitempty"`
 	DocumentTypeID             string `json:"document_type_id,omitempty"`
 	Alias                      string `json:"alias,omitempty"`
@@ -115,10 +116,7 @@ type UpdateComplianceDocumentParams struct {
 	CreateComplianceDocumentParams
 }
 
-//type UpdateComplianceDocumentParams struct {
-//	CreateEndUserParams
-//	EndUserID string `json:"end_user_id"`
-//}
+type UpdateComplianceDocumentResponse BaseResponse
 
 func (service *ComplianceDocumentService) Get(complianceDocumentId string) (response *GetComplianceDocumentResponse, err error) {
 	req, err := service.client.NewRequest("GET", nil, "ComplianceDocument/%s/", complianceDocumentId)
@@ -169,54 +167,65 @@ func newfileUploadRequest(uri string, params map[string]string, paramName, path 
 	if err != nil {
 		return nil, err
 	}
+	request, err := http.NewRequest("POST", uri, body)
+	if err != nil {
+		return request, err
+	}
+	request.Header.Set("Content-Type", writer.FormDataContentType())
 
-	return http.NewRequest("POST", uri, body)
+	return request, nil
 }
 
 func (service *ComplianceDocumentService) Create(params CreateComplianceDocumentParams) (response *GetComplianceDocumentResponse, err error) {
 	requestUrl := service.client.BaseUrl
 	requestUrl.Path = fmt.Sprintf(baseRequestString, fmt.Sprintf(service.client.AuthId+"/ComplianceDocument/"))
 
-	var requestParams map[string]string
+	requestParams := make(map[string]string)
 	fields := reflect.TypeOf(params)
 	values := reflect.ValueOf(params)
 	num := fields.NumField()
 	for i:=0; i<num; i++ {
-		field := fields.Field(i)
+		field := strings.Split(fields.Field(i).Tag.Get("json"), ",")[0]
 		value := values.Field(i)
-		requestParams[field.Name] = value.String()
+		if field != "file" {
+			requestParams[field] = value.String()
+		}
 	}
 
-	request, err := newfileUploadRequest(requestUrl.String(), requestParams, "file", params.FileName)
+	request, err := newfileUploadRequest(requestUrl.String(), requestParams, "file", params.File)
 	//request, err := service.client.NewRequest("POST", params, "ComplianceDocument/")
 	if err != nil {
 		return
 	}
+	request.SetBasicAuth(service.client.AuthId, service.client.AuthToken)
 	response = &GetComplianceDocumentResponse{}
 	err = service.client.ExecuteRequest(request, response)
 	return
 }
 
-func (service *ComplianceDocumentService) Update(params UpdateComplianceDocumentParams) (response *GetComplianceDocumentResponse, err error) {
+func (service *ComplianceDocumentService) Update(params UpdateComplianceDocumentParams) (response *UpdateComplianceDocumentResponse, err error) {
 	requestUrl := service.client.BaseUrl
-	requestUrl.Path = fmt.Sprintf(baseRequestString, fmt.Sprintf(service.client.AuthId+"/ComplianceDocument/"+params.ComplianceDocumentID+"/"))
+	requestUrl.Path = fmt.Sprintf(baseRequestString, fmt.Sprintf(service.client.AuthId+"/ComplianceDocument/"+params.ComplianceDocumentID))
 
-	var requestParams map[string]string
+	requestParams := make(map[string]string)
+
 	fields := reflect.TypeOf(params)
 	values := reflect.ValueOf(params)
 	num := fields.NumField()
 	for i:=0; i<num; i++ {
-		field := fields.Field(i)
+		field := strings.Split(fields.Field(i).Tag.Get("json"), ",")[0]
 		value := values.Field(i)
-		requestParams[field.Name] = value.String()
+		if field != "file" {
+			requestParams[field] = value.String()
+		}
 	}
 
-	request, err := newfileUploadRequest(requestUrl.String(), requestParams, "file", params.FileName)
-	//request, err := service.client.NewRequest("POST", params, "ComplianceDocument/%s/", params.ComplianceDocumentID)
+	request, err := newfileUploadRequest(requestUrl.String(), requestParams, "file", params.File)
 	if err != nil {
 		return
 	}
-	response = &GetComplianceDocumentResponse{}
+	request.SetBasicAuth(service.client.AuthId, service.client.AuthToken)
+	response = &UpdateComplianceDocumentResponse{}
 	err = service.client.ExecuteRequest(request, response)
 	return
 }
