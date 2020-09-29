@@ -24,8 +24,8 @@ type GetComplianceDocumentResponse struct {
 	Alias          string `json:"alias"`
 	FileName       string `json:"file_name"`
 	MetaInformation struct {
-		LastName                   string `json:"last_name"`
-		FirstName                  string `json:"first_name"`
+		LastName                   string `json:"last_name,omitempty"`
+		FirstName                  string `json:"first_name,omitempty"`
 		DateOfBirth                string `json:"date_of_birth,omitempty"`
 		AddressLine1               string `json:"address_line_1,omitempty"`
 		AddressLine2               string `json:"address_line_2,omitempty"`
@@ -61,8 +61,8 @@ type ListComplianceDocumentResponse struct {
 		ComplianceDocumentID string    `json:"compliance_document_id"`
 		Alias                string    `json:"alias"`
 		MetaInformation      struct {
-			LastName                   string `json:"last_name"`
-			FirstName                  string `json:"first_name"`
+			LastName                   string `json:"last_name,omitempty"`
+			FirstName                  string `json:"first_name,omitempty"`
 			DateOfBirth                string `json:"date_of_birth,omitempty"`
 			AddressLine1               string `json:"address_line_1,omitempty"`
 			AddressLine2               string `json:"address_line_2,omitempty"`
@@ -235,6 +235,6 @@ func (service *ComplianceDocumentService) Delete(complianceDocumentId string) (e
 	if err != nil {
 		return
 	}
-	err = service.client.ExecuteRequest(req, nil, isVoiceRequest())
+	err = service.client.ExecuteRequest(req, nil)
 	return
 }
