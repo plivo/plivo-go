@@ -28,14 +28,14 @@ type ListComplianceRequirementParams struct {
 }
 
 func (service *ComplianceRequirementService) Get(complianceRequirementId string) (response *GetComplianceRequirementResponse, err error) {
-	req, err := service.client.NewRequest("GET", nil, "ComplianceRequirement/%s/", complianceRequirementId)
+	req, err := service.client.NewRequest("GET", nil, "ComplianceRequirement/%s", complianceRequirementId)
 	response = &GetComplianceRequirementResponse{}
 	err = service.client.ExecuteRequest(req, response)
 	return
 }
 
 func (service *ComplianceRequirementService) List(params ListComplianceRequirementParams) (response *GetComplianceRequirementResponse, err error) {
-	request, err := service.client.NewRequest("GET", params, "ComplianceRequirement/")
+	request, err := service.client.NewRequest("GET", params, "ComplianceRequirement")
 	if err != nil {
 		return
 	}

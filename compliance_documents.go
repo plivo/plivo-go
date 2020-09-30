@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"os"
 	"reflect"
-	"time"
 	"strings"
+	"time"
 )
 
 type ComplianceDocumentService struct {
@@ -119,14 +119,14 @@ type UpdateComplianceDocumentParams struct {
 type UpdateComplianceDocumentResponse BaseResponse
 
 func (service *ComplianceDocumentService) Get(complianceDocumentId string) (response *GetComplianceDocumentResponse, err error) {
-	req, err := service.client.NewRequest("GET", nil, "ComplianceDocument/%s/", complianceDocumentId)
+	req, err := service.client.NewRequest("GET", nil, "ComplianceDocument/%s", complianceDocumentId)
 	response = &GetComplianceDocumentResponse{}
 	err = service.client.ExecuteRequest(req, response)
 	return
 }
 
 func (service *ComplianceDocumentService) List(params EndUserListParams) (response *ListComplianceDocumentResponse, err error) {
-	request, err := service.client.NewRequest("GET", params, "ComplianceDocument/")
+	request, err := service.client.NewRequest("GET", params, "ComplianceDocument")
 	if err != nil {
 		return
 	}
@@ -178,7 +178,7 @@ func newfileUploadRequest(uri string, params map[string]string, paramName, path 
 
 func (service *ComplianceDocumentService) Create(params CreateComplianceDocumentParams) (response *GetComplianceDocumentResponse, err error) {
 	requestUrl := service.client.BaseUrl
-	requestUrl.Path = fmt.Sprintf(baseRequestString, fmt.Sprintf(service.client.AuthId+"/ComplianceDocument/"))
+	requestUrl.Path = fmt.Sprintf(baseRequestString, fmt.Sprintf(service.client.AuthId+"/ComplianceDocument"))
 
 	requestParams := make(map[string]string)
 	fields := reflect.TypeOf(params)
@@ -231,7 +231,7 @@ func (service *ComplianceDocumentService) Update(params UpdateComplianceDocument
 }
 
 func (service *ComplianceDocumentService) Delete(complianceDocumentId string) (err error) {
-	req, err := service.client.NewRequest("DELETE", nil, "ComplianceDocument/%s/", complianceDocumentId)
+	req, err := service.client.NewRequest("DELETE", nil, "ComplianceDocument/%s", complianceDocumentId)
 	if err != nil {
 		return
 	}

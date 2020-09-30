@@ -92,14 +92,14 @@ type ListComplianceApplicationResponse struct {
 }
 
 func (service *ComplianceApplicationService) Get(complianceApplicationId string) (response *ComplianceApplicationResponse, err error) {
-	req, err := service.client.NewRequest("GET", nil, "ComplianceApplication/%s/", complianceApplicationId)
+	req, err := service.client.NewRequest("GET", nil, "ComplianceApplication/%s", complianceApplicationId)
 	response = &ComplianceApplicationResponse{}
 	err = service.client.ExecuteRequest(req, response)
 	return
 }
 
 func (service *ComplianceApplicationService) List(params EndUserListParams) (response *ListComplianceApplicationResponse, err error) {
-	request, err := service.client.NewRequest("GET", params, "ComplianceApplication/")
+	request, err := service.client.NewRequest("GET", params, "ComplianceApplication")
 	if err != nil {
 		return
 	}
@@ -109,7 +109,7 @@ func (service *ComplianceApplicationService) List(params EndUserListParams) (res
 }
 
 func (service *ComplianceApplicationService) Create(params CreateComplianceApplicationParams) (response *ComplianceApplicationResponse, err error) {
-	request, err := service.client.NewRequest("POST", params, "ComplianceApplication/")
+	request, err := service.client.NewRequest("POST", params, "ComplianceApplication")
 	if err != nil {
 		return
 	}
@@ -119,7 +119,7 @@ func (service *ComplianceApplicationService) Create(params CreateComplianceAppli
 }
 
 func (service *ComplianceApplicationService) Update(params UpdateComplianceApplicationParams) (response *UpdateComplianceApplicationResponse, err error) {
-	request, err := service.client.NewRequest("POST", params, "ComplianceApplication/%s/", params.ComplianceApplicationId)
+	request, err := service.client.NewRequest("POST", params, "ComplianceApplication/%s", params.ComplianceApplicationId)
 	if err != nil {
 		return
 	}
@@ -129,7 +129,7 @@ func (service *ComplianceApplicationService) Update(params UpdateComplianceAppli
 }
 
 func (service *ComplianceApplicationService) Delete(complianceApplicationId string) (err error) {
-	req, err := service.client.NewRequest("DELETE", nil, "ComplianceApplication/%s/", complianceApplicationId)
+	req, err := service.client.NewRequest("DELETE", nil, "ComplianceApplication/%s", complianceApplicationId)
 	if err != nil {
 		return
 	}
@@ -138,7 +138,7 @@ func (service *ComplianceApplicationService) Delete(complianceApplicationId stri
 }
 
 func (service *ComplianceApplicationService) Submit(complianceApplicationId string) (response *SubmitComplianceApplicationResponse, err error) {
-	req, err := service.client.NewRequest("POST", nil, "ComplianceApplication/%s/Submit/", complianceApplicationId)
+	req, err := service.client.NewRequest("POST", nil, "ComplianceApplication/%s/Submit", complianceApplicationId)
 	if err != nil {
 		return
 	}
