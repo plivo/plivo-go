@@ -18,8 +18,12 @@ type SubmitComplianceApplicationResponse struct {
 	EndUserID               string    `json:"end_user_id"`
 	ComplianceRequirementID string    `json:"compliance_requirement_id"`
 	Documents               []struct {
-		DocumentID string `json:"document_id"`
-		Name       string `json:"name"`
+		DocumentID       string `json:"document_id"`
+		Name             string `json:"name"`
+		DocumentName     string `json:"document_name,omitempty"`
+		DocumentTypeID   string `json:"document_type_id,omitempty"`
+		DocumentTypeName string `json:"document_type_name,omitempty"`
+		Scope            string `json:"scope,omitempty"`
 	} `json:"documents"`
 }
 
