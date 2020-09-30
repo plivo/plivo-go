@@ -26,30 +26,6 @@ type ListComplianceRequirementParams struct {
 	EndUserType string `json:"end_user_type,omitempty" url:"end_user_type,omitempty"`
 	PhoneNumber string `json:"phone_number,omitempty" url:"phone_number,omitempty"`
 }
-//type ListComplianceDocumentTypeResponse struct {
-//	APIID string `json:"api_id"`
-//	Meta  struct {
-//		Limit      int         `json:"limit"`
-//		Next       interface{} `json:"next"`
-//		Offset     int         `json:"offset"`
-//		Previous   interface{} `json:"previous"`
-//		TotalCount int         `json:"total_count"`
-//	} `json:"meta"`
-//	Objects []struct {
-//		CreatedAt      time.Time `json:"created_at"`
-//		Description    string    `json:"description"`
-//		DocumentName   string    `json:"document_name"`
-//		DocumentTypeID string    `json:"document_type_id"`
-//		Information    []struct {
-//			FieldName    string `json:"field_name"`
-//			FieldType    string `json:"field_type"`
-//			FriendlyName string `json:"friendly_name"`
-//			MaxLength    int    `json:"max_length,omitempty"`
-//			MinLength    int    `json:"min_length,omitempty"`
-//		} `json:"information"`
-//		ProofRequired interface{} `json:"proof_required"`
-//	} `json:"objects"`
-//}
 
 func (service *ComplianceRequirementService) Get(complianceRequirementId string) (response *GetComplianceRequirementResponse, err error) {
 	req, err := service.client.NewRequest("GET", nil, "ComplianceRequirement/%s/", complianceRequirementId)
