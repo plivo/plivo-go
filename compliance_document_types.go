@@ -54,14 +54,14 @@ type ListComplianceDocumentTypeResponse struct {
 }
 
 func (service *ComplianceDocumentTypeService) Get(docId string) (response *GetComplianceDocumentTypeResponse, err error) {
-	req, err := service.client.NewRequest("GET", nil, "ComplianceDocumentType/%s/", docId)
+	req, err := service.client.NewRequest("GET", nil, "ComplianceDocumentType/%s", docId)
 	response = &GetComplianceDocumentTypeResponse{}
 	err = service.client.ExecuteRequest(req, response)
 	return
 }
 
 func (service *ComplianceDocumentTypeService) List(params EndUserListParams) (response *ListComplianceDocumentTypeResponse, err error) {
-	request, err := service.client.NewRequest("GET", params, "ComplianceDocumentType/")
+	request, err := service.client.NewRequest("GET", params, "ComplianceDocumentType")
 	if err != nil {
 		return
 	}

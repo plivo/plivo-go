@@ -48,14 +48,14 @@ type UpdateEndUserParams struct {
 type UpdateEndUserResponse BaseResponse
 
 func (service *EndUserService) Get(endUserId string) (response *EndUserGetResponse, err error) {
-	req, err := service.client.NewRequest("GET", nil, "EndUser/%s/", endUserId)
+	req, err := service.client.NewRequest("GET", nil, "EndUser/%s", endUserId)
 	response = &EndUserGetResponse{}
 	err = service.client.ExecuteRequest(req, response)
 	return
 }
 
 func (service *EndUserService) List(params EndUserListParams) (response *EndUserListResponse, err error) {
-	request, err := service.client.NewRequest("GET", params, "EndUser/")
+	request, err := service.client.NewRequest("GET", params, "EndUser")
 	if err != nil {
 		return
 	}
@@ -65,7 +65,7 @@ func (service *EndUserService) List(params EndUserListParams) (response *EndUser
 }
 
 func (service *EndUserService) Create(params EndUserParams) (response *CreateEndUserResponse, err error) {
-	request, err := service.client.NewRequest("POST", params, "EndUser/")
+	request, err := service.client.NewRequest("POST", params, "EndUser")
 	if err != nil {
 		return
 	}
@@ -75,7 +75,7 @@ func (service *EndUserService) Create(params EndUserParams) (response *CreateEnd
 }
 
 func (service *EndUserService) Update(params UpdateEndUserParams) (response *UpdateEndUserResponse, err error) {
-	request, err := service.client.NewRequest("POST", params, "EndUser/%s/", params.EndUserID)
+	request, err := service.client.NewRequest("POST", params, "EndUser/%s", params.EndUserID)
 	if err != nil {
 		return
 	}
@@ -85,7 +85,7 @@ func (service *EndUserService) Update(params UpdateEndUserParams) (response *Upd
 }
 
 func (service *EndUserService) Delete(endUserId string) (err error) {
-	req, err := service.client.NewRequest("DELETE", nil, "EndUser/%s/", endUserId)
+	req, err := service.client.NewRequest("DELETE", nil, "EndUser/%s", endUserId)
 	if err != nil {
 		return
 	}
