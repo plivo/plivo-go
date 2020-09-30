@@ -26,9 +26,6 @@ type GetComplianceDocumentTypeResponse struct {
 }
 
 type ListComplianceDocumentTypeResponse struct {
-	// Remove api id
-	// helptext, format, enums
-
 	APIID string `json:"api_id"`
 	Meta  struct {
 		Limit      int         `json:"limit"`
