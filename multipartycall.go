@@ -61,11 +61,11 @@ type MultiPartyCallListParams struct {
 	endTimeLt            string
 	endTimeLte           string
 	endTime              string
-	startTimeGt          string
-	startTimeGte         string
-	startTimeLt          string
-	startTimeLte         string
-	startTime            string
+	creationTimeGt       string
+	creationTimeGte      string
+	creationTimeLt       string
+	creationTimeLte      string
+	creationTime         string
 	limit                string
 	offset               string
 }
@@ -137,7 +137,7 @@ func (service *MultiPartyCallService) List(params MultiPartyCallListParams) (res
 		return
 	}
 	response = &MultiPartyCallListResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -148,7 +148,7 @@ func (service *MultiPartyCallService) Get(params MultiPartyCallBasicParams) (res
 		return
 	}
 	response = &MultiPartyCallGetResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -167,7 +167,7 @@ func (service *MultiPartyCallService) AddParticipant(params MultiPartyCallAddPar
 		return
 	}
 	response = &MultiPartyCallAddParticipantResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -178,7 +178,7 @@ func (service *MultiPartyCallService) Start(params MultiPartyCallBasicParams) (r
 		return
 	}
 	response = &MultiPartyCallAddParticipantResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -189,7 +189,7 @@ func (service *MultiPartyCallService) Stop(params MultiPartyCallBasicParams) (re
 		return
 	}
 	response = &MultiPartyCallAddParticipantResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -200,7 +200,7 @@ func (service *MultiPartyCallService) StartRecording(params MultiPartyCallStartR
 		return
 	}
 	response = &MultiPartyCallAddParticipantResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -211,7 +211,7 @@ func (service *MultiPartyCallService) StopRecording(params MultiPartyCallBasicPa
 		return
 	}
 	response = &MultiPartyCallAddParticipantResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -222,7 +222,7 @@ func (service *MultiPartyCallService) PauseRecording(params MultiPartyCallBasicP
 		return
 	}
 	response = &MultiPartyCallAddParticipantResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -233,7 +233,7 @@ func (service *MultiPartyCallService) ResumeRecording(params MultiPartyCallBasic
 		return
 	}
 	response = &MultiPartyCallAddParticipantResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -244,7 +244,7 @@ func (service *MultiPartyCallService) ListParticipants(params MultiPartyCallList
 		return
 	}
 	response = &MultiPartyCallListResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -255,7 +255,7 @@ func (service *MultiPartyCallService) UpdateParticipant(params MultiPartyCallUpd
 		return
 	}
 	response = &MultiPartyCallAddParticipantResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -266,7 +266,7 @@ func (service *MultiPartyCallService) KickParticipant(params MultiPartyCallParti
 		return
 	}
 	response = &MultiPartyCallAddParticipantResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
@@ -277,7 +277,7 @@ func (service *MultiPartyCallService) GetParticipant(params MultiPartyCallPartic
 		return
 	}
 	response = &MultiPartyCallAddParticipantResponse{}
-	err = service.client.ExecuteRequest(req, response)
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
