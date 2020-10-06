@@ -40,6 +40,7 @@ type Client struct {
 	ComplianceRequirements  *ComplianceRequirementService
 	ComplianceApplications  *ComplianceApplicationService
 	Lookup                  *LookupService
+	MultiPartyCall *MultiPartyCallService
 }
 
 /*
@@ -104,6 +105,7 @@ func NewClient(authId, authToken string, options *ClientOptions) (client *Client
 	client.ComplianceRequirements = &ComplianceRequirementService{client: client}
 	client.ComplianceApplications = &ComplianceApplicationService{client: client}
 	client.Lookup = &LookupService{client: client}
+	client.MultiPartyCall = &MultiPartyCallService{client: client}
 	return
 }
 
