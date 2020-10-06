@@ -15,8 +15,11 @@ type EndUserGetResponse struct {
 }
 
 type EndUserListParams struct {
-	Limit  int `json:"limit,omitempty" url:"limit,omitempty"`
-	Offset int `json:"offset,omitempty" url:"offset,omitempty"`
+	Limit       int    `json:"limit,omitempty" url:"limit,omitempty"`
+	Offset      int    `json:"offset,omitempty" url:"offset,omitempty"`
+	Name        string `json:"name,omitempty" url:"name,omitempty"`
+	LastName    string `json:"last_name,omitempty" url:"last_name,omitempty"`
+	EndUserType string `json:"end_user_type,omitempty" url:"end_user_type,omitempty"`
 }
 
 type EndUserListResponse struct {

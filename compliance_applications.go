@@ -65,6 +65,16 @@ type ComplianceApplicationResponse struct {
 	} `json:"documents"`
 }
 
+type ComplianceApplicationListParams struct {
+	Limit       int    `json:"limit,omitempty" url:"limit,omitempty"`
+	Offset      int    `json:"offset,omitempty" url:"offset,omitempty"`
+	EndUserID   string `json:"end_user_id,omitempty" url:"end_user_id,omitempty"`
+	Country     string `json:"country,omitempty" url:"country,omitempty"`
+	NumberType  string `json:"number_type,omitempty" url:"number_type,omitempty"`
+	EndUserType string `json:"end_user_type,omitempty" url:"end_user_type,omitempty"`
+	Alias       string `json:"alias,omitempty" url:"alias,omitempty"`
+}
+
 type ListComplianceApplicationResponse struct {
 	APIID string `json:"api_id"`
 	Meta  struct {
@@ -102,7 +112,7 @@ func (service *ComplianceApplicationService) Get(complianceApplicationId string)
 	return
 }
 
-func (service *ComplianceApplicationService) List(params EndUserListParams) (response *ListComplianceApplicationResponse, err error) {
+func (service *ComplianceApplicationService) List(params ComplianceApplicationListParams) (response *ListComplianceApplicationResponse, err error) {
 	request, err := service.client.NewRequest("GET", params, "ComplianceApplication")
 	if err != nil {
 		return
