@@ -36,6 +36,23 @@ type Client struct {
 	Powerpack    *PowerpackService
 	Media        *MediaService
 	Lookup       *LookupService
+	Messages       *MessageService
+	Accounts       *AccountService
+	Subaccounts    *SubaccountService
+	Applications   *ApplicationService
+	Endpoints      *EndpointService
+	Numbers        *NumberService
+	PhoneNumbers   *PhoneNumberService
+	Pricing        *PricingService // TODO Rename?
+	Recordings     *RecordingService
+	Calls          *CallService
+	LiveCalls      *LiveCallService
+	QueuedCalls    *QueuedCallService
+	Conferences    *ConferenceService
+	CallFeedback   *CallFeedbackService
+	Powerpack      *PowerpackService
+	Media          *MediaService
+	MultiPartyCall *MultiPartyCallService
 }
 
 /*
@@ -95,6 +112,7 @@ func NewClient(authId, authToken string, options *ClientOptions) (client *Client
 	client.Powerpack = &PowerpackService{client: client}
 	client.Media = &MediaService{client: client}
 	client.Lookup = &LookupService{client: client}
+	client.MultiPartyCall = &MultiPartyCallService{client: client}
 	return
 }
 
