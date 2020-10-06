@@ -60,7 +60,7 @@ func (service *ComplianceDocumentTypeService) Get(docId string) (response *GetCo
 	return
 }
 
-func (service *ComplianceDocumentTypeService) List(params EndUserListParams) (response *ListComplianceDocumentTypeResponse, err error) {
+func (service *ComplianceDocumentTypeService) List(params BaseListParams) (response *ListComplianceDocumentTypeResponse, err error) {
 	request, err := service.client.NewRequest("GET", params, "ComplianceDocumentType")
 	if err != nil {
 		return

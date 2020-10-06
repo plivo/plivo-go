@@ -46,6 +46,13 @@ type GetComplianceDocumentResponse struct {
 	CreatedAt string `json:"created_at"`
 }
 
+type ComplianceDocumentListParams struct {
+	Limit          int    `json:"limit,omitempty" url:"limit,omitempty"`
+	Offset         int    `json:"offset,omitempty" url:"offset,omitempty"`
+	EndUserID      string `json:"end_user_id,omitempty" url:"end_user_id,omitempty"`
+	DocumentTypeID string `json:"document_type_id,omitempty" url:"document_type_id,omitempty"`
+	Alias          string `json:"alias,omitempty" url:"alias,omitempty"`
+}
 
 type ListComplianceDocumentResponse struct {
 	APIID string `json:"api_id"`
@@ -125,7 +132,7 @@ func (service *ComplianceDocumentService) Get(complianceDocumentId string) (resp
 	return
 }
 
-func (service *ComplianceDocumentService) List(params EndUserListParams) (response *ListComplianceDocumentResponse, err error) {
+func (service *ComplianceDocumentService) List(params ComplianceDocumentListParams) (response *ListComplianceDocumentResponse, err error) {
 	request, err := service.client.NewRequest("GET", params, "ComplianceDocument")
 	if err != nil {
 		return

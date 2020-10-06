@@ -8,6 +8,11 @@ type Meta struct {
 	Limit      int64
 }
 
+type BaseListParams struct {
+	Limit  int `json:"limit,omitempty" url:"limit,omitempty"`
+	Offset int `json:"offset,omitempty" url:"offset,omitempty"`
+}
+
 type BaseListResponse struct {
 	ApiID string `json:"api_id" url:"api_id"`
 	Meta  Meta   `json:"meta" url:"meta"`
