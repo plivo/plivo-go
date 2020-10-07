@@ -35,6 +35,7 @@ type Client struct {
 	CallFeedback *CallFeedbackService
 	Powerpack    *PowerpackService
 	Media        *MediaService
+	Lookup       *LookupService
 }
 
 /*
@@ -93,6 +94,7 @@ func NewClient(authId, authToken string, options *ClientOptions) (client *Client
 	client.CallFeedback = &CallFeedbackService{client: client}
 	client.Powerpack = &PowerpackService{client: client}
 	client.Media = &MediaService{client: client}
+	client.Lookup = &LookupService{client: client}
 	return
 }
 
