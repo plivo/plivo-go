@@ -73,6 +73,7 @@ type ComplianceApplicationListParams struct {
 	NumberType  string `json:"number_type,omitempty" url:"number_type,omitempty"`
 	EndUserType string `json:"end_user_type,omitempty" url:"end_user_type,omitempty"`
 	Alias       string `json:"alias,omitempty" url:"alias,omitempty"`
+	Status      string `json:"status,omitempty" url:"status,omitempty"`
 }
 
 type ListComplianceApplicationResponse struct {
