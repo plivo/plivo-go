@@ -91,6 +91,11 @@ func assertPhloRequest(t *testing.T, method, path string, params ...interface{})
 func init() {
 	client.BaseUrl, _ = url.Parse(server.URL)
 	phloClient.BaseUrl, _ = url.Parse(server.URL)
+
+	HttpsScheme = client.BaseUrl.Scheme
+	voiceBaseUrlString = client.BaseUrl.Host
+	voiceBaseUrlStringFallback1 = client.BaseUrl.Host
+	voiceBaseUrlStringFallback2 = client.BaseUrl.Host
 }
 
 var client, _ = NewClient(testAuthId, testAuthToken, &ClientOptions{})
