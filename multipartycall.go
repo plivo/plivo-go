@@ -6,6 +6,12 @@ type MultiPartyCallService struct {
 	client *Client
 }
 
+type MPCUpdateMessage struct {
+	coachMode string
+	mute      string
+	hold      string
+}
+
 type MultiPartyCallAddParticipant struct {
 	role                     string
 	friendlyName             string
@@ -131,6 +137,12 @@ type MultiPartyCallAddParticipantResponse struct {
 	RequestUuid string `json:"request_uuid" url:"request_uuid"`
 }
 
+type MultiPartyCallUpdateParticipantResponse struct {
+	ApiID       string            `json:"api_id" url:"api_id"`
+	Message     *MPCUpdateMessage `json:"message,omitempty" url:"message,omitempty"`
+	RequestUuid string            `json:"request_uuid" url:"request_uuid"`
+}
+
 func (service *MultiPartyCallService) List(params MultiPartyCallListParams) (response *MultiPartyCallListResponse, err error) {
 	req, err := service.client.NewRequest("GET", params, "MultiPartyCall")
 	if err != nil {
@@ -248,25 +260,25 @@ func (service *MultiPartyCallService) ListParticipants(params MultiPartyCallList
 	return
 }
 
-func (service *MultiPartyCallService) UpdateParticipant(params MultiPartyCallUpdateParticipantParams) (response *MultiPartyCallAddParticipantResponse, err error) {
+func (service *MultiPartyCallService) UpdateParticipant(params MultiPartyCallUpdateParticipantParams) (response *MultiPartyCallUpdateParticipantResponse, err error) {
 	mpcId := MakeMPCId(params.mpcUuid, params.friendlyName)
 	req, err := service.client.NewRequest("POST", params, "MultiPartyCall/%s/Participant/%s", mpcId, params.participantId)
 	if err != nil {
 		return
 	}
-	response = &MultiPartyCallAddParticipantResponse{}
+	response = &MultiPartyCallUpdateParticipantResponse{}
 	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
-func (service *MultiPartyCallService) KickParticipant(params MultiPartyCallParticipantParams) (response *MultiPartyCallAddParticipantResponse, err error) {
+func (service *MultiPartyCallService) KickParticipant(params MultiPartyCallParticipantParams) (nil, err error) {
 	mpcId := MakeMPCId(params.mpcUuid, params.friendlyName)
 	req, err := service.client.NewRequest("DELETE", nil, "MultiPartyCall/%s/Participant/%s", mpcId, params.participantId)
 	if err != nil {
 		return
 	}
-	response = &MultiPartyCallAddParticipantResponse{}
-	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
+	//response = &MultiPartyCallAddParticipantResponse{}
+	err = service.client.ExecuteRequest(req, nil, isVoiceRequest())
 	return
 }
 
