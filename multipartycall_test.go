@@ -1,7 +1,6 @@
 package plivo
 
 import (
-	"fmt"
 	"github.com/sirupsen/logrus"
 	"testing"
 )
@@ -39,33 +38,33 @@ func TestMPCService_AddParticipant(t *testing.T) {
 }
 
 func TestMPCService_Start(t *testing.T) {
-	expectResponse("MPCStartResponse.json", 200)
+	//expectResponse("MPCStartResponse.json", 200)
 
 	if _, err := client.MultiPartyCall.Start(MultiPartyCallBasicParams{"ebacced2-21ab-466d-9df4-67339991761b", "thanos_test"}); err != nil {
 		panic(err)
 	}
 
-	assertRequest(t, "GET", "MultiPartyCall/%s", "uuid_ebacced2-21ab-466d-9df4-67339991761b")
+	assertRequest(t, "POST", "MultiPartyCall/%s", "uuid_ebacced2-21ab-466d-9df4-67339991761b")
 }
 
 func TestMPCService_Stop(t *testing.T) {
-	expectResponse("MPCStopResponse.json", 200)
+	//expectResponse("MPCStopResponse.json", 200)
 
 	if _, err := client.MultiPartyCall.Stop(MultiPartyCallBasicParams{"ebacced2-21ab-466d-9df4-67339991761b", "thanos_test"}); err != nil {
 		panic(err)
 	}
 
-	assertRequest(t, "GET", "MultiPartyCall/%s", "uuid_ebacced2-21ab-466d-9df4-67339991761b")
+	assertRequest(t, "DELETE", "MultiPartyCall/%s", "uuid_ebacced2-21ab-466d-9df4-67339991761b")
 }
 
 func TestMPCService_StartRecord(t *testing.T) {
-	expectResponse("MPCStartRecordingResponse.json", 200)
+	expectResponse("MPCStartRecordResponse.json", 200)
 
-	if _, err := client.MultiPartyCall.StartRecording(MultiPartyCallStartRecordingParams{}); err != nil {
+	if _, err := client.MultiPartyCall.StartRecording(MultiPartyCallStartRecordingParams{MultiPartyCallBasicParams{"ebacced2-21ab-466d-9df4-67339991761b", "thanos_test"}, "wav", "https://www.google.com", "GET"}); err != nil {
 		panic(err)
 	}
 
-	assertRequest(t, "GET", "MultiPartyCall/%s/Record", "uuid_ebacced2-21ab-466d-9df4-67339991761b")
+	assertRequest(t, "POST", "MultiPartyCall/%s/Record", "uuid_ebacced2-21ab-466d-9df4-67339991761b")
 }
 
 func TestMPCService_StopRecord(t *testing.T) {
@@ -81,17 +80,17 @@ func TestMPCService_ResumeRecord(t *testing.T) {
 		panic(err)
 	}
 
-	assertRequest(t, "POST", "MultiPartyCall/%s/Resume", "uuid_ebacced2-21ab-466d-9df4-67339991761b")
+	assertRequest(t, "POST", "MultiPartyCall/%s/Record/Resume", "uuid_ebacced2-21ab-466d-9df4-67339991761b")
 }
 
 func TestMPCService_PauseRecord(t *testing.T) {
-	expectResponse("MPCPauseRecordResponse.json", 200)
+	//expectResponse("MPCPauseRecordResponse.json", 200)
 
 	if _, err := client.MultiPartyCall.PauseRecording(MultiPartyCallBasicParams{"ebacced2-21ab-466d-9df4-67339991761b", "name_thanos"}); err != nil {
 		panic(err)
 	}
 
-	assertRequest(t, "POST", "MultiPartyCall/%s/Pause", "uuid_ebacced2-21ab-466d-9df4-67339991761b")
+	assertRequest(t, "POST", "MultiPartyCall/%s/Record/Pause", "uuid_ebacced2-21ab-466d-9df4-67339991761b")
 }
 
 func TestMPCService_ListParticipants(t *testing.T) {
@@ -107,11 +106,11 @@ func TestMPCService_ListParticipants(t *testing.T) {
 func TestMPCService_UpdateParticipant(t *testing.T) {
 	expectResponse("MPCUpdateParticipantResponse.json", 200)
 
-	if _, err := client.MultiPartyCall.UpdateParticipant(MultiPartyCallUpdateParticipantParams{}); err != nil {
+	if _, err := client.MultiPartyCall.UpdateParticipant(MultiPartyCallUpdateParticipantParams{MultiPartyCallParticipantParams{MultiPartyCallBasicParams{"ebacced2-21ab-466d-9df4-67339991761b", "name_thanos"}, "209"}, false, false, true}); err != nil {
 		panic(err)
 	}
 
-	assertRequest(t, "POST", "MultiPartyCall/%s/Participant/%s", "uuid_ebacced2-21ab-466d-9df4-67339991761b")
+	assertRequest(t, "POST", "MultiPartyCall/%s/Participant/%s", "uuid_ebacced2-21ab-466d-9df4-67339991761b", "209")
 }
 
 func TestMPCService_KickParticipant(t *testing.T) {
@@ -119,16 +118,14 @@ func TestMPCService_KickParticipant(t *testing.T) {
 		panic(err)
 	}
 
-	assertRequest(t, "DELETE", "MultiPartyCall/%s/Participant/%s", "uuid_ebacced2-21ab-466d-9df4-67339991761b")
+	assertRequest(t, "DELETE", "MultiPartyCall/%s/Participant/%s", "uuid_ebacced2-21ab-466d-9df4-67339991761b", "209")
 }
 
 func TestMPCService_GetParticipant(t *testing.T) {
 	expectResponse("MPCGetParticipantResponse.json", 200)
 
-	if value, err := client.MultiPartyCall.GetParticipant(MultiPartyCallParticipantParams{MultiPartyCallBasicParams{"ebacced2-21ab-466d-9df4-67339991761b", "name_thanos"}, "209"}); err != nil {
+	if _, err := client.MultiPartyCall.GetParticipant(MultiPartyCallParticipantParams{MultiPartyCallBasicParams{"ebacced2-21ab-466d-9df4-67339991761b", "name_thanos"}, "209"}); err != nil {
 		panic(err)
-	} else {
-		fmt.Print(value)
 	}
 
 	assertRequest(t, "GET", "MultiPartyCall/%s/Participant/%s", "uuid_ebacced2-21ab-466d-9df4-67339991761b", "209")
