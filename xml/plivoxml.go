@@ -871,107 +871,41 @@ func (e WaitElement) SetBeep(value bool) WaitElement {
 }
 
 type MultiPartyCallElement struct {
-	Contents                 string   `xml:",innerxml"`
-	Role                     *string  `xml:"role,attr"`
-	FriendlyName             *string  `xml:"friendlyName,attr"`
-	Uuid                     *string  `xml:"uuid,attr"`
-	From                     *string  `xml:"from,attr"`
-	To                       *string  `xml:"to,attr"`
-	CallUuid                 *string  `xml:"callUuid,attr"`
-	CallStatusCallbackUrl    *string  `xml:"callStatusCallbackUrl,attr"`
-	CallStatusCallbackMethod *string  `xml:"callStatusCallbackMethod,attr"`
-	SipHeaders               *string  `xml:"sipHeaders,attr"`
-	ConfirmKey               *string  `xml:"confirmKey,attr"`
-	ConfirmKeySoundUrl       *string  `xml:"confirmKeySoundUrl,attr"`
-	ConfirmKeySoundMethod    *string  `xml:"confirmKeySoundMethod,attr"`
-	DialMusic                *string  `xml:"dialMusic,attr"`
-	RingTimeout              *int64   `xml:"ringTimeout,attr"`
-	MaxDuration              *int64   `xml:"maxDuration,attr"`
-	MaxParticipants          *int64   `xml:"maxParticipants,attr"`
-	WaitMusicUrl             *string  `xml:"waitMusicUrl,attr"`
-	WaitMusicMethod          *string  `xml:"waitMusicMethod,attr"`
-	AgentHoldMusicUrl        *string  `xml:"agentHoldMusicUrl,attr"`
-	AgentHoldMusicMethod     *string  `xml:"agentHoldMusicMethod,attr"`
-	CustomerHoldMusicUrl     *string  `xml:"customerHoldMusicUrl,attr"`
-	CustomerHoldMusicMethod  *string  `xml:"customerHoldMusicMethod,attr"`
-	RecordingCallbackUrl     *string  `xml:"recordingCallbackUrl,attr"`
-	RecordingCallbackMethod  *string  `xml:"recordingCallbackMethod,attr"`
-	StatusCallbackUrl        *string  `xml:"statusCallbackUrl,attr"`
-	StatusCallbackMethod     *string  `xml:"statusCallbackMethod,attr"`
-	OnExitActionUrl          *string  `xml:"onExitActionUrl,attr"`
-	OnExitActionMethod       *string  `xml:"onExitActionMethod,attr"`
-	Record                   *bool    `xml:"record,attr"`
-	RecordFileFormat         *string  `xml:"recordFileFormat,attr"`
-	StatusCallbackEvents     *string  `xml:"statusCallbackEvents,attr"`
-	StayAlone                *bool    `xml:"stayAlone,attr"`
-	CoachMode                *bool    `xml:"coachMode,attr"`
-	Mute                     *bool    `xml:"mute,attr"`
-	Hold                     *bool    `xml:"hold,attr"`
-	StartMpcOnEnter          *bool    `xml:"startMpcOnEnter,attr"`
-	EndMpcOnExit             *bool    `xml:"endMpcOnExit,attr"`
-	RelayDtmfInputs          *bool    `xml:"relayDtmfInputs,attr"`
-	EnterSound               *string  `xml:"enterSound,attr"`
-	EnterSoundMethod         *string  `xml:"enterSoundMethod,attr"`
-	ExitSound                *string  `xml:"exitSound,attr"`
-	ExitSoundMethod          *string  `xml:"exitSoundMethod,attr"`
-	XMLName                  xml.Name `xml:"MultiPartyCall"`
+	Contents                string   `xml:",innerxml"`
+	Role                    *string  `xml:"role,attr"`
+	MaxDuration             *int64   `xml:"maxDuration,attr"`
+	MaxParticipants         *int64   `xml:"maxParticipants,attr"`
+	WaitMusicUrl            *string  `xml:"waitMusicUrl,attr"`
+	WaitMusicMethod         *string  `xml:"waitMusicMethod,attr"`
+	AgentHoldMusicUrl       *string  `xml:"agentHoldMusicUrl,attr"`
+	AgentHoldMusicMethod    *string  `xml:"agentHoldMusicMethod,attr"`
+	CustomerHoldMusicUrl    *string  `xml:"customerHoldMusicUrl,attr"`
+	CustomerHoldMusicMethod *string  `xml:"customerHoldMusicMethod,attr"`
+	Record                  *bool    `xml:"record,attr"`
+	RecordFileFormat        *string  `xml:"recordFileFormat,attr"`
+	RecordingCallbackUrl    *string  `xml:"recordingCallbackUrl,attr"`
+	RecordingCallbackMethod *string  `xml:"recordingCallbackMethod,attr"`
+	StatusCallbackEvents    *string  `xml:"statusCallbackEvents,attr"`
+	StatusCallbackUrl       *string  `xml:"statusCallbackUrl,attr"`
+	StatusCallbackMethod    *string  `xml:"statusCallbackMethod,attr"`
+	StayAlone               *bool    `xml:"stayAlone,attr"`
+	CoachMode               *bool    `xml:"coachMode,attr"`
+	Mute                    *bool    `xml:"mute,attr"`
+	Hold                    *bool    `xml:"hold,attr"`
+	StartMpcOnEnter         *bool    `xml:"startMpcOnEnter,attr"`
+	EndMpcOnExit            *bool    `xml:"endMpcOnExit,attr"`
+	EnterSound              *string  `xml:"enterSound,attr"`
+	EnterSoundMethod        *string  `xml:"enterSoundMethod,attr"`
+	ExitSound               *string  `xml:"exitSound,attr"`
+	ExitSoundMethod         *string  `xml:"exitSoundMethod,attr"`
+	OnExitActionUrl         *string  `xml:"onExitActionUrl,attr"`
+	OnExitActionMethod      *string  `xml:"onExitActionMethod,attr"`
+	RelayDtmfInputs         *bool    `xml:"relayDtmfInputs,attr"`
+	XMLName                 xml.Name `xml:"MultiPartyCall"`
 }
 
 func (e MultiPartyCallElement) SetRole(value string) MultiPartyCallElement {
 	e.Role = &value
-	return e
-}
-
-func (e MultiPartyCallElement) SetFriendlyName(value string) MultiPartyCallElement {
-	e.FriendlyName = &value
-	return e
-}
-func (e MultiPartyCallElement) SetMpcUuid(value string) MultiPartyCallElement {
-	e.Uuid = &value
-	return e
-}
-func (e MultiPartyCallElement) SetFrom(value string) MultiPartyCallElement {
-	e.From = &value
-	return e
-}
-func (e MultiPartyCallElement) SetTo(value string) MultiPartyCallElement {
-	e.To = &value
-	return e
-}
-func (e MultiPartyCallElement) SetCallUuid(value string) MultiPartyCallElement {
-	e.CallUuid = &value
-	return e
-}
-func (e MultiPartyCallElement) SetCallStatusCallbackUrl(value string) MultiPartyCallElement {
-	e.CallStatusCallbackUrl = &value
-	return e
-}
-func (e MultiPartyCallElement) SetCallStatusCallbackMethod(value string) MultiPartyCallElement {
-	e.CallStatusCallbackMethod = &value
-	return e
-}
-func (e MultiPartyCallElement) SetSipHeaders(value string) MultiPartyCallElement {
-	e.SipHeaders = &value
-	return e
-}
-func (e MultiPartyCallElement) SetConfirmKey(value string) MultiPartyCallElement {
-	e.ConfirmKey = &value
-	return e
-}
-func (e MultiPartyCallElement) SetConfirmKeySoundUrl(value string) MultiPartyCallElement {
-	e.ConfirmKeySoundUrl = &value
-	return e
-}
-func (e MultiPartyCallElement) SetConfirmKeySoundMethod(value string) MultiPartyCallElement {
-	e.ConfirmKeySoundMethod = &value
-	return e
-}
-func (e MultiPartyCallElement) SetDialMusic(value string) MultiPartyCallElement {
-	e.DialMusic = &value
-	return e
-}
-func (e MultiPartyCallElement) SetRingTimeout(value int64) MultiPartyCallElement {
-	e.RingTimeout = &value
 	return e
 }
 func (e MultiPartyCallElement) SetMaxDuration(value int64) MultiPartyCallElement {
