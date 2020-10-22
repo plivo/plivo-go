@@ -18,7 +18,7 @@ func TestMPCService_List(t *testing.T) {
 func TestMPCService_Get(t *testing.T) {
 	expectResponse("MPCGetResponse.json", 200)
 
-	if _, err := client.MultiPartyCall.Get(MultiPartyCallBasicParams{"b1e37275-b8e2-42cd-ae63-fffcc54a50b5", "thanos_test"}); err != nil {
+	if _, err := client.MultiPartyCall.Get(MultiPartyCallBasicParams{MpcUuid: "b1e37275-b8e2-42cd-ae63-fffcc54a50b5"}); err != nil {
 		panic(err)
 	}
 
@@ -28,7 +28,7 @@ func TestMPCService_Get(t *testing.T) {
 func TestMPCService_AddParticipant(t *testing.T) {
 	expectResponse("MPCAddParticipantResponse.json", 201)
 
-	if response, err := client.MultiPartyCall.AddParticipant(MultiPartyCallAddParticipant{to: "917013835803", from: "918888888888", role: "agent", friendlyName: "name_thanos"}); err != nil {
+	if response, err := client.MultiPartyCall.AddParticipant(MultiPartyCallBasicParams{FriendlyName: "thanos"}, MultiPartyCallAddParticipantParams{To: "917013835803", From: "918888888888", Role: "agent"}); err != nil {
 		panic(err)
 	} else {
 		logrus.Info(response)
@@ -38,9 +38,9 @@ func TestMPCService_AddParticipant(t *testing.T) {
 }
 
 func TestMPCService_Start(t *testing.T) {
-	//expectResponse("MPCStartResponse.json", 200)
+	expectResponse("", 204)
 
-	if _, err := client.MultiPartyCall.Start(MultiPartyCallBasicParams{"ebacced2-21ab-466d-9df4-67339991761b", "thanos_test"}); err != nil {
+	if err := client.MultiPartyCall.Start(MultiPartyCallBasicParams{MpcUuid: "ebacced2-21ab-466d-9df4-67339991761b"}); err != nil {
 		panic(err)
 	}
 
@@ -48,9 +48,9 @@ func TestMPCService_Start(t *testing.T) {
 }
 
 func TestMPCService_Stop(t *testing.T) {
-	//expectResponse("MPCStopResponse.json", 200)
+	expectResponse("", 204)
 
-	if _, err := client.MultiPartyCall.Stop(MultiPartyCallBasicParams{"ebacced2-21ab-466d-9df4-67339991761b", "thanos_test"}); err != nil {
+	if err := client.MultiPartyCall.Stop(MultiPartyCallBasicParams{MpcUuid: "ebacced2-21ab-466d-9df4-67339991761b"}); err != nil {
 		panic(err)
 	}
 
@@ -60,7 +60,7 @@ func TestMPCService_Stop(t *testing.T) {
 func TestMPCService_StartRecord(t *testing.T) {
 	expectResponse("MPCStartRecordResponse.json", 200)
 
-	if _, err := client.MultiPartyCall.StartRecording(MultiPartyCallStartRecordingParams{MultiPartyCallBasicParams{"ebacced2-21ab-466d-9df4-67339991761b", "thanos_test"}, "wav", "https://www.google.com", "GET"}); err != nil {
+	if _, err := client.MultiPartyCall.StartRecording(MultiPartyCallBasicParams{MpcUuid: "ebacced2-21ab-466d-9df4-67339991761b"}, MultiPartyCallStartRecordingParams{FileFormat: "wav", StatusCallbackUrl: "https://www.google.com", StatusCallbackMethod: "GET"}); err != nil {
 		panic(err)
 	}
 
@@ -68,7 +68,8 @@ func TestMPCService_StartRecord(t *testing.T) {
 }
 
 func TestMPCService_StopRecord(t *testing.T) {
-	if _, err := client.MultiPartyCall.StopRecording(MultiPartyCallBasicParams{"ebacced2-21ab-466d-9df4-67339991761b", "name_thanos"}); err != nil {
+	expectResponse("", 204)
+	if err := client.MultiPartyCall.StopRecording(MultiPartyCallBasicParams{MpcUuid: "ebacced2-21ab-466d-9df4-67339991761b"}); err != nil {
 		panic(err)
 	}
 
@@ -76,7 +77,8 @@ func TestMPCService_StopRecord(t *testing.T) {
 }
 
 func TestMPCService_ResumeRecord(t *testing.T) {
-	if _, err := client.MultiPartyCall.ResumeRecording(MultiPartyCallBasicParams{"ebacced2-21ab-466d-9df4-67339991761b", "name_thanos"}); err != nil {
+	expectResponse("", 204)
+	if err := client.MultiPartyCall.ResumeRecording(MultiPartyCallBasicParams{MpcUuid: "ebacced2-21ab-466d-9df4-67339991761b"}); err != nil {
 		panic(err)
 	}
 
@@ -84,9 +86,9 @@ func TestMPCService_ResumeRecord(t *testing.T) {
 }
 
 func TestMPCService_PauseRecord(t *testing.T) {
-	//expectResponse("MPCPauseRecordResponse.json", 200)
+	expectResponse("", 204)
 
-	if _, err := client.MultiPartyCall.PauseRecording(MultiPartyCallBasicParams{"ebacced2-21ab-466d-9df4-67339991761b", "name_thanos"}); err != nil {
+	if err := client.MultiPartyCall.PauseRecording(MultiPartyCallBasicParams{MpcUuid: "ebacced2-21ab-466d-9df4-67339991761b"}); err != nil {
 		panic(err)
 	}
 
@@ -96,7 +98,7 @@ func TestMPCService_PauseRecord(t *testing.T) {
 func TestMPCService_ListParticipants(t *testing.T) {
 	expectResponse("MPCListParticipantsResponse.json", 200)
 
-	if _, err := client.MultiPartyCall.ListParticipants(MultiPartyCallListParticipantParams{MultiPartyCallBasicParams{"ebacced2-21ab-466d-9df4-67339991761b", "name_thanos"}, "call_uuid"}); err != nil {
+	if _, err := client.MultiPartyCall.ListParticipants(MultiPartyCallBasicParams{MpcUuid: "ebacced2-21ab-466d-9df4-67339991761b"}, MultiPartyCallListParticipantParams{CallUuid: "call_uuid"}); err != nil {
 		panic(err)
 	}
 
@@ -104,9 +106,11 @@ func TestMPCService_ListParticipants(t *testing.T) {
 }
 
 func TestMPCService_UpdateParticipant(t *testing.T) {
-	expectResponse("MPCUpdateParticipantResponse.json", 200)
-
-	if _, err := client.MultiPartyCall.UpdateParticipant(MultiPartyCallUpdateParticipantParams{MultiPartyCallParticipantParams{MultiPartyCallBasicParams{"ebacced2-21ab-466d-9df4-67339991761b", "name_thanos"}, "209"}, false, false, true}); err != nil {
+	expectResponse("MPCUpdateParticipantResponse.json", 202)
+	coachMode := false
+	mute := true
+	hold := false
+	if _, err := client.MultiPartyCall.UpdateParticipant(MultiPartyCallParticipantParams{MpcUuid: "ebacced2-21ab-466d-9df4-67339991761b", ParticipantId: "209"}, MultiPartyCallUpdateParticipantParams{CoachMode: &coachMode, Mute: &mute, Hold: &hold}); err != nil {
 		panic(err)
 	}
 
@@ -114,7 +118,8 @@ func TestMPCService_UpdateParticipant(t *testing.T) {
 }
 
 func TestMPCService_KickParticipant(t *testing.T) {
-	if _, err := client.MultiPartyCall.KickParticipant(MultiPartyCallParticipantParams{MultiPartyCallBasicParams{"ebacced2-21ab-466d-9df4-67339991761b", "name_thanos"}, "209"}); err != nil {
+	expectResponse("", 204)
+	if err := client.MultiPartyCall.KickParticipant(MultiPartyCallParticipantParams{MpcUuid: "ebacced2-21ab-466d-9df4-67339991761b", ParticipantId: "209"}); err != nil {
 		panic(err)
 	}
 
@@ -124,7 +129,7 @@ func TestMPCService_KickParticipant(t *testing.T) {
 func TestMPCService_GetParticipant(t *testing.T) {
 	expectResponse("MPCGetParticipantResponse.json", 200)
 
-	if _, err := client.MultiPartyCall.GetParticipant(MultiPartyCallParticipantParams{MultiPartyCallBasicParams{"ebacced2-21ab-466d-9df4-67339991761b", "name_thanos"}, "209"}); err != nil {
+	if _, err := client.MultiPartyCall.GetParticipant(MultiPartyCallParticipantParams{MpcUuid: "ebacced2-21ab-466d-9df4-67339991761b", ParticipantId: "209"}); err != nil {
 		panic(err)
 	}
 
