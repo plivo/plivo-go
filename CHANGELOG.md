@@ -1,5 +1,8 @@
 # Change Log
 
+## [5.3.0](https://github.com/plivo/plivo-go/tree/v5.3.0) (2020-10-31)
+- Change lookup API endpoint and response.
+
 ## [5.2.0](https://github.com/plivo/plivo-go/tree/v5.2.0) (2020-09-25)
 - Add Lookup API support.
 
