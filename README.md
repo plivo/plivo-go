@@ -215,10 +215,7 @@ func main() {
 		log.Fatalf("plivo.NewClient() failed: %s", err.Error())
 	}
 
-	resp, err := client.Lookup.Get("<insert-number-here>",
-		plivo.LookupParams{
-			Type: "carrier",
-		})
+	resp, err := client.Lookup.Get("<insert-number-here>", plivo.LookupParams{})
 	if err != nil {
 		if respErr, ok := err.(*plivo.LookupError); ok {
 			fmt.Printf("API ID: %s\nError Code: %d\nMessage: %s\n",

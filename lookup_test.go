@@ -48,14 +48,3 @@ func TestLookupGetError(t *testing.T) {
 
 	assertBaseRequest(t, http.MethodGet, "/v1/Number/%s?type=%s", number, infoType)
 }
-
-func TestLookupGetValidation(t *testing.T) {
-	assert := require.New(t)
-
-	resp, err := client.Lookup.Get("+14154305555", LookupParams{
-		Type: "", // empty type string
-	})
-	assert.NotNil(err)
-	assert.Equal("Type must be set in params", err.Error())
-	assert.Nil(resp)
-}

@@ -2,7 +2,6 @@ package plivo
 
 import (
 	"encoding/json"
-	"errors"
 )
 
 // NOTE: All of Plivo's APIs are in a single Go package. Unfortunately,
@@ -46,13 +45,14 @@ type LookupService struct {
 
 // LookupParams is the input parameters for Plivo Lookup API.
 type LookupParams struct {
+	// If empty, Type defaults to "carrier".
 	Type string `url:"type"`
 }
 
 // Get looks up a phone number using Plivo Lookup API.
 func (s *LookupService) Get(number string, params LookupParams) (*LookupResponse, error) {
 	if params.Type == "" {
-		return nil, errors.New("Type must be set in params")
+		params.Type = "carrier"
 	}
 
 	req, err := s.client.BaseClient.NewRequest("GET", params, "v1/Number/%s", number)
