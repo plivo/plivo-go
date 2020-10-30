@@ -24,9 +24,9 @@ func TestLookupGet(t *testing.T) {
 	assert.NotNil(resp.Format)
 	assert.Equal(number, resp.PhoneNumber)
 	assert.Equal(number, resp.Format.E164)
-	assert.Equal(fmt.Sprintf("/v1/Lookup/Number/%s?type=%s", number, infoType), resp.ResourceURI)
+	assert.Equal(fmt.Sprintf("/v1/Number/%s?type=%s", number, infoType), resp.ResourceURI)
 
-	assertBaseRequest(t, http.MethodGet, "/v1/Lookup/Number/%s?type=%s", number, infoType)
+	assertBaseRequest(t, http.MethodGet, "/v1/Number/%s?type=%s", number, infoType)
 }
 
 func TestLookupGetError(t *testing.T) {
@@ -46,16 +46,5 @@ func TestLookupGetError(t *testing.T) {
 	assert.Equal(404, errResp.ErrorCode)
 	assert.Equal("Phone number is invalid or does not exist.", errResp.Message)
 
-	assertBaseRequest(t, http.MethodGet, "/v1/Lookup/Number/%s?type=%s", number, infoType)
-}
-
-func TestLookupGetValidation(t *testing.T) {
-	assert := require.New(t)
-
-	resp, err := client.Lookup.Get("+14154305555", LookupParams{
-		Type: "", // empty type string
-	})
-	assert.NotNil(err)
-	assert.Equal("Type must be set in params", err.Error())
-	assert.Nil(resp)
+	assertBaseRequest(t, http.MethodGet, "/v1/Number/%s?type=%s", number, infoType)
 }

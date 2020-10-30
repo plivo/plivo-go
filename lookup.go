@@ -2,7 +2,6 @@ package plivo
 
 import (
 	"encoding/json"
-	"errors"
 )
 
 // NOTE: All of Plivo's APIs are in a single Go package. Unfortunately,
@@ -10,9 +9,9 @@ import (
 // all of Plivo's product APIs.
 
 type Country struct {
-	Name     string `json:"name"`
-	CodeISO2 string `json:"code_iso2"`
-	CodeISO3 string `json:"code_iso3"`
+	Name string `json:"name"`
+	ISO2 string `json:"iso2"`
+	ISO3 string `json:"iso3"`
 }
 
 type NumberFormat struct {
@@ -27,7 +26,7 @@ type Carrier struct {
 	MobileNetworkCode string `json:"mobile_network_code"`
 	Name              string `json:"name"`
 	Type              string `json:"type"`
-	Ported            bool   `json:"ported"`
+	Ported            string `json:"ported"`
 }
 
 // LookupResponse is the success response returned by Plivo Lookup API.
@@ -46,22 +45,25 @@ type LookupService struct {
 
 // LookupParams is the input parameters for Plivo Lookup API.
 type LookupParams struct {
+	// If empty, Type defaults to "carrier".
 	Type string `url:"type"`
 }
 
 // Get looks up a phone number using Plivo Lookup API.
 func (s *LookupService) Get(number string, params LookupParams) (*LookupResponse, error) {
 	if params.Type == "" {
-		return nil, errors.New("Type must be set in params")
+		params.Type = "carrier"
 	}
 
-	req, err := s.client.BaseClient.NewRequest("GET", params, "v1/Lookup/Number/%s", number)
+	req, err := s.client.BaseClient.NewRequest("GET", params, "v1/Number/%s", number)
 	if err != nil {
 		return nil, err
 	}
 
 	resp := new(LookupResponse)
-	if err := s.client.ExecuteRequest(req, resp); err != nil {
+	if err := s.client.ExecuteRequest(req, resp, map[string]interface{}{
+		"is_lookup_request": true,
+	}); err != nil {
 		return nil, s.newError(err.Error())
 	}
 
