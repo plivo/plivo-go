@@ -58,7 +58,7 @@ func TestMPCService_Stop(t *testing.T) {
 }
 
 func TestMPCService_StartRecord(t *testing.T) {
-	expectResponse("MPCStartRecordResponse.json", 200)
+	expectResponse("MPCStartRecordResponse.json", 202)
 
 	if _, err := client.MultiPartyCall.StartRecording(MultiPartyCallBasicParams{MpcUuid: "ebacced2-21ab-466d-9df4-67339991761b"}, MultiPartyCallStartRecordingParams{FileFormat: "wav", StatusCallbackUrl: "https://www.google.com", StatusCallbackMethod: "GET"}); err != nil {
 		panic(err)
