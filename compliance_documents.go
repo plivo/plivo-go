@@ -22,7 +22,7 @@ type GetComplianceDocumentResponse struct {
 	EndUserID      string `json:"end_user_id"`
 	DocumentTypeID string `json:"document_type_id"`
 	Alias          string `json:"alias"`
-	FileName       string `json:"file_name"`
+	FileName       string `json:"file_name,omitempty"`
 	MetaInformation struct {
 		LastName                   string `json:"last_name,omitempty"`
 		FirstName                  string `json:"first_name,omitempty"`
