@@ -44,6 +44,7 @@ type GetComplianceDocumentResponse struct {
 		TypeOfId                   string `json:"type_of_id,omitempty"`
 		SupportPhoneNumber		   string `json:"support_phone_number,omitempty"`
 		SupportEmail			   string `json:"support_email,omitempty"`
+		AuthorizedRepresentativeName		string `json:"authorized_representative_name,omitempty"`
 	} `json:"meta_information"`
 	CreatedAt string `json:"created_at"`
 }
@@ -90,6 +91,7 @@ type ListComplianceDocumentResponse struct {
 			TypeOfId                   string `json:"type_of_id,omitempty"`
 			SupportPhoneNumber		   string `json:"support_phone_number,omitempty"`
 			SupportEmail			   string `json:"support_email,omitempty"`
+			AuthorizedRepresentativeName		string `json:"authorized_representative_name,omitempty"`
 		} `json:"meta_information"`
 		File           string `json:"file,omitempty"`
 		EndUserID      string `json:"end_user_id"`
@@ -122,6 +124,7 @@ type CreateComplianceDocumentParams struct {
 	TypeOfId                   string `json:"type_of_id,omitempty"`
 	SupportPhoneNumber		   string `json:"support_phone_number,omitempty"`
 	SupportEmail			   string `json:"support_email,omitempty"`
+	AuthorizedRepresentativeName		string `json:"authorized_representative_name,omitempty"`
 }
 
 type UpdateComplianceDocumentParams struct {
