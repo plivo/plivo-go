@@ -42,6 +42,8 @@ type GetComplianceDocumentResponse struct {
 		BillingDate                string `json:"billing_date,omitempty"`
 		BusinessName               string `json:"business_name,omitempty"`
 		TypeOfId                   string `json:"type_of_id,omitempty"`
+		SupportPhoneNumber		   string `json:"support_phone_number,omitempty"`
+		SupportEmail			   string `json:"support_email,omitempty"`
 	} `json:"meta_information"`
 	CreatedAt string `json:"created_at"`
 }
@@ -86,6 +88,8 @@ type ListComplianceDocumentResponse struct {
 			BillingDate                string `json:"billing_date,omitempty"`
 			BusinessName               string `json:"business_name,omitempty"`
 			TypeOfId                   string `json:"type_of_id,omitempty"`
+			SupportPhoneNumber		   string `json:"support_phone_number,omitempty"`
+			SupportEmail			   string `json:"support_email,omitempty"`
 		} `json:"meta_information"`
 		File           string `json:"file,omitempty"`
 		EndUserID      string `json:"end_user_id"`
@@ -116,6 +120,8 @@ type CreateComplianceDocumentParams struct {
 	BillingDate                string `json:"billing_date,omitempty"`
 	BusinessName               string `json:"business_name,omitempty"`
 	TypeOfId                   string `json:"type_of_id,omitempty"`
+	SupportPhoneNumber		   string `json:"support_phone_number,omitempty"`
+	SupportEmail			   string `json:"support_email,omitempty"`
 }
 
 type UpdateComplianceDocumentParams struct {
