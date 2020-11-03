@@ -47,6 +47,7 @@ type GetComplianceDocumentResponse struct {
 		AuthorizedRepresentativeName		string `json:"authorized_representative_name,omitempty"`
 		BillDate		  		   string `json:"bill_date,omitempty"`
 		BillId		  		       string `json:"bill_id,omitempty"`
+		UseCaseDescription		   string `json:"use_case_description,omitempty"`
 	} `json:"meta_information"`
 	CreatedAt string `json:"created_at"`
 }
@@ -96,6 +97,7 @@ type ListComplianceDocumentResponse struct {
 			AuthorizedRepresentativeName		string `json:"authorized_representative_name,omitempty"`
 			BillDate		  		   string `json:"bill_date,omitempty"`
 			BillId		  		       string `json:"bill_id,omitempty"`
+			UseCaseDescription		   string `json:"use_case_description,omitempty"`
 		} `json:"meta_information"`
 		File           string `json:"file,omitempty"`
 		EndUserID      string `json:"end_user_id"`
@@ -131,6 +133,7 @@ type CreateComplianceDocumentParams struct {
 	AuthorizedRepresentativeName		string `json:"authorized_representative_name,omitempty"`
 	BillDate		  		   string `json:"bill_date,omitempty"`
 	BillId		  		       string `json:"bill_id,omitempty"`
+	UseCaseDescription		   string `json:"use_case_description,omitempty"`
 }
 
 type UpdateComplianceDocumentParams struct {
