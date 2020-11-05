@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-const baseUrlString = "https://api.numbers.plivodev.com/"
+const baseUrlString = "https://api.plivo.com/"
 const HttpsScheme = "https"
 const voiceBaseUrlString = "voice.plivo.com"
 const voiceBaseUrlStringFallback1 = "voice-usw1.plivo.com"
