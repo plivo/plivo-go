@@ -18,7 +18,6 @@ const baseRequestString = "/v1/Account/%s/"
 
 type Client struct {
 	BaseClient
-
 	Messages                *MessageService
 	Accounts                *AccountService
 	Subaccounts             *SubaccountService
@@ -40,6 +39,7 @@ type Client struct {
 	ComplianceDocumentTypes *ComplianceDocumentTypeService
 	ComplianceRequirements  *ComplianceRequirementService
 	ComplianceApplications  *ComplianceApplicationService
+	Lookup                  *LookupService
 }
 
 /*
@@ -103,6 +103,7 @@ func NewClient(authId, authToken string, options *ClientOptions) (client *Client
 	client.ComplianceDocumentTypes = &ComplianceDocumentTypeService{client: client}
 	client.ComplianceRequirements = &ComplianceRequirementService{client: client}
 	client.ComplianceApplications = &ComplianceApplicationService{client: client}
+	client.Lookup = &LookupService{client: client}
 	return
 }
 

@@ -13,7 +13,9 @@ import (
 	"github.com/google/go-querystring/query"
 )
 
-const sdkVersion = "5.0.0"
+const sdkVersion = "5.3.0"
+
+const lookupBaseUrl = "lookup.plivo.com"
 
 type ClientOptions struct {
 	HttpClient *http.Client
@@ -108,6 +110,14 @@ func (client *BaseClient) ExecuteRequest(request *http.Request, body interface{}
 			} else if extra[0]["retry"] == 2 {
 				request.URL.Host = voiceBaseUrlStringFallback2
 				request.Host = voiceBaseUrlStringFallback2
+				request.URL.Scheme = HttpsScheme
+			}
+		}
+
+		if _, ok := extra[0]["is_lookup_request"]; ok {
+			if request.URL.Host == "api.plivo.com" { // hack for unit tests
+				request.URL.Host = lookupBaseUrl
+				request.Host = lookupBaseUrl
 				request.URL.Scheme = HttpsScheme
 			}
 		}
