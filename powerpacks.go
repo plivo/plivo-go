@@ -10,22 +10,36 @@ type PowerpackService struct {
 	Powerpack
 }
 
+type Priority struct {
+	Priority1 *string `json:"priority1"`
+	Priority2 *string `json:"priority2"`
+	Priority3 *string `json:"priority3"`
+}
+
+type NumberPriority struct {
+	ServiceType string   `json:"service_type"`
+	CountryISO  string   `json:"country_iso"`
+	Priority    Priority `json:"priority"`
+}
+
 type PowerackCreateParams struct {
 	Name string `json:"name,omitempty"`
 	// Optional parameters.
-	StickySender    string `json:"sticky_sender,omitempty"`
-	LocalConnect    string `json:"local_connect,omitempty"`
-	ApplicationType string `json:"application_type,omitempty"`
-	ApplicationID   string `json:"application_id,omitempty"`
+	StickySender     string           `json:"sticky_sender,omitempty"`
+	LocalConnect     string           `json:"local_connect,omitempty"`
+	ApplicationType  string           `json:"application_type,omitempty"`
+	ApplicationID    string           `json:"application_id,omitempty"`
+	NumberPriorities []NumberPriority `json:"number_priority,omitempty"`
 }
 
 type PowerackUpdateParams struct {
 	// Optional parameters.
-	Name            string `json:"name,omitempty"`
-	StickySender    string `json:"sticky_sender,omitempty"`
-	LocalConnect    string `json:"local_connect,omitempty"`
-	ApplicationType string `json:"application_type,omitempty"`
-	ApplicationID   string `json:"application_id,omitempty"`
+	Name             string           `json:"name,omitempty"`
+	StickySender     string           `json:"sticky_sender,omitempty"`
+	LocalConnect     string           `json:"local_connect,omitempty"`
+	ApplicationType  string           `json:"application_type,omitempty"`
+	ApplicationID    string           `json:"application_id,omitempty"`
+	NumberPriorities []NumberPriority `json:"number_priority,omitempty"`
 }
 
 type NumberPoolResponse struct {
@@ -80,14 +94,15 @@ type FindTollfreeResponse struct {
 }
 
 type Powerpack struct {
-	UUID            string `json:"uuid,omitempty"`
-	Name            string `json:"name,omitempty"`
-	StickySender    bool   `json:"sticky_sender,omitempty"`
-	LocalConnect    bool   `json:"local_connect,omitempty"`
-	ApplicationType string `json:"application_type,omitempty"`
-	ApplicationID   string `json:"application_id,omitempty"`
-	NumberPoolUUID  string `json:"number_pool,omitempty"`
-	CreatedOn       string `json:"created_on,omitempty"`
+	UUID             string           `json:"uuid,omitempty"`
+	Name             string           `json:"name,omitempty"`
+	StickySender     bool             `json:"sticky_sender,omitempty"`
+	LocalConnect     bool             `json:"local_connect,omitempty"`
+	ApplicationType  string           `json:"application_type,omitempty"`
+	ApplicationID    string           `json:"application_id,omitempty"`
+	NumberPoolUUID   string           `json:"number_pool,omitempty"`
+	CreatedOn        string           `json:"created_on,omitempty"`
+	NumberPriorities []NumberPriority `json:"number_priority,omitempty"`
 }
 
 type PowerpackResponse struct {
