@@ -1,5 +1,8 @@
 # Change Log
 
+## [5.5.0](https://github.com/plivo/plivo-go/tree/v5.5.0) (2020-11-17)
+- Add number_priority support for Powerpack API.
+
 ## [5.4.1](https://github.com/plivo/plivo-go/tree/v5.4.1) (2020-11-11)
 - Fix send SMS json payload.
 
