@@ -20,6 +20,7 @@ type Application struct {
 	AnswerMethod        string `json:"answer_method,omitempty" url:"answer_method,omitempty"`
 	ApiID               string `json:"api_id,omitempty" url:"api_id,omitempty"`
 	LogIncomingMessages bool   `json:"log_incoming_messages,omitempty" url:"log_incoming_messages,omitempty"`
+	PublicURI           bool   `json:"public_uri,omitempty" url:"public_uri,omitempty"`
 
 	// Additional fields for Modify calls
 	DefaultNumberApp   bool `json:"default_number_app,omitempty" url:"default_number_app,omitempty"`
@@ -43,6 +44,7 @@ type ApplicationCreateParams struct {
 	AnswerMethod        string `json:"answer_method,omitempty" url:"answer_method,omitempty"`
 	ApiID               string `json:"api_id,omitempty" url:"api_id,omitempty"`
 	LogIncomingMessages bool   `json:"log_incoming_messages,omitempty" url:"log_incoming_messages,omitempty"`
+	PublicURI           bool   `json:"public_uri,omitempty" url:"public_uri,omitempty"`
 
 	// Additional fields for Modify calls
 	DefaultNumberApp   bool `json:"default_number_app,omitempty" url:"default_number_app,omitempty"`

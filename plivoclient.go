@@ -18,23 +18,28 @@ const baseRequestString = "/v1/Account/%s/"
 
 type Client struct {
 	BaseClient
-
-	Messages     *MessageService
-	Accounts     *AccountService
-	Subaccounts  *SubaccountService
-	Applications *ApplicationService
-	Endpoints    *EndpointService
-	Numbers      *NumberService
-	PhoneNumbers *PhoneNumberService
-	Pricing      *PricingService // TODO Rename?
-	Recordings   *RecordingService
-	Calls        *CallService
-	LiveCalls    *LiveCallService
-	QueuedCalls  *QueuedCallService
-	Conferences  *ConferenceService
-	CallFeedback *CallFeedbackService
-	Powerpack    *PowerpackService
-	Media        *MediaService
+	Messages                *MessageService
+	Accounts                *AccountService
+	Subaccounts             *SubaccountService
+	Applications            *ApplicationService
+	Endpoints               *EndpointService
+	Numbers                 *NumberService
+	PhoneNumbers            *PhoneNumberService
+	Pricing                 *PricingService // TODO Rename?
+	Recordings              *RecordingService
+	Calls                   *CallService
+	LiveCalls               *LiveCallService
+	QueuedCalls             *QueuedCallService
+	Conferences             *ConferenceService
+	CallFeedback            *CallFeedbackService
+	Powerpack               *PowerpackService
+	Media                   *MediaService
+	EndUsers                *EndUserService
+	ComplianceDocuments     *ComplianceDocumentService
+	ComplianceDocumentTypes *ComplianceDocumentTypeService
+	ComplianceRequirements  *ComplianceRequirementService
+	ComplianceApplications  *ComplianceApplicationService
+	Lookup                  *LookupService
 }
 
 /*
@@ -93,6 +98,12 @@ func NewClient(authId, authToken string, options *ClientOptions) (client *Client
 	client.CallFeedback = &CallFeedbackService{client: client}
 	client.Powerpack = &PowerpackService{client: client}
 	client.Media = &MediaService{client: client}
+	client.EndUsers = &EndUserService{client: client}
+	client.ComplianceDocuments = &ComplianceDocumentService{client: client}
+	client.ComplianceDocumentTypes = &ComplianceDocumentTypeService{client: client}
+	client.ComplianceRequirements = &ComplianceRequirementService{client: client}
+	client.ComplianceApplications = &ComplianceApplicationService{client: client}
+	client.Lookup = &LookupService{client: client}
 	return
 }
 
