@@ -14,4 +14,6 @@ before_script:
   - go get github.com/sirupsen/logrus
   - go get github.com/stretchr/testify/assert
 
-script: go test ./... -v
+script: 
+go test ./... -v
+go fmt ./...
