@@ -3,13 +3,13 @@ package plivo
 import (
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
 	"testing"
 	"unicode"
 
-	log "github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -28,7 +28,7 @@ var server = httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *
 	w.WriteHeader(expectedStatusCode)
 	w.Write([]byte(expectedResponse))
 
-	log.Infoln(expectedResponse)
+	log.Println(expectedResponse)
 }))
 
 func expectResponse(fixturePath string, statusCode int) {
@@ -41,7 +41,7 @@ func expectResponse(fixturePath string, statusCode int) {
 		if err != nil {
 			panic(err)
 		}
-		log.Infof("Loaded fixture from %s (%d)\n", fullFixturePath, len(contents))
+		log.Printf("Loaded fixture from %s (%d)\n", fullFixturePath, len(contents))
 		expectedResponse = string(contents)
 	} else {
 		expectedResponse = ""

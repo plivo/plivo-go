@@ -3,12 +3,12 @@ package xml
 import (
 	"encoding/xml"
 	"errors"
-	"github.com/sirupsen/logrus"
+	"strings"
+	"unicode"
+
 	"golang.org/x/text/runes"
 	"golang.org/x/text/transform"
 	"golang.org/x/text/unicode/norm"
-	"strings"
-	"unicode"
 )
 
 type ResponseElement struct {
@@ -19,8 +19,9 @@ type ResponseElement struct {
 func (element ResponseElement) String() string {
 	bytes, err := xml.Marshal(element)
 	if err != nil {
-		logrus.Errorln(err.Error())
+		return err.Error()
 	}
+
 	return strings.ReplaceAll(strings.ReplaceAll(string(bytes), "<Contents>", ""), "</Contents>", "")
 }
 

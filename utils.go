@@ -7,7 +7,6 @@ import (
 	"crypto/sha256"
 	"encoding/base64"
 	"fmt"
-	"github.com/sirupsen/logrus"
 	"net/url"
 	"reflect"
 	"sort"
@@ -62,7 +61,6 @@ func Headers(headers map[string]string) string {
 
 func ComputeSignature(authToken, uri string, params map[string]string) string {
 	originalString := fmt.Sprintf("%s%s", uri, headersWithSep(params, "", "", false))
-	logrus.Infof("originalString: %s\n", originalString)
 	mac := hmac.New(sha1.New, []byte(authToken))
 	mac.Write([]byte(originalString))
 	return base64.StdEncoding.EncodeToString(mac.Sum(nil))
@@ -161,7 +159,6 @@ func ComputeSignatureV3(authToken, uri, method string, nonce string, params map[
 	mac := hmac.New(sha256.New, []byte(authToken))
 	mac.Write([]byte(newUrl))
 	var messageMAC = base64.StdEncoding.EncodeToString(mac.Sum(nil))
-	logrus.Info(messageMAC)
 	return messageMAC
 }
 
