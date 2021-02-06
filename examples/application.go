@@ -50,7 +50,7 @@ func main() {
 	// create app
 	createResponse, er := CreateApplication(input)
 	if er != nil {
-		fmt.Printf("Error occured while creating application. error:%+v\n", er)
+		fmt.Printf("Error occurred while creating application. error:%+v\n", er)
 		os.Exit(1)
 	} else {
 		fmt.Printf("%+v\n", createResponse)
@@ -59,7 +59,7 @@ func main() {
 	// get app
 	appDetails, er := GetApplication(createResponse.AppID)
 	if er != nil {
-		fmt.Printf("Error occured while getting application details. error:%+v\n", er)
+		fmt.Printf("Error occurred while getting application details. error:%+v\n", er)
 		os.Exit(1)
 	} else {
 		fmt.Printf("%+v\n", appDetails)
@@ -73,7 +73,7 @@ func main() {
 	}
 	updateResponse, er := UpdateApplication(createResponse.AppID, updatedApp)
 	if er != nil {
-		fmt.Printf("Error occured while updating application. error:%+v\n", er)
+		fmt.Printf("Error occurred while updating application. error:%+v\n", er)
 		os.Exit(1)
 	} else {
 		fmt.Printf("%+v\n", updateResponse)
@@ -83,7 +83,7 @@ func main() {
 	updatedApp.PublicURI = true
 	updateResponse, er = UpdateApplication(createResponse.AppID, updatedApp)
 	if er != nil {
-		fmt.Printf("Error occured while making the application public. error:%+v\n", er)
+		fmt.Printf("Error occurred while making the application public. error:%+v\n", er)
 		os.Exit(1)
 	} else {
 		fmt.Printf("%+v\n", updateResponse)
@@ -91,7 +91,7 @@ func main() {
 
 	appDetails, er = GetApplication(createResponse.AppID)
 	if er != nil {
-		fmt.Printf("Error occured while getting application details. error:%+v\n", er)
+		fmt.Printf("Error occurred while getting application details. error:%+v\n", er)
 		os.Exit(1)
 	} else {
 		fmt.Printf("%+v\n", appDetails)
