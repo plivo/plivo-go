@@ -56,7 +56,7 @@ type SubaccountCreateParams struct {
 type SubaccountUpdateParams SubaccountCreateParams
 
 type SubaccountDeleteParams struct {
-	Cascade bool   `json:"cascade,omitempty" url:"cascade,omitempty"` // Specify if the sub account should be cascade deleted or not. Takes a value of True or False. Defaults to False
+	Cascade bool `json:"cascade,omitempty" url:"cascade,omitempty"` // Specify if the sub account should be cascade deleted or not. Takes a value of True or False. Defaults to False
 }
 
 type SubaccountCreateResponse struct {
