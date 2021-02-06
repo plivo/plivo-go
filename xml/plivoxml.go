@@ -813,13 +813,13 @@ func (e RedirectElement) SetContents(value string) RedirectElement {
 
 type SpeakElement struct {
 	Contents []interface{} `xml:",innerxml"`
-	Voice *string `xml:"voice,attr"`
-	Language *string `xml:"language,attr"`
-	Loop *int `xml:"loop,attr"`
-	XMLName xml.Name `xml:"Speak"`
+	Voice    *string       `xml:"voice,attr"`
+	Language *string       `xml:"language,attr"`
+	Loop     *int          `xml:"loop,attr"`
+	XMLName  xml.Name      `xml:"Speak"`
 }
 
-func (e SpeakElement) AddSpeak(contents string , voice string, language string, loop int) (SpeakElement) {
+func (e SpeakElement) AddSpeak(contents string, voice string, language string, loop int) SpeakElement {
 
 	e.Contents = append(e.Contents, contents)
 	e.Voice = &voice
@@ -831,13 +831,13 @@ func (e SpeakElement) AddSpeak(contents string , voice string, language string, 
 		return e
 	}
 
-	if strings.EqualFold(*e.Voice, "MAN") == true || strings.EqualFold(*e.Voice, "WOMAN") == true  {
+	if strings.EqualFold(*e.Voice, "MAN") == true || strings.EqualFold(*e.Voice, "WOMAN") == true {
 		return e
 	}
 
 	*e.Voice = TransformString(voice)
 	err := ValidateLanguageVoice(language, *e.Voice)
-	if err !=nil {
+	if err != nil {
 		panic(err)
 	}
 	return e
@@ -849,13 +849,13 @@ func (e SpeakElement) ContinueSpeak(value string) SpeakElement {
 	return e
 }
 
-func (e SpeakElement) AddContents(values... interface{}) SpeakElement {
+func (e SpeakElement) AddContents(values ...interface{}) SpeakElement {
 	e.checkIsSSMLSupported()
 	e.Contents = append(e.Contents, values)
 	return e
 }
 
-func (e SpeakElement) checkIsSSMLSupported()  {
+func (e SpeakElement) checkIsSSMLSupported() {
 	if len(*e.Voice) == 0 || strings.EqualFold(*e.Voice, "MAN") == true ||
 		strings.EqualFold(*e.Voice, "WOMAN") == true {
 		panic(errors.New("SSML support is available only for Amazon Polly!"))
@@ -864,97 +864,97 @@ func (e SpeakElement) checkIsSSMLSupported()  {
 }
 
 type BreakElement struct {
-	Strength *string `xml:"strength,attr"`
-	Time     *string `xml:"time,attr"`
-	XMLName xml.Name `xml:"break"`
+	Strength *string  `xml:"strength,attr"`
+	Time     *string  `xml:"time,attr"`
+	XMLName  xml.Name `xml:"break"`
 }
 
 func (e SpeakElement) AddBreak(strength string, time string) SpeakElement {
 	e.checkIsSSMLSupported()
 	break_element := BreakElement{
-		Strength:&strength,
-		Time:&time,
+		Strength: &strength,
+		Time:     &time,
 	}
 	e.Contents = append(e.Contents, break_element)
 	return e
 }
 
 type EmphasisElement struct {
-	Contents []interface{}  `xml:",innerxml"`
-	Level *string `xml:"level,attr"`
-	XMLName xml.Name `xml:"emphasis"`
+	Contents []interface{} `xml:",innerxml"`
+	Level    *string       `xml:"level,attr"`
+	XMLName  xml.Name      `xml:"emphasis"`
 }
 
-func (e SpeakElement) AddEmphasis(contents string , level string) SpeakElement {
+func (e SpeakElement) AddEmphasis(contents string, level string) SpeakElement {
 	e.checkIsSSMLSupported()
 	emphasis_element := EmphasisElement{
-		Contents:[]interface{}{contents},
-		Level:&level,
+		Contents: []interface{}{contents},
+		Level:    &level,
 	}
 	e.Contents = append(e.Contents, emphasis_element)
 	return e
 }
 
 type LangElement struct {
-	Contents []interface{}  `xml:",innerxml"`
-	Lang *string `xml:"xml:lang,attr"`
-	XMLName xml.Name `xml:"lang"`
+	Contents []interface{} `xml:",innerxml"`
+	Lang     *string       `xml:"xml:lang,attr"`
+	XMLName  xml.Name      `xml:"lang"`
 }
 
-func (e SpeakElement) AddLang(contents string , lang string) SpeakElement {
+func (e SpeakElement) AddLang(contents string, lang string) SpeakElement {
 	e.checkIsSSMLSupported()
 	lang_element := LangElement{
-		Contents:[]interface{}{contents},
-		Lang:&lang,
+		Contents: []interface{}{contents},
+		Lang:     &lang,
 	}
 	e.Contents = append(e.Contents, lang_element)
 	return e
 }
 
-type PElement struct{
-	Contents []interface{}  `xml:",innerxml"`
-	XMLName xml.Name `xml:"p"`
+type PElement struct {
+	Contents []interface{} `xml:",innerxml"`
+	XMLName  xml.Name      `xml:"p"`
 }
 
 func (e SpeakElement) AddP(contents string) SpeakElement {
 	e.checkIsSSMLSupported()
 	p_element := PElement{
-		Contents:[]interface{}{contents},
+		Contents: []interface{}{contents},
 	}
 	e.Contents = append(e.Contents, p_element)
 	return e
 }
 
 type PhonemeElement struct {
-	Contents string  `xml:",innerxml"`
+	Contents string   `xml:",innerxml"`
 	Alphabet *string  `xml:"alphabet,attr"`
-	Ph *string  `xml:"ph,attr"`
-	XMLName xml.Name `xml:"phoneme"`
+	Ph       *string  `xml:"ph,attr"`
+	XMLName  xml.Name `xml:"phoneme"`
 }
 
 func (e SpeakElement) AddPhoneme(contents string, alphabet string, ph string) SpeakElement {
 	e.checkIsSSMLSupported()
 	phoneme_element := PhonemeElement{
-		Contents:contents,
-		Alphabet:&alphabet,
-		Ph:&ph,
+		Contents: contents,
+		Alphabet: &alphabet,
+		Ph:       &ph,
 	}
 	e.Contents = append(e.Contents, phoneme_element)
 	return e
 }
 
 type ProsodyElement struct {
-	Contents []interface{}  `xml:",innerxml"`
-	Volume *string  `xml:"volume,attr"`
-	Rate *string  `xml:"rate,attr"`
-	Pitch *string  `xml:"pitch,attr"`
-	XMLName xml.Name `xml:"prosody"`
+	Contents []interface{} `xml:",innerxml"`
+	Volume   *string       `xml:"volume,attr"`
+	Rate     *string       `xml:"rate,attr"`
+	Pitch    *string       `xml:"pitch,attr"`
+	XMLName  xml.Name      `xml:"prosody"`
 }
 
-func (e SpeakElement) AddProsody(contents string, volume string, rate string , pitch string) SpeakElement {
+func (e SpeakElement) AddProsody(contents string, volume string, rate string, pitch string) SpeakElement {
 	e.checkIsSSMLSupported()
 	prosody_element := ProsodyElement{
-		Contents:[]interface{}{contents},
+		Contents: []interface{}{contents},
 	}
 	if volume != "" {
 		prosody_element.Volume = &volume
@@ -970,31 +970,31 @@ func (e SpeakElement) AddProsody(contents string, volume string, rate string , p
 }
 
 type SElement struct {
-	Contents []interface{}  `xml:",innerxml"`
-	XMLName xml.Name `xml:"s"`
+	Contents []interface{} `xml:",innerxml"`
+	XMLName  xml.Name      `xml:"s"`
 }
 
 func (e SpeakElement) AddS(contents string) SpeakElement {
 	e.checkIsSSMLSupported()
 	s_element := SElement{
-		Contents:[]interface{}{contents},
+		Contents: []interface{}{contents},
 	}
 	e.Contents = append(e.Contents, s_element)
 	return e
 }
 
 type SayAsElement struct {
-	Contents string  `xml:",innerxml"`
+	Contents    string   `xml:",innerxml"`
 	InterpretAs *string  `xml:"interpret-as,attr"`
-	Format *string  `xml:"format,attr"`
-	XMLName xml.Name `xml:"say-as"`
+	Format      *string  `xml:"format,attr"`
+	XMLName     xml.Name `xml:"say-as"`
 }
 
-func (e SpeakElement) AddSayAs(contents string, interpretAs string , format string) SpeakElement {
+func (e SpeakElement) AddSayAs(contents string, interpretAs string, format string) SpeakElement {
 	e.checkIsSSMLSupported()
 	say_as_element := SayAsElement{
-		Contents:contents,
-		InterpretAs:&interpretAs,
+		Contents:    contents,
+		InterpretAs: &interpretAs,
 	}
 	if format != "" {
 		say_as_element.Format = &format
@@ -1004,40 +1004,36 @@ func (e SpeakElement) AddSayAs(contents string, interpretAs string , format stri
 }
 
 type SubElement struct {
-	Contents string  `xml:",innerxml"`
-	Alias *string  `xml:"alias,attr"`
-	XMLName xml.Name `xml:"sub"`
+	Contents string   `xml:",innerxml"`
+	Alias    *string  `xml:"alias,attr"`
+	XMLName  xml.Name `xml:"sub"`
 }
 
-
-func (e SpeakElement) AddSub(contents string, alias string ) SpeakElement {
+func (e SpeakElement) AddSub(contents string, alias string) SpeakElement {
 	e.checkIsSSMLSupported()
 	sub_element := SubElement{
-		Contents:contents,
-		Alias:&alias,
+		Contents: contents,
+		Alias:    &alias,
 	}
 	e.Contents = append(e.Contents, sub_element)
 	return e
 }
 
-
 type WElement struct {
-	Contents []interface{}  `xml:",innerxml"`
-	Role *string  `xml:"role,attr"`
-	XMLName xml.Name `xml:"w"`
+	Contents []interface{} `xml:",innerxml"`
+	Role     *string       `xml:"role,attr"`
+	XMLName  xml.Name      `xml:"w"`
 }
 
-
-func (e SpeakElement) AddW(contents string, role string ) SpeakElement {
+func (e SpeakElement) AddW(contents string, role string) SpeakElement {
 	e.checkIsSSMLSupported()
 	w_element := WElement{
-		Contents:[]interface{}{contents},
-		Role:&role,
+		Contents: []interface{}{contents},
+		Role:     &role,
 	}
 	e.Contents = append(e.Contents, w_element)
 	return e
 }
-
 
 type WaitElement struct {
 	Length *int `xml:"length,attr"`
@@ -1073,35 +1069,35 @@ func (e WaitElement) SetBeep(value bool) WaitElement {
 
 func getLanguageVoices() map[string][]string {
 	languageVoices := map[string][]string{
-		"arb": []string{"Zeina"},
-		"cmn-CN": []string{"Zhiyu"},
-		"da-DK": []string{"Naja", "Mads"},
-		"nl-NL": []string{"Lotte", "Ruben"},
-		"en-AU": []string{"Nicole", "Russell"},
-		"en-GB": []string{"Amy", "Emma", "Brian"},
-		"en-IN": []string{"Raveena", "Aditi"},
-		"en-US": []string{"Joanna", "Salli", "Kendra", "Kimberly", "Ivy", "Matthew", "Justin", "Joey"},
-		"en-GB-WLS": []string{"Geraint"},
-		"fr-FR": []string{"Léa", "Céline", "Mathieu"},
-		"fr-CA": []string{"Chantal", "Chantal"},
-		"de-DE": []string{"Vicki", "Hans"},
-		"hi-IN": []string{"Aditi"},
-		"is-IS": []string{"Dóra", "Karl"},
-		"it-IT": []string{"Carla", "Giorgio"},
-		"ja-JP": []string{"Mizuki", "Takumi"},
-		"ko-KR": []string{"Seoyeon"},
-		"nb-NO": []string{"Liv"},
-		"pl-PL": []string{"Ewa", "Maja", "Jacek", "Jan"},
-		"pt-BR": []string{"Vitória", "Ricardo"},
-		"pt-PT": []string{"Inês", "Cristiano"},
-		"ro-RO": []string{"Carmen"},
-		"ru-RU": []string{"Tatyana", "Maxim"},
-		"es-ES": []string{"Conchita", "Lucia", "Enrique"},
-		"es-MX": []string{"Mia"},
-		"es-US": []string{"Penélope", "Miguel"},
-		"sv-SE": []string{"Astrid"},
-		"tr-TR": []string{"Filiz"},
-		"cy-GB": []string{"Gwyneth"},
+		"arb":       {"Zeina"},
+		"cmn-CN":    {"Zhiyu"},
+		"da-DK":     {"Naja", "Mads"},
+		"nl-NL":     {"Lotte", "Ruben"},
+		"en-AU":     {"Nicole", "Russell"},
+		"en-GB":     {"Amy", "Emma", "Brian"},
+		"en-IN":     {"Raveena", "Aditi"},
+		"en-US":     {"Joanna", "Salli", "Kendra", "Kimberly", "Ivy", "Matthew", "Justin", "Joey"},
+		"en-GB-WLS": {"Geraint"},
+		"fr-FR":     {"Léa", "Céline", "Mathieu"},
+		"fr-CA":     {"Chantal", "Chantal"},
+		"de-DE":     {"Vicki", "Hans"},
+		"hi-IN":     {"Aditi"},
+		"is-IS":     {"Dóra", "Karl"},
+		"it-IT":     {"Carla", "Giorgio"},
+		"ja-JP":     {"Mizuki", "Takumi"},
+		"ko-KR":     {"Seoyeon"},
+		"nb-NO":     {"Liv"},
+		"pl-PL":     {"Ewa", "Maja", "Jacek", "Jan"},
+		"pt-BR":     {"Vitória", "Ricardo"},
+		"pt-PT":     {"Inês", "Cristiano"},
+		"ro-RO":     {"Carmen"},
+		"ru-RU":     {"Tatyana", "Maxim"},
+		"es-ES":     {"Conchita", "Lucia", "Enrique"},
+		"es-MX":     {"Mia"},
+		"es-US":     {"Penélope", "Miguel"},
+		"sv-SE":     {"Astrid"},
+		"tr-TR":     {"Filiz"},
+		"cy-GB":     {"Gwyneth"},
 	}
 	return languageVoices
 }
@@ -1115,17 +1111,17 @@ func Contains(a []string, x string) bool {
 	return false
 }
 
-func ValidateLanguageVoice(language string, voice string) error{
+func ValidateLanguageVoice(language string, voice string) error {
 	voiceparts := strings.Split(voice, ".")
 	if len(voiceparts) != 2 || voiceparts[0] != "Polly" || len(voiceparts[1]) == 0 {
-		return  errors.New("XML Validation Error: Invalid language. Voice " + voice + " is not valid." +
+		return errors.New("XML Validation Error: Invalid language. Voice " + voice + " is not valid." +
 			" Refer <https://www.plivo.com/docs/voice/getting-started/advanced/getting-started-with-ssml/#ssml-voices> for the list of supported voices.")
 	}
 
 	languageVoicesList := getLanguageVoices()
 
-	if (languageVoicesList[language] == nil) {
-		return  errors.New("XML Validation Error: Invalid language. Language " + language + " is not supported.")
+	if languageVoicesList[language] == nil {
+		return errors.New("XML Validation Error: Invalid language. Language " + language + " is not supported.")
 	}
 
 	availableLanguageVoicesList := languageVoicesList[language]
@@ -1135,13 +1131,13 @@ func ValidateLanguageVoice(language string, voice string) error{
 	}
 	transformedVoiceName := TransformString(voiceparts[1])
 
-	if strings.Compare(voiceparts[1], "*") == 0 ||  Contains(availableLanguageVoicesList,transformedVoiceName) == false {
+	if strings.Compare(voiceparts[1], "*") == 0 || Contains(availableLanguageVoicesList, transformedVoiceName) == false {
 		return errors.New("XML Validation Error: <Speak> voice '" + voice + "' is not valid. Refer <https://www.plivo.com/docs/voice/getting-started/advanced/getting-started-with-ssml/#ssml-voices> for list of supported voices.")
 	}
 	return nil
 }
 
-func TransformString(s string) string{
+func TransformString(s string) string {
 	tc := transform.Chain(norm.NFD, runes.Remove(runes.In(unicode.Mn)), norm.NFC)
 	s, _, _ = transform.String(tc, s)
 	s = strings.Title(s)

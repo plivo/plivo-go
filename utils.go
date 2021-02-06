@@ -18,7 +18,6 @@ func Numbers(numbers ...string) string {
 	return strings.Join(numbers, "<")
 }
 
-
 func headersWithSep(headers map[string]string, keyValSep, itemSep string, escape bool) string {
 	v := url.Values{}
 	for key, value := range headers {
@@ -140,7 +139,7 @@ func getMapFromQueryString(query url.Values) map[string]string {
 func GetSortedQueryParamString(params map[string]string, queryParams bool) string {
 	url := ""
 	keys := make([]string, 0, len(params))
-	for key, _ := range params {
+	for key := range params {
 		keys = append(keys, key)
 	}
 	sort.Strings(keys)

@@ -4,7 +4,7 @@ const nodeType = "multi_party_call"
 
 type Phlo struct {
 	BaseResource
-	ApiId 	  string `json:"api_id" url:"api_id"`
+	ApiId     string `json:"api_id" url:"api_id"`
 	PhloId    string `json:"phlo_id" url:"phlo_id"`
 	Name      string `json:"name" url:"name"`
 	CreatedOn string `json:"created_on" url:"created_on"`
@@ -30,7 +30,7 @@ type PhloRun struct {
 
 func (self *Phlos) Get(phloId string) (response *Phlo, err error) {
 	req, err := self.client.NewRequest("GET", nil, "phlo/%s", phloId)
-	if (err != nil) {
+	if err != nil {
 		return
 	}
 	response = &Phlo{}
@@ -42,7 +42,7 @@ func (self *Phlos) Get(phloId string) (response *Phlo, err error) {
 
 func (self *Phlo) Node(nodeId string) (response *Node, err error) {
 	req, err := self.client.NewRequest("GET", nil, "phlo/%s/%s/%s", self.PhloId, nodeType, nodeId)
-	if (err != nil) {
+	if err != nil {
 		return
 	}
 	response = &Node{}
@@ -52,7 +52,7 @@ func (self *Phlo) Node(nodeId string) (response *Node, err error) {
 
 func (self *Phlo) MultiPartyCall(nodeId string) (response *PhloMultiPartyCall, err error) {
 	req, err := self.client.NewRequest("GET", nil, "phlo/%s/%s/%s", self.PhloId, nodeType, nodeId)
-	if (err != nil) {
+	if err != nil {
 		return
 	}
 	response = &PhloMultiPartyCall{}
@@ -63,7 +63,7 @@ func (self *Phlo) MultiPartyCall(nodeId string) (response *PhloMultiPartyCall, e
 
 func (self *Phlo) Run(data map[string]interface{}) (response *PhloRun, err error) {
 	req, err := self.client.NewRequest("POST", data, "account/%s/phlo/%s/", self.client.AuthId, self.PhloId)
-	if (err != nil) {
+	if err != nil {
 		return
 	}
 	response = &PhloRun{}

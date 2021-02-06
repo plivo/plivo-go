@@ -28,8 +28,6 @@ func TestMultiPartyCallCall_Post(t *testing.T) {
 	assertPhloRequest(t, "POST", "phlo/%s/%s/%s", phloGet.PhloId, nodeType, multiPartyCallGet.NodeID)
 }
 
-
-
 func TestMultiPartyCallWarmTransfer_Post(t *testing.T) {
 	expectResponse("MultiPartyCallResponse.json", 200)
 	testPhloId := "PhloId"
@@ -83,7 +81,6 @@ func TestMultiPartyCallMemberAbortTransfer_Post(t *testing.T) {
 	testMemberAdress := "testMemnber"
 	phloGet, _ := phloClient.Phlos.Get(testPhloId)
 	multiPartyCallGet, err := phloGet.MultiPartyCall(testNodeId)
-
 
 	cl := phloClient.httpClient
 	phloClient.httpClient = nil

@@ -17,37 +17,37 @@ type ComplianceDocumentService struct {
 }
 
 type GetComplianceDocumentResponse struct {
-	APIID          string `json:"api_id"`
-	DocumentID     string `json:"document_id"`
-	EndUserID      string `json:"end_user_id"`
-	DocumentTypeID string `json:"document_type_id"`
-	Alias          string `json:"alias"`
-	FileName       string `json:"file_name,omitempty"`
+	APIID           string `json:"api_id"`
+	DocumentID      string `json:"document_id"`
+	EndUserID       string `json:"end_user_id"`
+	DocumentTypeID  string `json:"document_type_id"`
+	Alias           string `json:"alias"`
+	FileName        string `json:"file_name,omitempty"`
 	MetaInformation struct {
-		LastName                   string `json:"last_name,omitempty"`
-		FirstName                  string `json:"first_name,omitempty"`
-		DateOfBirth                string `json:"date_of_birth,omitempty"`
-		AddressLine1               string `json:"address_line_1,omitempty"`
-		AddressLine2               string `json:"address_line_2,omitempty"`
-		City                       string `json:"city,omitempty"`
-		Country                    string `json:"country,omitempty"`
-		PostalCode                 string `json:"postal_code,omitempty"`
-		UniqueIdentificationNumber string `json:"unique_identification_number,omitempty"`
-		Nationality                string `json:"nationality,omitempty"`
-		PlaceOfBirth               string `json:"place_of_birth,omitempty"`
-		DateOfIssue                string `json:"date_of_issue,omitempty"`
-		DateOfExpiration           string `json:"date_of_expiration,omitempty"`
-		TypeOfUtility              string `json:"type_of_utility,omitempty"`
-		BillingId                  string `json:"billing_id,omitempty"`
-		BillingDate                string `json:"billing_date,omitempty"`
-		BusinessName               string `json:"business_name,omitempty"`
-		TypeOfId                   string `json:"type_of_id,omitempty"`
-		SupportPhoneNumber		   string `json:"support_phone_number,omitempty"`
-		SupportEmail			   string `json:"support_email,omitempty"`
-		AuthorizedRepresentativeName		string `json:"authorized_representative_name,omitempty"`
-		BillDate		  		   string `json:"bill_date,omitempty"`
-		BillId		  		       string `json:"bill_id,omitempty"`
-		UseCaseDescription		   string `json:"use_case_description,omitempty"`
+		LastName                     string `json:"last_name,omitempty"`
+		FirstName                    string `json:"first_name,omitempty"`
+		DateOfBirth                  string `json:"date_of_birth,omitempty"`
+		AddressLine1                 string `json:"address_line_1,omitempty"`
+		AddressLine2                 string `json:"address_line_2,omitempty"`
+		City                         string `json:"city,omitempty"`
+		Country                      string `json:"country,omitempty"`
+		PostalCode                   string `json:"postal_code,omitempty"`
+		UniqueIdentificationNumber   string `json:"unique_identification_number,omitempty"`
+		Nationality                  string `json:"nationality,omitempty"`
+		PlaceOfBirth                 string `json:"place_of_birth,omitempty"`
+		DateOfIssue                  string `json:"date_of_issue,omitempty"`
+		DateOfExpiration             string `json:"date_of_expiration,omitempty"`
+		TypeOfUtility                string `json:"type_of_utility,omitempty"`
+		BillingId                    string `json:"billing_id,omitempty"`
+		BillingDate                  string `json:"billing_date,omitempty"`
+		BusinessName                 string `json:"business_name,omitempty"`
+		TypeOfId                     string `json:"type_of_id,omitempty"`
+		SupportPhoneNumber           string `json:"support_phone_number,omitempty"`
+		SupportEmail                 string `json:"support_email,omitempty"`
+		AuthorizedRepresentativeName string `json:"authorized_representative_name,omitempty"`
+		BillDate                     string `json:"bill_date,omitempty"`
+		BillId                       string `json:"bill_id,omitempty"`
+		UseCaseDescription           string `json:"use_case_description,omitempty"`
 	} `json:"meta_information"`
 	CreatedAt string `json:"created_at"`
 }
@@ -74,30 +74,30 @@ type ListComplianceDocumentResponse struct {
 		ComplianceDocumentID string    `json:"compliance_document_id"`
 		Alias                string    `json:"alias"`
 		MetaInformation      struct {
-			LastName                   string `json:"last_name,omitempty"`
-			FirstName                  string `json:"first_name,omitempty"`
-			DateOfBirth                string `json:"date_of_birth,omitempty"`
-			AddressLine1               string `json:"address_line_1,omitempty"`
-			AddressLine2               string `json:"address_line_2,omitempty"`
-			City                       string `json:"city,omitempty"`
-			Country                    string `json:"country,omitempty"`
-			PostalCode                 string `json:"postal_code,omitempty"`
-			UniqueIdentificationNumber string `json:"unique_identification_number,omitempty"`
-			Nationality                string `json:"nationality,omitempty"`
-			PlaceOfBirth               string `json:"place_of_birth,omitempty"`
-			DateOfIssue                string `json:"date_of_issue,omitempty"`
-			DateOfExpiration           string `json:"date_of_expiration,omitempty"`
-			TypeOfUtility              string `json:"type_of_utility,omitempty"`
-			BillingId                  string `json:"billing_id,omitempty"`
-			BillingDate                string `json:"billing_date,omitempty"`
-			BusinessName               string `json:"business_name,omitempty"`
-			TypeOfId                   string `json:"type_of_id,omitempty"`
-			SupportPhoneNumber		   string `json:"support_phone_number,omitempty"`
-			SupportEmail			   string `json:"support_email,omitempty"`
-			AuthorizedRepresentativeName		string `json:"authorized_representative_name,omitempty"`
-			BillDate		  		   string `json:"bill_date,omitempty"`
-			BillId		  		       string `json:"bill_id,omitempty"`
-			UseCaseDescription		   string `json:"use_case_description,omitempty"`
+			LastName                     string `json:"last_name,omitempty"`
+			FirstName                    string `json:"first_name,omitempty"`
+			DateOfBirth                  string `json:"date_of_birth,omitempty"`
+			AddressLine1                 string `json:"address_line_1,omitempty"`
+			AddressLine2                 string `json:"address_line_2,omitempty"`
+			City                         string `json:"city,omitempty"`
+			Country                      string `json:"country,omitempty"`
+			PostalCode                   string `json:"postal_code,omitempty"`
+			UniqueIdentificationNumber   string `json:"unique_identification_number,omitempty"`
+			Nationality                  string `json:"nationality,omitempty"`
+			PlaceOfBirth                 string `json:"place_of_birth,omitempty"`
+			DateOfIssue                  string `json:"date_of_issue,omitempty"`
+			DateOfExpiration             string `json:"date_of_expiration,omitempty"`
+			TypeOfUtility                string `json:"type_of_utility,omitempty"`
+			BillingId                    string `json:"billing_id,omitempty"`
+			BillingDate                  string `json:"billing_date,omitempty"`
+			BusinessName                 string `json:"business_name,omitempty"`
+			TypeOfId                     string `json:"type_of_id,omitempty"`
+			SupportPhoneNumber           string `json:"support_phone_number,omitempty"`
+			SupportEmail                 string `json:"support_email,omitempty"`
+			AuthorizedRepresentativeName string `json:"authorized_representative_name,omitempty"`
+			BillDate                     string `json:"bill_date,omitempty"`
+			BillId                       string `json:"bill_id,omitempty"`
+			UseCaseDescription           string `json:"use_case_description,omitempty"`
 		} `json:"meta_information"`
 		File           string `json:"file,omitempty"`
 		EndUserID      string `json:"end_user_id"`
@@ -106,34 +106,34 @@ type ListComplianceDocumentResponse struct {
 }
 
 type CreateComplianceDocumentParams struct {
-	File                       string `json:"file,omitempty"`
-	EndUserID                  string `json:"end_user_id,omitempty"`
-	DocumentTypeID             string `json:"document_type_id,omitempty"`
-	Alias                      string `json:"alias,omitempty"`
-	LastName                   string `json:"last_name,omitempty"`
-	FirstName                  string `json:"first_name,omitempty"`
-	DateOfBirth                string `json:"date_of_birth,omitempty"`
-	AddressLine1               string `json:"address_line_1,omitempty"`
-	AddressLine2               string `json:"address_line_2,omitempty"`
-	City                       string `json:"city,omitempty"`
-	Country                    string `json:"country,omitempty"`
-	PostalCode                 string `json:"postal_code,omitempty"`
-	UniqueIdentificationNumber string `json:"unique_identification_number,omitempty"`
-	Nationality                string `json:"nationality,omitempty"`
-	PlaceOfBirth               string `json:"place_of_birth,omitempty"`
-	DateOfIssue                string `json:"date_of_issue,omitempty"`
-	DateOfExpiration           string `json:"date_of_expiration,omitempty"`
-	TypeOfUtility              string `json:"type_of_utility,omitempty"`
-	BillingId                  string `json:"billing_id,omitempty"`
-	BillingDate                string `json:"billing_date,omitempty"`
-	BusinessName               string `json:"business_name,omitempty"`
-	TypeOfId                   string `json:"type_of_id,omitempty"`
-	SupportPhoneNumber		   string `json:"support_phone_number,omitempty"`
-	SupportEmail			   string `json:"support_email,omitempty"`
-	AuthorizedRepresentativeName		string `json:"authorized_representative_name,omitempty"`
-	BillDate		  		   string `json:"bill_date,omitempty"`
-	BillId		  		       string `json:"bill_id,omitempty"`
-	UseCaseDescription		   string `json:"use_case_description,omitempty"`
+	File                         string `json:"file,omitempty"`
+	EndUserID                    string `json:"end_user_id,omitempty"`
+	DocumentTypeID               string `json:"document_type_id,omitempty"`
+	Alias                        string `json:"alias,omitempty"`
+	LastName                     string `json:"last_name,omitempty"`
+	FirstName                    string `json:"first_name,omitempty"`
+	DateOfBirth                  string `json:"date_of_birth,omitempty"`
+	AddressLine1                 string `json:"address_line_1,omitempty"`
+	AddressLine2                 string `json:"address_line_2,omitempty"`
+	City                         string `json:"city,omitempty"`
+	Country                      string `json:"country,omitempty"`
+	PostalCode                   string `json:"postal_code,omitempty"`
+	UniqueIdentificationNumber   string `json:"unique_identification_number,omitempty"`
+	Nationality                  string `json:"nationality,omitempty"`
+	PlaceOfBirth                 string `json:"place_of_birth,omitempty"`
+	DateOfIssue                  string `json:"date_of_issue,omitempty"`
+	DateOfExpiration             string `json:"date_of_expiration,omitempty"`
+	TypeOfUtility                string `json:"type_of_utility,omitempty"`
+	BillingId                    string `json:"billing_id,omitempty"`
+	BillingDate                  string `json:"billing_date,omitempty"`
+	BusinessName                 string `json:"business_name,omitempty"`
+	TypeOfId                     string `json:"type_of_id,omitempty"`
+	SupportPhoneNumber           string `json:"support_phone_number,omitempty"`
+	SupportEmail                 string `json:"support_email,omitempty"`
+	AuthorizedRepresentativeName string `json:"authorized_representative_name,omitempty"`
+	BillDate                     string `json:"bill_date,omitempty"`
+	BillId                       string `json:"bill_id,omitempty"`
+	UseCaseDescription           string `json:"use_case_description,omitempty"`
 }
 
 type UpdateComplianceDocumentParams struct {
@@ -209,7 +209,7 @@ func (service *ComplianceDocumentService) Create(params CreateComplianceDocument
 	fields := reflect.TypeOf(params)
 	values := reflect.ValueOf(params)
 	num := fields.NumField()
-	for i:=0; i<num; i++ {
+	for i := 0; i < num; i++ {
 		field := strings.Split(fields.Field(i).Tag.Get("json"), ",")[0]
 		value := values.Field(i)
 		if field != "file" {
@@ -237,7 +237,7 @@ func (service *ComplianceDocumentService) Update(params UpdateComplianceDocument
 	fields := reflect.TypeOf(params)
 	values := reflect.ValueOf(params)
 	num := fields.NumField()
-	for i:=0; i<num; i++ {
+	for i := 0; i < num; i++ {
 		field := strings.Split(fields.Field(i).Tag.Get("json"), ",")[0]
 		value := values.Field(i)
 		if field != "file" {
