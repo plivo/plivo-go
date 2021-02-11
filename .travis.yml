@@ -15,5 +15,5 @@ before_script:
   - go get github.com/stretchr/testify/assert
 
 script: 
-go test ./... -v
-go fmt ./...
+  - "go test ./... -v"
+  - "go fmt ./..."
