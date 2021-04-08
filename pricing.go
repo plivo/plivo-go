@@ -53,8 +53,9 @@ type Pricing struct {
 				Rate string `json:"rate" url:"rate"`
 			} `json:"local" url:"local"`
 			Rates []struct {
-				Prefix []string `json:"prefix" url:"prefix"`
-				Rate   string   `json:"rate" url:"rate"`
+				OriginationPrefix []string `json:"origination_prefix" url:"origination_prefix"`
+				Prefix            []string `json:"prefix" url:"prefix"`
+				Rate              string   `json:"rate" url:"rate"`
 			} `json:"rates" url:"rates"`
 			Tollfree struct {
 				Rate string `json:"rate" url:"rate"`
