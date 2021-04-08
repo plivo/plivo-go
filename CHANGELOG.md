@@ -1,5 +1,8 @@
 # Change Log
 
+## [5.5.2](https://github.com/plivo/plivo-go/tree/v5.5.2) (2021-04-08)
+- Read origination prefix from voice pricing
+
 ## [5.5.1](https://github.com/plivo/plivo-go/tree/v5.5.1) (2020-12-16)
 - Add SSML utilities
 
