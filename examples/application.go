@@ -3,7 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
-	"plivo/plivo-go"
+
+	"github.com/plivo/plivo-go"
 )
 
 var client *plivo.Client
@@ -40,7 +41,7 @@ func GetApplication(appId string) (*plivo.Application, error) {
 	return response, nil
 }
 
-func main() {
+func applicationMain() {
 	initClient("", "")
 	input := plivo.ApplicationCreateParams{
 		AppName:   "example-app",
