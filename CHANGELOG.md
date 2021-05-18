@@ -1,6 +1,6 @@
 # Change Log
 
-## [5.5.3](https://github.com/plivo/plivo-go/tree/v5.5.3) (2021-05-17)
+## [5.5.3](https://github.com/plivo/plivo-go/tree/v5.5.3) (2021-05-18)
 - Fix Speak test case & README
 
 ## [5.5.2](https://github.com/plivo/plivo-go/tree/v5.5.2) (2021-04-08)
