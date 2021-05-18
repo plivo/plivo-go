@@ -26,11 +26,9 @@ func TestComplexXML(t *testing.T) {
 			}).SetTimeLimit(10).SetMethod("POST").SetHangupOnStar(true).SetDigitsMatch("123").SetCallbackMethod("POST").SetCallbackUrl("url").SetRedirect(true).SetAction("action").SetTimeout(10).SetSipHeaders("h=1"),
 			new(DTMFElement).SetContents("123").SetAsync(true),
 			new(WaitElement).SetBeep(true).SetLength(10).SetMinSilence(10).SetSilence(true),
-			new(PreAnswerElement).SetContents([]interface{}{
-				new(SpeakElement).AddSpeak("text", "MAN", "en", 10),
-			}),
+			new(PreAnswerElement).SetContents([]interface{}{new(SpeakElement).AddSpeak("text", "MAN", "en", 10),}),
 			new(GetDigitsElement).SetPlayBeep(true).SetRedirect(true).SetFinishOnKey("#").SetAction("action").SetDigitTimeout(10).SetNumDigits(10).SetRetries(10).SetTimeout(10).SetValidDigits("123").SetInvalidDigitsSound("sound").SetContents([]interface{}{}),
-			new(GetInputElement).SetAction("action").SetMethod("GET").SetInputType("Speech").SetExecutionTimeout(10).SetDigitEndTimeout(20).SetSpeechEndTimeout(30).SetFinishOnKey("#").SetNumDigits(10).SetSpeechModel("default").SetLanguage("en-us").SetHints("1 2 3").SetInterimSpeechResultsCallback("interimCallback").SetInterimSpeechResultsCallbackMethod("POST").SetRedirect(true).SetLog(false).SetContents([]interface{}{new(SpeakElement).SetContents("Tell us more about your experience").SetVoice("WOMAN").SetLanguage("en-US").SetLoop(1)}),
+			new(GetInputElement).SetAction("action").SetMethod("GET").SetInputType("Speech").SetExecutionTimeout(10).SetDigitEndTimeout(20).SetSpeechEndTimeout(30).SetFinishOnKey("#").SetNumDigits(10).SetSpeechModel("default").SetLanguage("en-us").SetHints("1 2 3").SetInterimSpeechResultsCallback("interimCallback").SetInterimSpeechResultsCallbackMethod("POST").SetRedirect(true).SetLog(false).SetContents([]interface{}{new(SpeakElement).AddSpeak("Tell us more about your experience","WOMAN","en-US", 1)}),
 			new(ConferenceElement).SetAction("action").SetRedirect(true).SetCallbackUrl("url").SetCallbackMethod("method").SetContents("name").SetDigitsMatch("123").SetEndConferenceOnExit(true).SetEnterSound("sound").SetExitSound("sound").SetFloorEvent(true).SetHangupOnStar(true).SetMaxMembers(10).SetMethod("method").SetMuted(true).SetRecord(true).SetRecordFileFormat("rff").SetRelayDTMF(true).SetStartConferenceOnEnter(true).SetStayAlone(true).SetTimeLimit(10).SetWaitSound("sound"),
 			new(RedirectElement).SetMethod("POST").SetContents("url"),
 			new(PlayElement).SetContents("url").SetLoop(10),

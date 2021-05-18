@@ -112,7 +112,7 @@ You can now use the features available in the Beta branch.
 ## Getting started
 
 ### Authentication
-To make the API requests, you need to create a `Client` and provide it with authentication credentials (which can be found at [https://manage.plivo.com/dashboard/](https://manage.plivo.com/dashboard/)).
+To make the API requests, you need to create a `Client` and provide it with authentication credentials (which can be found at [https://console.plivo.com/dashboard/](https://console.plivo.com/dashboard/)).
 
 We recommend that you store your credentials in the `PLIVO_AUTH_ID` and the `PLIVO_AUTH_TOKEN` environment variables, so as to avoid the possibility of accidentally committing them to source control. If you do this, you can initialise the client with no arguments and it will automatically fetch them from the environment variables:
 
@@ -136,7 +136,7 @@ package main
 import "github.com/plivo/plivo-go"
 
 func main()  {
- client, err := plivo.NewClient("your_auth_id", "your_auth_token", &plivo.ClientOptions{})
+ client, err := plivo.NewClient("<auth_id>", "<auth_token>", &plivo.ClientOptions{})
  if err != nil {
    panic(err)
  }
@@ -166,13 +166,13 @@ package main
 import "github.com/plivo/plivo-go"
 
 func main()  {
-  client, err := plivo.NewClient("", "", &plivo.ClientOptions{})
+  client, err := plivo.NewClient("<auth_id>", "<auth_token>", &plivo.ClientOptions{})
   if err != nil {
     panic(err)
   }
   client.Messages.Create(plivo.MessageCreateParams{
-    Src: "the_source_number",
-    Dst: "the_destination_number",
+    Src: "+14156667778",
+    Dst: "+14156667777",
     Text: "Hello, world!",
   })
 }
@@ -186,14 +186,15 @@ package main
 import "github.com/plivo/plivo-go"
 
 func main()  {
-  client, err := plivo.NewClient("", "", &plivo.ClientOptions{})
+  client, err := plivo.NewClient("<auth_id>", "<auth_token>", &plivo.ClientOptions{})
   if err != nil {
     panic(err)
   }
   client.Calls.Create(plivo.CallCreateParams{
-    From: "the_source_number",
-    To: "the_destination_number",
-    AnswerURL: "http://answer.url",
+    From: "+14156667778",
+    To: "+14156667777",
+    AnswerURL: "http://s3.amazonaws.com/static.plivo.com/answer.xml",
+    Method: "GET"
   })
 }
 ```
@@ -211,7 +212,7 @@ import (
 )
 
 func main() {
-	client, err := plivo.NewClient("authId", "authToken", &plivo.ClientOptions{})
+	client, err := plivo.NewClient("<auth_id>", "<auth_token>", &plivo.ClientOptions{})
 	if err != nil {
 		log.Fatalf("plivo.NewClient() failed: %s", err.Error())
 	}
@@ -240,7 +241,7 @@ import "github.com/plivo/plivo-go/plivo/xml"
 func main()  {
   println(xml.ResponseElement{
     Contents: []interface{}{
-      new(xml.SpeakElement).SetContents("Hello, world!"),
+      new(xml.SpeakElement).AddSpeak("Hello, world!", "MAN", "en", 1),
     },
     }.String())
 }
@@ -250,7 +251,7 @@ This generates the following XML:
 
 ```xml
 <Response>
-  <Speak>Hello, world!</Speak>
+   <Speak voice="MAN" language="en-us" loop="1">Hello, world!</Speak>
 </Response>
 ```
 
@@ -288,8 +289,8 @@ func testPhloRunWithParams() {
 	//pass corresponding from and to values
 	type params map[string]interface{}
 	response, err := phloGet.Run(params{
-		"from": "111111111",
-		"to": "2222222222",
+		"from": "+14156667778",
+		"to": "+14156667778",
 	})
 
 	if (err != nil) {
@@ -300,7 +301,7 @@ func testPhloRunWithParams() {
 ```
 
 ### More examples
-Refer to the [Plivo API Reference](https://api-reference.plivo.com/latest/go/introduction/overview) for more examples. Also refer to the [guide to setting up dev environment](https://developers.plivo.com/getting-started/setting-up-dev-environment/) on [Plivo Developers Portal](https://developers.plivo.com) to setup a simple Go server & use it to test out your integration in under 5 minutes.
+More examples are available [here](https://github.com/plivo/plivo-examples-go). Also refer to the [guides for configuring the Go server to run various scenarios](https://www.plivo.com/docs/sms/quickstart/go-server/) & use it to test out your integration in under 5 minutes.
 
 ## Reporting issues
 Report any feedback or problems with this version by [opening an issue on Github](https://github.com/plivo/plivo-go/issues).
