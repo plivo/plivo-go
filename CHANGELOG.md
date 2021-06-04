@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.6.1](https://github.com/plivo/plivo-go/tree/v5.5.3) (2021-07-01)
+- Read voice network group from voice pricing
+- Fix GetCDR and ListCDR response to include all fields
+
 ## [5.6.0](https://github.com/plivo/plivo-go/tree/v5.6.0) (2021-06-15)
 - Add stir verification param as part of Get CDR and live call APIs
 
