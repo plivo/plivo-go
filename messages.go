@@ -61,7 +61,13 @@ type MMSMedia struct {
 }
 
 type MessageList struct {
-	BaseListResponse
+	ApiID string `json:"api_id" url:"api_id"`
+	Meta  struct {
+		Previous *string
+		Next     *string
+		Offset   int64
+		Limit    int64
+	} `json:"meta"`
 	Objects []Message `json:"objects" url:"objects"`
 }
 
