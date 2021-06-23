@@ -1,5 +1,8 @@
 # Change Log
 
+## [5.6.0](https://github.com/plivo/plivo-go/tree/v5.6.0) (2021-06-15)
+- Add stir verification param as part of Get CDR and live call APIs
+
 ## [5.5.2](https://github.com/plivo/plivo-go/tree/v5.5.2) (2021-04-08)
 - Read origination prefix from voice pricing
 
