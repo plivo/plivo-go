@@ -26,11 +26,10 @@ type PhloMultiPartyCallActionPayload struct {
 	TriggerSource string `json:"trigger_source" url:"trigger_source"`
 }
 
-
 func (self *PhloMultiPartyCall) update(params PhloMultiPartyCallActionPayload) (response *NodeActionResponse, err error) {
 	req, err := self.client.NewRequest("POST", params, "phlo/%s/%s/%s", self.PhloID, self.NodeType,
 		self.NodeID)
-	if (err != nil) {
+	if err != nil {
 		return
 	}
 	response = &NodeActionResponse{}
@@ -52,7 +51,6 @@ func (self *PhloMultiPartyCall) ColdTransfer(params PhloMultiPartyCallActionPayl
 	err error) {
 	return self.update(params)
 }
-
 
 const HOLD = "hold"
 const UNHOLD = "unhold"
@@ -78,7 +76,7 @@ func (self *PhloMultiPartyCall) Member(memberID string) (response *PhloMultiPart
 	return
 }
 
-func (self *PhloMultiPartyCallMember) AbortTransfer() (*NodeActionResponse,error) {
+func (self *PhloMultiPartyCallMember) AbortTransfer() (*NodeActionResponse, error) {
 	return self.update(PhloMultiPartyCallMemberActionPayload{ABORT_TRANSFER})
 }
 

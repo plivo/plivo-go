@@ -7,19 +7,19 @@ type ComplianceDocumentTypeService struct {
 }
 
 type GetComplianceDocumentTypeResponse struct {
-	APIID string `json:"api_id"`
+	APIID          string    `json:"api_id"`
 	CreatedAt      time.Time `json:"created_at"`
 	Description    string    `json:"description"`
 	DocumentName   string    `json:"document_name"`
 	DocumentTypeID string    `json:"document_type_id"`
 	Information    []struct {
-		FieldName    string `json:"field_name"`
-		FieldType    string `json:"field_type"`
-		FriendlyName string `json:"friendly_name"`
-		HelpText     string `json:"help_text,omitempty"`
-		MaxLength    int    `json:"max_length,omitempty"`
-		MinLength    int    `json:"min_length,omitempty"`
-		Format       string `json:"format,omitempty"`
+		FieldName    string   `json:"field_name"`
+		FieldType    string   `json:"field_type"`
+		FriendlyName string   `json:"friendly_name"`
+		HelpText     string   `json:"help_text,omitempty"`
+		MaxLength    int      `json:"max_length,omitempty"`
+		MinLength    int      `json:"min_length,omitempty"`
+		Format       string   `json:"format,omitempty"`
 		Enums        []string `json:"enums,omitempty"`
 	} `json:"information"`
 	ProofRequired interface{} `json:"proof_required"`
