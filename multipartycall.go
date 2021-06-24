@@ -25,7 +25,7 @@ type MultiPartyCallAddParticipantParams struct {
 	From                     string `json:"from,omitempty" url:"from,omitempty"`
 	To                       string `json:"to,omitempty" url:"to,omitempty"`
 	CallUuid                 string `json:"call_uuid,omitempty" url:"call_uuid,omitempty"`
-	CallerName				 string	`json:"caller_name,omitempty" url:"caller_name,omitempty"`
+	CallerName               string `json:"caller_name,omitempty" url:"caller_name,omitempty"`
 	CallStatusCallbackUrl    string `json:"call_status_callback_url,omitempty" url:"call_status_callback_url,omitempty"`
 	CallStatusCallbackMethod string `json:"call_status_callback_method,omitempty" url:"call_status_callback_method,omitempty"`
 	SipHeaders               string `json:"sip_headers,omitempty" url:"sip_headers,omitempty"`
@@ -33,8 +33,8 @@ type MultiPartyCallAddParticipantParams struct {
 	ConfirmKeySoundUrl       string `json:"confirm_key_sound_url,omitempty" url:"confirm_key_sound_url,omitempty"`
 	ConfirmKeySoundMethod    string `json:"confirm_key_sound_method,omitempty" url:"confirm_key_sound_method,omitempty"`
 	DialMusic                string `json:"dial_music,omitempty" url:"dial_music,omitempty"`
-	RingTimeout              string  `json:"ring_timeout,omitempty" url:"ring_timeout,omitempty"`
-	DelayDial				 string `json:"delay_dial,omitempty" uril:"caller_name,omitempty"`
+	RingTimeout              string `json:"ring_timeout,omitempty" url:"ring_timeout,omitempty"`
+	DelayDial                string `json:"delay_dial,omitempty" uril:"caller_name,omitempty"`
 	MaxDuration              int64  `json:"max_duration,omitempty" url:"max_duration,omitempty"`
 	MaxParticipants          int64  `json:"max_participants,omitempty" url:"max_participants,omitempty"`
 	WaitMusicUrl             string `json:"wait_music_url,omitempty" url:"wait_music_url,omitempty"`
