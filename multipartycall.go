@@ -21,48 +21,48 @@ type MPCUpdateResponse struct {
 }
 
 type MultiPartyCallAddParticipantParams struct {
-	Role                     string `json:"role,omitempty" url:"role,omitempty"`
-	From                     string `json:"from,omitempty" url:"from,omitempty"`
-	To                       string `json:"to,omitempty" url:"to,omitempty"`
-	CallUuid                 string `json:"call_uuid,omitempty" url:"call_uuid,omitempty"`
-	CallerName               string `json:"caller_name,omitempty" url:"caller_name,omitempty"`
-	CallStatusCallbackUrl    string `json:"call_status_callback_url,omitempty" url:"call_status_callback_url,omitempty"`
-	CallStatusCallbackMethod string `json:"call_status_callback_method,omitempty" url:"call_status_callback_method,omitempty"`
-	SipHeaders               string `json:"sip_headers,omitempty" url:"sip_headers,omitempty"`
-	ConfirmKey               string `json:"confirm_key,omitempty" url:"confirm_key,omitempty"`
-	ConfirmKeySoundUrl       string `json:"confirm_key_sound_url,omitempty" url:"confirm_key_sound_url,omitempty"`
-	ConfirmKeySoundMethod    string `json:"confirm_key_sound_method,omitempty" url:"confirm_key_sound_method,omitempty"`
-	DialMusic                string `json:"dial_music,omitempty" url:"dial_music,omitempty"`
-	RingTimeout              string `json:"ring_timeout,omitempty" url:"ring_timeout,omitempty"`
-	DelayDial                string `json:"delay_dial,omitempty" uril:"caller_name,omitempty"`
-	MaxDuration              int64  `json:"max_duration,omitempty" url:"max_duration,omitempty"`
-	MaxParticipants          int64  `json:"max_participants,omitempty" url:"max_participants,omitempty"`
-	WaitMusicUrl             string `json:"wait_music_url,omitempty" url:"wait_music_url,omitempty"`
-	WaitMusicMethod          string `json:"wait_music_method,omitempty" url:"wait_music_method,omitempty"`
-	AgentHoldMusicUrl        string `json:"agent_hold_music_url,omitempty" url:"agent_hold_music_url,omitempty"`
-	AgentHoldMusicMethod     string `json:"agent_hold_music_method,omitempty" url:"agent_hold_music_method,omitempty"`
-	CustomerHoldMusicUrl     string `json:"customer_hold_music_url,omitempty" url:"customer_hold_music_url,omitempty"`
-	CustomerHoldMusicMethod  string `json:"customer_hold_music_method,omitempty" url:"customer_hold_music_method,omitempty"`
-	RecordingCallbackUrl     string `json:"recording_callback_url,omitempty" url:"recording_callback_url,omitempty"`
-	RecordingCallbackMethod  string `json:"recording_callback_method,omitempty" url:"recording_callback_method,omitempty"`
-	StatusCallbackUrl        string `json:"status_callback_url,omitempty" url:"status_callback_url,omitempty"`
-	StatusCallbackMethod     string `json:"status_callback_method,omitempty" url:"status_callback_method,omitempty"`
-	OnExitActionUrl          string `json:"on_exit_action_url,omitempty" url:"on_exit_action_url,omitempty"`
-	OnExitActionMethod       string `json:"on_exit_action_method,omitempty" url:"on_exit_action_method,omitempty"`
-	Record                   bool   `json:"record,omitempty" url:"record,omitempty"`
-	RecordFileFormat         string `json:"record_file_format,omitempty" url:"record_file_format,omitempty"`
-	StatusCallbackEvents     string `json:"status_callback_events,omitempty" url:"status_callback_events,omitempty"`
-	StayAlone                bool   `json:"stay_alone,omitempty" url:"stay_alone,omitempty"`
-	CoachMode                bool   `json:"coach_mode,omitempty" url:"coach_mode,omitempty"`
-	Mute                     bool   `json:"mute,omitempty" url:"mute,omitempty"`
-	Hold                     bool   `json:"hold,omitempty" url:"hold,omitempty"`
-	StartMpcOnEnter          *bool  `json:"start_mpc_on_enter,omitempty" url:"start_mpc_on_enter,omitempty"`
-	EndMpcOnExit             bool   `json:"end_mpc_on_exit,omitempty" url:"end_mpc_on_exit,omitempty"`
-	RelayDtmfInputs          bool   `json:"relay_dtmf_inputs,omitempty" url:"relay_dtmf_inputs,omitempty"`
-	EnterSound               string `json:"enter_sound,omitempty" url:"enter_sound,omitempty"`
-	EnterSoundMethod         string `json:"enter_sound_method,omitempty" url:"enter_sound_method,omitempty"`
-	ExitSound                string `json:"exit_sound,omitempty" url:"exit_sound,omitempty"`
-	ExitSoundMethod          string `json:"exit_sound_method,omitempty" url:"exit_sound_method,omitempty"`
+	Role                     string      `json:"role,omitempty" url:"role,omitempty"`
+	From                     string      `json:"from,omitempty" url:"from,omitempty"`
+	To                       string      `json:"to,omitempty" url:"to,omitempty"`
+	CallUuid                 string      `json:"call_uuid,omitempty" url:"call_uuid,omitempty"`
+	CallerName               string      `json:"caller_name,omitempty" url:"caller_name,omitempty"`
+	CallStatusCallbackUrl    string      `json:"call_status_callback_url,omitempty" url:"call_status_callback_url,omitempty"`
+	CallStatusCallbackMethod string      `json:"call_status_callback_method,omitempty" url:"call_status_callback_method,omitempty"`
+	SipHeaders               string      `json:"sip_headers,omitempty" url:"sip_headers,omitempty"`
+	ConfirmKey               string      `json:"confirm_key,omitempty" url:"confirm_key,omitempty"`
+	ConfirmKeySoundUrl       string      `json:"confirm_key_sound_url,omitempty" url:"confirm_key_sound_url,omitempty"`
+	ConfirmKeySoundMethod    string      `json:"confirm_key_sound_method,omitempty" url:"confirm_key_sound_method,omitempty"`
+	DialMusic                string      `json:"dial_music,omitempty" url:"dial_music,omitempty"`
+	RingTimeout              interface{} `json:"ring_timeout,omitempty" url:"ring_timeout,omitempty"`
+	DelayDial                interface{} `json:"delay_dial,omitempty" uril:"caller_name,omitempty"`
+	MaxDuration              int64       `json:"max_duration,omitempty" url:"max_duration,omitempty"`
+	MaxParticipants          int64       `json:"max_participants,omitempty" url:"max_participants,omitempty"`
+	WaitMusicUrl             string      `json:"wait_music_url,omitempty" url:"wait_music_url,omitempty"`
+	WaitMusicMethod          string      `json:"wait_music_method,omitempty" url:"wait_music_method,omitempty"`
+	AgentHoldMusicUrl        string      `json:"agent_hold_music_url,omitempty" url:"agent_hold_music_url,omitempty"`
+	AgentHoldMusicMethod     string      `json:"agent_hold_music_method,omitempty" url:"agent_hold_music_method,omitempty"`
+	CustomerHoldMusicUrl     string      `json:"customer_hold_music_url,omitempty" url:"customer_hold_music_url,omitempty"`
+	CustomerHoldMusicMethod  string      `json:"customer_hold_music_method,omitempty" url:"customer_hold_music_method,omitempty"`
+	RecordingCallbackUrl     string      `json:"recording_callback_url,omitempty" url:"recording_callback_url,omitempty"`
+	RecordingCallbackMethod  string      `json:"recording_callback_method,omitempty" url:"recording_callback_method,omitempty"`
+	StatusCallbackUrl        string      `json:"status_callback_url,omitempty" url:"status_callback_url,omitempty"`
+	StatusCallbackMethod     string      `json:"status_callback_method,omitempty" url:"status_callback_method,omitempty"`
+	OnExitActionUrl          string      `json:"on_exit_action_url,omitempty" url:"on_exit_action_url,omitempty"`
+	OnExitActionMethod       string      `json:"on_exit_action_method,omitempty" url:"on_exit_action_method,omitempty"`
+	Record                   bool        `json:"record,omitempty" url:"record,omitempty"`
+	RecordFileFormat         string      `json:"record_file_format,omitempty" url:"record_file_format,omitempty"`
+	StatusCallbackEvents     string      `json:"status_callback_events,omitempty" url:"status_callback_events,omitempty"`
+	StayAlone                bool        `json:"stay_alone,omitempty" url:"stay_alone,omitempty"`
+	CoachMode                bool        `json:"coach_mode,omitempty" url:"coach_mode,omitempty"`
+	Mute                     bool        `json:"mute,omitempty" url:"mute,omitempty"`
+	Hold                     bool        `json:"hold,omitempty" url:"hold,omitempty"`
+	StartMpcOnEnter          *bool       `json:"start_mpc_on_enter,omitempty" url:"start_mpc_on_enter,omitempty"`
+	EndMpcOnExit             bool        `json:"end_mpc_on_exit,omitempty" url:"end_mpc_on_exit,omitempty"`
+	RelayDtmfInputs          bool        `json:"relay_dtmf_inputs,omitempty" url:"relay_dtmf_inputs,omitempty"`
+	EnterSound               string      `json:"enter_sound,omitempty" url:"enter_sound,omitempty"`
+	EnterSoundMethod         string      `json:"enter_sound_method,omitempty" url:"enter_sound_method,omitempty"`
+	ExitSound                string      `json:"exit_sound,omitempty" url:"exit_sound,omitempty"`
+	ExitSoundMethod          string      `json:"exit_sound_method,omitempty" url:"exit_sound_method,omitempty"`
 }
 
 type MultiPartyCallListParams struct {
@@ -216,17 +216,21 @@ func (service *MultiPartyCallService) AddParticipant(basicParams MultiPartyCallB
 	if params.CallUuid == "" && (params.From == "" || params.To == "") {
 		logrus.Fatal("specify (from, to) when not adding an existing call_uuid to multi party participant")
 	}
-	if params.CallerName == ""{
+	if params.CallerName == "" {
 		params.CallerName = params.From
 	}
-	if len(params.CallerName) > 50{
+	if len(params.CallerName) > 50 {
 		logrus.Fatal("CallerName length must be in range [0,50]")
 	}
-	if params.RingTimeout!=""{
-		MultipleValidIntegers("RingTimeout",params.RingTimeout,15,120)
+	if params.RingTimeout == nil {
+		params.RingTimeout = 45
+	} else {
+		MultipleValidIntegers("RingTimeout", params.RingTimeout, 15, 120)
 	}
-	if params.DelayDial!=""{
-		MultipleValidIntegers("DelayDial",params.DelayDial,0,120)
+	if params.DelayDial == nil {
+		params.DelayDial = 0
+	} else {
+		MultipleValidIntegers("DelayDial", params.DelayDial, 0, 120)
 	}
 	req, err := service.client.NewRequest("POST", params, "MultiPartyCall/%s/Participant", mpcId)
 	if err != nil {
@@ -300,7 +304,6 @@ func (service *MultiPartyCallService) ResumeRecording(basicParams MultiPartyCall
 
 func (service *MultiPartyCallService) StartParticipantRecording(basicParams MultiPartyCallParticipantParams, params MultiPartyCallStartRecordingParams) (response *MultiPartyCallStartRecordingResponse, err error) {
 	mpcId := MakeMPCId(basicParams.MpcUuid, basicParams.FriendlyName)
-	// req, err := service.client.NewRequest("POST", params, "MultiPartyCall/%s/Record", mpcId)
 	req, err := service.client.NewRequest("POST", params, "MultiPartyCall/%s/Participant/%s/Record", mpcId, basicParams.ParticipantId)
 	if err != nil {
 		return
@@ -312,7 +315,6 @@ func (service *MultiPartyCallService) StartParticipantRecording(basicParams Mult
 
 func (service *MultiPartyCallService) StopParticipantRecording(basicParams MultiPartyCallParticipantParams) (err error) {
 	mpcId := MakeMPCId(basicParams.MpcUuid, basicParams.FriendlyName)
-	// req, err := service.client.NewRequest("DELETE", nil, "MultiPartyCall/%s/Record", mpcId)
 	req, err := service.client.NewRequest("DELETE", nil, "MultiPartyCall/%s/Participant/%s/Record", mpcId, basicParams.ParticipantId)
 	if err != nil {
 		return
@@ -323,7 +325,6 @@ func (service *MultiPartyCallService) StopParticipantRecording(basicParams Multi
 
 func (service *MultiPartyCallService) PauseParticipantRecording(basicParams MultiPartyCallParticipantParams) (err error) {
 	mpcId := MakeMPCId(basicParams.MpcUuid, basicParams.FriendlyName)
-	// req, err := service.client.NewRequest("POST", nil, "MultiPartyCall/%s/Record/Pause", mpcId)
 	req, err := service.client.NewRequest("POST", nil, "MultiPartyCall/%s/Participant/%s/Record/Pause", mpcId, basicParams.ParticipantId)
 	if err != nil {
 		return
@@ -334,7 +335,6 @@ func (service *MultiPartyCallService) PauseParticipantRecording(basicParams Mult
 
 func (service *MultiPartyCallService) ResumeParticipantRecording(basicParams MultiPartyCallParticipantParams) (err error) {
 	mpcId := MakeMPCId(basicParams.MpcUuid, basicParams.FriendlyName)
-	// req, err := service.client.NewRequest("POST", nil, "MultiPartyCall/%s/Record/Resume", mpcId)
 	req, err := service.client.NewRequest("POST", nil, "MultiPartyCall/%s/Participant/%s/Record/Resume", mpcId, basicParams.ParticipantId)
 	if err != nil {
 		return
