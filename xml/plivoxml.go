@@ -820,12 +820,14 @@ type SpeakElement struct {
 	XMLName  xml.Name      `xml:"Speak"`
 }
 
-func (e SpeakElement) AddSpeak(contents string, voice string, language string, loop int) SpeakElement {
-
+func (e SpeakElement) AddSpeak(contents string) SpeakElement {
 	e.Contents = append(e.Contents, contents)
+	return e
+}
+
+func (e SpeakElement) SetLanguageVoice(language string, voice string) SpeakElement {
 	e.Voice = &voice
 	e.Language = &language
-	e.Loop = &loop
 
 	if len(*e.Voice) == 0 {
 		*e.Voice = "WOMAN"
@@ -841,6 +843,11 @@ func (e SpeakElement) AddSpeak(contents string, voice string, language string, l
 	if err != nil {
 		panic(err)
 	}
+	return e
+}
+
+func (e SpeakElement) SetLoop(loop int) SpeakElement {
+	e.Loop = &loop
 	return e
 }
 

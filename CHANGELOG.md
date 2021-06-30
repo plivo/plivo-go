@@ -1,7 +1,11 @@
 # Change Log
 
-## [6.0.0](https://github.com/plivo/plivo-go/tree/v6.0.0) (2021-06-18)
+## [7.0.0](https://github.com/plivo/plivo-go/tree/v7.0.0) (2021-06-18)
 **BREAKING**:- Removed the total_count parameter in meta data for list MDR response
+
+## [6.0.0](https://github.com/plivo/plivo-go/tree/v6.0.0) (2021-06-29)
+- **BREAKING**: Update AddSpeak method signature: remove optional parameters
+- Add methods to set SpeakElement attributes
 
 ## [5.6.0](https://github.com/plivo/plivo-go/tree/v5.6.0) (2021-06-15)
 - Add stir verification param as part of Get CDR and live call APIs
