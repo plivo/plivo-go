@@ -1,5 +1,9 @@
 # Change Log
 
+## [6.0.1](https://github.com/plivo/plivo-go/tree/v6.0.1) (2021-07-02)
+- Read voice network group from voice pricing
+- Fix GetCDR and ListCDR response to include all fields
+
 ## [6.0.0](https://github.com/plivo/plivo-go/tree/v6.0.0) (2021-06-29)
 - **BREAKING**: Update AddSpeak method signature: remove optional parameters
 - Add methods to set SpeakElement attributes
