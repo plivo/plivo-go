@@ -56,6 +56,7 @@ type Pricing struct {
 				OriginationPrefix []string `json:"origination_prefix" url:"origination_prefix"`
 				Prefix            []string `json:"prefix" url:"prefix"`
 				Rate              string   `json:"rate" url:"rate"`
+				VoiceNetworkGroup string   `json:"voice_network_group" url:"voice_network_group"`
 			} `json:"rates" url:"rates"`
 			Tollfree struct {
 				Rate string `json:"rate" url:"rate"`
