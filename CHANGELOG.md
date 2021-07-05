@@ -1,7 +1,7 @@
 # Change Log
 
 ## [7.0.0](https://github.com/plivo/plivo-go/tree/v7.0.0) (2021-07-05)
-- **BREAKING**: Removed the total_count parameter in meta data for list MDR response
+- **BREAKING**: Remove the total_count parameter in meta data for list MDR response
 
 ## [6.0.1](https://github.com/plivo/plivo-go/tree/v6.0.1) (2021-07-02)
 - Read voice network group from voice pricing
