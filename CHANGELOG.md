@@ -1,5 +1,8 @@
 # Change Log
 
+## [7.1.0](https://github.com/plivo/plivo-go/tree/v7.1.0) (2021-07-06)
+-  Powerpack ID filter for list MDR
+
 ## [7.0.0](https://github.com/plivo/plivo-go/tree/v7.0.0) (2021-07-05)
 - **BREAKING**: Remove the total_count parameter in meta data for list MDR response
 
