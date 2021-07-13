@@ -38,6 +38,8 @@ type Message struct {
 	TotalAmount      string `json:"total_amount,omitempty" url:"total_amount,omitempty"`
 	MessageUUID      string `json:"message_uuid,omitempty" url:"message_uuid,omitempty"`
 	MessageTime      string `json:"message_time,omitempty" url:"message_time,omitempty"`
+	ErrorCode        string `json:"error_code,omitempty" url:"error_code,omitempty"`
+	PowerpackID      string `json:"powerpack_id,omitempty" url:"powerpack_id,omitempty"`
 }
 
 // Stores response for ending a message.
@@ -76,8 +78,18 @@ type MediaListResponseBody struct {
 }
 
 type MessageListParams struct {
-	Limit  int `url:"limit,omitempty"`
-	Offset int `url:"offset,omitempty"`
+	Limit                     int    `url:"limit,omitempty"`
+	Offset                    int    `url:"offset,omitempty"`
+	PowerpackID               string `url:"powerpack_id,omitempty"`
+	Subaccount                string `url:"subaccount,omitempty"`
+	MessageDirection          string `url:"message_direction,omitempty"`
+	MessageState              string `url:"message_state,omitempty"`
+	ErrorCode                 int    `url:"error_code,omitempty"`
+	MessageTime               string `url:"message_time,omitempty"`
+	MessageTimeGreaterThan    string `url:"message_time__gt,omitempty"`
+	MessageTimeGreaterOrEqual string `url:"message_time__gte,omitempty"`
+	MessageTimeLessThan       string `url:"message_time__lt,omitempty"`
+	MessageTimeLessOrEqual    string `url:"message_time__lte,omitempty"`
 }
 
 func (service *MessageService) List(params MessageListParams) (response *MessageList, err error) {
