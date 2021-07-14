@@ -1152,3 +1152,158 @@ func TransformString(s string) string {
 	s = strings.Replace(s, " ", "_", -1)
 	return s
 }
+
+type MultiPartyCallElement struct {
+	Contents                string   `xml:",innerxml"`
+	Role                    *string  `xml:"role,attr"`
+	MaxDuration             *int64   `xml:"maxDuration,attr"`
+	MaxParticipants         *int64   `xml:"maxParticipants,attr"`
+	WaitMusicUrl            *string  `xml:"waitMusicUrl,attr"`
+	WaitMusicMethod         *string  `xml:"waitMusicMethod,attr"`
+	AgentHoldMusicUrl       *string  `xml:"agentHoldMusicUrl,attr"`
+	AgentHoldMusicMethod    *string  `xml:"agentHoldMusicMethod,attr"`
+	CustomerHoldMusicUrl    *string  `xml:"customerHoldMusicUrl,attr"`
+	CustomerHoldMusicMethod *string  `xml:"customerHoldMusicMethod,attr"`
+	Record                  *bool    `xml:"record,attr"`
+	RecordFileFormat        *string  `xml:"recordFileFormat,attr"`
+	RecordingCallbackUrl    *string  `xml:"recordingCallbackUrl,attr"`
+	RecordingCallbackMethod *string  `xml:"recordingCallbackMethod,attr"`
+	StatusCallbackEvents    *string  `xml:"statusCallbackEvents,attr"`
+	StatusCallbackUrl       *string  `xml:"statusCallbackUrl,attr"`
+	StatusCallbackMethod    *string  `xml:"statusCallbackMethod,attr"`
+	StayAlone               *bool    `xml:"stayAlone,attr"`
+	CoachMode               *bool    `xml:"coachMode,attr"`
+	Mute                    *bool    `xml:"mute,attr"`
+	Hold                    *bool    `xml:"hold,attr"`
+	StartMpcOnEnter         *bool    `xml:"startMpcOnEnter,attr"`
+	EndMpcOnExit            *bool    `xml:"endMpcOnExit,attr"`
+	EnterSound              *string  `xml:"enterSound,attr"`
+	EnterSoundMethod        *string  `xml:"enterSoundMethod,attr"`
+	ExitSound               *string  `xml:"exitSound,attr"`
+	ExitSoundMethod         *string  `xml:"exitSoundMethod,attr"`
+	OnExitActionUrl         *string  `xml:"onExitActionUrl,attr"`
+	OnExitActionMethod      *string  `xml:"onExitActionMethod,attr"`
+	RelayDtmfInputs         *bool    `xml:"relayDtmfInputs,attr"`
+	XMLName                 xml.Name `xml:"MultiPartyCall"`
+}
+
+func (e MultiPartyCallElement) SetRole(value string) MultiPartyCallElement {
+	e.Role = &value
+	return e
+}
+func (e MultiPartyCallElement) SetMaxDuration(value int64) MultiPartyCallElement {
+	e.MaxDuration = &value
+	return e
+}
+func (e MultiPartyCallElement) SetMaxParticipants(value int64) MultiPartyCallElement {
+	e.MaxParticipants = &value
+	return e
+}
+func (e MultiPartyCallElement) SetWaitMusicUrl(value string) MultiPartyCallElement {
+	e.WaitMusicUrl = &value
+	return e
+}
+func (e MultiPartyCallElement) SetWaitMusicMethod(value string) MultiPartyCallElement {
+	e.WaitMusicMethod = &value
+	return e
+}
+func (e MultiPartyCallElement) SetAgentHoldMusicUrl(value string) MultiPartyCallElement {
+	e.AgentHoldMusicUrl = &value
+	return e
+}
+func (e MultiPartyCallElement) SetAgentHoldMusicMethod(value string) MultiPartyCallElement {
+	e.AgentHoldMusicMethod = &value
+	return e
+}
+func (e MultiPartyCallElement) SetCustomerHoldMusicUrl(value string) MultiPartyCallElement {
+	e.CustomerHoldMusicUrl = &value
+	return e
+}
+func (e MultiPartyCallElement) SetCustomerHoldMusicMethod(value string) MultiPartyCallElement {
+	e.CustomerHoldMusicMethod = &value
+	return e
+}
+func (e MultiPartyCallElement) SetRecordingCallbackUrl(value string) MultiPartyCallElement {
+	e.RecordingCallbackUrl = &value
+	return e
+}
+func (e MultiPartyCallElement) SetRecordingCallbackMethod(value string) MultiPartyCallElement {
+	e.RecordingCallbackMethod = &value
+	return e
+}
+func (e MultiPartyCallElement) SetStatusCallbackUrl(value string) MultiPartyCallElement {
+	e.StatusCallbackUrl = &value
+	return e
+}
+func (e MultiPartyCallElement) SetStatusCallbackMethod(value string) MultiPartyCallElement {
+	e.StatusCallbackMethod = &value
+	return e
+}
+func (e MultiPartyCallElement) SetOnExitActionUrl(value string) MultiPartyCallElement {
+	e.OnExitActionUrl = &value
+	return e
+}
+func (e MultiPartyCallElement) SetOnExitActionMethod(value string) MultiPartyCallElement {
+	e.OnExitActionMethod = &value
+	return e
+}
+func (e MultiPartyCallElement) SetRecord(value bool) MultiPartyCallElement {
+	e.Record = &value
+	return e
+}
+func (e MultiPartyCallElement) SetRecordFileFormat(value string) MultiPartyCallElement {
+	e.RecordFileFormat = &value
+	return e
+}
+func (e MultiPartyCallElement) SetStatusCallbackEvents(value string) MultiPartyCallElement {
+	e.StatusCallbackEvents = &value
+	return e
+}
+func (e MultiPartyCallElement) SetStayAlone(value bool) MultiPartyCallElement {
+	e.StayAlone = &value
+	return e
+}
+func (e MultiPartyCallElement) SetCoachMode(value bool) MultiPartyCallElement {
+	e.CoachMode = &value
+	return e
+}
+func (e MultiPartyCallElement) SetMute(value bool) MultiPartyCallElement {
+	e.Mute = &value
+	return e
+}
+func (e MultiPartyCallElement) SetHold(value bool) MultiPartyCallElement {
+	e.Hold = &value
+	return e
+}
+func (e MultiPartyCallElement) SetStartMpcOnEnter(value bool) MultiPartyCallElement {
+	e.StartMpcOnEnter = &value
+	return e
+}
+func (e MultiPartyCallElement) SetEndMpcOnExit(value bool) MultiPartyCallElement {
+	e.EndMpcOnExit = &value
+	return e
+}
+func (e MultiPartyCallElement) SetRelayDtmfInputs(value bool) MultiPartyCallElement {
+	e.RelayDtmfInputs = &value
+	return e
+}
+func (e MultiPartyCallElement) SetEnterSound(value string) MultiPartyCallElement {
+	e.EnterSound = &value
+	return e
+}
+func (e MultiPartyCallElement) SetEnterSoundMethod(value string) MultiPartyCallElement {
+	e.EnterSoundMethod = &value
+	return e
+}
+func (e MultiPartyCallElement) SetExitSound(value string) MultiPartyCallElement {
+	e.ExitSound = &value
+	return e
+}
+func (e MultiPartyCallElement) SetExitSoundMethod(value string) MultiPartyCallElement {
+	e.ExitSoundMethod = &value
+	return e
+}
+func (e MultiPartyCallElement) SetContents(value string) MultiPartyCallElement {
+	e.Contents = value
+	return e
+}
