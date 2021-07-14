@@ -1,6 +1,6 @@
 # Change Log
 
-## [6.1.0](https://github.com/plivo/plivo-go/tree/v6.1.0) (2021-07-01)
+## [7.2.0](https://github.com/plivo/plivo-go/tree/v7.2.0) (2021-07-14)
 - Add SDK support for Voice MultiPartyCall APIs and XML.
 
 ## [7.1.0](https://github.com/plivo/plivo-go/tree/v7.1.0) (2021-07-13)
