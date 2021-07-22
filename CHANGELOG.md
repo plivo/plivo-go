@@ -1,5 +1,8 @@
 # Change Log
 
+## [7.2.1](https://github.com/plivo/plivo-go/tree/v7.2.1) (2021-07-22)
+- Updated default HTTP client request timeout to 5 seconds.
+
 ## [7.2.0](https://github.com/plivo/plivo-go/tree/v7.2.0) (2021-07-14)
 - Add SDK support for Voice MultiPartyCall APIs and XML.
 
