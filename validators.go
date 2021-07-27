@@ -6,6 +6,7 @@ import (
 	"strconv"
 	"strings"
 )
+
 func MultipleValidIntegers(paramname string, paramvalue interface{}) {
 	if reflect.TypeOf(paramvalue).Kind() == reflect.String {
 		paramvalue := paramvalue.(string)
