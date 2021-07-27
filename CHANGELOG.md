@@ -1,5 +1,8 @@
 # Change Log
 
+## [7.2.2](https://github.com/plivo/plivo-go/tree/v7.2.2) (2021-07-28)
+- Removed range validation for ringtimeout and delaydial params in MPC.
+
 ## [7.2.1](https://github.com/plivo/plivo-go/tree/v7.2.1) (2021-07-22)
 - Updated default HTTP client request timeout to 5 seconds.
 
