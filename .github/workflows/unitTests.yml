@@ -1,0 +1,31 @@
+name: UnitTests
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+    
+jobs:
+  build:
+    name: UnitTests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go: [ '1.14', '1.9', '1.10' ]
+    name: Go ${{ matrix.go }} 
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup go
+        uses: actions/setup-go@v1
+        with:
+          go-version: ${{ matrix.go }}
+      - name: Dependencies Installation
+        run: |
+          go get github.com/google/go-querystring/query
+          go get github.com/sirupsen/logrus
+          go get github.com/stretchr/testify/assert
+      - name: Run Tests
+        run: |
+          go test ./... -v
+          go fmt ./...
