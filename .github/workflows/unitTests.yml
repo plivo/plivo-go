@@ -13,10 +13,9 @@ jobs:
     strategy:
       matrix:
         go: [ '1.14', '1.9', '1.10', '1.11', '1.12' ]
-    name: Go ${{ matrix.go }} 
     steps:
       - uses: actions/checkout@v2
-      - name: Setup go
+      - name: Setup go ${{ matrix.go }}
         uses: actions/setup-go@v1
         with:
           go-version: ${{ matrix.go }}
