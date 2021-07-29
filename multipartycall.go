@@ -225,12 +225,12 @@ func (service *MultiPartyCallService) AddParticipant(basicParams MultiPartyCallB
 	if params.RingTimeout == nil {
 		params.RingTimeout = 45
 	} else {
-		MultipleValidIntegers("RingTimeout", params.RingTimeout, 15, 120)
+		MultipleValidIntegers("RingTimeout", params.RingTimeout)
 	}
 	if params.DelayDial == nil {
 		params.DelayDial = 0
 	} else {
-		MultipleValidIntegers("DelayDial", params.DelayDial, 0, 120)
+		MultipleValidIntegers("DelayDial", params.DelayDial)
 	}
 	req, err := service.client.NewRequest("POST", params, "MultiPartyCall/%s/Participant", mpcId)
 	if err != nil {
