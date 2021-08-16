@@ -1,6 +1,6 @@
 package plivo
 
-import "github.com/sirupsen/logrus"
+import "log"
 
 type ListMPCMeta struct {
 	Previous   *string
@@ -208,19 +208,19 @@ func (service *MultiPartyCallService) Get(basicParams MultiPartyCallBasicParams)
 func (service *MultiPartyCallService) AddParticipant(basicParams MultiPartyCallBasicParams, params MultiPartyCallAddParticipantParams) (response *MultiPartyCallAddParticipantResponse, err error) {
 	mpcId := MakeMPCId(basicParams.MpcUuid, basicParams.FriendlyName)
 	if (params.From != "" || params.To != "") && params.CallUuid != "" {
-		logrus.Fatal("cannot specify call_uuid when (from, to) is provided")
+		log.Fatal("cannot specify call_uuid when (from, to) is provided")
 	}
 	if params.From == "" && params.To == "" && params.CallUuid == "" {
-		logrus.Fatal("specify either call_uuid or (from, to)")
+		log.Fatal("specify either call_uuid or (from, to)")
 	}
 	if params.CallUuid == "" && (params.From == "" || params.To == "") {
-		logrus.Fatal("specify (from, to) when not adding an existing call_uuid to multi party participant")
+		log.Fatal("specify (from, to) when not adding an existing call_uuid to multi party participant")
 	}
 	if params.CallerName == "" {
 		params.CallerName = params.From
 	}
 	if len(params.CallerName) > 50 {
-		logrus.Fatal("CallerName length must be in range [0,50]")
+		log.Fatal("CallerName length must be in range [0,50]")
 	}
 	if params.RingTimeout == nil {
 		params.RingTimeout = 45
@@ -393,7 +393,7 @@ func MakeMPCId(MpcUuid string, FriendlyName string) string {
 	} else if FriendlyName != "" {
 		mpcId = "name_" + FriendlyName
 	} else {
-		logrus.Fatal("Need to specify a mpc_uuid or name")
+		log.Fatal("Need to specify a mpc_uuid or name")
 	}
 	return mpcId
 }
