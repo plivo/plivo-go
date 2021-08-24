@@ -124,7 +124,7 @@ func getMapFromQueryString(query url.Values) map[string]string {
 		Example: input  "a=b&c=d&z=x"
 		output (string): {"z":x", "c": "d", "a": "b"}
 	*/
-	mp := make(map[string]string, 0)
+	mp := make(map[string]string)
 	if len(query) == 0 {
 		return mp
 	}

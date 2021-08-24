@@ -29,6 +29,9 @@ type ListComplianceRequirementParams struct {
 
 func (service *ComplianceRequirementService) Get(complianceRequirementId string) (response *GetComplianceRequirementResponse, err error) {
 	req, err := service.client.NewRequest("GET", nil, "ComplianceRequirement/%s", complianceRequirementId)
+	if err != nil {
+		return nil, err
+	}
 	response = &GetComplianceRequirementResponse{}
 	err = service.client.ExecuteRequest(req, response)
 	return

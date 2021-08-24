@@ -108,6 +108,9 @@ type ListComplianceApplicationResponse struct {
 
 func (service *ComplianceApplicationService) Get(complianceApplicationId string) (response *ComplianceApplicationResponse, err error) {
 	req, err := service.client.NewRequest("GET", nil, "ComplianceApplication/%s", complianceApplicationId)
+	if err != nil {
+		return
+	}
 	response = &ComplianceApplicationResponse{}
 	err = service.client.ExecuteRequest(req, response)
 	return

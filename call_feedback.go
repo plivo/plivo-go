@@ -20,7 +20,7 @@ type CallFeedbackParams struct {
 	CallUUID string      `json:"call_uuid"`
 	Notes    string      `json:"notes"`
 	Rating   interface{} `json:"rating"`
-	Issues   []string    `json:issues`
+	Issues   []string    `json:"issues"`
 }
 
 type CallFeedbackCreateResponse struct {

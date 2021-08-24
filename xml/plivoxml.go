@@ -13,7 +13,7 @@ import (
 
 type ResponseElement struct {
 	XMLName  xml.Name      `xml:"Response"`
-	Contents []interface{} `xml:",xmlvalue"`
+	Contents []interface{} `xml:"xmlvalue"`
 }
 
 func (element ResponseElement) String() string {
@@ -834,7 +834,7 @@ func (e SpeakElement) SetLanguageVoice(language string, voice string) SpeakEleme
 		return e
 	}
 
-	if strings.EqualFold(*e.Voice, "MAN") == true || strings.EqualFold(*e.Voice, "WOMAN") == true {
+	if strings.EqualFold(*e.Voice, "MAN") || strings.EqualFold(*e.Voice, "WOMAN") {
 		return e
 	}
 
@@ -864,8 +864,8 @@ func (e SpeakElement) AddContents(values ...interface{}) SpeakElement {
 }
 
 func (e SpeakElement) checkIsSSMLSupported() {
-	if len(*e.Voice) == 0 || strings.EqualFold(*e.Voice, "MAN") == true ||
-		strings.EqualFold(*e.Voice, "WOMAN") == true {
+	if len(*e.Voice) == 0 || strings.EqualFold(*e.Voice, "MAN") ||
+		strings.EqualFold(*e.Voice, "WOMAN") {
 		panic(errors.New("SSML support is available only for Amazon Polly!"))
 	}
 
@@ -1139,7 +1139,7 @@ func ValidateLanguageVoice(language string, voice string) error {
 	}
 	transformedVoiceName := TransformString(voiceparts[1])
 
-	if strings.Compare(voiceparts[1], "*") == 0 || Contains(availableLanguageVoicesList, transformedVoiceName) == false {
+	if strings.Compare(voiceparts[1], "*") == 0 || !Contains(availableLanguageVoicesList, transformedVoiceName) {
 		return errors.New("XML Validation Error: <Speak> voice '" + voice + "' is not valid. Refer <https://www.plivo.com/docs/voice/getting-started/advanced/getting-started-with-ssml/#ssml-voices> for list of supported voices.")
 	}
 	return nil
