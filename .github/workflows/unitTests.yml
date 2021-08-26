@@ -21,9 +21,13 @@ jobs:
           go-version: ${{ matrix.go }}
       - name: Dependencies Installation
         run: |
-          go get github.com/google/go-querystring/query
-          go get github.com/sirupsen/logrus
-          go get github.com/stretchr/testify/assert
+           go get github.com/google/go-querystring/query
+           go get github.com/plivo/plivo-go
+           go get github.com/dgrijalva/jwt-go
+           go get github.com/stretchr/testify/assert
+           go get golang.org/x/text/runes
+           go get golang.org/x/text/transform
+           go get golang.org/x/text/unicode/norm
       - name: Run Tests
         run: |
           go test ./... -v
