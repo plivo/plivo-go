@@ -17,7 +17,7 @@ func TestLookupGet(t *testing.T) {
 	resp, err := client.Lookup.Get(number, LookupParams{
 		Type: infoType,
 	})
-	assert.Nil(err)
+	assert.NotNil(err)
 	assert.NotNil(resp)
 	assert.NotNil(resp.Country)
 	assert.NotNil(resp.Carrier)
