@@ -1,6 +1,6 @@
 # plivo-go
 
-[![Build, Unit Tests, Linters Status](https://github.com/plivo/plivo-go/actions/workflows/test.yml/badge.svg)](https://github.com/plivo/plivo-go/actions/workflows/test.yml)
+[![Build, Unit Tests, Linters Status](https://github.com/plivo/plivo-go/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/plivo/plivo-go/actions/workflows/test.yml)
 [![GoDoc](https://godoc.org/github.com/plivo/plivo-go?status.svg)](https://godoc.org/github.com/plivo/plivo-go)
 [![Go Report Card](https://goreportcard.com/badge/github.com/plivo/plivo-go)](https://goreportcard.com/report/github.com/plivo/plivo-go)
 
