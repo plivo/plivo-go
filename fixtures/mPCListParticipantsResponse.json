@@ -1,0 +1,30 @@
+{
+  "api_id": "b58e6a5f-a5a3-11ea-a559-0242ac11000b",
+  "meta": {
+    "count": 1,
+    "limit": 20,
+    "next": null,
+    "offset": 0,
+    "previous": null
+  },
+  "objects": [
+    {
+      "billed_amount": null,
+      "billed_duration": null,
+      "call_uuid": "ceeac2c3-4d08-465f-87b8-c3c92225da23",
+      "coach_mode": false,
+      "duration": null,
+      "end_mpc_on_exit": false,
+      "exit_cause": null,
+      "exit_time": null,
+      "hold": false,
+      "join_time": "2020-06-03 14:07:22+00:00",
+      "member_id": "209",
+      "mpc_uuid": "b1e37275-b8e2-42cd-ae63-fffcc54a50b5",
+      "mute": false,
+      "resource_uri": "/v1/Account/MAMDJMMTEZOWY0ZMQWM2/MultiPartyCall/name_thanos/Participant/209/",
+      "role": "agent",
+      "start_mpc_on_enter": true
+    }
+  ]
+}
