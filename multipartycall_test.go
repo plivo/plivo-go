@@ -1,7 +1,7 @@
 package plivo
 
 import (
-	"github.com/sirupsen/logrus"
+	"log"
 	"testing"
 )
 
@@ -31,7 +31,7 @@ func TestMPCService_AddParticipant(t *testing.T) {
 	if response, err := client.MultiPartyCall.AddParticipant(MultiPartyCallBasicParams{FriendlyName: "thanos"}, MultiPartyCallAddParticipantParams{To: "917013835803", From: "918888888888", Role: "agent"}); err != nil {
 		panic(err)
 	} else {
-		logrus.Info(response)
+		log.Println(response)
 	}
 
 	assertRequest(t, "POST", "MultiPartyCall/%s/Participant", "name_thanos")

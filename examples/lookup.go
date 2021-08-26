@@ -12,7 +12,7 @@ const (
 	authToken = ""
 )
 
-func main() {
+func mainLookup() {
 	client, err := plivo.NewClient(authId, authToken, &plivo.ClientOptions{})
 	if err != nil {
 		log.Fatalf("plivo.NewClient() failed: %s", err.Error())

@@ -7,13 +7,13 @@ import (
 	"github.com/plivo/plivo-go/jwt"
 )
 
-func main() {
+func mainJWT() {
 	token1 := jwt.AccessToken{}
 	err := token1.New("{authId}", "{authToken}", "{endpointUsername}", time.Now(), time.Duration(300)*time.Second, time.Time{}, "{uid}")
 	if err != nil {
 		log.Fatalf("abort: %+v\n", err)
 	}
-	token1.AddVoiceGrants(jwt.VoiceGrants{false, true})
+	token1.AddVoiceGrants(jwt.VoiceGrants{IncomingAllow: false, OutgoingAllow: true})
 	log.Println(token1.ToJwt())
 
 	token2 := jwt.AccessToken{}
@@ -21,6 +21,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("abort: %+v\n", err)
 	}
-	token2.AddVoiceGrants(jwt.VoiceGrants{false, true})
+	token2.AddVoiceGrants(jwt.VoiceGrants{IncomingAllow: false, OutgoingAllow: true})
 	log.Println(token2.ToJwt())
 }

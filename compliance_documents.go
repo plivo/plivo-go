@@ -137,7 +137,7 @@ type CreateComplianceDocumentParams struct {
 }
 
 type UpdateComplianceDocumentParams struct {
-	ComplianceDocumentID string `json:compliance_document_id`
+	ComplianceDocumentID string `json:"compliance_document_id"`
 	CreateComplianceDocumentParams
 }
 
