@@ -294,6 +294,9 @@ func (service *PowerpackService) Count_numbers(params PowerpackSearchParam) (cou
 	}
 	response := &PowerpackPhoneResponseBody{}
 	err = service.client.ExecuteRequest(req, response)
+	if err != nil {
+		return
+	}
 	count = response.BaseListPPKResponse.Meta.TotalCount
 	return count, nil
 }
@@ -440,9 +443,9 @@ func (service *PowerpackService) Buy_add_number(phoneParam BuyPhoneNumberParam) 
 
 	number := phoneParam.Number
 	if number != "" {
-		req, err := service.client.NewRequest("POST", payload, "NumberPool/%s/Number/%s", uriSegments[5], number)
-		if err != nil {
-			panic(err)
+		req, reqErr := service.client.NewRequest("POST", payload, "NumberPool/%s/Number/%s", uriSegments[5], number)
+		if reqErr != nil {
+			return nil, reqErr
 		}
 		response = &NumberResponse{}
 		err = service.client.ExecuteRequest(req, response)
@@ -459,22 +462,21 @@ func (service *PowerpackService) Buy_add_number(phoneParam BuyPhoneNumberParam) 
 			CountryISO: countryiso,
 			Services:   serviceType,
 		}
-		responsephoneNo, err := service.client.PhoneNumbers.List(params)
-		if err != nil {
-			panic(err)
+		responsephoneNo, er := service.client.PhoneNumbers.List(params)
+		if er != nil {
+			return nil, er
 		}
 		if len(responsephoneNo.Objects) < 1 {
 			response = &NumberResponse{}
 			return response, nil
 		}
 
-		req, err := service.client.NewRequest("POST", payload, "NumberPool/%s/Number/%s", uriSegments[5], responsephoneNo.Objects[0].Number)
-		if err != nil {
-			panic(err)
+		req, reqErr := service.client.NewRequest("POST", payload, "NumberPool/%s/Number/%s", uriSegments[5], responsephoneNo.Objects[0].Number)
+		if reqErr != nil {
+			return nil, reqErr
 		}
 		response = &NumberResponse{}
 		err = service.client.ExecuteRequest(req, response)
-
 	}
 	return
 }

@@ -67,6 +67,9 @@ type Pricing struct {
 
 func (service *PricingService) Get(countryISO string) (response *Pricing, err error) {
 	req, err := service.client.NewRequest("GET", PricingGetParams{countryISO}, "Pricing")
+	if err != nil {
+		return nil, err
+	}
 	response = &Pricing{}
 	err = service.client.ExecuteRequest(req, response)
 	return

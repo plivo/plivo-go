@@ -55,6 +55,9 @@ type ListComplianceDocumentTypeResponse struct {
 
 func (service *ComplianceDocumentTypeService) Get(docId string) (response *GetComplianceDocumentTypeResponse, err error) {
 	req, err := service.client.NewRequest("GET", nil, "ComplianceDocumentType/%s", docId)
+	if err != nil {
+		return
+	}
 	response = &GetComplianceDocumentTypeResponse{}
 	err = service.client.ExecuteRequest(req, response)
 	return

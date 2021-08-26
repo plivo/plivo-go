@@ -50,7 +50,7 @@ func (client *BaseClient) NewRequest(method string, params interface{}, baseRequ
 			isCallInsightsRequest, requestPath = checkAndFetchCallInsightsRequestDetails(param)
 		}
 		if param == nil || param == "" {
-			err = errors.New(fmt.Sprintf("Request path parameter #%d is nil/empty but should not be so.", i))
+			err = fmt.Errorf("Request path parameter #%d is nil/empty but should not be so.", i)
 			return
 		}
 	}
@@ -99,11 +99,10 @@ func (client *BaseClient) ExecuteRequest(request *http.Request, body interface{}
 	if extra != nil {
 		if _, ok := extra[0]["is_voice_request"]; ok {
 			isVoiceRequest = true
-			if extra[0]["retry"] == 0 {
-				request.URL.Host = voiceBaseUrlString
-				request.Host = voiceBaseUrlString
-				request.URL.Scheme = HttpsScheme
-			} else if extra[0]["retry"] == 1 {
+			request.URL.Host = voiceBaseUrlString
+			request.Host = voiceBaseUrlString
+			request.URL.Scheme = HttpsScheme
+			if extra[0]["retry"] == 1 {
 				request.URL.Host = voiceBaseUrlStringFallback1
 				request.Host = voiceBaseUrlStringFallback2
 				request.URL.Scheme = HttpsScheme
@@ -122,15 +121,6 @@ func (client *BaseClient) ExecuteRequest(request *http.Request, body interface{}
 			}
 		}
 	}
-
-	if client == nil {
-		return errors.New("client cannot be nil")
-	}
-
-	if client.httpClient == nil {
-		return errors.New("httpClient cannot be nil")
-	}
-
 	bodyCopy, _ := ioutil.ReadAll(request.Body)
 	request.Body = ioutil.NopCloser(bytes.NewReader(bodyCopy))
 	response, err := client.httpClient.Do(request)
@@ -158,13 +148,12 @@ func (client *BaseClient) ExecuteRequest(request *http.Request, body interface{}
 			if body != nil {
 				err = json.Unmarshal(data, body)
 			}
+		} else if string(data) == "{}" && response.StatusCode == 404 {
+			err = errors.New("Resource not found exception \n" + response.Status)
 		} else {
-			if string(data) == "{}" && response.StatusCode == 404 {
-				err = errors.New("Resource not found exception \n" + response.Status)
-			} else {
-				err = errors.New(string(data))
-			}
+			err = errors.New(string(data))
 		}
+
 	}
 
 	return

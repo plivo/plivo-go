@@ -52,6 +52,9 @@ type UpdateEndUserResponse BaseResponse
 
 func (service *EndUserService) Get(endUserId string) (response *EndUserGetResponse, err error) {
 	req, err := service.client.NewRequest("GET", nil, "EndUser/%s", endUserId)
+	if err != nil {
+		return nil, err
+	}
 	response = &EndUserGetResponse{}
 	err = service.client.ExecuteRequest(req, response)
 	return

@@ -1,385 +1,385 @@
 package plivo
 
 import (
-	"errors"
+	"net/http"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 func TestPowerpack_List(t *testing.T) {
 	expectResponse("powerpackList.json", 202)
+	assert := require.New(t)
+	resp, err := client.Powerpack.List(PowerpackListParams{})
+	assert.Nil(err)
+	assert.NotNil(resp)
+	assert.NotNil(resp.Meta.TotalCount)
+	assert.NotNil(resp.Objects[0].Name)
+	assert.NotNil(resp.Objects[0].UUID)
+	assertBaseRequest(t, http.MethodGet, "/v1/Account/AuthId/Powerpack//")
 
-	if _, err := client.Powerpack.List(PowerpackListParams{}); err != nil {
-		panic(err)
-	}
-
+	// with httpclient nill
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.List(PowerpackListParams{})
-	if err == nil {
-		client.httpClient = cl
-		panic(errors.New("error expected"))
-	}
+	res, err := client.Powerpack.List(PowerpackListParams{})
+	assert.NotNil(err)
+	assert.Nil(res)
 	client.httpClient = cl
+	assert.Equal("client and httpClient cannot be nil", err.Error())
+	assertRequest(t, "GET", "Powerpack/")
+}
 
+func TestPowerpack_ListWithParam(t *testing.T) {
+	expectResponse("powerpackList.json", 202)
+	assert := require.New(t)
+	response, err := client.Powerpack.List(PowerpackListParams{Limit: 10, Offset: 0, Service: "sms"})
+	assert.Nil(err)
+	assert.NotNil(response)
 	assertRequest(t, "GET", "Powerpack/")
 }
 
 func TestPowerpack_Get(t *testing.T) {
 	expectResponse("powerpack.json", 200)
+	assert := require.New(t)
 	powerpackUUID := "powerpackUUID"
 
-	if _, err := client.Powerpack.Get(powerpackUUID); err != nil {
-		panic(err)
-	}
-
+	resp, err := client.Powerpack.Get(powerpackUUID)
+	assert.Nil(err)
+	assert.NotNil(resp)
+	assert.NotNil(resp.Name)
+	assert.NotNil(resp.NumberPoolUUID)
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.Get(powerpackUUID)
-	if err == nil {
-		client.httpClient = cl
-		panic(errors.New("error expected"))
-	}
+	resp, err = client.Powerpack.Get(powerpackUUID)
+	assert.NotNil(err)
+	assert.Nil(resp)
 	client.httpClient = cl
-
 	assertRequest(t, "GET", "Powerpack/%s/", powerpackUUID)
 }
 
 func TestPowerpack_Create(t *testing.T) {
 	expectResponse("powerpack.json", 200)
-
-	if _, err := client.Powerpack.Create(PowerackCreateParams{}); err != nil {
-		panic(err)
-	}
-
+	assert := require.New(t)
+	resp, err := client.Powerpack.Create(PowerackCreateParams{})
+	assert.Nil(err)
+	assert.NotNil(resp)
+	assert.NotNil(resp.Name)
+	assert.NotNil(resp.ApiID)
+	assert.NotNil(resp.UUID)
+	response, err := client.Powerpack.Create(PowerackCreateParams{Name: "vishnu_sep_01"})
+	assert.Nil(err)
+	assert.Equal(response.Name, "vishnu_sep_01")
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.Create(PowerackCreateParams{})
-	if err == nil {
-		client.httpClient = cl
-		panic(errors.New("error expected"))
-	}
+	resp, err = client.Powerpack.Create(PowerackCreateParams{})
+	assert.NotNil(err)
+	assert.Nil(resp)
 	client.httpClient = cl
-
-	assertRequest(t, "POST", "Powerpack/")
+	assertRequest(t, "POST", "Powerpack")
 }
 
 func TestPowerpack_Update(t *testing.T) {
 	expectResponse("powerpack.json", 200)
-	powerpackuuid := "powerpackuuid"
-	if _, err := client.Powerpack.Update(PowerackUpdateParams{}); err != nil {
-		panic(err)
-	}
+	assert := require.New(t)
+	powerpackUUID := "86bbb125-97bb-4d72-89fd-81d5c515b015"
+	client.Powerpack.UUID = powerpackUUID
+	response, err := client.Powerpack.Update(PowerackUpdateParams{})
+	assert.Nil(err)
 
+	assert.Equal(response.StickySender, true)
+	assert.Equal(response.Name, "vishnu_sep_01")
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.Update(PowerackUpdateParams{})
-	if err == nil {
-		client.httpClient = cl
-		panic(errors.New("error expected"))
-	}
+	response, err = client.Powerpack.Update(PowerackUpdateParams{})
+	assert.NotNil(err)
+	assert.Nil(response)
 	client.httpClient = cl
-
-	assertRequest(t, "POST", "Powerpack/%s/", powerpackuuid)
+	assertRequest(t, "POST", "Powerpack/%s", powerpackUUID)
 }
 
-func TestPowerpack_delete(t *testing.T) {
+func TestPowerpack_Delete(t *testing.T) {
 	expectResponse("powerpackDeleteResponse.json", 200)
-	powerpackUUID := "powerpackUUID"
-	if _, err := client.Powerpack.Delete(PowerpackDeleteParams{}); err != nil {
-		panic(err)
-	}
-
+	assert := require.New(t)
+	powerpackUUID := "86bbb125-97bb-4d72-89fd-81d5c515b015"
+	client.Powerpack.UUID = powerpackUUID
+	res, err := client.Powerpack.Delete(PowerpackDeleteParams{})
+	assert.NotNil(res)
+	assert.Nil(err)
+	assert.Equal(res.Response, "success")
+	assert.NotEmpty(res.ApiID)
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.Delete(PowerpackDeleteParams{})
-	if err == nil {
-		client.httpClient = cl
-		panic(errors.New("error expected"))
-	}
+	res, err = client.Powerpack.Delete(PowerpackDeleteParams{})
+	assert.NotNil(err)
+	assert.Nil(res)
 	client.httpClient = cl
-
-	assertRequest(t, "DELETE", "Powerpack/%s/", powerpackUUID)
+	assertRequest(t, "DELETE", "Powerpack/%s", powerpackUUID)
 }
 
-func TestPowerpack_find_number(t *testing.T) {
+func TestPowerpack_Find_numbers(t *testing.T) {
 	expectResponse("numberpoolSingleNoResponse.json", 200)
-	numberpool_uuid := "numberpool_uuid"
-	number := "number"
-	if _, err := client.Powerpack.Find_numbers(number); err != nil {
-		panic(err)
-	}
-
+	assert := require.New(t)
+	number := "15799140348"
+	client.Powerpack.NumberPoolUUID = "/v1/Account/MAODZKMDFJMJU3MTEYNG/NumberPool/659c7f88-c819-46e2-8af4-2d8a84249099/"
+	resp, err := client.Powerpack.Find_numbers(number)
+	assert.NotNil(resp)
+	assert.Nil(err)
+	assert.Equal(resp.Number, number)
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.Find_numbers(number)
-	if err == nil {
-		client.httpClient = cl
-		panic(errors.New("error expected"))
-	}
+	resp, err = client.Powerpack.Find_numbers(number)
+	assert.NotNil(err)
+	assert.Nil(resp)
 	client.httpClient = cl
-
-	assertRequest(t, "GET", "NumberPool/%s/%s/", numberpool_uuid, number)
 }
 
 func TestPowerpack_FindNumbersWithOptions(t *testing.T) {
 	expectResponse("numberpoolSingleNoResponse.json", 200)
-	numberpool_uuid := "numberpool_uuid"
+	assert := require.New(t)
+	numberpool_uuid := "659c7f88-c819-46e2-8af4-2d8a84249099"
+	client.Powerpack.NumberPoolUUID = "/v1/Account/MAODZKMDFJMJU3MTEYNG/NumberPool/659c7f88-c819-46e2-8af4-2d8a84249099/"
 	params := PowerpackFindNumberOptions{
 		Service: MMS,
 	}
-	number := "number"
-	if _, err := client.Powerpack.FindNumbersWithOptions(number, params); err != nil {
-		panic(err)
-	}
+	number := "15799140348"
+	resp, err := client.Powerpack.FindNumbersWithOptions(number, params)
+	assert.NotNil(resp)
+	assert.Nil(err)
+	assert.Equal(resp.Service, "mms")
 
-	cl := client.httpClient
-	client.httpClient = nil
-	_, err := client.Powerpack.FindNumbersWithOptions(number, params)
-	if err == nil {
-		client.httpClient = cl
-		panic(errors.New("error expected"))
-	}
-	client.httpClient = cl
+	resp, err = client.Powerpack.FindNumbersWithOptions(number, params)
+	assert.Nil(err)
+	assert.NotNil(resp)
 
-	assertRequest(t, "GET", "NumberPool/%s/%s/", numberpool_uuid, number)
+	assertBaseRequest(t, "GET", "/v1/Account/AuthId/NumberPool/%s/Number/%s//?service=mms", numberpool_uuid, number)
 }
 
-func TestPowerpack_AddNumber(t *testing.T) {
+func TestPowerpack_Add_number(t *testing.T) {
 	expectResponse("numberpoolSingleNoResponse.json", 200)
-	numberpool_uuid := "numberpool_uuid"
-	number := "number"
-	if _, err := client.Powerpack.Add_number(number); err != nil {
-		panic(err)
-	}
-
+	assert := require.New(t)
+	numberpool_uuid := "659c7f88-c819-46e2-8af4-2d8a84249099"
+	client.Powerpack.NumberPoolUUID = "/v1/Account/MAODZKMDFJMJU3MTEYNG/NumberPool/659c7f88-c819-46e2-8af4-2d8a84249099/"
+	number := "15799140348"
+	resp, err := client.Powerpack.Add_number(number)
+	assert.NotNil(resp)
+	assert.Nil(err)
+	assert.Equal(resp.Number, number)
+	assert.Equal(resp.Type, "fixed")
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.Add_number(number)
-	if err == nil {
-		client.httpClient = cl
-		panic(errors.New("error expected"))
-	}
+	resp, err = client.Powerpack.Add_number(number)
+	assert.Nil(resp)
+	assert.NotNil(err)
 	client.httpClient = cl
-
-	assertRequest(t, "POST", "NumberPool/%s/%s/", numberpool_uuid, number)
+	assertRequest(t, "POST", "NumberPool/%s/Number/%s", numberpool_uuid, number)
 }
 
-func TestPowerpack_AddNumberWithOptions(t *testing.T) {
+func TestPowerpack_Add_numberWithOptions(t *testing.T) {
 	expectResponse("numberpoolSingleNoResponse.json", 200)
-	numberpool_uuid := "numberpool_uuid"
+	assert := require.New(t)
+	numberpool_uuid := "659c7f88-c819-46e2-8af4-2d8a84249099"
+	client.Powerpack.NumberPoolUUID = "/v1/Account/MAODZKMDFJMJU3MTEYNG/NumberPool/659c7f88-c819-46e2-8af4-2d8a84249099/"
 	params := PowerpackAddNumberOptions{
 		Service: MMS,
 	}
-	number := "number"
-	if _, err := client.Powerpack.AddNumberWithOptions(number, params); err != nil {
-		panic(err)
-	}
-
+	number := "15799140348"
+	resp, err := client.Powerpack.AddNumberWithOptions(number, params)
+	assert.NotNil(resp)
+	assert.Nil(err)
+	assert.Equal(resp.Service, "mms")
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.AddNumberWithOptions(number, params)
-	if err == nil {
-		client.httpClient = cl
-		panic(errors.New("error expected"))
-	}
+	resp, err = client.Powerpack.AddNumberWithOptions(number, params)
+	assert.Nil(resp)
+	assert.NotNil(err)
 	client.httpClient = cl
-
-	assertRequest(t, "POST", "NumberPool/%s/%s/", numberpool_uuid, number)
+	assertRequest(t, "POST", "NumberPool/%s/Number/%s", numberpool_uuid, number)
 }
 
-func TestPowerpack_RemoveNumber(t *testing.T) {
+func TestPowerpack_Remove_number(t *testing.T) {
 	expectResponse("powerpackDeleteResponse.json", 200)
-	numberpool_uuid := "numberpool_uuid"
-	number := "number"
-	if _, err := client.Powerpack.Remove_number(number, NumberRemoveParams{Unrent: false}); err != nil {
-		panic(err)
-	}
-
+	assert := require.New(t)
+	numberpool_uuid := "659c7f88-c819-46e2-8af4-2d8a84249099"
+	client.Powerpack.NumberPoolUUID = "/v1/Account/MAODZKMDFJMJU3MTEYNG/NumberPool/659c7f88-c819-46e2-8af4-2d8a84249099/"
+	number := "15799140348"
+	resp, err := client.Powerpack.Remove_number(number, NumberRemoveParams{Unrent: false})
+	assert.NotNil(resp)
+	assert.Nil(err)
+	assert.Equal(resp.Response, "success")
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.Remove_number(number, NumberRemoveParams{Unrent: false})
-	if err == nil {
-		client.httpClient = cl
-		panic(errors.New("error expected"))
-	}
+	resp, err = client.Powerpack.Remove_number(number, NumberRemoveParams{Unrent: false})
+	assert.Nil(resp)
+	assert.NotNil(err)
 	client.httpClient = cl
-
-	assertRequest(t, "DELETE", "NumberPool/%s/%s/", numberpool_uuid, number)
+	assertRequest(t, "DELETE", "NumberPool/%s/Number/%s", numberpool_uuid, number)
 }
 
-func TestPowerpack_ListNumbers(t *testing.T) {
+func TestPowerpack_List_numbers(t *testing.T) {
 	expectResponse("numberpoolNumberRespone.json", 200)
-	numberpooluuid := "numberpool_uuid"
-	if _, err := client.Powerpack.List_numbers(PowerpackSearchParam{}); err != nil {
-		panic(err)
-	}
-
+	assert := require.New(t)
+	numberpool_uuid := "659c7f88-c819-46e2-8af4-2d8a84249099"
+	client.Powerpack.NumberPoolUUID = "/v1/Account/MAODZKMDFJMJU3MTEYNG/NumberPool/659c7f88-c819-46e2-8af4-2d8a84249099/"
+	resp, err := client.Powerpack.List_numbers(PowerpackSearchParam{})
+	assert.NotNil(resp)
+	assert.Nil(err)
+	assert.Equal(resp.Objects[0].Number_pool_uuid, numberpool_uuid)
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.List_numbers(PowerpackSearchParam{})
-	if err == nil {
-		client.httpClient = cl
-		panic(errors.New("error expected"))
-	}
+	resp, err = client.Powerpack.List_numbers(PowerpackSearchParam{})
+	assert.Nil(resp)
+	assert.NotNil(err)
 	client.httpClient = cl
-
-	assertRequest(t, "GET", "NumberPool/%s/Number/", numberpooluuid)
-
+	assertRequest(t, "GET", "NumberPool/%s/Number/", numberpool_uuid)
 }
 
-func TestListShortCode(t *testing.T) {
+func TestList_shortcodes(t *testing.T) {
 	expectResponse("numberpoolShortCodeResponse.json", 200)
-	numberpooluuid := "numberpool_uuid"
-	if _, err := client.Powerpack.List_shortcodes(); err != nil {
-		panic(err)
-	}
-
+	assert := require.New(t)
+	numberpool_uuid := "659c7f88-c819-46e2-8af4-2d8a84249099"
+	client.Powerpack.NumberPoolUUID = "/v1/Account/MAODZKMDFJMJU3MTEYNG/NumberPool/659c7f88-c819-46e2-8af4-2d8a84249099/"
+	resp, err := client.Powerpack.List_shortcodes()
+	assert.NotNil(resp)
+	assert.Nil(err)
+	assert.Equal(resp.Objects[0].Number_pool_uuid, numberpool_uuid)
+	assert.NotEmpty(resp.ApiID)
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.List_shortcodes()
-	if err == nil {
-		client.httpClient = cl
-		panic(errors.New("error expected"))
-	}
+	resp, err = client.Powerpack.List_shortcodes()
+	assert.Nil(resp)
+	assert.NotNil(err)
 	client.httpClient = cl
-
-	assertRequest(t, "GET", "NumberPool/%s/Shortcode/", numberpooluuid)
+	assertRequest(t, "GET", "NumberPool/%s/Shortcode", numberpool_uuid)
 
 }
 
-func TestFindShortCode(t *testing.T) {
+func TestFind_shortcode(t *testing.T) {
 	expectResponse("numberpoolSingleShortcodeResponse.json", 200)
-	numberpooluuid := "numberpool_uuid"
-	shortcode := "shortcode"
-	if _, err := client.Powerpack.Find_shortcode(shortcode); err != nil {
-		panic(err)
-	}
-
+	assert := require.New(t)
+	numberpool_uuid := "659c7f88-c819-46e2-8af4-2d8a84249099"
+	client.Powerpack.NumberPoolUUID = "/v1/Account/MAODZKMDFJMJU3MTEYNG/NumberPool/659c7f88-c819-46e2-8af4-2d8a84249099/"
+	shortcode := "444444"
+	resp, err := client.Powerpack.Find_shortcode(shortcode)
+	assert.NotNil(resp)
+	assert.Nil(err)
+	assert.Equal(resp.ShortCode.Shortcode, shortcode)
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.Find_shortcode(shortcode)
-	if err == nil {
-		client.httpClient = cl
-		panic(errors.New("error expected"))
-	}
+	resp, err = client.Powerpack.Find_shortcode(shortcode)
+	assert.Nil(resp)
+	assert.NotNil(err)
 	client.httpClient = cl
-
-	assertRequest(t, "GET", "NumberPool/%s/Shortcode/%s/", numberpooluuid, shortcode)
+	assertRequest(t, "GET", "NumberPool/%s/Shortcode/%s/", numberpool_uuid, shortcode)
 
 }
 
-func TestBuyAddNumber(t *testing.T) {
+func TestBuy_add_number(t *testing.T) {
 	expectResponse("numberpoolSingleNoResponse.json", 200)
-	numberpooluuid := "numberpool_uuid"
-	number := "number"
-	if _, err := client.Powerpack.Buy_add_number(BuyPhoneNumberParam{Number: "15795890617"}); err != nil {
-		panic(err)
-	}
+	assert := require.New(t)
+	numberpool_uuid := "659c7f88-c819-46e2-8af4-2d8a84249099"
+	client.Powerpack.NumberPoolUUID = "/v1/Account/MAODZKMDFJMJU3MTEYNG/NumberPool/659c7f88-c819-46e2-8af4-2d8a84249099/"
+	number := "15799140348"
+	resp, err := client.Powerpack.Buy_add_number(BuyPhoneNumberParam{Number: number})
+	assert.NotNil(resp)
+	assert.Nil(err)
+	assert.Equal(resp.Number, number)
 
-	cl := client.httpClient
-	client.httpClient = nil
-	_, err := client.Powerpack.Buy_add_number(BuyPhoneNumberParam{Number: "15795890617"})
-	if err == nil {
-		client.httpClient = cl
-		panic(errors.New("error expected"))
-	}
-	client.httpClient = cl
-	assertRequest(t, "GET", "NumberPool/%s/Number/%s/", numberpooluuid, number)
+	assertRequest(t, "POST", "NumberPool/%s/Number/%s", numberpool_uuid, number)
 }
 
-func TestFindTollfree(t *testing.T) {
+func TestFind_tollfree(t *testing.T) {
 	expectResponse("numberpoolSingleTollfreeResponse.json", 200)
-	numberpooluuid := "numberpool_uuid"
-	tollfree := "tollfree"
-	if _, err := client.Powerpack.Find_tollfree(tollfree); err != nil {
-		panic(err)
-	}
-
+	assert := require.New(t)
+	numberpool_uuid := "659c7f88-c819-46e2-8af4-2d8a84249099"
+	client.Powerpack.NumberPoolUUID = "/v1/Account/MAODZKMDFJMJU3MTEYNG/NumberPool/659c7f88-c819-46e2-8af4-2d8a84249099/"
+	tollfree := "18772209942"
+	resp, err := client.Powerpack.Find_tollfree(tollfree)
+	assert.NotNil(resp)
+	assert.Nil(err)
+	assert.Equal(resp.Tollfree.Tollfree, tollfree)
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.Find_tollfree(tollfree)
-	if err == nil {
-		client.httpClient = cl
-		panic(errors.New("error expected"))
-	}
+	resp, err = client.Powerpack.Find_tollfree(tollfree)
+	assert.Nil(resp)
+	assert.NotNil(err)
 	client.httpClient = cl
-
-	assertRequest(t, "GET", "NumberPool/%s/Tollfree/%s/", numberpooluuid, tollfree)
+	assertRequest(t, "GET", "NumberPool/%s/Tollfree/%s/", numberpool_uuid, tollfree)
 
 }
 
-func TestListTollfree(t *testing.T) {
+func TestList_tollfree(t *testing.T) {
 	expectResponse("numberpoolTollfreeResponse.json", 200)
-	numberpooluuid := "numberpool_uuid"
-	if _, err := client.Powerpack.List_tollfree(); err != nil {
-		panic(err)
-	}
-
+	assert := require.New(t)
+	numberpool_uuid := "659c7f88-c819-46e2-8af4-2d8a84249099"
+	client.Powerpack.NumberPoolUUID = "/v1/Account/MAODZKMDFJMJU3MTEYNG/NumberPool/659c7f88-c819-46e2-8af4-2d8a84249099/"
+	resp, err := client.Powerpack.List_tollfree()
+	assert.NotNil(resp)
+	assert.Nil(err)
+	assert.NotEmpty(resp.Objects[0].Tollfree)
+	assert.NotNil(resp.Objects)
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.List_tollfree()
-	if err == nil {
-		client.httpClient = cl
-		panic(errors.New("error expected"))
-	}
+	resp, err = client.Powerpack.List_tollfree()
+	assert.Nil(resp)
+	assert.NotNil(err)
 	client.httpClient = cl
-
-	assertRequest(t, "GET", "NumberPool/%s/Tollfree/", numberpooluuid)
+	assertRequest(t, "GET", "NumberPool/%s/Tollfree", numberpool_uuid)
 
 }
 
-func TestPowerpack_RemoveTollfree(t *testing.T) {
+func TestRemove_tollfree(t *testing.T) {
 	expectResponse("powerpackDeleteResponse.json", 200)
-	numberpool_uuid := "numberpool_uuid"
-	tollfree := "tollfree"
-	if _, err := client.Powerpack.Remove_tollfree(tollfree, NumberRemoveParams{Unrent: false}); err != nil {
-		panic(err)
-	}
+	assert := require.New(t)
+	numberpool_uuid := "659c7f88-c819-46e2-8af4-2d8a84249099"
+	client.Powerpack.NumberPoolUUID = "/v1/Account/MAODZKMDFJMJU3MTEYNG/NumberPool/659c7f88-c819-46e2-8af4-2d8a84249099/"
+	tollfree := "18772209942"
+	resp, err := client.Powerpack.Remove_tollfree(tollfree, NumberRemoveParams{Unrent: false})
+	assert.NotNil(resp)
+	assert.Nil(err)
+	assert.Equal(resp.Response, "success")
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.Remove_tollfree(tollfree, NumberRemoveParams{Unrent: false})
-	if err == nil {
-		client.httpClient = cl
-		panic(errors.New("error expected"))
-	}
+	resp, err = client.Powerpack.Remove_tollfree(tollfree, NumberRemoveParams{Unrent: false})
+	assert.Nil(resp)
+	assert.NotNil(err)
 	client.httpClient = cl
-	assertRequest(t, "DELETE", "NumberPool/%s/Tollfree/%s/", numberpool_uuid, tollfree)
+	assertRequest(t, "DELETE", "NumberPool/%s/Tollfree/%s", numberpool_uuid, tollfree)
 }
 
-func TestPowerpack_RemoveShortcode(t *testing.T) {
+func TestRemove_shortcode(t *testing.T) {
 	expectResponse("powerpackDeleteResponse.json", 200)
-	numberpool_uuid := "numberpool_uuid"
-	shortcode := "shortcode"
-	if _, err := client.Powerpack.Remove_shortcode(shortcode); err != nil {
-		panic(err)
-	}
+	assert := require.New(t)
+	numberpool_uuid := "659c7f88-c819-46e2-8af4-2d8a84249099"
+	client.Powerpack.NumberPoolUUID = "/v1/Account/MAODZKMDFJMJU3MTEYNG/NumberPool/659c7f88-c819-46e2-8af4-2d8a84249099/"
+	shortcode := "444444"
+	resp, err := client.Powerpack.Remove_shortcode(shortcode)
+	assert.NotNil(resp)
+	assert.Nil(err)
+	assert.Equal(resp.Response, "success")
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.Remove_shortcode(shortcode)
-	if err == nil {
-		client.httpClient = cl
-		panic(errors.New("error expected"))
-	}
+	resp, err = client.Powerpack.Remove_shortcode(shortcode)
+	assert.Nil(resp)
+	assert.NotNil(err)
 	client.httpClient = cl
-	assertRequest(t, "DELETE", "NumberPool/%s/Shortcode/%s/", numberpool_uuid, shortcode)
+	assertRequest(t, "DELETE", "NumberPool/%s/Shortcode/%s", numberpool_uuid, shortcode)
 }
 
-func TestPowerpack_AddTollfree(t *testing.T) {
+func TestAdd_tollfree(t *testing.T) {
 	expectResponse("numberpoolSingleTollfreeResponse.json", 200)
-	numberpool_uuid := "numberpool_uuid"
-	tollfree := "tollfree"
-	if _, err := client.Powerpack.Add_tollfree(tollfree); err != nil {
-		panic(err)
-	}
-
+	assert := require.New(t)
+	numberpool_uuid := "659c7f88-c819-46e2-8af4-2d8a84249099"
+	client.Powerpack.NumberPoolUUID = "/v1/Account/MAODZKMDFJMJU3MTEYNG/NumberPool/659c7f88-c819-46e2-8af4-2d8a84249099/"
+	tollfree := "18772209942"
+	resp, err := client.Powerpack.Add_tollfree(tollfree)
+	assert.NotNil(resp)
+	assert.Nil(err)
+	assert.Equal(resp.Number, tollfree)
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Powerpack.Add_tollfree(tollfree)
-	if err == nil {
-		client.httpClient = cl
-		panic(errors.New("error expected"))
-	}
+	resp, err = client.Powerpack.Add_tollfree(tollfree)
+	assert.Nil(resp)
+	assert.NotNil(err)
 	client.httpClient = cl
-
-	assertRequest(t, "POST", "NumberPool/%s/Tollfree/%s/", numberpool_uuid, tollfree)
+	assertRequest(t, "POST", "NumberPool/%s/Tollfree/%s", numberpool_uuid, tollfree)
 }

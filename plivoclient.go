@@ -20,29 +20,29 @@ const baseRequestString = "/v1/Account/%s/"
 
 type Client struct {
 	BaseClient
-	Messages       *MessageService
-	Accounts       *AccountService
-	Subaccounts    *SubaccountService
-	Applications   *ApplicationService
-	Endpoints      *EndpointService
-	Numbers        *NumberService
-	PhoneNumbers   *PhoneNumberService
-	Pricing        *PricingService // TODO Rename?
-	Recordings     *RecordingService
-	Calls          *CallService
-	LiveCalls      *LiveCallService
-	QueuedCalls    *QueuedCallService
-	Conferences    *ConferenceService
-	CallFeedback   *CallFeedbackService
-	Powerpack      *PowerpackService
-	Media          *MediaService
-	Lookup         *LookupService
+	Messages                *MessageService
+	Accounts                *AccountService
+	Subaccounts             *SubaccountService
+	Applications            *ApplicationService
+	Endpoints               *EndpointService
+	Numbers                 *NumberService
+	PhoneNumbers            *PhoneNumberService
+	Pricing                 *PricingService // TODO Rename?
+	Recordings              *RecordingService
+	Calls                   *CallService
+	LiveCalls               *LiveCallService
+	QueuedCalls             *QueuedCallService
+	Conferences             *ConferenceService
+	CallFeedback            *CallFeedbackService
+	Powerpack               *PowerpackService
+	Media                   *MediaService
+	Lookup                  *LookupService
 	EndUsers                *EndUserService
 	ComplianceDocuments     *ComplianceDocumentService
 	ComplianceDocumentTypes *ComplianceDocumentTypeService
 	ComplianceRequirements  *ComplianceRequirementService
 	ComplianceApplications  *ComplianceApplicationService
-	MultiPartyCall *MultiPartyCallService
+	MultiPartyCall          *MultiPartyCallService
 }
 
 /*
@@ -78,7 +78,7 @@ func NewClient(authId, authToken string, options *ClientOptions) (client *Client
 
 	client.BaseUrl = baseUrl
 	client.httpClient = &http.Client{
-		Timeout : time.Second*5,
+		Timeout: time.Second * 5,
 	}
 
 	if options.HttpClient != nil {

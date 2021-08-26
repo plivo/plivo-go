@@ -145,6 +145,9 @@ type UpdateComplianceDocumentResponse BaseResponse
 
 func (service *ComplianceDocumentService) Get(complianceDocumentId string) (response *GetComplianceDocumentResponse, err error) {
 	req, err := service.client.NewRequest("GET", nil, "ComplianceDocument/%s", complianceDocumentId)
+	if err != nil {
+		return
+	}
 	response = &GetComplianceDocumentResponse{}
 	err = service.client.ExecuteRequest(req, response)
 	return
@@ -182,7 +185,9 @@ func newfileUploadRequest(uri string, params map[string]string, paramName, path 
 		if err != nil {
 			return nil, err
 		}
-		part.Write(fileContents)
+		if _, err := part.Write(fileContents); err != nil {
+			return nil, err
+		}
 	}
 
 	for key, val := range params {

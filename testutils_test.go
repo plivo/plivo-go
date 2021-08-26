@@ -26,7 +26,7 @@ var server = httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *
 	requestMethod = r.Method
 	requestHeader = r.Header
 	w.WriteHeader(expectedStatusCode)
-	w.Write([]byte(expectedResponse))
+	_, _ = w.Write([]byte(expectedResponse))
 
 	log.Println(expectedResponse)
 }))
