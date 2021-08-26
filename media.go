@@ -18,7 +18,7 @@ type MediaService struct {
 	Media
 }
 
-// Contains the information about media
+// Contains the infomation about media
 type Media struct {
 	ContentType string `json:"content_type,omitempty" url:"content_type,omitempty"`
 	FileName    string `json:"file_name,omitempty" url:"file_name,omitempty"`

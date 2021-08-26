@@ -5,8 +5,8 @@ import (
 )
 
 // NOTE: All of Plivo's APIs are in a single Go package. Unfortunately,
-// this imposes the limitation that each struct type has to be unique across
-// all of Plivo's product APIs.
+// this imposes the limitatio that each struct type has to be unique across
+// all of Plivo's producttt APIs.
 
 type Country struct {
 	Name string `json:"name"`
