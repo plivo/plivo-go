@@ -1,8 +1,9 @@
 # plivo-go
 
 [![Build, Unit Tests, Linters Status](https://github.com/plivo/plivo-go/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/plivo/plivo-go/actions/workflows/test.yml)
-[![GoDoc](https://godoc.org/github.com/plivo/plivo-go?status.svg)](https://godoc.org/github.com/plivo/plivo-go)
+[![codecov](https://codecov.io/gh/plivo/plivo-go/branch/master/graph/badge.svg)](https://codecov.io/gh/plivo/plivo-go)
 [![Go Report Card](https://goreportcard.com/badge/github.com/plivo/plivo-go)](https://goreportcard.com/report/github.com/plivo/plivo-go)
+[![GoDoc](https://godoc.org/github.com/plivo/plivo-go?status.svg)](https://godoc.org/github.com/plivo/plivo-go)
 
 The Plivo Go SDK makes it simpler to integrate communications into your Go applications using the Plivo REST API. Using the SDK, you will be able to make voice calls, send SMS and generate Plivo XML to control your call flows.
 
