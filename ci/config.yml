@@ -2,3 +2,7 @@
 parent: central
 serviceName: plivo-go
 language: go-sdk
+postDeployJobs:
+  prod:
+    - name: plivo/messaging-qa/goSDKSmoke
+      disabled: false
