@@ -1,5 +1,8 @@
 # Change Log
 
+## [7.3.0](https://github.com/plivo/plivo-go/tree/v7.3.0) (2021-10-29)
+- 10DLC apis added for brand and campaign support.
+
 ## [7.2.2](https://github.com/plivo/plivo-go/tree/v7.2.2) (2021-07-29)
 - Removed validation for `ringtimeout` and `delaydial` params in [Start a multi party call](https://www.plivo.com/docs/voice/api/multiparty-call#start-a-new-multiparty-call).
 
