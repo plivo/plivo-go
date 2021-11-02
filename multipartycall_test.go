@@ -135,3 +135,61 @@ func TestMPCService_GetParticipant(t *testing.T) {
 
 	assertRequest(t, "GET", "MultiPartyCall/%s/Participant/%s", "uuid_ebacced2-21ab-466d-9df4-67339991761b", "209")
 }
+
+func TestMPCService_StartParticipantRecord(t *testing.T) {
+	expectResponse("MPCStartParticipantRecordResponse.json", 202)
+
+	if _, err := client.MultiPartyCall.StartParticipantRecording(MultiPartyCallParticipantParams{MpcUuid: "ebacced2-21ab-466d-9df4-67339991761b", ParticipantId: "209"}, MultiPartyCallStartRecordingParams{FileFormat: "wav", StatusCallbackUrl: "https://www.google.com", StatusCallbackMethod: "GET"}); err != nil {
+		panic(err)
+	}
+
+	assertRequest(t, "POST", "MultiPartyCall/%s/Participant/%s/Record", "uuid_ebacced2-21ab-466d-9df4-67339991761b", "209")
+}
+
+func TestMPCService_StopParticipantRecord(t *testing.T) {
+	expectResponse("", 204)
+	if err := client.MultiPartyCall.StopParticipantRecording(MultiPartyCallParticipantParams{MpcUuid: "ebacced2-21ab-466d-9df4-67339991761b", ParticipantId: "209"}); err != nil {
+		panic(err)
+	}
+
+	assertRequest(t, "DELETE", "MultiPartyCall/%s/Participant/%s/Record", "uuid_ebacced2-21ab-466d-9df4-67339991761b", "209")
+}
+
+func TestMPCService_ResumeParticipantRecord(t *testing.T) {
+	expectResponse("", 204)
+	if err := client.MultiPartyCall.ResumeParticipantRecording(MultiPartyCallParticipantParams{MpcUuid: "ebacced2-21ab-466d-9df4-67339991761b", ParticipantId: "209"}); err != nil {
+		panic(err)
+	}
+
+	assertRequest(t, "POST", "MultiPartyCall/%s/Participant/%s/Record/Resume", "uuid_ebacced2-21ab-466d-9df4-67339991761b", "209")
+}
+
+func TestMPCService_PauseParticipantRecord(t *testing.T) {
+	expectResponse("", 204)
+
+	if err := client.MultiPartyCall.PauseParticipantRecording(MultiPartyCallParticipantParams{MpcUuid: "ebacced2-21ab-466d-9df4-67339991761b", ParticipantId: "209"}); err != nil {
+		panic(err)
+	}
+
+	assertRequest(t, "POST", "MultiPartyCall/%s/Participant/%s/Record/Pause", "uuid_ebacced2-21ab-466d-9df4-67339991761b", "209")
+}
+func TestMPCService_StartPlayAudio(t *testing.T) {
+	expectResponse("MPCStartPlayAudioResponse.json", 202)
+
+	if response, err := client.MultiPartyCall.StartPlayAudio(MultiPartyCallParticipantParams{MpcUuid: "uuid_ebacced2-21ab-466d-9df4-67339991761b", ParticipantId: "209"}, MultiPartCallAudio{Url: "https://s3.amazonaws.com/plivocloud/music.mp3"}); err != nil {
+		panic(err)
+	} else {
+		log.Println(response)
+	}
+
+	assertRequest(t, "POST", "MultiPartyCall/%s/Member/%s/Play", "uuid_ebacced2-21ab-466d-9df4-67339991761b", "209")
+}
+
+func TestMPCService_StopPlayAudio(t *testing.T) {
+	expectResponse("", 204)
+
+	if err := client.MultiPartyCall.StopPlayAudio(MultiPartyCallParticipantParams{MpcUuid: "uuid_ebacced2-21ab-466d-9df4-67339991761b", ParticipantId: "209"}); err != nil {
+		panic(err)
+	}
+	assertRequest(t, "DELETE", "MultiPartyCall/%s/Member/%s/Play", "uuid_ebacced2-21ab-466d-9df4-67339991761b", "209")
+}
