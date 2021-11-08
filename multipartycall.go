@@ -188,7 +188,7 @@ type MultiPartyCallUpdateParticipantResponse struct {
 	MPCUpdateResponse
 }
 
-type MultiPartCallAudioParams struct {
+type MultiPartyCallAudioParams struct {
 	Url string `json:"url" url:"url"`
 }
 
@@ -400,7 +400,7 @@ func (service *MultiPartyCallService) GetParticipant(basicParams MultiPartyCallP
 	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
-func (service *MultiPartyCallService) StartPlayAudio(basicParams MultiPartyCallParticipantParams, url MultiPartCallAudioParams) (response *MultiPartyCallAudioResponse, err error) {
+func (service *MultiPartyCallService) StartPlayAudio(basicParams MultiPartyCallParticipantParams, url MultiPartyCallAudioParams) (response *MultiPartyCallAudioResponse, err error) {
 	mpcId := MakeMPCId(basicParams.MpcUuid, basicParams.FriendlyName)
 	req, err := service.client.NewRequest("POST", url, "MultiPartyCall/%s/Member/%s/Play", mpcId, basicParams.ParticipantId)
 	if err != nil {

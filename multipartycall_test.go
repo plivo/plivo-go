@@ -176,7 +176,7 @@ func TestMPCService_PauseParticipantRecord(t *testing.T) {
 func TestMPCService_StartPlayAudio(t *testing.T) {
 	expectResponse("MPCStartPlayAudioResponse.json", 202)
 
-	if response, err := client.MultiPartyCall.StartPlayAudio(MultiPartyCallParticipantParams{MpcUuid: "ebacced2-21ab-466d-9df4-67339991761b", ParticipantId: "209"}, MultiPartCallAudioParams{Url: "https://s3.amazonaws.com/plivocloud/music.mp3"}); err != nil {
+	if response, err := client.MultiPartyCall.StartPlayAudio(MultiPartyCallParticipantParams{MpcUuid: "ebacced2-21ab-466d-9df4-67339991761b", ParticipantId: "209"}, MultiPartyCallAudioParams{Url: "https://s3.amazonaws.com/plivocloud/music.mp3"}); err != nil {
 		panic(err)
 	} else {
 		log.Println(response)
