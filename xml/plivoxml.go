@@ -1154,37 +1154,41 @@ func TransformString(s string) string {
 }
 
 type MultiPartyCallElement struct {
-	Contents                string   `xml:",innerxml"`
-	Role                    *string  `xml:"role,attr"`
-	MaxDuration             *int64   `xml:"maxDuration,attr"`
-	MaxParticipants         *int64   `xml:"maxParticipants,attr"`
-	WaitMusicUrl            *string  `xml:"waitMusicUrl,attr"`
-	WaitMusicMethod         *string  `xml:"waitMusicMethod,attr"`
-	AgentHoldMusicUrl       *string  `xml:"agentHoldMusicUrl,attr"`
-	AgentHoldMusicMethod    *string  `xml:"agentHoldMusicMethod,attr"`
-	CustomerHoldMusicUrl    *string  `xml:"customerHoldMusicUrl,attr"`
-	CustomerHoldMusicMethod *string  `xml:"customerHoldMusicMethod,attr"`
-	Record                  *bool    `xml:"record,attr"`
-	RecordFileFormat        *string  `xml:"recordFileFormat,attr"`
-	RecordingCallbackUrl    *string  `xml:"recordingCallbackUrl,attr"`
-	RecordingCallbackMethod *string  `xml:"recordingCallbackMethod,attr"`
-	StatusCallbackEvents    *string  `xml:"statusCallbackEvents,attr"`
-	StatusCallbackUrl       *string  `xml:"statusCallbackUrl,attr"`
-	StatusCallbackMethod    *string  `xml:"statusCallbackMethod,attr"`
-	StayAlone               *bool    `xml:"stayAlone,attr"`
-	CoachMode               *bool    `xml:"coachMode,attr"`
-	Mute                    *bool    `xml:"mute,attr"`
-	Hold                    *bool    `xml:"hold,attr"`
-	StartMpcOnEnter         *bool    `xml:"startMpcOnEnter,attr"`
-	EndMpcOnExit            *bool    `xml:"endMpcOnExit,attr"`
-	EnterSound              *string  `xml:"enterSound,attr"`
-	EnterSoundMethod        *string  `xml:"enterSoundMethod,attr"`
-	ExitSound               *string  `xml:"exitSound,attr"`
-	ExitSoundMethod         *string  `xml:"exitSoundMethod,attr"`
-	OnExitActionUrl         *string  `xml:"onExitActionUrl,attr"`
-	OnExitActionMethod      *string  `xml:"onExitActionMethod,attr"`
-	RelayDtmfInputs         *bool    `xml:"relayDtmfInputs,attr"`
-	XMLName                 xml.Name `xml:"MultiPartyCall"`
+	Contents                  string   `xml:",innerxml"`
+	Role                      *string  `xml:"role,attr"`
+	MaxDuration               *int64   `xml:"maxDuration,attr"`
+	MaxParticipants           *int64   `xml:"maxParticipants,attr"`
+	WaitMusicUrl              *string  `xml:"waitMusicUrl,attr"`
+	WaitMusicMethod           *string  `xml:"waitMusicMethod,attr"`
+	AgentHoldMusicUrl         *string  `xml:"agentHoldMusicUrl,attr"`
+	AgentHoldMusicMethod      *string  `xml:"agentHoldMusicMethod,attr"`
+	CustomerHoldMusicUrl      *string  `xml:"customerHoldMusicUrl,attr"`
+	CustomerHoldMusicMethod   *string  `xml:"customerHoldMusicMethod,attr"`
+	Record                    *bool    `xml:"record,attr"`
+	RecordFileFormat          *string  `xml:"recordFileFormat,attr"`
+	RecordingCallbackUrl      *string  `xml:"recordingCallbackUrl,attr"`
+	RecordingCallbackMethod   *string  `xml:"recordingCallbackMethod,attr"`
+	StatusCallbackEvents      *string  `xml:"statusCallbackEvents,attr"`
+	StatusCallbackUrl         *string  `xml:"statusCallbackUrl,attr"`
+	StatusCallbackMethod      *string  `xml:"statusCallbackMethod,attr"`
+	StayAlone                 *bool    `xml:"stayAlone,attr"`
+	CoachMode                 *bool    `xml:"coachMode,attr"`
+	Mute                      *bool    `xml:"mute,attr"`
+	Hold                      *bool    `xml:"hold,attr"`
+	StartMpcOnEnter           *bool    `xml:"startMpcOnEnter,attr"`
+	EndMpcOnExit              *bool    `xml:"endMpcOnExit,attr"`
+	EnterSound                *string  `xml:"enterSound,attr"`
+	EnterSoundMethod          *string  `xml:"enterSoundMethod,attr"`
+	ExitSound                 *string  `xml:"exitSound,attr"`
+	ExitSoundMethod           *string  `xml:"exitSoundMethod,attr"`
+	OnExitActionUrl           *string  `xml:"onExitActionUrl,attr"`
+	OnExitActionMethod        *string  `xml:"onExitActionMethod,attr"`
+	RelayDtmfInputs           *bool    `xml:"relayDtmfInputs,attr"`
+	XMLName                   xml.Name `xml:"MultiPartyCall"`
+	StartRecordingAudio       *string  `xml:"StartRecordingAudio,attr"`
+	StartRecordingAudioMethod *string  `xml:"StartRecordingAudioMethod,attr"`
+	StopRecordingAudio        *string  `xml:"StopRecordingAudio,attr"`
+	StopRecordingAudioMethod  *string  `xml:"StopRecordingAudioMethod,attr"`
 }
 
 func (e MultiPartyCallElement) SetRole(value string) MultiPartyCallElement {
@@ -1305,5 +1309,21 @@ func (e MultiPartyCallElement) SetExitSoundMethod(value string) MultiPartyCallEl
 }
 func (e MultiPartyCallElement) SetContents(value string) MultiPartyCallElement {
 	e.Contents = value
+	return e
+}
+func (e MultiPartyCallElement) SetStartRecordingAudio(value string) MultiPartyCallElement {
+	e.StartRecordingAudio = &value
+	return e
+}
+func (e MultiPartyCallElement) SetStartRecordingAudioMethod(value string) MultiPartyCallElement {
+	e.StartRecordingAudioMethod = &value
+	return e
+}
+func (e MultiPartyCallElement) SetStopRecordingAudio(value string) MultiPartyCallElement {
+	e.StopRecordingAudio = &value
+	return e
+}
+func (e MultiPartyCallElement) SetStopRecordingAudioMethod(value string) MultiPartyCallElement {
+	e.StopRecordingAudioMethod = &value
 	return e
 }
