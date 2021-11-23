@@ -1,5 +1,11 @@
 # Change Log
 
+## [7.3.0](https://github.com/plivo/plivo-go/tree/v7.3.0) (2021-11-23)
+**Features - Voice: Multiparty calls**
+- The [Add Multiparty Call API](https://www.plivo.com/docs/voice/api/multiparty-call/participants#add-a-participant) allows for greater functionality by accepting options like `start recording audio`, `stop recording audio`, and their HTTP methods.
+- [Multiparty Calls](https://www.plivo.com/docs/voice/api/multiparty-call/) now has new APIs to `stop` and `play` audio.
+
+
 ## [7.2.2](https://github.com/plivo/plivo-go/tree/v7.2.2) (2021-07-29)
 - Removed validation for `ringtimeout` and `delaydial` params in [Start a multi party call](https://www.plivo.com/docs/voice/api/multiparty-call#start-a-new-multiparty-call).
 
