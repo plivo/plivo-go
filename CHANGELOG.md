@@ -1,7 +1,8 @@
 # Change Log
 
-## [7.4.0](https://github.com/plivo/plivo-go/tree/v7.4.0) (2021-11-29)
-- 10DLC apis added for brand and campaign support.
+## [7.4.0](https://github.com/plivo/plivo-go/tree/v7.4.0) (2021-12-02)
+**Features - Messaging: 10 DLC**
+- 10DLC API's for brand and campaign support.
 
 ## [7.3.0](https://github.com/plivo/plivo-go/tree/v7.3.0) (2021-11-23)
 **Features - Voice: Multiparty calls**
