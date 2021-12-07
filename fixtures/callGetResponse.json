@@ -15,5 +15,6 @@
   "total_amount": "0.00000",
   "total_rate": "0.03570",
   "stir_verification": "Not Applicable",
-  "voice_network_group": "India All Networks"
+  "voice_network_group": "India All Networks",
+  "stir_attestation": ""
 }
