@@ -1,5 +1,9 @@
 # Change Log
 
+## [7.5.0](https://github.com/plivo/plivo-java/tree/v7.5.0) (2021-12-13)
+**Features - Voice**
+- Routing SDK traffic through Akamai endpoints for all the [Voice APIs](https://www.plivo.com/docs/voice/api/overview/)
+
 ## [7.4.0](https://github.com/plivo/plivo-go/tree/v7.4.0) (2021-12-02)
 **Features - Messaging: 10 DLC**
 - 10DLC API's for brand and campaign support.
