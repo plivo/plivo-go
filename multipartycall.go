@@ -108,9 +108,9 @@ type MultiPartyCallUpdateParticipantParams struct {
 }
 
 type MultiPartyCallStartRecordingParams struct {
-	FileFormat           string `json:"file_format,omitempty" url:"file_format,omitempty"`
-	StatusCallbackUrl    string `json:"status_callback_url,omitempty" url:"status_callback_url,omitempty"`
-	StatusCallbackMethod string `json:"status_callback_method,omitempty" url:"status_callback_method,omitempty"`
+	FileFormat              string `json:"file_format,omitempty" url:"file_format,omitempty"`
+	RecordingCallbackUrl    string `json:"recording_callback_url,omitempty" url:"recording_callback_url,omitempty"`
+	RecordingCallbackMethod string `json:"recording_callback_method,omitempty" url:"recording_callback_method,omitempty"`
 }
 
 type MultiPartyCallListResponse struct {
