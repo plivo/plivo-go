@@ -1,6 +1,6 @@
 # Change Log
 
-## [7.5.0](https://github.com/plivo/plivo-go/tree/v7.6.0) (2022-01-27)
+## [7.6.0](https://github.com/plivo/plivo-go/tree/v7.6.0) (2022-01-27)
 **Features - MPCStartRecording**
 - Parameter name change from statusCallBack to recordingCallback
 
