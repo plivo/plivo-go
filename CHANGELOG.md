@@ -1,5 +1,9 @@
 # Change Log
 
+## [7.6.1](https://github.com/plivo/plivo-go/tree/v7.6.1) (2022-02-15)
+**Features - ListParticipants**
+- Parameter added as member_address in response
+
 ## [7.6.0](https://github.com/plivo/plivo-go/tree/v7.6.0) (2022-01-27)
 **Features - MPCStartRecording**
 - Parameter name change from statusCallBack to recordingCallback
