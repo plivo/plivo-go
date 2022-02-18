@@ -1,12 +1,8 @@
 # Change Log
 
-## [7.6.2](https://github.com/plivo/plivo-go/tree/v7.6.2) (2022-02-17)
-**Features - ListParticipants**
-- Parameter added as member_address in moch response
-
 ## [7.6.1](https://github.com/plivo/plivo-go/tree/v7.6.1) (2022-02-15)
 **Features - ListParticipants**
-- Parameter added as member_address in response
+- Parameter added as member_address in response and mock
 
 ## [7.6.0](https://github.com/plivo/plivo-go/tree/v7.6.0) (2022-01-27)
 **Features - MPCStartRecording**
