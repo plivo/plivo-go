@@ -175,6 +175,7 @@ type MultiPartyCallParticipant struct {
 	ExitTime        string `json:"exit_time,omitempty" url:"exit_time,omitempty"`
 	Hold            bool   `json:"hold,omitempty" url:"hold,omitempty"`
 	JoinTime        string `json:"join_time,omitempty" url:"join_time,omitempty"`
+	MemberAddress   string `json:"member_address,omitempty" url:"member_address,omitempty"`
 	MemberId        string `json:"member_id,omitempty" url:"member_id,omitempty"`
 	MpcUuid         string `json:"mpc_uuid,omitempty" url:"mpc_uuid,omitempty"`
 	Mute            bool   `json:"mute,omitempty" url:"mute,omitempty"`
