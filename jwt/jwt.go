@@ -3,10 +3,9 @@ package jwt
 import (
 	"errors"
 	"fmt"
+	"github.com/golang-jwt/jwt"
 	"os"
 	"time"
-
-	"github.com/dgrijalva/jwt-go"
 )
 
 type AccessToken struct {
