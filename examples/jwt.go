@@ -4,7 +4,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/plivo/plivo-go/jwt"
+	"github.com/plivo/plivo-go/v7/jwt"
 )
 
 func mainJWT() {

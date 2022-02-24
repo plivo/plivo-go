@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/plivo/plivo-go"
+	"github.com/plivo/plivo-go/v7"
 )
 
 const (
