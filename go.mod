@@ -1,4 +1,4 @@
-module github.com/plivo/plivo-go
+module github.com/plivo/plivo-go/v7
 
 go 1.13
 
