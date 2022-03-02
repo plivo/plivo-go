@@ -1,5 +1,9 @@
 # Change Log
 
+## [7.7.0](https://github.com/plivo/plivo-go/tree/v7.7.0) (2022-03-02)
+**Fix go modules**
+- Fix the import path for go modules to work
+
 ## [7.6.1](https://github.com/plivo/plivo-go/tree/v7.6.1) (2022-02-22)
 **Features - ListParticipants**
 - Parameter added as member_address in response and mock
