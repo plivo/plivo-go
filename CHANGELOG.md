@@ -1,5 +1,9 @@
 # Change Log
 
+## [7.7.1](https://github.com/plivo/plivo-go/tree/v7.7.1) (2022-03-03)
+**Features - DialElement**
+- confirmTimeout parameter added in dial element
+
 ## [7.7.0](https://github.com/plivo/plivo-go/tree/v7.7.0) (2022-03-02)
 **Fix go modules**
 - Fix the import path for go modules to work
