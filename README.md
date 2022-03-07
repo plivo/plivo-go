@@ -130,7 +130,7 @@ import (
 )
 
 func main() {
-	client, err := plivo.NewClient("<auth-id>", "auth-token", &plivo.ClientOptions{})
+	client, err := plivo.NewClient("<auth-id>", "<auth-token>", &plivo.ClientOptions{})
 	if err != nil {
 		log.Fatalf("plivo.NewClient() failed: %s", err.Error())
 	}
