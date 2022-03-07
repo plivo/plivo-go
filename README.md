@@ -37,7 +37,7 @@ We recommend that you store your credentials in the `PLIVO_AUTH_ID` and the `PLI
 ```go
 package main
 
-import "github.com/plivo/plivo-go"
+import "github.com/plivo/plivo-go/v7"
 
 func main()  {
   client, err := plivo.NewClient("", "", &plivo.ClientOptions{})
@@ -51,7 +51,7 @@ Alternatively, you can specifiy the authentication credentials while initializin
 ```go
 package main
 
-import "github.com/plivo/plivo-go"
+import "github.com/plivo/plivo-go/v7"
 
 func main()  {
  client, err := plivo.NewClient("<auth-id>", "<auth-token>", &plivo.ClientOptions{})
@@ -81,7 +81,7 @@ Using `client.Resources.List()` would list the first 20 resources by default (wh
 ```go
 package main
 
-import "github.com/plivo/plivo-go"
+import "github.com/plivo/plivo-go/v7"
 
 func main()  {
   client, err := plivo.NewClient("", "", &plivo.ClientOptions{})
@@ -101,7 +101,7 @@ func main()  {
 ```go
 package main
 
-import "github.com/plivo/plivo-go"
+import "github.com/plivo/plivo-go/v7"
 
 func main()  {
   client, err := plivo.NewClient("", "", &plivo.ClientOptions{})
@@ -125,7 +125,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/plivo/plivo-go"
+	"github.com/plivo/plivo-go/v7"
 )
 
 func main() {
@@ -153,7 +153,7 @@ func main() {
 ```go
 package main
 
-import "github.com/plivo/plivo-go/plivo/xml"
+import "github.com/plivo/plivo-go/v7/xml"
 
 func main()  {
   println(xml.ResponseElement{
@@ -179,7 +179,7 @@ package main
 
 import (
 	"fmt"
-	"plivo-go"
+	"github.com/plivo/plivo-go/v7"
 )
 
 // Initialize the following params with corresponding values to trigger resources
