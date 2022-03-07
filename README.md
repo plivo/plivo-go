@@ -26,7 +26,7 @@ This will generate a `go.mod` and `go.sum` file.
 
 ###### Add plivo-go as a dependency to your project
 ```sh
-$ go get github.com/plivo/plivo-go
+$ go get github.com/plivo/plivo-go/v7
 ```
 
 ### Authentication
@@ -54,7 +54,7 @@ package main
 import "github.com/plivo/plivo-go"
 
 func main()  {
- client, err := plivo.NewClient("your_auth_id", "your_auth_token", &plivo.ClientOptions{})
+ client, err := plivo.NewClient("<auth-id>", "<auth-token>", &plivo.ClientOptions{})
  if err != nil {
    panic(err)
  }
@@ -129,7 +129,7 @@ import (
 )
 
 func main() {
-	client, err := plivo.NewClient("authId", "authToken", &plivo.ClientOptions{})
+	client, err := plivo.NewClient("<auth-id>", "auth-token", &plivo.ClientOptions{})
 	if err != nil {
 		log.Fatalf("plivo.NewClient() failed: %s", err.Error())
 	}
