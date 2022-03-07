@@ -40,10 +40,10 @@ package main
 import "github.com/plivo/plivo-go/v7"
 
 func main()  {
-  client, err := plivo.NewClient("", "", &plivo.ClientOptions{})
-  if err != nil {
-    panic(err)
-  }
+	client, err := plivo.NewClient("", "", &plivo.ClientOptions{})
+	if err != nil {
+		panic(err)
+	}
 }
 ```
 Alternatively, you can specifiy the authentication credentials while initializing the `Client`.
@@ -54,10 +54,10 @@ package main
 import "github.com/plivo/plivo-go/v7"
 
 func main()  {
- client, err := plivo.NewClient("<auth-id>", "<auth-token>", &plivo.ClientOptions{})
- if err != nil {
-   panic(err)
- }
+	client, err := plivo.NewClient("<auth-id>", "<auth-token>", &plivo.ClientOptions{})
+	if err != nil {
+		panic(err)
+	}
 }
 ```
 
@@ -83,16 +83,16 @@ package main
 
 import "github.com/plivo/plivo-go/v7"
 
-func main()  {
-  client, err := plivo.NewClient("", "", &plivo.ClientOptions{})
-  if err != nil {
-    panic(err)
-  }
-  client.Messages.Create(plivo.MessageCreateParams{
-    Src: "the_source_number",
-    Dst: "the_destination_number",
-    Text: "Hello, world!",
-  })
+func main() {
+	client, err := plivo.NewClient("", "", &plivo.ClientOptions{})
+	if err != nil {
+		panic(err)
+	}
+	client.Messages.Create(plivo.MessageCreateParams{
+		Src:  "the_source_number",
+		Dst:  "the_destination_number",
+		Text: "Hello, world!",
+	})
 }
 ```
 
@@ -103,17 +103,18 @@ package main
 
 import "github.com/plivo/plivo-go/v7"
 
-func main()  {
-  client, err := plivo.NewClient("", "", &plivo.ClientOptions{})
-  if err != nil {
-    panic(err)
-  }
-  client.Calls.Create(plivo.CallCreateParams{
-    From: "the_source_number",
-    To: "the_destination_number",
-    AnswerURL: "http://answer.url",
-  })
+func main() {
+	client, err := plivo.NewClient("", "", &plivo.ClientOptions{})
+	if err != nil {
+		panic(err)
+	}
+	client.Calls.Create(plivo.CallCreateParams{
+		From:      "the_source_number",
+		To:        "the_destination_number",
+		AnswerURL: "http://answer.url",
+	})
 }
+
 ```
 
 ### Lookup a number
@@ -155,12 +156,12 @@ package main
 
 import "github.com/plivo/plivo-go/v7/xml"
 
-func main()  {
-  println(xml.ResponseElement{
-    Contents: []interface{}{
-      new(xml.SpeakElement).SetContents("Hello, world!"),
-    },
-    }.String())
+func main() {
+	println(xml.ResponseElement{
+		Contents: []interface{}{
+			new(xml.SpeakElement).SetContents("Hello, world!"),
+		},
+	}.String())
 }
 ```
 
@@ -184,7 +185,7 @@ import (
 
 // Initialize the following params with corresponding values to trigger resources
 
-const authId  = "auth_id"
+const authId = "auth_id"
 const authToken = "auth_token"
 const phloId = "phlo_id"
 
@@ -195,7 +196,7 @@ func main() {
 }
 
 func testPhloRunWithParams() {
-	phloClient,err := plivo.NewPhloClient(authId, authToken, &plivo.ClientOptions{})
+	phloClient, err := plivo.NewPhloClient(authId, authToken, &plivo.ClientOptions{})
 	if err != nil {
 		panic(err)
 	}
@@ -207,10 +208,10 @@ func testPhloRunWithParams() {
 	type params map[string]interface{}
 	response, err := phloGet.Run(params{
 		"from": "111111111",
-		"to": "2222222222",
+		"to":   "2222222222",
 	})
 
-	if (err != nil) {
+	if err != nil {
 		println(err)
 	}
 	fmt.Printf("Response: %#v\n", response)
