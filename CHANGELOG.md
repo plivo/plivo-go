@@ -1,4 +1,7 @@
 # Change Log
+## [7.7.1](https://github.com/plivo/plivo-go/tree/v7.7.1) (2022-03-08)
+**Fix MachineDetectionUrl and MachineDetectionMethod**
+- Added machine_detection_url and machine_detection_method in CallCreateParams
 
 ## [7.7.0](https://github.com/plivo/plivo-go/tree/v7.7.0) (2022-03-02)
 **Fix go modules**
