@@ -1,5 +1,9 @@
 # Change Log
 
+## [7.7.2](https://github.com/plivo/plivo-go/tree/v7.7.2) (2022-03-22)
+**Bug Fix - Voice**
+- Added `Polly.Marlene` to [SSML voices](https://www.plivo.com/docs/voice/concepts/ssml#ssml-voices)
+
 ## [7.7.1](https://github.com/plivo/plivo-go/tree/v7.7.1) (2022-03-17)
 **Bug Fix - Voice**
 - Added `machine_detection_url` and `machine_detection_method` in [Make a call API](https://www.plivo.com/docs/voice/api/call#make-a-call)
