@@ -1095,7 +1095,7 @@ func getLanguageVoices() map[string][]string {
 		"en-GB-WLS": {"Geraint"},
 		"fr-FR":     {"Léa", "Céline", "Mathieu"},
 		"fr-CA":     {"Chantal", "Chantal"},
-		"de-DE":     {"Vicki", "Hans"},
+		"de-DE":     {"Vicki", "Hans","Marlene"},
 		"hi-IN":     {"Aditi"},
 		"is-IS":     {"Dóra", "Karl"},
 		"it-IT":     {"Carla", "Giorgio"},
