@@ -195,6 +195,8 @@ type DialElement struct {
 
 	ConfirmSound *string `xml:"confirmSound,attr"`
 
+	ConfirmTimeout *string `xml:"confirmTimeout,attr"`
+
 	ConfirmKey *string `xml:"confirmKey,attr"`
 
 	DialMusic *string `xml:"dialMusic,attr"`
@@ -251,6 +253,11 @@ func (e DialElement) SetCallerName(value string) DialElement {
 
 func (e DialElement) SetConfirmSound(value string) DialElement {
 	e.ConfirmSound = &value
+	return e
+}
+
+func (e DialElement) SetConfirmTimeout(value string) DialElement {
+	e.ConfirmTimeout = &value
 	return e
 }
 

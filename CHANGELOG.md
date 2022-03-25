@@ -1,5 +1,9 @@
 # Change Log
 
+## [7.8.0](https://github.com/plivo/plivo-go/tree/v7.8.0) (2022-03-25)
+**Features - DialElement**
+- `confirmTimeout` parameter added to [The Dial element](https://www.plivo.com/docs/voice/xml/dial/)
+
 ## [7.7.2](https://github.com/plivo/plivo-go/tree/v7.7.2) (2022-03-23)
 **Bug Fix - Voice**
 - Added `Polly.Marlene` to [SSML voices](https://www.plivo.com/docs/voice/concepts/ssml#ssml-voices)
