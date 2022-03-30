@@ -1,12 +1,13 @@
+// Example for Call create
 package main
 
 import (
 	"fmt"
-	"github.com/plivo/plivo-go"
+	"github.com/plivo/plivo-go/v7"
 )
 
 func main() {
-	client, err := plivo.NewClient("MADCHANDRESH02TANK06", "OTljNmVmOGVkNGZhNjJlOWIyMWM0ZDI0ZjQwZDdk", &plivo.ClientOptions{})
+	client, err := plivo.NewClient("MAYJI2ZJDIMTVIODIWYJ", "OTI2NWFmNGI4MmZjZjZkOTQ0YjNkYTQwMzY2ZDJl", &plivo.ClientOptions{})
 	if err != nil {
 		fmt.Print("Error", err.Error())
 		return

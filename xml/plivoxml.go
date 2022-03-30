@@ -195,6 +195,8 @@ type DialElement struct {
 
 	ConfirmSound *string `xml:"confirmSound,attr"`
 
+	ConfirmTimeout *string `xml:"confirmTimeout,attr"`
+
 	ConfirmKey *string `xml:"confirmKey,attr"`
 
 	DialMusic *string `xml:"dialMusic,attr"`
@@ -251,6 +253,11 @@ func (e DialElement) SetCallerName(value string) DialElement {
 
 func (e DialElement) SetConfirmSound(value string) DialElement {
 	e.ConfirmSound = &value
+	return e
+}
+
+func (e DialElement) SetConfirmTimeout(value string) DialElement {
+	e.ConfirmTimeout = &value
 	return e
 }
 
@@ -1088,7 +1095,7 @@ func getLanguageVoices() map[string][]string {
 		"en-GB-WLS": {"Geraint"},
 		"fr-FR":     {"Léa", "Céline", "Mathieu"},
 		"fr-CA":     {"Chantal", "Chantal"},
-		"de-DE":     {"Vicki", "Hans"},
+		"de-DE":     {"Vicki", "Hans","Marlene"},
 		"hi-IN":     {"Aditi"},
 		"is-IS":     {"Dóra", "Karl"},
 		"it-IT":     {"Carla", "Giorgio"},
