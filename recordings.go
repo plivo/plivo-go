@@ -16,23 +16,23 @@ type Recording struct {
 	RecordingStartMS    string `json:"recording_start_ms,omitempty" url:"recording_start_ms,omitempty"`
 	RecordingEndMS      string `json:"recording_end_ms,omitempty" url:"recording_end_ms,omitempty"`
 	RecordingDurationMS string `json:"recording_duration_ms,omitempty" url:"recording_duration_ms,omitempty"`
+	FromNumber          string `json:"from_number,omitempty" url:"from_number,omitempty"`
+	ToNumber            string `json:"to_number,omitempty" url:"to_number,omitempty"`
 }
 
 type RecordingListParams struct {
 	// Query parameters.
-	Subaccount    string `json:"subaccount,omitempty" url:"subaccount,omitempty"`
-	CallUUID      string `json:"call_uuid,omitempty" url:"call_uuid,omitempty"`
-	AddTimeEquals string `json:"add_time,omitempty" url:"add_time,omitempty"`
-
-	AddTimeLessThan string `json:"add_time__lt,omitempty" url:"add_time__lt,omitempty"`
-
-	AddTimeGreaterThan string `json:"add_time__gt,omitempty" url:"add_time__gt,omitempty"`
-
-	AddTimeLessOrEqual string `json:"add_time__lte,omitempty" url:"add_time__lte,omitempty"`
-
+	Subaccount            string `json:"subaccount,omitempty" url:"subaccount,omitempty"`
+	CallUUID              string `json:"call_uuid,omitempty" url:"call_uuid,omitempty"`
+	AddTimeEquals         string `json:"add_time,omitempty" url:"add_time,omitempty"`
+	AddTimeLessThan       string `json:"add_time__lt,omitempty" url:"add_time__lt,omitempty"`
+	AddTimeGreaterThan    string `json:"add_time__gt,omitempty" url:"add_time__gt,omitempty"`
+	AddTimeLessOrEqual    string `json:"add_time__lte,omitempty" url:"add_time__lte,omitempty"`
 	AddTimeGreaterOrEqual string `json:"add_time__gte,omitempty" url:"add_time__gte,omitempty"`
 	Limit                 int64  `json:"limit:omitempty" url:"limit:omitempty"`
 	Offset                int64  `json:"offset:omitempty" url:"offset:omitempty"`
+	FromNumber            string `json:"from_number,omitempty" url:"from_number,omitempty"`
+	ToNumber              string `json:"to_number,omitempty" url:"to_number,omitempty"`
 }
 
 type RecordingListResponse struct {
