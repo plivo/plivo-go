@@ -1350,5 +1350,6 @@ func wordTitle(str string) string {
 			finalString = finalString + "." + wordString
 		}
 	}
-	return finalString[1:len(finalString)]
+	lengthOfFinalString := len(finalString)
+	return finalString[1:lengthOfFinalString]
 }
