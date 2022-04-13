@@ -3,12 +3,11 @@ package xml
 import (
 	"encoding/xml"
 	"errors"
-	"strings"
-	"unicode"
-
 	"golang.org/x/text/runes"
 	"golang.org/x/text/transform"
 	"golang.org/x/text/unicode/norm"
+	"strings"
+	"unicode"
 )
 
 type ResponseElement struct {
@@ -1095,7 +1094,7 @@ func getLanguageVoices() map[string][]string {
 		"en-GB-WLS": {"Geraint"},
 		"fr-FR":     {"Léa", "Céline", "Mathieu"},
 		"fr-CA":     {"Chantal", "Chantal"},
-		"de-DE":     {"Vicki", "Hans","Marlene"},
+		"de-DE":     {"Vicki", "Hans", "Marlene"},
 		"hi-IN":     {"Aditi"},
 		"is-IS":     {"Dóra", "Karl"},
 		"it-IT":     {"Carla", "Giorgio"},
@@ -1155,7 +1154,7 @@ func ValidateLanguageVoice(language string, voice string) error {
 func TransformString(s string) string {
 	tc := transform.Chain(norm.NFD, runes.Remove(runes.In(unicode.Mn)), norm.NFC)
 	s, _, _ = transform.String(tc, s)
-	s = strings.Title(s)
+	s = wordTitle(s)
 	s = strings.Replace(s, " ", "_", -1)
 	return s
 }
@@ -1333,4 +1332,23 @@ func (e MultiPartyCallElement) SetStopRecordingAudio(value string) MultiPartyCal
 func (e MultiPartyCallElement) SetStopRecordingAudioMethod(value string) MultiPartyCallElement {
 	e.StopRecordingAudioMethod = &value
 	return e
+}
+
+/*
+wordTitle
+Replacement of strings.Title as it is depreciated
+wordTitle only replaces the first letter of every word (separated by ".") with capital letter
+*/
+func wordTitle(str string) string {
+	str = strings.ToLower(str)
+	finalString := ""
+	s := strings.Split(str, ".")
+	for _, word := range s {
+		len := len(word)
+		if len > 0 {
+			wordString := strings.ToUpper(word[0:1]) + word[1:len]
+			finalString = finalString + "." + wordString
+		}
+	}
+	return finalString[1:len(finalString)]
 }
