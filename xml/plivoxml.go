@@ -1164,6 +1164,7 @@ type MultiPartyCallElement struct {
 	Role                      *string  `xml:"role,attr"`
 	MaxDuration               *int64   `xml:"maxDuration,attr"`
 	MaxParticipants           *int64   `xml:"maxParticipants,attr"`
+	RecordMinMemberCount      *int64   `xml:"recordMinMemberCount,attr"`
 	WaitMusicUrl              *string  `xml:"waitMusicUrl,attr"`
 	WaitMusicMethod           *string  `xml:"waitMusicMethod,attr"`
 	AgentHoldMusicUrl         *string  `xml:"agentHoldMusicUrl,attr"`
@@ -1207,6 +1208,10 @@ func (e MultiPartyCallElement) SetMaxDuration(value int64) MultiPartyCallElement
 }
 func (e MultiPartyCallElement) SetMaxParticipants(value int64) MultiPartyCallElement {
 	e.MaxParticipants = &value
+	return e
+}
+func (e MultiPartyCallElement) SetRecordMinMemberCount(value int64) MultiPartyCallElement {
+	e.RecordMinMemberCount = &value
 	return e
 }
 func (e MultiPartyCallElement) SetWaitMusicUrl(value string) MultiPartyCallElement {

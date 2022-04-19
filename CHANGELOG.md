@@ -1,8 +1,9 @@
 # Change Log
 
 ## [7.8.1](https://github.com/plivo/plivo-go/tree/v7.8.1) (2022-04-11)
-**Features - List all recordings**
+**Features - List all recordings and The MultiPartyCall element**
 - `fromNumber` and `toNumber` added to filtering param [List all recordings](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
+- `recordMinMemberCount` param added in [Add a participant to a multiparty call using API](https://www.plivo.com/docs/voice/api/multiparty-call/participants#add-a-participant)
 
 ## [7.8.0](https://github.com/plivo/plivo-go/tree/v7.8.0) (2022-03-25)
 **Features - DialElement**
