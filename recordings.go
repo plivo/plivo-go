@@ -33,6 +33,10 @@ type RecordingListParams struct {
 	Offset                int64  `json:"offset:omitempty" url:"offset:omitempty"`
 	FromNumber            string `json:"from_number,omitempty" url:"from_number,omitempty"`
 	ToNumber              string `json:"to_number,omitempty" url:"to_number,omitempty"`
+	ConferenceName        string `json:"conference_name,omitempty" url:"conference_name,omitempty"`
+	MpcName               string `json:"mpc_name,omitempty" url:"mpc_name,omitempty"`
+	ConferenceUuid        string `json:"conference_uuid,omitempty" url:"conference_uuid,omitempty"`
+	MpcUuid               string `json:"mpc_uuid,omitempty" url:"mpc_uuid,omitempty"`
 }
 
 type RecordingListResponse struct {
