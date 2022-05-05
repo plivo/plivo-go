@@ -1,5 +1,10 @@
 # Change Log
 
+## [7.9.0](https://github.com/plivo/plivo-go/tree/v7.9.0) (2022-05-05)
+**Features - List all recordings and The MultiPartyCall element**
+- `fromNumber` and `toNumber` added to filtering param [List all recordings](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
+- `recordMinMemberCount` param added in [Add a participant to a multiparty call using API](https://www.plivo.com/docs/voice/api/multiparty-call/participants#add-a-participant)
+
 ## [7.8.0](https://github.com/plivo/plivo-go/tree/v7.8.0) (2022-03-25)
 **Features - DialElement**
 - `confirmTimeout` parameter added to [The Dial element](https://www.plivo.com/docs/voice/xml/dial/)

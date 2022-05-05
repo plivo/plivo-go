@@ -67,6 +67,7 @@ type MultiPartyCallAddParticipantParams struct {
 	StartRecordingAudioMethod string      `json:"start_recording_audio_method,omitempty" url:"start_recording_audio_method,omitempty"`
 	StopRecordingAudio        string      `json:"stop_recording_audio,omitempty" url:"stop_recording_audio,omitempty"`
 	StopRecordingAudioMethod  string      `json:"stop_recording_audio_method,omitempty" url:"stop_recording_audio_method,omitempty"`
+	RecordMinMemberCount      int64       `json:"record_min_member_count,omitempty" url:"record_min_member_count,omitempty"`
 }
 
 type MultiPartyCallListParams struct {

@@ -3,12 +3,11 @@ package xml
 import (
 	"encoding/xml"
 	"errors"
-	"strings"
-	"unicode"
-
 	"golang.org/x/text/runes"
 	"golang.org/x/text/transform"
 	"golang.org/x/text/unicode/norm"
+	"strings"
+	"unicode"
 )
 
 type ResponseElement struct {
@@ -1095,7 +1094,7 @@ func getLanguageVoices() map[string][]string {
 		"en-GB-WLS": {"Geraint"},
 		"fr-FR":     {"Léa", "Céline", "Mathieu"},
 		"fr-CA":     {"Chantal", "Chantal"},
-		"de-DE":     {"Vicki", "Hans","Marlene"},
+		"de-DE":     {"Vicki", "Hans", "Marlene"},
 		"hi-IN":     {"Aditi"},
 		"is-IS":     {"Dóra", "Karl"},
 		"it-IT":     {"Carla", "Giorgio"},
@@ -1155,7 +1154,7 @@ func ValidateLanguageVoice(language string, voice string) error {
 func TransformString(s string) string {
 	tc := transform.Chain(norm.NFD, runes.Remove(runes.In(unicode.Mn)), norm.NFC)
 	s, _, _ = transform.String(tc, s)
-	s = strings.Title(s)
+	s = wordTitle(s)
 	s = strings.Replace(s, " ", "_", -1)
 	return s
 }
@@ -1165,6 +1164,7 @@ type MultiPartyCallElement struct {
 	Role                      *string  `xml:"role,attr"`
 	MaxDuration               *int64   `xml:"maxDuration,attr"`
 	MaxParticipants           *int64   `xml:"maxParticipants,attr"`
+	RecordMinMemberCount      *int64   `xml:"recordMinMemberCount,attr"`
 	WaitMusicUrl              *string  `xml:"waitMusicUrl,attr"`
 	WaitMusicMethod           *string  `xml:"waitMusicMethod,attr"`
 	AgentHoldMusicUrl         *string  `xml:"agentHoldMusicUrl,attr"`
@@ -1208,6 +1208,10 @@ func (e MultiPartyCallElement) SetMaxDuration(value int64) MultiPartyCallElement
 }
 func (e MultiPartyCallElement) SetMaxParticipants(value int64) MultiPartyCallElement {
 	e.MaxParticipants = &value
+	return e
+}
+func (e MultiPartyCallElement) SetRecordMinMemberCount(value int64) MultiPartyCallElement {
+	e.RecordMinMemberCount = &value
 	return e
 }
 func (e MultiPartyCallElement) SetWaitMusicUrl(value string) MultiPartyCallElement {
@@ -1333,4 +1337,24 @@ func (e MultiPartyCallElement) SetStopRecordingAudio(value string) MultiPartyCal
 func (e MultiPartyCallElement) SetStopRecordingAudioMethod(value string) MultiPartyCallElement {
 	e.StopRecordingAudioMethod = &value
 	return e
+}
+
+/*
+wordTitle
+Replacement of strings.Title as it is depreciated
+wordTitle only replaces the first letter of every word (separated by ".") with capital letter
+*/
+func wordTitle(str string) string {
+	str = strings.ToLower(str)
+	finalString := ""
+	s := strings.Split(str, ".")
+	for _, word := range s {
+		len := len(word)
+		if len > 0 {
+			wordString := strings.ToUpper(word[0:1]) + word[1:len]
+			finalString = finalString + "." + wordString
+		}
+	}
+	lengthOfFinalString := len(finalString)
+	return finalString[1:lengthOfFinalString]
 }
