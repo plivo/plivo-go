@@ -67,6 +67,7 @@ type MultiPartyCallAddParticipantParams struct {
 	StartRecordingAudioMethod string      `json:"start_recording_audio_method,omitempty" url:"start_recording_audio_method,omitempty"`
 	StopRecordingAudio        string      `json:"stop_recording_audio,omitempty" url:"stop_recording_audio,omitempty"`
 	StopRecordingAudioMethod  string      `json:"stop_recording_audio_method,omitempty" url:"stop_recording_audio_method,omitempty"`
+	RecordMinMemberCount      int64       `json:"record_min_member_count,omitempty" url:"record_min_member_count,omitempty"`
 }
 
 type MultiPartyCallListParams struct {
@@ -108,9 +109,9 @@ type MultiPartyCallUpdateParticipantParams struct {
 }
 
 type MultiPartyCallStartRecordingParams struct {
-	FileFormat           string `json:"file_format,omitempty" url:"file_format,omitempty"`
-	StatusCallbackUrl    string `json:"status_callback_url,omitempty" url:"status_callback_url,omitempty"`
-	StatusCallbackMethod string `json:"status_callback_method,omitempty" url:"status_callback_method,omitempty"`
+	FileFormat              string `json:"file_format,omitempty" url:"file_format,omitempty"`
+	RecordingCallbackUrl    string `json:"recording_callback_url,omitempty" url:"recording_callback_url,omitempty"`
+	RecordingCallbackMethod string `json:"recording_callback_method,omitempty" url:"recording_callback_method,omitempty"`
 }
 
 type MultiPartyCallListResponse struct {
@@ -175,6 +176,7 @@ type MultiPartyCallParticipant struct {
 	ExitTime        string `json:"exit_time,omitempty" url:"exit_time,omitempty"`
 	Hold            bool   `json:"hold,omitempty" url:"hold,omitempty"`
 	JoinTime        string `json:"join_time,omitempty" url:"join_time,omitempty"`
+	MemberAddress   string `json:"member_address,omitempty" url:"member_address,omitempty"`
 	MemberId        string `json:"member_id,omitempty" url:"member_id,omitempty"`
 	MpcUuid         string `json:"mpc_uuid,omitempty" url:"mpc_uuid,omitempty"`
 	Mute            bool   `json:"mute,omitempty" url:"mute,omitempty"`

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/plivo/plivo-go"
+	"github.com/plivo/plivo-go/v7"
 )
 
 var client *plivo.Client

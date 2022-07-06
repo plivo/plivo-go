@@ -1,5 +1,38 @@
 # Change Log
 
+## [7.9.0](https://github.com/plivo/plivo-go/tree/v7.9.0) (2022-05-05)
+**Features - List all recordings and The MultiPartyCall element**
+- `fromNumber` and `toNumber` added to filtering param [List all recordings](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
+- `recordMinMemberCount` param added in [Add a participant to a multiparty call using API](https://www.plivo.com/docs/voice/api/multiparty-call/participants#add-a-participant)
+
+## [7.8.0](https://github.com/plivo/plivo-go/tree/v7.8.0) (2022-03-25)
+**Features - DialElement**
+- `confirmTimeout` parameter added to [The Dial element](https://www.plivo.com/docs/voice/xml/dial/)
+
+## [7.7.2](https://github.com/plivo/plivo-go/tree/v7.7.2) (2022-03-23)
+**Bug Fix - Voice**
+- Added `Polly.Marlene` to [SSML voices](https://www.plivo.com/docs/voice/concepts/ssml#ssml-voices)
+
+## [7.7.1](https://github.com/plivo/plivo-go/tree/v7.7.1) (2022-03-17)
+**Bug Fix - Voice**
+- Added `machine_detection_url` and `machine_detection_method` in [Make a call API](https://www.plivo.com/docs/voice/api/call#make-a-call)
+
+## [7.7.0](https://github.com/plivo/plivo-go/tree/v7.7.0) (2022-03-02)
+**Bug Fix - Fix go modules**
+- Fix the import path for go modules to work
+
+## [7.6.1](https://github.com/plivo/plivo-go/tree/v7.6.1) (2022-02-22)
+**Features - ListParticipants**
+- Parameter added as member_address in response and mock
+
+## [7.6.0](https://github.com/plivo/plivo-go/tree/v7.6.0) (2022-01-27)
+**Features - MPCStartRecording**
+- Parameter name change from statusCallBack to recordingCallback
+
+## [7.5.0](https://github.com/plivo/plivo-go/tree/v7.5.0) (2021-12-14)
+**Features - Voice**
+- Routing SDK traffic through Akamai endpoints for all the [Voice APIs](https://www.plivo.com/docs/voice/api/overview/)
+
 ## [7.4.0](https://github.com/plivo/plivo-go/tree/v7.4.0) (2021-12-02)
 **Features - Messaging: 10 DLC**
 - 10DLC API's for brand and campaign support.

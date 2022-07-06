@@ -60,7 +60,7 @@ func TestMPCService_Stop(t *testing.T) {
 func TestMPCService_StartRecord(t *testing.T) {
 	expectResponse("MPCStartRecordResponse.json", 202)
 
-	if _, err := client.MultiPartyCall.StartRecording(MultiPartyCallBasicParams{MpcUuid: "ebacced2-21ab-466d-9df4-67339991761b"}, MultiPartyCallStartRecordingParams{FileFormat: "wav", StatusCallbackUrl: "https://www.google.com", StatusCallbackMethod: "GET"}); err != nil {
+	if _, err := client.MultiPartyCall.StartRecording(MultiPartyCallBasicParams{MpcUuid: "ebacced2-21ab-466d-9df4-67339991761b"}, MultiPartyCallStartRecordingParams{FileFormat: "wav", RecordingCallbackUrl: "https://www.google.com", RecordingCallbackMethod: "GET"}); err != nil {
 		panic(err)
 	}
 
@@ -139,7 +139,7 @@ func TestMPCService_GetParticipant(t *testing.T) {
 func TestMPCService_StartParticipantRecord(t *testing.T) {
 	expectResponse("MPCStartParticipantRecordResponse.json", 200)
 
-	if _, err := client.MultiPartyCall.StartParticipantRecording(MultiPartyCallParticipantParams{MpcUuid: "ebacced2-21ab-466d-9df4-67339991761b", ParticipantId: "209"}, MultiPartyCallStartRecordingParams{FileFormat: "wav", StatusCallbackUrl: "https://www.google.com", StatusCallbackMethod: "GET"}); err != nil {
+	if _, err := client.MultiPartyCall.StartParticipantRecording(MultiPartyCallParticipantParams{MpcUuid: "ebacced2-21ab-466d-9df4-67339991761b", ParticipantId: "209"}, MultiPartyCallStartRecordingParams{FileFormat: "wav", RecordingCallbackUrl: "https://www.google.com", RecordingCallbackMethod: "GET"}); err != nil {
 		panic(err)
 	}
 
