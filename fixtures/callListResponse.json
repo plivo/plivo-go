@@ -25,7 +25,8 @@
       "total_amount": "0.13600",
       "total_rate": "0.00850",
       "stir_verification": "Not Verified",
-      "voice_network_group": "USA All Networks"
+      "voice_network_group": "USA All Networks",
+      "stir_attestation": ""
     },
     {
       "answer_time": "2015-07-26 16:45:02+05:30",
@@ -44,7 +45,8 @@
       "total_amount": "0.13600",
       "total_rate": "0.00850",
       "stir_verification": "Verified",
-      "voice_network_group": "USA All Networks"
+      "voice_network_group": "USA All Networks",
+      "stir_attestation": "A"
     }
   ]
 }

@@ -34,6 +34,7 @@ type Call struct {
 	TotalRate         string `json:"total_rate,omitempty" url:"total_rate,omitempty"`
 	StirVerification  string `json:"stir_verification,omitempty" url:"stir_verification,omitempty"`
 	VoiceNetworkGroup string `json:"voice_network_group,omitempty" url:"voice_network_group,omitempty"`
+	StirAttestation   string `json:"stir_attestation,omitempty" url:"stir_attestation,omitempty"`
 }
 
 type LiveCall struct {
@@ -46,6 +47,7 @@ type LiveCall struct {
 	SessionStart     string `json:"session_start,omitempty" url:"session_start,omitempty"`
 	CallStatus       string `json:"call_status,omitempty" url:"call_status,omitempty"`
 	StirVerification string `json:"stir_verification,omitempty" url:"stir_verification,omitempty"`
+	StirAttestation  string `json:"stir_attestation,omitempty" url:"stir_attestation,omitempty"`
 }
 
 type QueuedCall struct {
