@@ -1,7 +1,8 @@
 # Change Log
 
-## [7.10.0](https://github.com/plivo/plivo-go/tree/v7.10.0) (2022-07-06)
-- Add stir attestation param as part of Get CDR and live call APIs
+## [7.10.0](https://github.com/plivo/plivo-go/tree/v7.10.0) (2022-07-11)
+**Feature - STIR Attestation**
+- Add stir attestation param as part of Get CDR and Get live call APIs Response
 
 ## [7.9.0](https://github.com/plivo/plivo-go/tree/v7.9.0) (2022-05-05)
 **Features - List all recordings and The MultiPartyCall element**
