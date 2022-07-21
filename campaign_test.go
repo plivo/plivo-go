@@ -27,7 +27,7 @@ func TestCampaign_List(t *testing.T) {
 
 func TestCampaign_Get(t *testing.T) {
 	expectResponse("campaignGetResponse.json", 200)
-	CampaignID := "CMPT4EP"
+	CampaignID := "CY5NVUA"
 	assert := require.New(t)
 	campaign, err := client.Campaign.Get(CampaignID)
 	assert.NotNil(campaign)
@@ -55,6 +55,7 @@ func TestCampaign_Create(t *testing.T) {
 	directLending := false
 	subUsecases := []string{"CUSTOMER_CARE", "2FA"}
 	sample1 := "test1"
+	sample2 := "test2"
 	resp, err := client.Campaign.Create(CampaignCreationParams{
 		BrandID:          "B8OD95Z",
 		CampaignAlias:    &campaignAlias,
@@ -70,11 +71,12 @@ func TestCampaign_Create(t *testing.T) {
 		SubscriberOptout: true,
 		SubscriberHelp:   true,
 		Sample1:          &sample1,
+		Sample2:          &sample2,
 	})
 	assert.NotNil(resp)
 	assert.Nil(err)
 	assert.NotEmpty(resp.ApiID)
-	assert.NotEmpty(resp.Campaign.CampaignID)
+	assert.NotEmpty(resp.CampaignID)
 	cl := client.httpClient
 	client.httpClient = nil
 	resp, err = client.Campaign.Create(CampaignCreationParams{
