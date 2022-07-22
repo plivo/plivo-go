@@ -115,3 +115,22 @@ func TestProfile_Create(t *testing.T) {
 
 	assertRequest(t, "POST", "Profile")
 }
+
+func TestProfile_Delete(t *testing.T) {
+	expectResponse("profileDeleteResponse.json", 200)
+	assert := require.New(t)
+	ProfileUUID := "201faedc-7df9-4840-9ab1-3997ce3f7cf4"
+	resp, err := client.Profile.Delete(ProfileUUID)
+	assert.NotNil(resp)
+	assert.Nil(err)
+	assert.NotEmpty(resp.ApiID)
+	cl := client.httpClient
+	client.httpClient = nil
+	resp, err = client.Profile.Delete(ProfileUUID)
+	assert.NotNil(err)
+	assert.Nil(resp)
+	client.httpClient = cl
+
+	assertRequest(t, "DELETE", "Profile/201faedc-7df9-4840-9ab1-3997ce3f7cf4")
+
+}

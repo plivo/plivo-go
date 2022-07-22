@@ -40,6 +40,12 @@ type ProfileListResponse struct {
 	ProfileResponse []Profile `json:"profiles"`
 }
 
+type DeleteProfileResponse struct {
+	ApiID   string `json:"api_id"`
+	Message string `json:"message,omitempty"`
+	Error   string `json:"error,omitempty"`
+}
+
 type Profile struct {
 	ProfileUUID       string             `json:"profile_uuid,omitempty"`
 	ProfileAlias      string             `json:"profile_alias,omitempty"`
@@ -87,6 +93,16 @@ func (service *ProfileService) Create(params CreateProfileRequestParams) (respon
 		return
 	}
 	response = &CreateProfileResponse{}
+	err = service.client.ExecuteRequest(req, response)
+	return
+}
+
+func (service *ProfileService) Delete(profileUUID string) (response *DeleteProfileResponse, err error) {
+	req, err := service.client.NewRequest("DELETE", nil, "Profile/%s", profileUUID)
+	if err != nil {
+		return
+	}
+	response = &DeleteProfileResponse{}
 	err = service.client.ExecuteRequest(req, response)
 	return
 }

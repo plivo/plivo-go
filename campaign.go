@@ -70,6 +70,37 @@ type CampaignListParams struct {
 	Usecase *string `json:"usecase,omitempty"`
 }
 
+type CampaignNumberLinkParams struct {
+	Numbers      []string `json:"numbers,omitempty"`
+	URL          string   `json:"url,omitempty"`
+	Method       string   `json:"method,omitempty"`
+	SubAccountId string   `json:"subaccount_id,omitempty"`
+}
+
+type CampaignNumbersGetParams struct {
+	Limit  int `url:"limit,omitempty"`
+	Offset int `url:"offset,omitempty"`
+}
+
+type CampaignNumberLinkUnlinkResponse struct {
+	ApiID   string `json:"api_id"`
+	Error   string `json:"error,omitempty"`
+	Message string `json:"message,omitempty"`
+}
+
+type CampaignNumberGetResponse struct {
+	ApiID           string           `json:"api_id"`
+	CampaignID      string           `json:"campaign_id"`
+	CampaignAlias   string           `json:"campaign_alias"`
+	CampaignUseCase string           `json:"usecase"`
+	CampaignNumbers []CampaignNumber `json:"phone_numbers"`
+}
+
+type CampaignNumber struct {
+	Number string `json:"number"`
+	Status string `json:"status"`
+}
+
 func (service *CampaignService) List(params CampaignListParams) (response *CampaignListResponse, err error) {
 	req, err := service.client.NewRequest("GET", params, "10dlc/Campaign")
 	if err != nil {
@@ -96,6 +127,46 @@ func (service *CampaignService) Create(params CampaignCreationParams) (response 
 		return
 	}
 	response = &CampaignCreateResponse{}
+	err = service.client.ExecuteRequest(req, response)
+	return
+}
+
+func (service *CampaignService) NumberLink(campaignID string, params CampaignNumberLinkParams) (response *CampaignNumberLinkUnlinkResponse, err error) {
+	req, err := service.client.NewRequest("POST", params, "10dlc/Campaign/%s/Number", campaignID)
+	if err != nil {
+		return
+	}
+	response = &CampaignNumberLinkUnlinkResponse{}
+	err = service.client.ExecuteRequest(req, response)
+	return
+}
+
+func (service *CampaignService) NumberGet(campaignID, number string) (response *CampaignNumberGetResponse, err error) {
+	req, err := service.client.NewRequest("GET", nil, "10dlc/Campaign/%s/Number/%s", campaignID, number)
+	if err != nil {
+		return
+	}
+	response = &CampaignNumberGetResponse{}
+	err = service.client.ExecuteRequest(req, response)
+	return
+}
+
+func (service *CampaignService) NumbersGet(campaignID string, params CampaignNumbersGetParams) (response *CampaignNumberGetResponse, err error) {
+	req, err := service.client.NewRequest("GET", params, "10dlc/Campaign/%s/Number", campaignID)
+	if err != nil {
+		return
+	}
+	response = &CampaignNumberGetResponse{}
+	err = service.client.ExecuteRequest(req, response)
+	return
+}
+
+func (service *CampaignService) NumberUnlink(campaignID, number string) (response *CampaignNumberLinkUnlinkResponse, err error) {
+	req, err := service.client.NewRequest("DELETE", nil, "10dlc/Campaign/%s/Number/%s", campaignID, number)
+	if err != nil {
+		return
+	}
+	response = &CampaignNumberLinkUnlinkResponse{}
 	err = service.client.ExecuteRequest(req, response)
 	return
 }

@@ -101,3 +101,87 @@ func TestCampaign_Create(t *testing.T) {
 
 	assertRequest(t, "POST", "10dlc/Campaign")
 }
+
+func TestCampaign_NumberLink(t *testing.T) {
+	expectResponse("campaignNumberLinkUnlinkResponse.json", 200)
+	assert := require.New(t)
+	numbers := []string{"9876564598", "78654567876"}
+	resp, err := client.Campaign.NumberLink("CY5NVUA", CampaignNumberLinkParams{
+		Numbers: numbers,
+	})
+	assert.NotNil(resp)
+	assert.Nil(err)
+	assert.NotEmpty(resp.ApiID)
+	cl := client.httpClient
+	client.httpClient = nil
+	resp, err = client.Campaign.NumberLink("CY5NVUA", CampaignNumberLinkParams{
+		Numbers: numbers,
+	})
+	assert.NotNil(err)
+	assert.Nil(resp)
+	client.httpClient = cl
+
+	assertRequest(t, "POST", "10dlc/Campaign/CY5NVUA/Number")
+}
+
+func TestCampaign_NumberGet(t *testing.T) {
+	expectResponse("campaignNumberGetResponse.json", 200)
+	CampaignID := "CY5NVUA"
+	number := "14845007032"
+	assert := require.New(t)
+	campaign, err := client.Campaign.NumberGet(CampaignID, number)
+	assert.NotNil(campaign)
+	assert.Nil(err)
+	assert.Equal(CampaignID, campaign.CampaignID)
+	assert.Equal(number, campaign.CampaignNumbers[0].Number)
+	assert.NotEmpty(campaign.ApiID)
+
+	cl := client.httpClient
+	client.httpClient = nil
+	campaign, err = client.Campaign.NumberGet(CampaignID, number)
+	assert.NotNil(err)
+	assert.Nil(campaign)
+	client.httpClient = cl
+
+	assertRequest(t, "GET", "10dlc/Campaign/%s/Number/%s", CampaignID, number)
+}
+
+func TestCampaign_NumbersGet(t *testing.T) {
+	expectResponse("campaignNumbersGetResponse.json", 200)
+	CampaignID := "CY5NVUA"
+	number := "14845007032"
+	assert := require.New(t)
+	campaign, err := client.Campaign.NumbersGet(CampaignID, CampaignNumbersGetParams{Limit: 20, Offset: 0})
+	assert.NotNil(campaign)
+	assert.Nil(err)
+	assert.Equal(CampaignID, campaign.CampaignID)
+	assert.Equal(number, campaign.CampaignNumbers[0].Number)
+	assert.NotEmpty(campaign.ApiID)
+
+	cl := client.httpClient
+	client.httpClient = nil
+	campaign, err = client.Campaign.NumbersGet(CampaignID, CampaignNumbersGetParams{Limit: 20, Offset: 0})
+	assert.NotNil(err)
+	assert.Nil(campaign)
+	client.httpClient = cl
+
+	assertRequest(t, "GET", "10dlc/Campaign/%s/Number", CampaignID)
+}
+
+func TestCampaign_NumberUnlink(t *testing.T) {
+	expectResponse("campaignNumberLinkUnlinkResponse.json", 200)
+	assert := require.New(t)
+	number := "9876564598"
+	resp, err := client.Campaign.NumberUnlink("CY5NVUA", number)
+	assert.NotNil(resp)
+	assert.Nil(err)
+	assert.NotEmpty(resp.ApiID)
+	cl := client.httpClient
+	client.httpClient = nil
+	resp, err = client.Campaign.NumberUnlink("CY5NVUA", number)
+	assert.NotNil(err)
+	assert.Nil(resp)
+	client.httpClient = cl
+
+	assertRequest(t, "DELETE", "10dlc/Campaign/CY5NVUA/Number/9876564598")
+}
