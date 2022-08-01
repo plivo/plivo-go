@@ -33,7 +33,16 @@ type TokenCreateResponse struct {
 }
 
 func (service *TokenService) Create(params TokenCreateParams) (response *TokenCreateResponse, err error) {
-	// add {  'per: { 'voice': { 'outgoing': true } } } to the params
+	per := make(map[string]interface{})
+	per["voice"] = make(map[string]interface{})
+
+	if params.incoming_allow {
+		per["voice"].(map[string]interface{})["incoming_allow"] = params.incoming_allow
+	}
+
+	if params.outgoing_allow {
+		per["voice"].(map[string]interface{})["outgoing_allow"] = params.outgoing_allow
+	}
 
 	req, err := service.client.NewRequest("POST", params, "JWT/Token")
 	if err != nil {
