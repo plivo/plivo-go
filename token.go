@@ -33,7 +33,7 @@ type TokenCreateResponse struct {
 }
 
 func (service *TokenService) Create(params TokenCreateParams) (response *TokenCreateResponse, err error) {
-	//if incoming_allow is not empty add it to params
+	// add {  'per: { 'voice': { 'outgoing': true } } } to the params
 
 	req, err := service.client.NewRequest("POST", params, "JWT/Token")
 	if err != nil {
