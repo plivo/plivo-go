@@ -36,12 +36,12 @@ func (service *TokenService) Create(params TokenCreateParams) (response *TokenCr
 	per := make(map[string]interface{})
 	per["voice"] = make(map[string]interface{})
 
-	if params.incoming_allow {
-		per["voice"].(map[string]interface{})["incoming_allow"] = params.incoming_allow
+	if params.Incoming_allow {
+		per["voice"].(map[string]interface{})["Incoming_allow"] = params.Incoming_allow
 	}
 
 	if params.Outgoing_allow {
-		per["voice"].(map[string]interface{})["outgoing_allow"] = params.Outgoing_allow
+		per["voice"].(map[string]interface{})["Outgoing_allow"] = params.Outgoing_allow
 	}
 
 	req, err := service.client.NewRequest("POST", params, "JWT/Token")
