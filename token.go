@@ -5,25 +5,25 @@ type TokenService struct {
 }
 
 type Token struct {
-	iss            string `json:"iss,omitempty" url:"iss,omitempty"`
-	sub            string `json:"sub,omitempty" url:"sub,omitempty"`
-	exp            int64  `json:"exp,omitempty" url:"exp,omitempty"`
-	nbf            int64  `json:"nbf,omitempty" url:"nbf,omitempty"`
-	incoming_allow bool   `json:"incoming_allow,omitempty" url:"incoming_allow,omitempty"`
-	outgoing_allow bool   `json:"outgoing_allow,omitempty" url:"outgoing_allow,omitempty"`
-	app            string `json:"app,omitempty" url:"app,omitempty"`
+	Iss            string `json:"iss,omitempty" url:"iss,omitempty"`
+	Sub            string `json:"sub,omitempty" url:"sub,omitempty"`
+	Exp            int64  `json:"exp,omitempty" url:"exp,omitempty"`
+	Nbf            int64  `json:"nbf,omitempty" url:"nbf,omitempty"`
+	Incoming_allow bool   `json:"incoming_allow,omitempty" url:"incoming_allow,omitempty"`
+	Outgoing_allow bool   `json:"outgoing_allow,omitempty" url:"outgoing_allow,omitempty"`
+	App            string `json:"app,omitempty" url:"app,omitempty"`
 }
 
 type TokenCreateParams struct {
 	// Required parameters.
-	iss string `json:"iss,omitempty" url:"iss,omitempty"`
+	Iss string `json:"iss,omitempty" url:"iss,omitempty"`
 	// Optional parameters.
-	sub            string `json:"sub,omitempty" url:"sub,omitempty"`
-	exp            int64  `json:"exp,omitempty" url:"exp,omitempty"`
-	nbf            int64  `json:"nbf,omitempty" url:"nbf,omitempty"`
-	incoming_allow bool   `json:"incoming_allow,omitempty" url:"incoming_allow,omitempty"`
-	outgoing_allow bool   `json:"outgoing_allow,omitempty" url:"outgoing_allow,omitempty"`
-	app            string `json:"app,omitempty" url:"app,omitempty"`
+	Sub            string `json:"sub,omitempty" url:"sub,omitempty"`
+	Exp            int64  `json:"exp,omitempty" url:"exp,omitempty"`
+	Nbf            int64  `json:"nbf,omitempty" url:"nbf,omitempty"`
+	Incoming_allow bool   `json:"incoming_allow,omitempty" url:"incoming_allow,omitempty"`
+	Outgoing_allow bool   `json:"outgoing_allow,omitempty" url:"outgoing_allow,omitempty"`
+	App            string `json:"app,omitempty" url:"app,omitempty"`
 }
 
 // Stores response for creating a token.
@@ -40,8 +40,8 @@ func (service *TokenService) Create(params TokenCreateParams) (response *TokenCr
 		per["voice"].(map[string]interface{})["incoming_allow"] = params.incoming_allow
 	}
 
-	if params.outgoing_allow {
-		per["voice"].(map[string]interface{})["outgoing_allow"] = params.outgoing_allow
+	if params.Outgoing_allow {
+		per["voice"].(map[string]interface{})["outgoing_allow"] = params.Outgoing_allow
 	}
 
 	req, err := service.client.NewRequest("POST", params, "JWT/Token")
