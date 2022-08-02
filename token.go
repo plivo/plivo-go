@@ -1,5 +1,7 @@
 package plivo
 
+import "errors"
+
 type TokenService struct {
 	client *Client
 }
@@ -44,6 +46,9 @@ func (service *TokenService) Create(params TokenCreateParams) (response *TokenCr
 		per["voice"].(map[string]interface{})["outgoing_allow"] = params.Outgoing_allow
 	}
 
+	if params.Incoming_allow && params.Sub == "" {
+		return nil, errors.New("sub is required when incoming_allow is true")
+	}
 	req, err := service.client.NewRequest("POST", params, "JWT/Token")
 	if err != nil {
 		return
