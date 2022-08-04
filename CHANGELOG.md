@@ -1,5 +1,9 @@
 # Change Log
 
+## [7.11.0](https://github.com/plivo/plivo-go/tree/v7.11.0) (2022-08-04)
+**Feature - 10DLC api updates**
+- Update 10dlc api such as campaign, brand, profile and number link
+
 ## [7.10.0](https://github.com/plivo/plivo-go/tree/v7.10.0) (2022-07-11)
 **Feature - STIR Attestation**
 - Add stir attestation param as part of Get CDR and Get live call APIs Response
