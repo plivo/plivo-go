@@ -6,16 +6,6 @@ type TokenService struct {
 	client *Client
 }
 
-type Token struct {
-	Iss            string `json:"iss,omitempty" url:"iss,omitempty"`
-	Sub            string `json:"sub,omitempty" url:"sub,omitempty"`
-	Exp            int64  `json:"exp,omitempty" url:"exp,omitempty"`
-	Nbf            int64  `json:"nbf,omitempty" url:"nbf,omitempty"`
-	Incoming_allow bool   `json:"incoming_allow,omitempty" url:"incoming_allow,omitempty"`
-	Outgoing_allow bool   `json:"outgoing_allow,omitempty" url:"outgoing_allow,omitempty"`
-	App            string `json:"app,omitempty" url:"app,omitempty"`
-}
-
 type TokenCreateParams struct {
 	// Required parameters.
 	Iss string `json:"iss,omitempty" url:"iss,omitempty"`
