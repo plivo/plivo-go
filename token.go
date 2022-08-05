@@ -25,20 +25,20 @@ type TokenCreateResponse struct {
 }
 
 func (service *TokenService) Create(params TokenCreateParams) (response *TokenCreateResponse, err error) {
-	temp := map[string]interface{}{}
-	if params.IncomingAllow != nil || params.OutgoingAllow != nil {
 
-		temp["per"] = map[string]interface{}{}
-		temp["per"].(map[string]interface{})["voice"] = map[string]interface{}{}
+	if params.IncomingAllow != nil || params.OutgoingAllow != nil {
+		voicemap := make(map[string]interface{})
 		if params.IncomingAllow != nil {
-			temp["per"].(map[string]interface{})["voice"].(map[string]interface{})["incoming_allow"] = params.IncomingAllow
+			voicemap["incoming_allow"] = params.IncomingAllow
 		}
 		if params.OutgoingAllow != nil {
-			temp["per"].(map[string]interface{})["voice"].(map[string]interface{})["outgoing_allow"] = params.OutgoingAllow
+			voicemap["outgoing_allow"] = params.OutgoingAllow
 		}
-		params.Per = temp
+		if len(voicemap) > 0 {
+			permissionsMap := map[string]interface{}{"voice": voicemap}
+			params.Per = permissionsMap
+		}
 	}
-
 	req, err := service.client.NewRequest("POST", params, "JWT/Token")
 	if err != nil {
 		return
