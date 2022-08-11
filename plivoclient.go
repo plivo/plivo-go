@@ -30,6 +30,7 @@ type Client struct {
 	Pricing                 *PricingService // TODO Rename?
 	Recordings              *RecordingService
 	Calls                   *CallService
+	Token                   *TokenService
 	LiveCalls               *LiveCallService
 	QueuedCalls             *QueuedCallService
 	Conferences             *ConferenceService
@@ -97,6 +98,7 @@ func NewClient(authId, authToken string, options *ClientOptions) (client *Client
 	client.Pricing = &PricingService{client: client}
 	client.Recordings = &RecordingService{client: client}
 	client.Calls = &CallService{client: client}
+	client.Token = &TokenService{client: client}
 	client.LiveCalls = &LiveCallService{client: client}
 	client.QueuedCalls = &QueuedCallService{client: client}
 	client.Conferences = &ConferenceService{client: client}
