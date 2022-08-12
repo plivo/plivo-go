@@ -5,7 +5,6 @@ type ProfileService struct {
 }
 
 type CreateProfileRequestParams struct {
-	Originator        string             `json:"originator"`
 	ProfileAlias      string             `json:"profile_alias" validate:"required"`
 	CustomerType      string             `json:"customer_type" validate:"oneof= DIRECT RESELLER"`
 	EntityType        string             `json:"entity_type" validate:"oneof= PRIVATE PUBLIC NON_PROFIT GOVERNMENT INDIVIDUAL"`

@@ -11,28 +11,6 @@ type BrandCreationParams struct {
 	SecondaryVetting *string `json:"secondary_vetting,omitempty" url:"secondary_vetting,omitempty"`
 	URL              string  `json:"url,omitempty" url:"url,omitempty"`
 	Method           string  `json:"method,omitempty" url:"method,omitempty"`
-	SubAccountId     string  `json:"subaccount_id,omitempty" url:"subaccount_id,omitempty"`
-	DefaultCampaignCreationRequest
-}
-
-type DefaultCampaignCreationRequest struct {
-	EmailRecipients     string   `json:"emailRecipients,omitempty" url:"emailRecipients,omitempty"`
-	CampaignName        string   `json:"campaignName,omitempty" url:"campaignName,omitempty"`
-	CampaignUseCase     string   `json:"campaignUseCase,omitempty" url:"campaignUseCase,omitempty"`
-	CampaignSubUseCases []string `json:"campaignSubUseCases,omitempty" url:"campaignSubUseCases,omitempty"`
-	CampaignDescription string   `json:"campaignDescription,omitempty" url:"campaignDescription,omitempty"`
-	SampleMessage1      string   `json:"sampleMessage1,omitempty" url:"sampleMessage1,omitempty"`
-	SampleMessage2      string   `json:"sampleMessage2,omitempty" url:"sampleMessage2,omitempty"`
-	EmbeddedLink        bool     `json:"embeddedLink,omitempty" url:"embeddedLink,omitempty"`
-	EmbeddedPhone       bool     `json:"embeddedPhone,omitempty" url:"embeddedPhone,omitempty"`
-	NumberPool          bool     `json:"numberPool,omitempty" url:"numberPool,omitempty"`
-	AgeGated            bool     `json:"ageGated,omitempty" url:"ageGated,omitempty"`
-	DirectLending       bool     `json:"directLending,omitempty" url:"directLending,omitempty"`
-	SubscriberOptin     bool     `json:"subscriberOptin,omitempty" url:"subscriberOptin,omitempty"`
-	SubscriberOptout    bool     `json:"subscriberOptout,omitempty" url:"subscriberOptout,omitempty"`
-	SubscriberHelp      bool     `json:"subscriberHelp,omitempty" url:"subscriberHelp,omitempty"`
-	AffiliateMarketing  bool     `json:"affiliateMarketing,omitempty" url:"affiliateMarketing,omitempty"`
-	ResellerID          string   `json:"resellerID,omitempty" url:"resellerID,omitempty"`
 }
 type BrandCreationResponse struct {
 	ApiID   string `json:"api_id,omitempty"`
