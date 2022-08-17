@@ -134,3 +134,60 @@ func TestProfile_Delete(t *testing.T) {
 	assertRequest(t, "DELETE", "Profile/201faedc-7df9-4840-9ab1-3997ce3f7cf4")
 
 }
+
+func TestProfile_Update(t *testing.T) {
+	expectResponse("profileUpdateResponse.json", 200)
+	assert := require.New(t)
+	resp, err := client.Profile.Update("09322f43-fe16-4525-b8e4-4229c867795d", UpdateProfileRequestParams{
+		EntityType:  "PRIVATE",
+		CompanyName: "ABC Inc.",
+		Vertical:    "ENERGY",
+		Website:     "www.google.com",
+		Address: &Address{
+			Street:     "123",
+			City:       "New York",
+			State:      "NY",
+			PostalCode: "10001",
+			Country:    "IN",
+		},
+		AuthorizedContact: &AuthorizedContact{
+			FirstName: "John",
+			LastName:  "Doe",
+			Email:     "test@plivo.com",
+			Title:     "Doe",
+			Seniority: "admin",
+			Phone:     "919539113734",
+		},
+	})
+	assert.NotNil(resp)
+	assert.Nil(err)
+	assert.NotEmpty(resp.ApiID)
+	cl := client.httpClient
+	client.httpClient = nil
+	resp, err = client.Profile.Update("09322f43-fe16-4525-b8e4-4229c867795d", UpdateProfileRequestParams{
+		EntityType:  "PRIVATE",
+		CompanyName: "ABC Inc.",
+		Vertical:    "ENERGY",
+		Website:     "www.google.com",
+		Address: &Address{
+			Street:     "123",
+			City:       "New York",
+			State:      "NY",
+			PostalCode: "10001",
+			Country:    "IN",
+		},
+		AuthorizedContact: &AuthorizedContact{
+			FirstName: "John",
+			LastName:  "Doe",
+			Email:     "test@plivo.com",
+			Title:     "Doe",
+			Seniority: "admin",
+			Phone:     "919539113734",
+		},
+	})
+	assert.NotNil(err)
+	assert.Nil(resp)
+	client.httpClient = cl
+
+	assertRequest(t, "POST", "Profile")
+}

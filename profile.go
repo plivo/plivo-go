@@ -45,6 +45,15 @@ type DeleteProfileResponse struct {
 	Error   string `json:"error,omitempty"`
 }
 
+type UpdateProfileRequestParams struct {
+	EntityType        string             `json:"entity_type" validate:"oneof= PRIVATE PUBLIC NON_PROFIT GOVERNMENT INDIVIDUAL"`
+	CompanyName       string             `json:"company_name" validate:"required,max=100"`
+	Address           *Address           `json:"address" validate:"required"`
+	Website           string             `json:"website" validate:"max=100"`
+	Vertical          string             `json:"vertical" validate:"oneof= PROFESSIONAL REAL_ESTATE HEALTHCARE HUMAN_RESOURCES ENERGY ENTERTAINMENT RETAIL TRANSPORTATION AGRICULTURE INSURANCE POSTAL EDUCATION HOSPITALITY FINANCIAL POLITICAL GAMBLING LEGAL CONSTRUCTION NGO MANUFACTURING GOVERNMENT TECHNOLOGY COMMUNICATION"`
+	AuthorizedContact *AuthorizedContact `json:"authorized_contact"`
+}
+
 type Profile struct {
 	ProfileUUID       string             `json:"profile_uuid,omitempty"`
 	ProfileAlias      string             `json:"profile_alias,omitempty"`
@@ -102,6 +111,16 @@ func (service *ProfileService) Delete(profileUUID string) (response *DeleteProfi
 		return
 	}
 	response = &DeleteProfileResponse{}
+	err = service.client.ExecuteRequest(req, response)
+	return
+}
+
+func (service *ProfileService) Update(profileUUID string, params UpdateProfileRequestParams) (response *ProfileGetResponse, err error) {
+	req, err := service.client.NewRequest("POST", params, "Profile")
+	if err != nil {
+		return
+	}
+	response = &ProfileGetResponse{}
 	err = service.client.ExecuteRequest(req, response)
 	return
 }
