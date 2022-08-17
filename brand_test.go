@@ -9,7 +9,7 @@ import (
 func TestBrand_List(t *testing.T) {
 	expectResponse("brandListResponse.json", 200)
 	assert := require.New(t)
-	resp, err := client.Brand.List(BrandListParams{})
+	resp, err := client.Brand.List(BrandListParams{Limit: 2, Offset: 0})
 	assert.NotNil(resp)
 	assert.Nil(err)
 	assert.NotEmpty(resp.BrandResponse[0].BrandID)

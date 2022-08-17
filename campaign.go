@@ -63,6 +63,8 @@ type OperatorDetail struct {
 type CampaignListParams struct {
 	BrandID *string `json:"brand,omitempty"`
 	Usecase *string `json:"usecase,omitempty"`
+	Limit   int     `url:"limit,omitempty"`
+	Offset  int     `url:"offset,omitempty"`
 }
 
 type CampaignNumberLinkParams struct {

@@ -34,6 +34,11 @@ type ProfileGetResponse struct {
 	Profile *Profile `json:"profile"`
 }
 
+type ProfileListParams struct {
+	Limit  int `url:"limit,omitempty"`
+	Offset int `url:"offset,omitempty"`
+}
+
 type ProfileListResponse struct {
 	ApiID           string    `json:"api_id"`
 	ProfileResponse []Profile `json:"profiles"`
@@ -75,8 +80,8 @@ type Profile struct {
 	AuthorizedContact *AuthorizedContact `json:"authorized_contact,omitempty"`
 }
 
-func (service *ProfileService) List() (response *ProfileListResponse, err error) {
-	req, err := service.client.NewRequest("GET", nil, "Profile")
+func (service *ProfileService) List(param ProfileListParams) (response *ProfileListResponse, err error) {
+	req, err := service.client.NewRequest("GET", param, "Profile")
 	if err != nil {
 		return
 	}

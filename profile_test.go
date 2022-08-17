@@ -9,14 +9,14 @@ import (
 func TestProfile_List(t *testing.T) {
 	expectResponse("profileListResponse.json", 200)
 	assert := require.New(t)
-	resp, err := client.Profile.List()
+	resp, err := client.Profile.List(ProfileListParams{Limit: 2, Offset: 0})
 	assert.NotNil(resp)
 	assert.Nil(err)
 	assert.NotEmpty(resp.ProfileResponse[0].ProfileUUID)
 	cl := client.httpClient
 	client.httpClient = nil
 
-	resp, err = client.Profile.List()
+	resp, err = client.Profile.List(ProfileListParams{Limit: 2, Offset: 0})
 	assert.NotNil(err)
 	assert.Nil(resp)
 	client.httpClient = cl

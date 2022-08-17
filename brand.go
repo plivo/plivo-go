@@ -55,6 +55,8 @@ type Brand struct {
 type BrandListParams struct {
 	Type   *string `json:"type,omitempty"`
 	Status *string `json:"status,omitempty"`
+	Limit  int     `url:"limit,omitempty"`
+	Offset int     `url:"offset,omitempty"`
 }
 
 type Address struct {

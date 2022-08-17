@@ -9,7 +9,7 @@ import (
 func TestCampaign_List(t *testing.T) {
 	expectResponse("campaignListResponse.json", 200)
 	assert := require.New(t)
-	resp, err := client.Campaign.List(CampaignListParams{})
+	resp, err := client.Campaign.List(CampaignListParams{Limit: 2, Offset: 0})
 	assert.NotNil(resp)
 	assert.Nil(err)
 	assert.NotEmpty(resp.CampaignResponse[0].CampaignID)
