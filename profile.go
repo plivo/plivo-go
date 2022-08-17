@@ -30,8 +30,8 @@ type CreateProfileResponse struct {
 }
 
 type ProfileGetResponse struct {
-	ApiID   string   `json:"api_id"`
-	Profile *Profile `json:"profile"`
+	ApiID   string  `json:"api_id"`
+	Profile Profile `json:"profile"`
 }
 
 type ProfileListParams struct {
