@@ -121,7 +121,7 @@ func (service *ProfileService) Delete(profileUUID string) (response *DeleteProfi
 }
 
 func (service *ProfileService) Update(profileUUID string, params UpdateProfileRequestParams) (response *ProfileGetResponse, err error) {
-	req, err := service.client.NewRequest("POST", params, "Profile")
+	req, err := service.client.NewRequest("POST", params, "Profile/%s", profileUUID)
 	if err != nil {
 		return
 	}

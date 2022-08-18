@@ -189,5 +189,5 @@ func TestProfile_Update(t *testing.T) {
 	assert.Nil(resp)
 	client.httpClient = cl
 
-	assertRequest(t, "POST", "Profile")
+	assertRequest(t, "POST", "Profile/09322f43-fe16-4525-b8e4-4229c867795d")
 }
