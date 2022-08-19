@@ -60,24 +60,24 @@ type UpdateProfileRequestParams struct {
 }
 
 type Profile struct {
-	ProfileUUID       string             `json:"profile_uuid,omitempty"`
-	ProfileAlias      string             `json:"profile_alias,omitempty"`
-	ProfileType       string             `json:"profile_type,omitempty"`
-	PrimaryProfile    string             `json:"primary_profile,omitempty"`
-	CustomerType      string             `json:"customer_type,omitempty"`
-	EntityType        string             `json:"entity_type,omitempty"`
-	CompanyName       string             `json:"company_name,omitempty"`
-	Ein               string             `json:"ein,omitempty"`
-	EinIssuingCountry string             `json:"ein_issuing_country,omitempty"`
-	Address           *Address           `json:"address,omitempty"`
-	StockSymbol       string             `json:"stock_symbol,omitempty"`
-	StockExchange     string             `json:"stock_exchange,omitempty"`
-	Website           string             `json:"website,omitempty"`
-	Vertical          string             `json:"vertical,omitempty"`
-	AltBusinessID     string             `json:"alt_business_id,omitempty"`
-	AltBusinessidType string             `json:"alt_business_id_type,omitempty"`
-	PlivoSubaccount   string             `json:"plivo_subaccount,omitempty"`
-	AuthorizedContact *AuthorizedContact `json:"authorized_contact,omitempty"`
+	ProfileUUID       string            `json:"profile_uuid,omitempty"`
+	ProfileAlias      string            `json:"profile_alias,omitempty"`
+	ProfileType       string            `json:"profile_type,omitempty"`
+	PrimaryProfile    string            `json:"primary_profile,omitempty"`
+	CustomerType      string            `json:"customer_type,omitempty"`
+	EntityType        string            `json:"entity_type,omitempty"`
+	CompanyName       string            `json:"company_name,omitempty"`
+	Ein               string            `json:"ein,omitempty"`
+	EinIssuingCountry string            `json:"ein_issuing_country,omitempty"`
+	Address           Address           `json:"address,omitempty"`
+	StockSymbol       string            `json:"stock_symbol,omitempty"`
+	StockExchange     string            `json:"stock_exchange,omitempty"`
+	Website           string            `json:"website,omitempty"`
+	Vertical          string            `json:"vertical,omitempty"`
+	AltBusinessID     string            `json:"alt_business_id,omitempty"`
+	AltBusinessidType string            `json:"alt_business_id_type,omitempty"`
+	PlivoSubaccount   string            `json:"plivo_subaccount,omitempty"`
+	AuthorizedContact AuthorizedContact `json:"authorized_contact,omitempty"`
 }
 
 func (service *ProfileService) List(param ProfileListParams) (response *ProfileListResponse, err error) {
