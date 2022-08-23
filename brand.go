@@ -16,7 +16,6 @@ type BrandCreationResponse struct {
 	ApiID   string `json:"api_id,omitempty"`
 	BrandID string `json:"brand_id,omitempty"`
 	Message string `json:"message,omitempty"`
-	Error   string `json:"error,omitempty"`
 }
 
 type BrandListResponse struct {

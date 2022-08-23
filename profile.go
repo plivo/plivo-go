@@ -26,7 +26,6 @@ type CreateProfileResponse struct {
 	ApiID       string `json:"api_id"`
 	ProfileUUID string `json:"profile_uuid,omitempty"`
 	Message     string `json:"message,omitempty"`
-	Error       string `json:"error,omitempty"`
 }
 
 type ProfileGetResponse struct {
@@ -47,7 +46,6 @@ type ProfileListResponse struct {
 type DeleteProfileResponse struct {
 	ApiID   string `json:"api_id"`
 	Message string `json:"message,omitempty"`
-	Error   string `json:"error,omitempty"`
 }
 
 type UpdateProfileRequestParams struct {

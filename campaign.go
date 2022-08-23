@@ -38,7 +38,6 @@ type CampaignCreateResponse struct {
 	ApiID      string `json:"api_id,omitempty"`
 	CampaignID string `json:"campaign_id"`
 	Message    string `json:"message,omitempty"`
-	Error      string `json:"error,omitempty"`
 }
 
 type Campaign struct {
@@ -80,7 +79,6 @@ type CampaignNumbersGetParams struct {
 
 type CampaignNumberLinkUnlinkResponse struct {
 	ApiID   string `json:"api_id"`
-	Error   string `json:"error,omitempty"`
 	Message string `json:"message,omitempty"`
 }
 
