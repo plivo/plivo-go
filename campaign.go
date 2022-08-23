@@ -4,24 +4,28 @@ type CampaignService struct {
 	client *Client
 }
 type CampaignCreationParams struct {
-	BrandID          string    `json:"brand_id" url:"brand_id" validate:"required"`
-	CampaignAlias    *string   `json:"campaign_alias,omitempty" url:"campaign_alias,omitempty"`
-	Vertical         string    `json:"vertical" url:"vertical"`
-	Usecase          string    `json:"usecase" url:"usecase"`
-	ResellerID       string    `json:" reseller_id,omitempty" url:" reseller_id,omitempty"`
-	SubUsecases      *[]string `json:"sub_usecases" url:"sub_usecases"`
-	Description      string    `json:"description,omitempty" url:"description,omitempty"`
-	EmbeddedLink     *bool     `json:"embedded_link,omitempty" url:"embedded_link,omitempty"`
-	EmbeddedPhone    *bool     `json:"embedded_phone,omitempty" url:"embedded_phone,omitempty"`
-	AgeGated         *bool     `json:"age_gated,omitempty" url:"age_gated,omitempty"`
-	DirectLending    *bool     `json:"direct_lending,omitempty" url:"direct_lending,omitempty"`
-	SubscriberOptin  bool      `json:"subscriber_optin" url:"subscriber_optin"`
-	SubscriberOptout bool      `json:"subscriber_optout" url:"subscriber_optout"`
-	SubscriberHelp   bool      `json:"subscriber_help" url:"subscriber_help"`
-	Sample1          *string   `json:"sample1" url:"sample1"`
-	Sample2          *string   `json:"sample2,omitempty" url:"sample2,omitempty"`
-	URL              string    `json:"url,omitempty" url:"url,omitempty"`
-	Method           string    `json:"method,omitempty" url:"method,omitempty"`
+	BrandID            string    `json:"brand_id" url:"brand_id" validate:"required"`
+	CampaignAlias      *string   `json:"campaign_alias,omitempty" url:"campaign_alias,omitempty"`
+	Vertical           string    `json:"vertical" url:"vertical"`
+	Usecase            string    `json:"usecase" url:"usecase"`
+	ResellerID         string    `json:" reseller_id,omitempty" url:" reseller_id,omitempty"`
+	SubUsecases        *[]string `json:"sub_usecases" url:"sub_usecases"`
+	Description        string    `json:"description,omitempty" url:"description,omitempty"`
+	EmbeddedLink       *bool     `json:"embedded_link,omitempty" url:"embedded_link,omitempty"`
+	EmbeddedPhone      *bool     `json:"embedded_phone,omitempty" url:"embedded_phone,omitempty"`
+	AgeGated           *bool     `json:"age_gated,omitempty" url:"age_gated,omitempty"`
+	DirectLending      *bool     `json:"direct_lending,omitempty" url:"direct_lending,omitempty"`
+	SubscriberOptin    bool      `json:"subscriber_optin" url:"subscriber_optin"`
+	SubscriberOptout   bool      `json:"subscriber_optout" url:"subscriber_optout"`
+	SubscriberHelp     bool      `json:"subscriber_help" url:"subscriber_help"`
+	AffiliateMarketing bool      `json:"affiliate_marketing" url:"subscriber_help"`
+	Sample1            *string   `json:"sample1" url:"sample1"`
+	Sample2            *string   `json:"sample2,omitempty" url:"sample2,omitempty"`
+	Sample3            *string   `json:"sample3" url:"sample1"`
+	Sample4            *string   `json:"sample4,omitempty" url:"sample2,omitempty"`
+	Sample5            *string   `json:"sample5,omitempty" url:"sample2,omitempty"`
+	URL                string    `json:"url,omitempty" url:"url,omitempty"`
+	Method             string    `json:"method,omitempty" url:"method,omitempty"`
 }
 
 type CampaignListResponse struct {
