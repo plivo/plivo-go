@@ -21,9 +21,6 @@ type CampaignCreationParams struct {
 	AffiliateMarketing bool      `json:"affiliate_marketing" url:"subscriber_help"`
 	Sample1            *string   `json:"sample1" url:"sample1"`
 	Sample2            *string   `json:"sample2,omitempty" url:"sample2,omitempty"`
-	Sample3            *string   `json:"sample3" url:"sample1"`
-	Sample4            *string   `json:"sample4,omitempty" url:"sample2,omitempty"`
-	Sample5            *string   `json:"sample5,omitempty" url:"sample2,omitempty"`
 	URL                string    `json:"url,omitempty" url:"url,omitempty"`
 	Method             string    `json:"method,omitempty" url:"method,omitempty"`
 }

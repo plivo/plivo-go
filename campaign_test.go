@@ -72,9 +72,6 @@ func TestCampaign_Create(t *testing.T) {
 		SubscriberHelp:     true,
 		Sample1:            &sample1,
 		Sample2:            &sample2,
-		Sample3:            &sample1,
-		Sample4:            &sample2,
-		Sample5:            &sample2,
 		AffiliateMarketing: false,
 	})
 	assert.NotNil(resp)
