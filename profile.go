@@ -74,6 +74,7 @@ type Profile struct {
 	Vertical          string            `json:"vertical,omitempty"`
 	AltBusinessID     string            `json:"alt_business_id,omitempty"`
 	AltBusinessidType string            `json:"alt_business_id_type,omitempty"`
+	PlivoSubaccount   string            `json:"plivo_subaccount,omitempty"`
 	AuthorizedContact AuthorizedContact `json:"authorized_contact,omitempty"`
 }
 
