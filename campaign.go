@@ -73,6 +73,11 @@ type CampaignNumberLinkParams struct {
 	Method  string   `json:"method,omitempty"`
 }
 
+type CampaignNumberUnlinkParams struct {
+	URL    string `json:"url,omitempty"`
+	Method string `json:"method,omitempty"`
+}
+
 type CampaignNumbersGetParams struct {
 	Limit  int `url:"limit,omitempty"`
 	Offset int `url:"offset,omitempty"`
@@ -156,8 +161,8 @@ func (service *CampaignService) NumbersGet(campaignID string, params CampaignNum
 	return
 }
 
-func (service *CampaignService) NumberUnlink(campaignID, number string) (response *CampaignNumberLinkUnlinkResponse, err error) {
-	req, err := service.client.NewRequest("DELETE", nil, "10dlc/Campaign/%s/Number/%s", campaignID, number)
+func (service *CampaignService) NumberUnlink(campaignID, number string, params CampaignNumberUnlinkParams) (response *CampaignNumberLinkUnlinkResponse, err error) {
+	req, err := service.client.NewRequest("DELETE", params, "10dlc/Campaign/%s/Number/%s", campaignID, number)
 	if err != nil {
 		return
 	}

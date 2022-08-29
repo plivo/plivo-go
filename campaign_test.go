@@ -174,13 +174,17 @@ func TestCampaign_NumberUnlink(t *testing.T) {
 	expectResponse("campaignNumberLinkUnlinkResponse.json", 200)
 	assert := require.New(t)
 	number := "9876564598"
-	resp, err := client.Campaign.NumberUnlink("CY5NVUA", number)
+	resp, err := client.Campaign.NumberUnlink("CY5NVUA", number, CampaignNumberUnlinkParams{
+		Method: "POST",
+		URL:    "http://example.com/test"})
 	assert.NotNil(resp)
 	assert.Nil(err)
 	assert.NotEmpty(resp.ApiID)
 	cl := client.httpClient
 	client.httpClient = nil
-	resp, err = client.Campaign.NumberUnlink("CY5NVUA", number)
+	resp, err = client.Campaign.NumberUnlink("CY5NVUA", number, CampaignNumberUnlinkParams{
+		Method: "POST",
+		URL:    "http://example.com/test"})
 	assert.NotNil(err)
 	assert.Nil(resp)
 	client.httpClient = cl
