@@ -1,5 +1,5 @@
 # Change Log
-## [7.11.2](https://github.com/plivo/plivo-go/tree/v7.11.0) (2022-08-12)
+## [7.12.0](https://github.com/plivo/plivo-go/tree/v7.11.0) (2022-08-12)
 **Feature - 10DLC api updates**
 - Update 10dlc api with total 15 apis such as campaign, brand, profile and number link
 
