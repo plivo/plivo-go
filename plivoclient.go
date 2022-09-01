@@ -45,6 +45,7 @@ type Client struct {
 	ComplianceApplications  *ComplianceApplicationService
 	MultiPartyCall          *MultiPartyCallService
 	Brand                   *BrandService
+	Profile                 *ProfileService
 	Campaign                *CampaignService
 }
 
@@ -81,7 +82,7 @@ func NewClient(authId, authToken string, options *ClientOptions) (client *Client
 
 	client.BaseUrl = baseUrl
 	client.httpClient = &http.Client{
-		Timeout: time.Second * 5,
+		Timeout: time.Second * 10,
 	}
 
 	if options.HttpClient != nil {
@@ -114,6 +115,7 @@ func NewClient(authId, authToken string, options *ClientOptions) (client *Client
 	client.MultiPartyCall = &MultiPartyCallService{client: client}
 	client.Brand = &BrandService{client: client}
 	client.Campaign = &CampaignService{client: client}
+	client.Profile = &ProfileService{client: client}
 	return
 }
 

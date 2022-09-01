@@ -5,50 +5,17 @@ type BrandService struct {
 }
 
 type BrandCreationParams struct {
-	AltBusinessIDType  *string `json:"alt_business_id_type,omitempty" url:"alt_business_id_type,omitempty"`
-	AltBusinessID      *string `json:"alt_business_id,omitempty" url:"alt_business_id,omitempty"`
-	City               string  `json:"city,omitempty" url:"city,omitempty"`
-	CompanyName        string  `json:"company_name,omitempty" url:"company_name,omitempty"`
-	Country            string  `json:"country,omitempty" url:"country,omitempty"`
-	Ein                string  `json:"ein,omitempty" url:"ein,omitempty"`
-	EinIssuingCountry  string  `json:"ein_issuing_country,omitempty" url:"ein_issuing_country,omitempty"`
-	Email              string  `json:"email,omitempty" url:"email,omitempty"`
-	EntityType         string  `json:"entity_type,omitempty" url:"entity_type,omitempty"`
-	FirstName          *string `json:"first_name,omitempty" url:"first_name,omitempty"`
-	LastName           *string `json:"last_name,omitempty" url:"last_name,omitempty"`
-	Phone              string  `json:"phone,omitempty" url:"phone,omitempty"`
-	PostalCode         string  `json:"postal_code,omitempty" url:"postal_code,omitempty"`
-	RegistrationStatus string  `json:"registration_status,omitempty" url:"registration_status,omitempty"`
-	State              string  `json:"state,omitempty" url:"state,omitempty"`
-	StockExchange      string  `json:"stock_exchange,omitempty" url:"stock_exchange,omitempty"`
-	StockSymbol        string  `json:"stock_symbol,omitempty" url:"stock_symbol,omitempty"`
-	Street             string  `json:"street,omitempty" url:"street,omitempty"`
-	Vertical           string  `json:"vertical,omitempty" url:"vertical,omitempty"`
-	Website            *string `json:"website,omitempty" url:"website,omitempty"`
-	SecondaryVetting   *string `json:"secondary_vetting,omitempty" url:"secondary_vetting,omitempty"`
+	BrandAlias       string  `json:"brand_alias" url:"brand_alias" validate:"required"`
+	Type             string  `json:"brand_type" url:"brand_type" validate:"oneof= STARTER STANDARD ''"`
+	ProfileUUID      string  `json:"profile_uuid" url:"profile_uuid" validate:"required,max=36"`
+	SecondaryVetting *string `json:"secondary_vetting,omitempty" url:"secondary_vetting,omitempty"`
+	URL              string  `json:"url,omitempty" url:"url,omitempty"`
+	Method           string  `json:"method,omitempty" url:"method,omitempty"`
 }
 type BrandCreationResponse struct {
-	ApiID string        `json:"api_id,omitempty"`
-	Brand BrandResponse `json:"brand,omitempty"`
-}
-type BrandResponse struct {
-	AltBusinessIDType  string `json:"alt_business_id_type,omitempty"`
-	BrandID            string `json:"brand_id,omitempty"`
-	City               string `json:"city,omitempty"`
-	Country            string `json:"country,omitempty"`
-	EinIssuingCountry  string `json:"ein_issuing_country,omitempty"`
-	Email              string `json:"email,omitempty"`
-	EntityType         string `json:"entity_type,omitempty"`
-	FirstName          string `json:"first_name,omitempty"`
-	LastName           string `json:"last_name,omitempty"`
-	Phone              string `json:"phone,omitempty"`
-	PostalCode         string `json:"postal_code,omitempty"`
-	RegistrationStatus string `json:"registration_status,omitempty"`
-	State              string `json:"state,omitempty"`
-	StockExchange      string `json:"stock_exchange,omitempty"`
-	StockSymbol        string `json:"stock_symbol,omitempty"`
-	Vertical           string `json:"vertical,omitempty"`
-	Website            string `json:"website,omitempty"`
+	ApiID   string `json:"api_id,omitempty"`
+	BrandID string `json:"brand_id,omitempty"`
+	Message string `json:"message,omitempty"`
 }
 
 type BrandListResponse struct {
@@ -61,19 +28,51 @@ type BrandGetResponse struct {
 	Brand Brand  `json:"brand,omitempty"`
 }
 type Brand struct {
-	BrandID            string `json:"brand_id,omitempty"`
-	CompanyName        string `json:"company_name,omitempty"`
-	Ein                string `json:"ein,omitempty"`
-	EinIssuingCountry  string `json:"ein_issuing_country,omitempty"`
-	Email              string `json:"email,omitempty"`
-	EntityType         string `json:"entity_type,omitempty"`
-	RegistrationStatus string `json:"registration_status,omitempty"`
-	Vertical           string `json:"vertical,omitempty"`
-	Website            string `json:"website,omitempty"`
+	BrandAlias         string            `json:"brand_alias,omitempty"`
+	EntityType         string            `json:"entity_type,omitempty"`
+	BrandID            string            `json:"brand_id,omitempty"`
+	ProfileUUID        string            `json:"profile_uuid,omitempty"`
+	FirstName          string            `json:"first_name,omitempty"`
+	LastName           string            `json:"last_name,omitempty"`
+	Name               string            `json:"name,omitempty"`
+	CompanyName        string            `json:"company_name,omitempty"`
+	BrandType          string            `json:"brand_type,omitempty"`
+	Ein                string            `json:"ein,omitempty"`
+	EinIssuingCountry  string            `json:"ein_issuing_country,omitempty"`
+	StockSymbol        string            `json:"stock_symbol,omitempty"`
+	StockExchange      string            `json:"stock_exchange,omitempty"`
+	Website            string            `json:"website,omitempty"`
+	Vertical           string            `json:"vertical,omitempty"`
+	AltBusinessID      string            `json:"alt_business_id,omitempty"`
+	AltBusinessidType  string            `json:"alt_business_id_type,omitempty"`
+	RegistrationStatus string            `json:"registration_status,omitempty"`
+	VettingStatus      string            `json:"vetting_status,omitempty"`
+	VettingScore       int64             `json:"vetting_score,omitempty"`
+	Address            Address           `json:"address,omitempty"`
+	AuthorizedContact  AuthorizedContact `json:"authorized_contact,omitempty"`
 }
 type BrandListParams struct {
 	Type   *string `json:"type,omitempty"`
 	Status *string `json:"status,omitempty"`
+	Limit  int     `url:"limit,omitempty"`
+	Offset int     `url:"offset,omitempty"`
+}
+
+type Address struct {
+	Street     string `json:"street" validate:"max=100"`
+	City       string `json:"city" validate:"max=100"`
+	State      string `json:"state" validate:"max=20"`
+	PostalCode string `json:"postal_code" validate:"max=10"`
+	Country    string `json:"country" validate:"max=2"`
+}
+
+type AuthorizedContact struct {
+	FirstName string `json:"first_name,omitempty"`
+	LastName  string `json:"last_name,omitempty"`
+	Phone     string `json:"phone,omitempty" validate:"max=16"`
+	Email     string `json:"email,omitempty" validate:"max=100"`
+	Title     string `json:"title,omitempty"`
+	Seniority string `json:"seniority,omitempty"`
 }
 
 func (service *BrandService) List(params BrandListParams) (response *BrandListResponse, err error) {

@@ -9,7 +9,7 @@ import (
 func TestBrand_List(t *testing.T) {
 	expectResponse("brandListResponse.json", 200)
 	assert := require.New(t)
-	resp, err := client.Brand.List(BrandListParams{})
+	resp, err := client.Brand.List(BrandListParams{Limit: 2, Offset: 0})
 	assert.NotNil(resp)
 	assert.Nil(err)
 	assert.NotEmpty(resp.BrandResponse[0].BrandID)
@@ -48,60 +48,21 @@ func TestBrand_Get(t *testing.T) {
 func TestBrand_Create(t *testing.T) {
 	expectResponse("brandCreationResponse.json", 200)
 	assert := require.New(t)
-	altBusinessIDType := "GIIN"
-	altBusinessID := "111"
-	firstName := "John"
-	lastName := "Doe"
-	website := "http://www.abcmobile.com"
 	resp, err := client.Brand.Create(BrandCreationParams{
-		AltBusinessIDType:  &altBusinessIDType,
-		AltBusinessID:      &altBusinessID,
-		City:               "New York",
-		CompanyName:        "ABC Inc.",
-		Country:            "US",
-		Ein:                "111111111",
-		EinIssuingCountry:  "US",
-		Email:              "johndoe@abc.com",
-		EntityType:         "PRIVATE_PROFIT",
-		FirstName:          &firstName,
-		LastName:           &lastName,
-		Phone:              "+11234567890",
-		PostalCode:         "10001",
-		RegistrationStatus: "PENDING",
-		State:              "NY",
-		StockExchange:      "NASDAQ",
-		StockSymbol:        "ABC",
-		Street:             "123",
-		Vertical:           "RETAIL",
-		Website:            &website,
+		BrandAlias:  "brand name sample",
+		Type:        "STARTER",
+		ProfileUUID: "201faedc-7df9-4840-9ab1-3997ce3f7cf4",
 	})
 	assert.NotNil(resp)
 	assert.Nil(err)
 	assert.NotEmpty(resp.ApiID)
-	assert.NotEmpty(resp.Brand)
+	assert.NotEmpty(resp.BrandID)
 	cl := client.httpClient
 	client.httpClient = nil
 	resp, err = client.Brand.Create(BrandCreationParams{
-		AltBusinessIDType:  &altBusinessIDType,
-		AltBusinessID:      &altBusinessID,
-		City:               "New York",
-		CompanyName:        "ABC Inc.",
-		Country:            "US",
-		Ein:                "111111111",
-		EinIssuingCountry:  "US",
-		Email:              "johndoe@abc.com",
-		EntityType:         "PRIVATE_PROFIT",
-		FirstName:          &firstName,
-		LastName:           &lastName,
-		Phone:              "+11234567890",
-		PostalCode:         "10001",
-		RegistrationStatus: "PENDING",
-		State:              "NY",
-		StockExchange:      "NASDAQ",
-		StockSymbol:        "ABC",
-		Street:             "123",
-		Vertical:           "RETAIL",
-		Website:            &website,
+		BrandAlias:  "brand name sample",
+		Type:        "STARTER",
+		ProfileUUID: "201faedc-7df9-4840-9ab1-3997ce3f7cf4",
 	})
 	assert.NotNil(err)
 	assert.Nil(resp)
