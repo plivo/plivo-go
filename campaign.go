@@ -54,7 +54,7 @@ type Campaign struct {
 	MnoMetadata        MnoMetadata `json:"mno_metadata,omitempty"`
 	ResellerID         string      `json:"reseller_id,omitempty"`
 	Usecase            string      `json:"usecase,omitempty"`
-	SubSsecase         string      `json:"sub_usecase,omitempty"`
+	SubUsecase         string      `json:"sub_usecase,omitempty"`
 	RegistrationStatus string      `json:"registration_status,omitempty"`
 	MessageFlow        string      `json:"message_flow,omitempty"`
 	HelpMessage        string      `json:"help_message,omitempty"`
@@ -63,7 +63,23 @@ type Campaign struct {
 	OptoutKeywords     string      `json:"optout_keywords,omitempty"`
 	OptoutMessage      string      `json:"optout_message,omitempty"`
 	HelpKeywords       string      `json:"help_keywords,omitempty"`
+	SampleMessage1     		   string      `json:"sample1,omitempty"`
+	SampleMessage2     		   string      `json:"sample2,omitempty"`
+	CampaignDescription		   string      `json:"description,omitempty"`
+	CampaignAttributes CampaignAttributes  `json:"campaign_attributes,omitempty"`
 }
+
+type CampaignAttributes struct{
+	EmbeddedLink       		   bool        `json:"embedded_link"`
+	EmbeddedPhone      		   bool        `json:"embedded_phone"`
+	AgeGated           		   bool        `json:"age_gated"`
+	DirectLending      		   bool        `json:"direct_lending"`
+	SubscriberOptin    		   bool        `json:"subscriber_optin"`
+	SubscriberOptout   		   bool        `json:"subscriber_optout"`
+	SubscriberHelp     		   bool        `json:"subscriber_help"`
+	AffiliateMarketing 		   bool        `json:"affiliate_marketing"`
+}
+
 type MnoMetadata struct {
 	ATandT          OperatorDetail `json:"AT&T,omitempty"`
 	TMobile         OperatorDetail `json:"T-Mobile,omitempty"`
@@ -108,6 +124,8 @@ type CampaignNumberGetResponse struct {
 	CampaignAlias   string           `json:"campaign_alias"`
 	CampaignUseCase string           `json:"usecase"`
 	CampaignNumbers []CampaignNumber `json:"phone_numbers"`
+	CampaignNumberSummary map[string]int   `json:"phone_numbers_summary,omitempty"`
+	NumberPoolLimit int					   `json:"number_pool_limit,omitempty"`
 }
 
 type CampaignNumber struct {
