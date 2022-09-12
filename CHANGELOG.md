@@ -1,4 +1,8 @@
 # Change Log
+## [7.12.1](https://github.com/plivo/plivo-go/tree/v7.12.1) (2022-09-12)
+**Adding more attributes to campaign creation**
+- Adding more attributes to campaign creation request
+
 ## [7.12.0](https://github.com/plivo/plivo-go/tree/v7.12.0) (2022-08-30)
 **Feature - 10DLC api updates**
 - Updated 10dlc api with total 15 apis now such as campaign, brand, profile and number link
