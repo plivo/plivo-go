@@ -1,4 +1,7 @@
 # Change Log
+## [7.11.1](https://github.com/plivo/plivo-go/tree/v7.11.1) (2022-09-12)
+**Adding more attributes to campaign creation**
+- Adding more attributes to campaign creation request.
 
 ## [7.6.1](https://github.com/plivo/plivo-go/tree/v7.6.1) (2022-02-22)
 **Features - ListParticipants**

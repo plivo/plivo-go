@@ -19,6 +19,13 @@ type CampaignCreationParams struct {
 	SubscriberHelp   bool      `json:"subscriber_help,omitempty" url:"subscriber_help,omitempty"`
 	Sample1          *string   `json:"sample1,omitempty" url:"sample1,omitempty"`
 	Sample2          *string   `json:"sample2,omitempty" url:"sample2"`
+	MessageFlow      string    `json:"message_flow,omitempty" url:"message_flow"`
+	HelpMessage      string    `json:"help_message,omitempty" url:"help_message"`
+	OptinKeywords    string    `json:"optin_keywords,omitempty" url:"optin_keywords"`
+	OptinMessage     string    `json:"optin_message,omitempty" url:"optin_message"`
+	OptoutKeywords   string    `json:"optout_keywords,omitempty" url:"optout_keywords"`
+	OptoutMessage    string    `json:"optout_message,omitempty" url:"optout_message"`
+	HelpKeywords     string    `json:"help_keywords,omitempty" url:"help_keywords"`
 }
 
 type CampaignListResponse struct {
@@ -32,11 +39,18 @@ type CampaignResponse struct {
 }
 
 type Campaign struct {
-	BrandID     string      `json:"brand_id,omitempty"`
-	CampaignID  string      `json:"campaign_id,omitempty"`
-	MnoMetadata MnoMetadata `json:"mno_metadata,omitempty"`
-	ResellerID  string      `json:"reseller_id,omitempty"`
-	Usecase     string      `json:"usecase,omitempty"`
+	BrandID        string      `json:"brand_id,omitempty"`
+	CampaignID     string      `json:"campaign_id,omitempty"`
+	MnoMetadata    MnoMetadata `json:"mno_metadata,omitempty"`
+	ResellerID     string      `json:"reseller_id,omitempty"`
+	Usecase        string      `json:"usecase,omitempty"`
+	MessageFlow    string      `json:"message_flow,omitempty"`
+	HelpMessage    string      `json:"help_message,omitempty"`
+	OptinKeywords  string      `json:"optin_keywords,omitempty"`
+	OptinMessage   string      `json:"optin_message,omitempty"`
+	OptoutKeywords string      `json:"optout_keywords,omitempty"`
+	OptoutMessage  string      `json:"optout_message,omitempty"`
+	HelpKeywords   string      `json:"help_keywords,omitempty"`
 }
 type MnoMetadata struct {
 	ATandT          OperatorDetail `json:"AT&T,omitempty"`
