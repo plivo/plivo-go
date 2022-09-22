@@ -21,7 +21,7 @@ type BrandCreationResponse struct {
 type BrandUsecaseResponse struct {
 	ApiID string 		 `json:"api_id,omitempty"`
 	Usecases  []Usecase  `json:"use_cases"`
-	BrandID   uint64     `json:"brand_id"`
+	BrandID   string     `json:"brand_id"`
 }
 
 type Usecase struct {
