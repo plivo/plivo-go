@@ -23,6 +23,13 @@ type CampaignCreationParams struct {
 	Sample2            *string   `json:"sample2,omitempty" url:"sample2,omitempty"`
 	URL                string    `json:"url,omitempty" url:"url,omitempty"`
 	Method             string    `json:"method,omitempty" url:"method,omitempty"`
+	MessageFlow        string    `json:"message_flow,omitempty" url:"message_flow"`
+	HelpMessage        string    `json:"help_message,omitempty" url:"help_message"`
+	OptinKeywords      string    `json:"optin_keywords,omitempty" url:"optin_keywords"`
+	OptinMessage       string    `json:"optin_message,omitempty" url:"optin_message"`
+	OptoutKeywords     string    `json:"optout_keywords,omitempty" url:"optout_keywords"`
+	OptoutMessage      string    `json:"optout_message,omitempty" url:"optout_message"`
+	HelpKeywords       string    `json:"help_keywords,omitempty" url:"help_keywords"`
 }
 
 type CampaignListResponse struct {
@@ -49,6 +56,13 @@ type Campaign struct {
 	Usecase            string      `json:"usecase,omitempty"`
 	SubSsecase         string      `json:"sub_usecase,omitempty"`
 	RegistrationStatus string      `json:"registration_status,omitempty"`
+	MessageFlow        string      `json:"message_flow,omitempty"`
+	HelpMessage        string      `json:"help_message,omitempty"`
+	OptinKeywords      string      `json:"optin_keywords,omitempty"`
+	OptinMessage       string      `json:"optin_message,omitempty"`
+	OptoutKeywords     string      `json:"optout_keywords,omitempty"`
+	OptoutMessage      string      `json:"optout_message,omitempty"`
+	HelpKeywords       string      `json:"help_keywords,omitempty"`
 }
 type MnoMetadata struct {
 	ATandT          OperatorDetail `json:"AT&T,omitempty"`
