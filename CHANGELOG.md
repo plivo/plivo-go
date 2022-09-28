@@ -1,5 +1,5 @@
 # Change Log
-## [7.12.1](https://github.com/plivo/plivo-go/tree/v7.12.1) (2022-09-12)
+## [7.12.1](https://github.com/plivo/plivo-go/tree/v7.12.1) (2022-09-28)
 **Adding more attributes to campaign creation**
 - Adding more attributes to campaign creation request
 
