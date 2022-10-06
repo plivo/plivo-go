@@ -1358,3 +1358,37 @@ func wordTitle(str string) string {
 	lengthOfFinalString := len(finalString)
 	return finalString[1:lengthOfFinalString]
 }
+
+type StreamElement struct {
+	Action *string `xml:"action,attr"`
+
+	Method *string `xml:"method,attr"`
+
+	FileFormat *string `xml:"fileFormat,attr"`
+
+	Redirect *bool `xml:"redirect,attr"`
+
+	Timeout *int `xml:"timeout,attr"`
+
+	MaxLength *int `xml:"maxLength,attr"`
+
+	PlayBeep *bool `xml:"playBeep,attr"`
+
+	FinishOnKey *string `xml:"finishOnKey,attr"`
+
+	RecordSession *bool `xml:"recordSession,attr"`
+
+	StartOnDialAnswer *bool `xml:"startOnDialAnswer,attr"`
+
+	TranscriptionType *string `xml:"transcriptionType,attr"`
+
+	TranscriptionUrl *string `xml:"transcriptionUrl,attr"`
+
+	TranscriptionMethod *string `xml:"transcriptionMethod,attr"`
+
+	CallbackUrl *string `xml:"callbackUrl,attr"`
+
+	CallbackMethod *string `xml:"callbackMethod,attr"`
+
+	XMLName xml.Name `xml:"Stream"`
+}

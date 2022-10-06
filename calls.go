@@ -179,6 +179,12 @@ type CallRecordResponse struct {
 	RecordingID string `json:"recording_id,omitempty" url:"recording_id,omitempty"`
 }
 
+type CallStreamResponse struct {
+	Message  string `json:"message,omitempty" url:"message,omitempty"`
+	APIID    string `json:"api_id,omitempty" url:"api_id,omitempty"`
+	StreamID string `json:"stream_id,omitempty" url:"stream_id,omitempty"`
+}
+
 type CallPlayParams struct {
 	URLs   string `json:"urls" url:"urls"`
 	Length string `json:"length,omitempty" url:"length,omitempty"`
@@ -214,6 +220,17 @@ type CallDTMFParams struct {
 type CallDTMFResponseBody struct {
 	Message string `json:"message,omitempty" url:"message,omitempty"`
 	ApiID   string `json:"api_id,omitempty" url:"api_id,omitempty"`
+}
+
+type CallStreamParams struct {
+	ServiceUrl          string `json:"service_url,omitempty" url:"service_url,omitempty"`
+	Bidirectional       bool   `json:"bidirectional,omitempty" url:"bidirectional,omitempty"`
+	FileFormat          string `json:"file_format,omitempty" url:"file_format,omitempty"`
+	TranscriptionType   string `json:"transcription_type,omitempty" url:"transcription_type,omitempty"`
+	TranscriptionURL    string `json:"transcription_url,omitempty" url:"transcription_url,omitempty"`
+	TranscriptionMethod string `json:"transcription_method,omitempty" url:"transcription_method,omitempty"`
+	CallbackURL         string `json:"callback_url,omitempty" url:"callback_url,omitempty"`
+	CallbackMethod      string `json:"callback_method,omitempty" url:"callback_method,omitempty"`
 }
 
 func (service *CallService) List(params CallListParams) (response *CallListResponse, err error) {
@@ -332,6 +349,16 @@ func (service *CallService) StopRecording(callId string) (err error) {
 		return
 	}
 	err = service.client.ExecuteRequest(req, nil, isVoiceRequest())
+	return
+}
+
+func (service *CallService) Stream(callId string, params CallStreamParams) (response *CallStreamResponse, err error) {
+	req, err := service.client.NewRequest("POST", params, "Call/%s/Stream", callId)
+	if err != nil {
+		return
+	}
+	response = &CallStreamResponse{}
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
