@@ -398,7 +398,7 @@ func (service *CallService) StopAllStreams(CallId string) (err error) {
 	return
 }
 
-func (service *CallService) StopSpecificStreams(CallId string, StreamId string) (err error) {
+func (service *CallService) StopSpecificStream(CallId string, StreamId string) (err error) {
 	req, err := service.client.NewRequest("DELETE", nil, "Call/%s/Stream/%s", CallId, StreamId)
 	if err != nil {
 		return
