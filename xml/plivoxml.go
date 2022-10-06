@@ -1360,35 +1360,21 @@ func wordTitle(str string) string {
 }
 
 type StreamElement struct {
-	Action *string `xml:"action,attr"`
+	Contents string `xml:",innerxml"`
 
-	Method *string `xml:"method,attr"`
+	Bidirectional *bool `xml:"bidirectional,attr"`
 
-	FileFormat *string `xml:"fileFormat,attr"`
+	AudioTrack *string `xml:"audioTrack,attr"`
 
-	Redirect *bool `xml:"redirect,attr"`
+	StreamTimeout *int `xml:"streamTimeout,attr"`
 
-	Timeout *int `xml:"timeout,attr"`
+	StatusCallbackUrl *string `xml:"statusCallbackUrl,attr"`
 
-	MaxLength *int `xml:"maxLength,attr"`
+	StatusCallbackMethod *string `xml:"statusCallbackMethod,attr"`
 
-	PlayBeep *bool `xml:"playBeep,attr"`
+	ContentType *string `xml:"contentType,attr"`
 
-	FinishOnKey *string `xml:"finishOnKey,attr"`
-
-	RecordSession *bool `xml:"recordSession,attr"`
-
-	StartOnDialAnswer *bool `xml:"startOnDialAnswer,attr"`
-
-	TranscriptionType *string `xml:"transcriptionType,attr"`
-
-	TranscriptionUrl *string `xml:"transcriptionUrl,attr"`
-
-	TranscriptionMethod *string `xml:"transcriptionMethod,attr"`
-
-	CallbackUrl *string `xml:"callbackUrl,attr"`
-
-	CallbackMethod *string `xml:"callbackMethod,attr"`
+	ExtraHeaders *string `xml:"extraHeaders,attr"`
 
 	XMLName xml.Name `xml:"Stream"`
 }
