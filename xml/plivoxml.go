@@ -1410,7 +1410,31 @@ func (e StreamElement) SetContentType(value string) StreamElement {
 }
 
 func (e StreamElement) SetExtraHeaders(value map[string]string) StreamElement {
-	// TO-DO
+	processedHeaders := make(map[string]string)
+	var extraHeaders strings.Builder
+
+	for k, v := range value {
+		if !strings.HasSuffix(k, "X-PH") {
+			processedHeaders[k] = v
+		} else {
+			updatedKey := k + "X-PH"
+			processedHeaders[updatedKey] = v
+		}
+	}
+
+	extraHeaders.WriteString("{")
+	for k, v := range processedHeaders {
+		extraHeaders.WriteString(k)
+		extraHeaders.WriteString(" : ")
+		extraHeaders.WriteString(v)
+		extraHeaders.WriteString(", ")
+	}
+	finalString := extraHeaders.String()
+	if len(finalString) > 0 {
+		finalString = finalString[:len(finalString)-2]
+	}
+
+	e.ExtraHeaders = &finalString
 	return e
 }
 
