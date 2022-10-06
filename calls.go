@@ -233,6 +233,33 @@ type CallStreamParams struct {
 	CallbackMethod      string `json:"callback_method,omitempty" url:"callback_method,omitempty"`
 }
 
+type CallStreamGetAllObject struct {
+	CallUUID          string `json:"call_uuid" url:"call_uuid"`
+	EndTime           string `json:"end_time" url:"end_time"`
+	ServiceURL        string `json:"service_url" url:"service_url"`
+	StartTime         string `json:"start_time" url:"start_time"`
+	Status            string `json:"status" url:"status"`
+	StatusCallbackURL string `json:"status_callback_url" url:"status_callback_url"`
+	StreamID          string `json:"stream_id" url:"stream_id"`
+}
+
+type CallStreamGetAll struct {
+	ApiID   string                   `json:"api_id,omitempty" url:"api_id,omitempty"`
+	Meta    Meta                     `json:"meta,omitempty" url:"meta,omitempty"`
+	Objects []CallStreamGetAllObject `json:"objects" url:"objects"`
+}
+
+type CallStreamGetSpecific struct {
+	ApiID             string `json:"api_id,omitempty" url:"api_id,omitempty"`
+	CallUUID          string `json:"call_uuid" url:"call_uuid"`
+	EndTime           string `json:"end_time" url:"end_time"`
+	ServiceURL        string `json:"service_url" url:"service_url"`
+	StartTime         string `json:"start_time" url:"start_time"`
+	Status            string `json:"status" url:"status"`
+	StatusCallbackURL string `json:"status_callback_url" url:"status_callback_url"`
+	StreamID          string `json:"stream_id" url:"stream_id"`
+}
+
 func (service *CallService) List(params CallListParams) (response *CallListResponse, err error) {
 	req, err := service.client.NewRequest("GET", params, "Call")
 	if err != nil {
@@ -352,12 +379,50 @@ func (service *CallService) StopRecording(callId string) (err error) {
 	return
 }
 
-func (service *CallService) Stream(callId string, params CallStreamParams) (response *CallStreamResponse, err error) {
-	req, err := service.client.NewRequest("POST", params, "Call/%s/Stream", callId)
+func (service *CallService) Stream(CallId string, params CallStreamParams) (response *CallStreamResponse, err error) {
+	req, err := service.client.NewRequest("POST", params, "Call/%s/Stream", CallId)
 	if err != nil {
 		return
 	}
 	response = &CallStreamResponse{}
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
+	return
+}
+
+func (service *CallService) StopAllStreams(CallId string) (err error) {
+	req, err := service.client.NewRequest("DELETE", nil, "Call/%s/Stream", CallId)
+	if err != nil {
+		return
+	}
+	err = service.client.ExecuteRequest(req, nil, isVoiceRequest())
+	return
+}
+
+func (service *CallService) StopSpecificStreams(CallId string, StreamId string) (err error) {
+	req, err := service.client.NewRequest("DELETE", nil, "Call/%s/Stream/%s", CallId, StreamId)
+	if err != nil {
+		return
+	}
+	err = service.client.ExecuteRequest(req, nil, isVoiceRequest())
+	return
+}
+
+func (service *CallService) GetAllStreams(CallId string) (response *CallStreamGetAll, err error) {
+	req, err := service.client.NewRequest("GET", nil, "Call/%s/Stream", CallId)
+	if err != nil {
+		return
+	}
+	response = &CallStreamGetAll{}
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
+	return
+}
+
+func (service *CallService) GetSpecificStream(CallId string, StreamId string) (response *CallStreamGetSpecific, err error) {
+	req, err := service.client.NewRequest("GET", nil, "Call/%s/Stream/%s", CallId, StreamId)
+	if err != nil {
+		return
+	}
+	response = &CallStreamGetSpecific{}
 	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
