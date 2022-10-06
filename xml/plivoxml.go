@@ -1378,3 +1378,43 @@ type StreamElement struct {
 
 	XMLName xml.Name `xml:"Stream"`
 }
+
+func (e StreamElement) SetBidirectional(value bool) StreamElement {
+	e.Bidirectional = &value
+	return e
+}
+
+func (e StreamElement) SetAudioTrack(value string) StreamElement {
+	e.AudioTrack = &value
+	return e
+}
+
+func (e StreamElement) SetStreamTimeout(value int) StreamElement {
+	e.StreamTimeout = &value
+	return e
+}
+
+func (e StreamElement) SetStatusCallbackUrl(value string) StreamElement {
+	e.StatusCallbackUrl = &value
+	return e
+}
+
+func (e StreamElement) SetStatusCallbackMethod(value string) StreamElement {
+	e.StatusCallbackMethod = &value
+	return e
+}
+
+func (e StreamElement) SetContentType(value string) StreamElement {
+	e.ContentType = &value
+	return e
+}
+
+func (e StreamElement) SetExtraHeaders(value map[string]string) StreamElement {
+	// TO-DO
+	return e
+}
+
+func (e StreamElement) SetContents(value string) StreamElement {
+	e.Contents = value
+	return e
+}
