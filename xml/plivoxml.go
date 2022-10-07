@@ -1414,7 +1414,7 @@ func (e StreamElement) SetExtraHeaders(value map[string]string) StreamElement {
 	var extraHeaders strings.Builder
 
 	for k, v := range value {
-		if !strings.HasSuffix(k, "X-PH") {
+		if strings.HasSuffix(k, "X-PH") {
 			processedHeaders[k] = v
 		} else {
 			updatedKey := k + "X-PH"
@@ -1424,15 +1424,21 @@ func (e StreamElement) SetExtraHeaders(value map[string]string) StreamElement {
 
 	extraHeaders.WriteString("{")
 	for k, v := range processedHeaders {
+		extraHeaders.WriteString("\"")
 		extraHeaders.WriteString(k)
-		extraHeaders.WriteString(" : ")
+		extraHeaders.WriteString("\"")
+		extraHeaders.WriteString(":")
+		extraHeaders.WriteString("\"")
 		extraHeaders.WriteString(v)
+		extraHeaders.WriteString("\"")
 		extraHeaders.WriteString(", ")
 	}
-	finalString := extraHeaders.String()
-	if len(finalString) > 0 {
-		finalString = finalString[:len(finalString)-2]
+	preFinalString := extraHeaders.String()
+	if len(preFinalString) > 0 {
+		preFinalString = preFinalString[:len(preFinalString)-2]
 	}
+	finalString := ""
+	finalString = preFinalString + "}"
 
 	e.ExtraHeaders = &finalString
 	return e
