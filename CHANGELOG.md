@@ -1,4 +1,8 @@
 # Change Log
+## [7.13.0](https://github.com/plivo/plivo-go/tree/v7.13.0) (2022-10-10)
+**Feature - Brandusecase API, 10DLC api enhancements**
+- Added Brandusecase API, 10DLC api enhancements
+
 ## [7.12.1](https://github.com/plivo/plivo-go/tree/v7.12.1) (2022-09-28)
 **Adding more attributes to campaign creation**
 - Adding more attributes to campaign creation request
