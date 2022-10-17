@@ -12,5 +12,10 @@
             "status": "COMPLETED"
         }
     ],
+    "phone_numbers_summary":{
+        "COMPLETED":1,
+        "PROCESSING":1
+    },
+    "number_pool_limit":49,
     "usecase": "MIXED"
 }

@@ -70,3 +70,23 @@ func TestBrand_Create(t *testing.T) {
 
 	assertRequest(t, "POST", "10dlc/Brand")
 }
+
+
+func TestBrand_Usecase(t *testing.T) {
+	expectResponse("brandUsecaseResponse.json", 200)
+	assert := require.New(t)
+	BrandID := "BPL3KN9"
+	resp, err := client.Brand.Usecases(BrandID)
+	assert.NotNil(resp)
+	assert.Nil(err)
+	assert.NotEmpty(resp.Usecases[0].Code)
+
+	cl := client.httpClient
+	client.httpClient = nil
+	resp, err = client.Brand.Usecases(BrandID)
+	assert.NotNil(err)
+	assert.Nil(resp)
+	client.httpClient = cl
+
+	assertRequest(t, "GET", "10dlc/Brand/%s/usecases", BrandID)
+}

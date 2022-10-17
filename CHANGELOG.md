@@ -1,4 +1,8 @@
 # Change Log
+## [7.14.0](https://github.com/plivo/plivo-go/tree/v7.14.0) (2022-10-17)
+**Feature - Brandusecase API, 10DLC api enhancements**
+- Added Brandusecase API, 10DLC api enhancements
+
 ## [7.13.0](https://github.com/plivo/plivo-go/tree/v7.13.0) (2022-10-14)
 **Adding new attributes to Account PhoneNumber object**
 -Added 3 new keys to AccountPhoneNumber object:`tendlc_registration_status`, `tendlc_campaign_id` and `toll_free_sms_verification` (https://www.plivo.com/docs/numbers/api/account-phone-number#the-accountphonenumber-object)

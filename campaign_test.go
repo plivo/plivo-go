@@ -13,6 +13,7 @@ func TestCampaign_List(t *testing.T) {
 	assert.NotNil(resp)
 	assert.Nil(err)
 	assert.NotEmpty(resp.CampaignResponse[0].CampaignID)
+	assert.Equal(false, resp.CampaignResponse[0].CampaignAttributes.SubscriberOptin)
 	cl := client.httpClient
 	client.httpClient = nil
 	brandID := ""
@@ -28,11 +29,13 @@ func TestCampaign_List(t *testing.T) {
 func TestCampaign_Get(t *testing.T) {
 	expectResponse("campaignGetResponse.json", 200)
 	CampaignID := "CY5NVUA"
+	SubscriberOptin := false
 	assert := require.New(t)
 	campaign, err := client.Campaign.Get(CampaignID)
 	assert.NotNil(campaign)
 	assert.Nil(err)
 	assert.Equal(CampaignID, campaign.Campaign.CampaignID)
+	assert.Equal(SubscriberOptin, campaign.Campaign.CampaignAttributes.SubscriberOptin)
 	assert.NotEmpty(campaign.ApiID)
 
 	cl := client.httpClient
@@ -216,12 +219,14 @@ func TestCampaign_NumbersGet(t *testing.T) {
 	expectResponse("campaignNumbersGetResponse.json", 200)
 	CampaignID := "CY5NVUA"
 	number := "14845007032"
+	numberCompletedStatus := 1
 	assert := require.New(t)
 	campaign, err := client.Campaign.NumbersGet(CampaignID, CampaignNumbersGetParams{Limit: 20, Offset: 0})
 	assert.NotNil(campaign)
 	assert.Nil(err)
 	assert.Equal(CampaignID, campaign.CampaignID)
 	assert.Equal(number, campaign.CampaignNumbers[0].Number)
+	assert.Equal(numberCompletedStatus, campaign.CampaignNumberSummary["COMPLETED"])
 	assert.NotEmpty(campaign.ApiID)
 
 	cl := client.httpClient
