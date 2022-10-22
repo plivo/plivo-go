@@ -1410,20 +1410,10 @@ func (e StreamElement) SetContentType(value string) StreamElement {
 }
 
 func (e StreamElement) SetExtraHeaders(value map[string]string) StreamElement {
-	processedHeaders := make(map[string]string)
 	var extraHeaders strings.Builder
 
-	for k, v := range value {
-		if strings.HasSuffix(k, "X-PH") {
-			processedHeaders[k] = v
-		} else {
-			updatedKey := k + "X-PH"
-			processedHeaders[updatedKey] = v
-		}
-	}
-
 	extraHeaders.WriteString("{")
-	for k, v := range processedHeaders {
+	for k, v := range value {
 		extraHeaders.WriteString("\"")
 		extraHeaders.WriteString(k)
 		extraHeaders.WriteString("\"")

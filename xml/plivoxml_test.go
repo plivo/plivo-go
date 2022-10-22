@@ -69,7 +69,7 @@ func TestMPCXML(t *testing.T) {
 }
 
 func TestStreamXML(t *testing.T) {
-	assert.Equal(t, "<Response><Stream bidirectional=\"true\" extraHeaders=\"{&#34;abX-PH&#34;:&#34;cd&#34;}\">wss://test.url</Stream></Response>", ResponseElement{
+	assert.Equal(t, "<Response><Stream bidirectional=\"true\" extraHeaders=\"{&#34;ab&#34;:&#34;cd&#34;}\">wss://test.url</Stream></Response>", ResponseElement{
 		Contents: []interface{}{
 			new(StreamElement).SetBidirectional(true).SetContents("wss://test.url").SetExtraHeaders(map[string]string{"ab": "cd"}),
 		},
