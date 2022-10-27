@@ -18,6 +18,18 @@ type BrandCreationResponse struct {
 	Message string `json:"message,omitempty"`
 }
 
+type BrandUsecaseResponse struct {
+	ApiID     string     `json:"api_id,omitempty"`
+	Usecases  []Usecase  `json:"use_cases"`
+	BrandID   string     `json:"brand_id"`
+}
+
+type Usecase struct {
+	Name      string      `json:"name"`
+	Code      string      `json:"code"`
+	Details   string      `json:"details"`
+}
+
 type BrandListResponse struct {
 	ApiID         string  `json:"api_id,omitempty"`
 	BrandResponse []Brand `json:"brands,omitempty"`
@@ -101,6 +113,16 @@ func (service *BrandService) Create(params BrandCreationParams) (response *Brand
 		return
 	}
 	response = &BrandCreationResponse{}
+	err = service.client.ExecuteRequest(req, response)
+	return
+}
+
+func (service *BrandService) Usecases(brandID string) (response *BrandUsecaseResponse, err error) {
+	req, err := service.client.NewRequest("GET", nil, "10dlc/Brand/%s/usecases", brandID)
+	if err != nil {
+		return
+	}
+	response = &BrandUsecaseResponse{}
 	err = service.client.ExecuteRequest(req, response)
 	return
 }
