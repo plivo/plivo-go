@@ -223,14 +223,14 @@ type CallDTMFResponseBody struct {
 }
 
 type CallStreamParams struct {
-	ServiceUrl          string `json:"service_url,omitempty" url:"service_url,omitempty"`
-	Bidirectional       bool   `json:"bidirectional,omitempty" url:"bidirectional,omitempty"`
-	FileFormat          string `json:"file_format,omitempty" url:"file_format,omitempty"`
-	TranscriptionType   string `json:"transcription_type,omitempty" url:"transcription_type,omitempty"`
-	TranscriptionURL    string `json:"transcription_url,omitempty" url:"transcription_url,omitempty"`
-	TranscriptionMethod string `json:"transcription_method,omitempty" url:"transcription_method,omitempty"`
-	CallbackURL         string `json:"callback_url,omitempty" url:"callback_url,omitempty"`
-	CallbackMethod      string `json:"callback_method,omitempty" url:"callback_method,omitempty"`
+	ServiceUrl           string `json:"service_url,omitempty" url:"service_url,omitempty"`
+	Bidirectional        bool   `json:"bidirectional,omitempty" url:"bidirectional,omitempty"`
+	AudioTrack           string `json:"audio_track,omitempty" url:"audio_track,omitempty"`
+	StreamTimeout        int64  `json:"stream_timeout,omitempty" url:"stream_timeout,omitempty"`
+	StatusCallbackUrl    string `json:"status_callback_url,omitempty" url:"status_callback_url,omitempty"`
+	StatusCallbackMethod string `json:"status_callback_method,omitempty" url:"status_callback_method,omitempty"`
+	ContentType          string `json:"content_type,omitempty" url:"content_type,omitempty"`
+	ExtraHeaders         string `json:"extra_headers,omitempty" url:"extra_headers,omitempty"`
 }
 
 type CallStreamGetAllObject struct {
