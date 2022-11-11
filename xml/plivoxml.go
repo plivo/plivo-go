@@ -1409,28 +1409,8 @@ func (e StreamElement) SetContentType(value string) StreamElement {
 	return e
 }
 
-func (e StreamElement) SetExtraHeaders(value map[string]string) StreamElement {
-	var extraHeaders strings.Builder
-
-	extraHeaders.WriteString("{")
-	for k, v := range value {
-		extraHeaders.WriteString("\"")
-		extraHeaders.WriteString(k)
-		extraHeaders.WriteString("\"")
-		extraHeaders.WriteString(":")
-		extraHeaders.WriteString("\"")
-		extraHeaders.WriteString(v)
-		extraHeaders.WriteString("\"")
-		extraHeaders.WriteString(", ")
-	}
-	preFinalString := extraHeaders.String()
-	if len(preFinalString) > 0 {
-		preFinalString = preFinalString[:len(preFinalString)-2]
-	}
-	finalString := ""
-	finalString = preFinalString + "}"
-
-	e.ExtraHeaders = &finalString
+func (e StreamElement) SetExtraHeaders(value string) StreamElement {
+	e.ExtraHeaders = &value
 	return e
 }
 
