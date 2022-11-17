@@ -63,6 +63,13 @@ type Brand struct {
 	Address            Address           `json:"address,omitempty"`
 	AuthorizedContact  AuthorizedContact `json:"authorized_contact,omitempty"`
 }
+
+type BrandDeleteResponse struct {
+	ApiID   string `json:"api_id,omitempty"`
+	BrandID string `json:"brand_id,omitempty"`
+	Message string `json:"message,omitempty"`
+}
+
 type BrandListParams struct {
 	Type   *string `json:"type,omitempty"`
 	Status *string `json:"status,omitempty"`
@@ -103,6 +110,16 @@ func (service *BrandService) Get(brandID string) (response *BrandGetResponse, er
 		return
 	}
 	response = &BrandGetResponse{}
+	err = service.client.ExecuteRequest(req, response)
+	return
+}
+
+func (service *BrandService) Delete(brandID string) (response *BrandDeleteResponse, err error) {
+	req, err := service.client.NewRequest("Delete", nil, "10dlc/Brand/%s", brandID)
+	if err != nil {
+		return
+	}
+	response = &BrandDeleteResponse{}
 	err = service.client.ExecuteRequest(req, response)
 	return
 }

@@ -260,3 +260,23 @@ func TestCampaign_NumberUnlink(t *testing.T) {
 
 	assertRequest(t, "DELETE", "10dlc/Campaign/CY5NVUA/Number/9876564598")
 }
+
+func TestCampaign_Delete(t *testing.T) {
+	expectResponse("campaignDeleteResponse.json", 200)
+	CampaignID := "CY5NVUA"
+	assert := require.New(t)
+	campaign, err := client.Campaign.Delete(CampaignID)
+	assert.NotNil(campaign)
+	assert.Nil(err)
+	assert.Equal(CampaignID, campaign.CampaignID)
+	assert.NotEmpty(campaign.ApiID)
+
+	cl := client.httpClient
+	client.httpClient = nil
+	campaign, err = client.Campaign.Delete(CampaignID)
+	assert.NotNil(err)
+	assert.Nil(campaign)
+	client.httpClient = cl
+
+	assertRequest(t, "Delete", "10dlc/Campaign/%s", CampaignID)
+}

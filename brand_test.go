@@ -90,3 +90,23 @@ func TestBrand_Usecase(t *testing.T) {
 
 	assertRequest(t, "GET", "10dlc/Brand/%s/usecases", BrandID)
 }
+
+func TestBrand_Delete(t *testing.T) {
+	expectResponse("brandDeleteResponse.json", 200)
+	BrandID := "BRPXS6E"
+	assert := require.New(t)
+	brand, err := client.Brand.Delete(BrandID)
+	assert.NotNil(brand)
+	assert.Nil(err)
+	assert.Equal(BrandID, brand.BrandID)
+	assert.NotEmpty(brand.ApiID)
+
+	cl := client.httpClient
+	client.httpClient = nil
+	brand, err = client.Brand.Delete(BrandID)
+	assert.NotNil(err)
+	assert.Nil(brand)
+	client.httpClient = cl
+
+	assertRequest(t, "Delete", "10dlc/Brand/%s", BrandID)
+}
