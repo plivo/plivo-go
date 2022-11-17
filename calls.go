@@ -234,8 +234,15 @@ type CallStreamParams struct {
 }
 
 type CallStreamGetAllObject struct {
+	AudioTrack        string `json:"billed_amount" url:"billed_amount"`
+	Bidirectional     string `json:"bidirectional" url:"bidirectional"`
+	BilledAmount      string `json:"billed_amount" url:"billed_amount"`
+	BilledDuration    string `json:"billed_duration" url:"billed_duration"`
 	CallUUID          string `json:"call_uuid" url:"call_uuid"`
+	CreatedAt         string `json:"created_at" url:"created_at"`
 	EndTime           string `json:"end_time" url:"end_time"`
+	PlivoAuthId       string `json:"plivo_auth_id" url:"plivo_auth_id"`
+	ResourceURI       string `json:"resource_uri" url:"resource_uri"`
 	ServiceURL        string `json:"service_url" url:"service_url"`
 	StartTime         string `json:"start_time" url:"start_time"`
 	Status            string `json:"status" url:"status"`
@@ -251,8 +258,15 @@ type CallStreamGetAll struct {
 
 type CallStreamGetSpecific struct {
 	ApiID             string `json:"api_id,omitempty" url:"api_id,omitempty"`
+	AudioTrack        string `json:"billed_amount" url:"billed_amount"`
+	Bidirectional     string `json:"bidirectional" url:"bidirectional"`
+	BilledAmount      string `json:"billed_amount" url:"billed_amount"`
+	BilledDuration    string `json:"billed_duration" url:"billed_duration"`
 	CallUUID          string `json:"call_uuid" url:"call_uuid"`
+	CreatedAt         string `json:"created_at" url:"created_at"`
 	EndTime           string `json:"end_time" url:"end_time"`
+	PlivoAuthId       string `json:"plivo_auth_id" url:"plivo_auth_id"`
+	ResourceURI       string `json:"resource_uri" url:"resource_uri"`
 	ServiceURL        string `json:"service_url" url:"service_url"`
 	StartTime         string `json:"start_time" url:"start_time"`
 	Status            string `json:"status" url:"status"`
