@@ -115,7 +115,7 @@ func (service *BrandService) Get(brandID string) (response *BrandGetResponse, er
 }
 
 func (service *BrandService) Delete(brandID string) (response *BrandDeleteResponse, err error) {
-	req, err := service.client.NewRequest("Delete", nil, "10dlc/Brand/%s", brandID)
+	req, err := service.client.NewRequest("DELETE", nil, "10dlc/Brand/%s", brandID)
 	if err != nil {
 		return
 	}

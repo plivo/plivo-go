@@ -108,5 +108,5 @@ func TestBrand_Delete(t *testing.T) {
 	assert.Nil(brand)
 	client.httpClient = cl
 
-	assertRequest(t, "Delete", "10dlc/Brand/%s", BrandID)
+	assertRequest(t, "DELETE", "10dlc/Brand/%s", BrandID)
 }

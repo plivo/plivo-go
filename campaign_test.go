@@ -278,5 +278,5 @@ func TestCampaign_Delete(t *testing.T) {
 	assert.Nil(campaign)
 	client.httpClient = cl
 
-	assertRequest(t, "Delete", "10dlc/Campaign/%s", CampaignID)
+	assertRequest(t, "DELETE", "10dlc/Campaign/%s", CampaignID)
 }

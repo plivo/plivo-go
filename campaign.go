@@ -170,7 +170,7 @@ func (service *CampaignService) Create(params CampaignCreationParams) (response 
 }
 
 func (service *CampaignService) Delete(campaignID string) (response *CampaignDeleteResponse, err error) {
-	req, err := service.client.NewRequest("Delete", nil, "10dlc/Campaign/%s", campaignID)
+	req, err := service.client.NewRequest("DELETE", nil, "10dlc/Campaign/%s", campaignID)
 	if err != nil {
 		return
 	}
