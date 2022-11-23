@@ -236,7 +236,7 @@ type CallStreamParams struct {
 type CallStreamGetAllObject struct {
 	AudioTrack        string `json:"audio_track" url:"audio_track"`
 	Bidirectional     bool   `json:"bidirectional" url:"bidirectional"`
-	BilledAmount      int64  `json:"billed_amount" url:"billed_amount"`
+	BilledAmount      string `json:"billed_amount" url:"billed_amount"`
 	BilledDuration    int64  `json:"billed_duration" url:"billed_duration"`
 	CallUUID          string `json:"call_uuid" url:"call_uuid"`
 	CreatedAt         string `json:"created_at" url:"created_at"`
