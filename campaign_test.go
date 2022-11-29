@@ -173,11 +173,11 @@ func TestCampaign_Create_WithMoreAttribute(t *testing.T) {
 
 func TestCampaign_Update(t *testing.T) {
 	expectResponse("campaignUpdateResponse.json", 200)
-	CampaignID := "CXNSG9W"
+	campaignID := "CXNSG9W"
 	assert := require.New(t)
 	sample1 := "test1"
 	sample2 := "test2"
-	resp, err := client.Campaign.Update(CampaignUpdateParams{
+	resp, err := client.Campaign.Update(campaignID, CampaignUpdateParams{
 		Sample1: &sample1,
 		Sample2: &sample2,
 	})
@@ -187,7 +187,7 @@ func TestCampaign_Update(t *testing.T) {
 	assert.NotEmpty(resp.Campaign.CampaignID)
 	cl := client.httpClient
 	client.httpClient = nil
-	resp, err = client.Campaign.Update(CampaignUpdateParams{
+	resp, err = client.Campaign.Update(campaignID, CampaignUpdateParams{
 		Sample1: &sample1,
 		Sample2: &sample2,
 	})
@@ -195,7 +195,7 @@ func TestCampaign_Update(t *testing.T) {
 	assert.Nil(resp)
 	client.httpClient = cl
 
-	assertRequest(t, "PUT", "10dlc/Campaign/%s", CampaignID)
+	assertRequest(t, "PUT", "10dlc/Campaign/%s", campaignID)
 }
 
 func TestCampaign_NumberLink(t *testing.T) {

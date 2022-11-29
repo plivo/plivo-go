@@ -177,9 +177,9 @@ func (service *CampaignService) Create(params CampaignCreationParams) (response 
 	return
 }
 
-func (service *CampaignService) Update(params CampaignUpdateParams) (response *CampaignGetResponse, err error) {
+func (service *CampaignService) Update(campaignID string, params CampaignUpdateParams) (response *CampaignGetResponse, err error) {
 	// response needs to be same as CampaignGetResponse
-	req, err := service.client.NewRequest("POST", params, "10dlc/Campaign")
+	req, err := service.client.NewRequest("PUT", params, "10dlc/Campaign/%s", campaignID)
 	if err != nil {
 		return
 	}
