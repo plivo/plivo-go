@@ -195,7 +195,7 @@ func TestCampaign_Update(t *testing.T) {
 	assert.Nil(resp)
 	client.httpClient = cl
 
-	assertRequest(t, "PUT", "10dlc/Campaign/%s", campaignID)
+	assertRequest(t, "POST", "10dlc/Campaign/%s", campaignID)
 }
 
 func TestCampaign_NumberLink(t *testing.T) {
