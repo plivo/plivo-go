@@ -62,6 +62,12 @@ type CampaignCreateResponse struct {
 	Message    string `json:"message,omitempty"`
 }
 
+type CampaignDeleteResponse struct {
+	ApiID              string  `json:"api_id"`
+	CampaignID         string  `json:"campaign_id,omitempty"`
+	Message    		   string  `json:"message,omitempty"`
+}
+
 type Campaign struct {
 	BrandID             string             `json:"brand_id,omitempty"`
 	CampaignID          string             `json:"campaign_id,omitempty"`
@@ -177,6 +183,7 @@ func (service *CampaignService) Create(params CampaignCreationParams) (response 
 	return
 }
 
+
 func (service *CampaignService) Update(campaignID string, params CampaignUpdateParams) (response *CampaignGetResponse, err error) {
 	// response needs to be same as CampaignGetResponse
 	req, err := service.client.NewRequest("POST", params, "10dlc/Campaign/%s", campaignID)
@@ -184,6 +191,14 @@ func (service *CampaignService) Update(campaignID string, params CampaignUpdateP
 		return
 	}
 	response = &CampaignGetResponse{}
+
+
+func (service *CampaignService) Delete(campaignID string) (response *CampaignDeleteResponse, err error) {
+	req, err := service.client.NewRequest("DELETE", nil, "10dlc/Campaign/%s", campaignID)
+	if err != nil {
+		return
+	}
+	response = &CampaignDeleteResponse{}
 	err = service.client.ExecuteRequest(req, response)
 	return
 }
