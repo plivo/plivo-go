@@ -191,7 +191,9 @@ func (service *CampaignService) Update(campaignID string, params CampaignUpdateP
 		return
 	}
 	response = &CampaignGetResponse{}
-
+	err = service.client.ExecuteRequest(req, response)
+	return
+}
 
 func (service *CampaignService) Delete(campaignID string) (response *CampaignDeleteResponse, err error) {
 	req, err := service.client.NewRequest("DELETE", nil, "10dlc/Campaign/%s", campaignID)
