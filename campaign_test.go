@@ -178,8 +178,8 @@ func TestCampaign_Update(t *testing.T) {
 	sample1 := "test1"
 	sample2 := "test2"
 	resp, err := client.Campaign.Update(campaignID, CampaignUpdateParams{
-		Sample1: &sample1,
-		Sample2: &sample2,
+		Sample1: sample1,
+		Sample2: sample2,
 	})
 	assert.NotNil(resp)
 	assert.Nil(err)
@@ -188,8 +188,8 @@ func TestCampaign_Update(t *testing.T) {
 	cl := client.httpClient
 	client.httpClient = nil
 	resp, err = client.Campaign.Update(campaignID, CampaignUpdateParams{
-		Sample1: &sample1,
-		Sample2: &sample2,
+		Sample1: sample1,
+		Sample2: sample2,
 	})
 	assert.NotNil(err)
 	assert.Nil(resp)
