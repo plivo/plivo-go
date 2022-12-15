@@ -35,8 +35,8 @@ type CampaignCreationParams struct {
 type CampaignUpdateParams struct {
 	ResellerID     string  `json:" reseller_id,omitempty" url:" reseller_id,omitempty"`
 	Description    string  `json:"description,omitempty" url:"description,omitempty"`
-	Sample1        *string `json:"sample1" url:"sample1"`
-	Sample2        *string `json:"sample2,omitempty" url:"sample2,omitempty"`
+	Sample1        string `json:"sample1" url:"sample1"`
+	Sample2        string `json:"sample2,omitempty" url:"sample2,omitempty"`
 	MessageFlow    string  `json:"message_flow,omitempty" url:"message_flow"`
 	HelpMessage    string  `json:"help_message,omitempty" url:"help_message"`
 	OptinKeywords  string  `json:"optin_keywords,omitempty" url:"optin_keywords"`
