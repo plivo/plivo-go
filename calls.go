@@ -234,20 +234,21 @@ type CallStreamParams struct {
 }
 
 type CallStreamGetAllObject struct {
-	AudioTrack        string `json:"audio_track" url:"audio_track"`
-	Bidirectional     bool   `json:"bidirectional" url:"bidirectional"`
-	BilledAmount      string `json:"billed_amount" url:"billed_amount"`
-	BilledDuration    int64  `json:"billed_duration" url:"billed_duration"`
-	CallUUID          string `json:"call_uuid" url:"call_uuid"`
-	CreatedAt         string `json:"created_at" url:"created_at"`
-	EndTime           string `json:"end_time" url:"end_time"`
-	PlivoAuthId       string `json:"plivo_auth_id" url:"plivo_auth_id"`
-	ResourceURI       string `json:"resource_uri" url:"resource_uri"`
-	ServiceURL        string `json:"service_url" url:"service_url"`
-	StartTime         string `json:"start_time" url:"start_time"`
-	Status            string `json:"status" url:"status"`
-	StatusCallbackURL string `json:"status_callback_url" url:"status_callback_url"`
-	StreamID          string `json:"stream_id" url:"stream_id"`
+	AudioTrack          string `json:"audio_track" url:"audio_track"`
+	Bidirectional       bool   `json:"bidirectional" url:"bidirectional"`
+	BilledAmount        string `json:"billed_amount" url:"billed_amount"`
+	BillDuration        int64  `json:"bill_duration" url:"bill_duration"`
+	CallUUID            string `json:"call_uuid" url:"call_uuid"`
+	CreatedAt           string `json:"created_at" url:"created_at"`
+	EndTime             string `json:"end_time" url:"end_time"`
+	PlivoAuthId         string `json:"plivo_auth_id" url:"plivo_auth_id"`
+	ResourceURI         string `json:"resource_uri" url:"resource_uri"`
+	RoundedBillDuration string `json:"rounded_bill_duration" url:"rounded_bill_duration"`
+	ServiceURL          string `json:"service_url" url:"service_url"`
+	StartTime           string `json:"start_time" url:"start_time"`
+	Status              string `json:"status" url:"status"`
+	StatusCallbackURL   string `json:"status_callback_url" url:"status_callback_url"`
+	StreamID            string `json:"stream_id" url:"stream_id"`
 }
 
 type CallStreamGetAll struct {
@@ -257,21 +258,22 @@ type CallStreamGetAll struct {
 }
 
 type CallStreamGetSpecific struct {
-	ApiID             string `json:"api_id,omitempty" url:"api_id,omitempty"`
-	AudioTrack        string `json:"audio_track" url:"audio_track"`
-	Bidirectional     bool   `json:"bidirectional" url:"bidirectional"`
-	BilledAmount      string `json:"billed_amount" url:"billed_amount"`
-	BilledDuration    int64  `json:"billed_duration" url:"billed_duration"`
-	CallUUID          string `json:"call_uuid" url:"call_uuid"`
-	CreatedAt         string `json:"created_at" url:"created_at"`
-	EndTime           string `json:"end_time" url:"end_time"`
-	PlivoAuthId       string `json:"plivo_auth_id" url:"plivo_auth_id"`
-	ResourceURI       string `json:"resource_uri" url:"resource_uri"`
-	ServiceURL        string `json:"service_url" url:"service_url"`
-	StartTime         string `json:"start_time" url:"start_time"`
-	Status            string `json:"status" url:"status"`
-	StatusCallbackURL string `json:"status_callback_url" url:"status_callback_url"`
-	StreamID          string `json:"stream_id" url:"stream_id"`
+	ApiID               string `json:"api_id,omitempty" url:"api_id,omitempty"`
+	AudioTrack          string `json:"audio_track" url:"audio_track"`
+	Bidirectional       bool   `json:"bidirectional" url:"bidirectional"`
+	BilledAmount        string `json:"billed_amount" url:"billed_amount"`
+	BillDuration        int64  `json:"bill_duration" url:"bill_duration"`
+	CallUUID            string `json:"call_uuid" url:"call_uuid"`
+	CreatedAt           string `json:"created_at" url:"created_at"`
+	EndTime             string `json:"end_time" url:"end_time"`
+	PlivoAuthId         string `json:"plivo_auth_id" url:"plivo_auth_id"`
+	ResourceURI         string `json:"resource_uri" url:"resource_uri"`
+	RoundedBillDuration string `json:"rounded_bill_duration" url:"rounded_bill_duration"`
+	ServiceURL          string `json:"service_url" url:"service_url"`
+	StartTime           string `json:"start_time" url:"start_time"`
+	Status              string `json:"status" url:"status"`
+	StatusCallbackURL   string `json:"status_callback_url" url:"status_callback_url"`
+	StreamID            string `json:"stream_id" url:"stream_id"`
 }
 
 func (service *CallService) List(params CallListParams) (response *CallListResponse, err error) {
