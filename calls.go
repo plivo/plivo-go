@@ -216,6 +216,35 @@ type CallDTMFResponseBody struct {
 	ApiID   string `json:"api_id,omitempty" url:"api_id,omitempty"`
 }
 
+type CreateMaskingSessionParams struct {
+	FirstParty              string `json:"first_party,omitempty" url:"first_party,omitempty"`
+	SecondParty             string `json:"second_party,omitempty" url:"second_party,omitempty"`
+	CallMe                  bool   `json:"call_me,omitempty" url:"call_me,omitempty"`
+	PowerPackUUID           string `json:"powerpack_uuid,omitempty" url:"powerpack_uuid,omitempty"`
+	CallbackUrl             string `json:"callback_url,omitempty" url:"callback_url,omitempty"`
+	SessionExpiry           int    `json:"session_expiry" url:"session_expiry,omitempty"`
+	CallTimeLimit           int    `json:"call_time_limit,omitempty" url:"call_time_limit,omitempty"`
+	RingTimeout             int    `json:"ring_timeout,omitempty" url:"ring_timeout,omitempty"`
+	FirstPlayUrl            string `json:"first_play_url,omitempty" url:"first_play_url,omitempty"`
+	SecondPlayUrl           string `json:"second_play_url,omitempty" url:"second_play_url,omitempty"`
+	Record                  bool   `json:"record,omitempty" url:"record,omitempty"`
+	RecordFileFormat        string `json:"record_file_format,omitempty" url:"record_file_format,omitempty"`
+	RecordingCallbackUrl    string `json:"recording_callback_url,omitempty" url:"recording_callback_url,omitempty"`
+	RecordingCallbackMethod string `json:"recording_callback_method,omitempty" url:"recording_callback_method,omitempty"`
+}
+
+type CreateMaskingSessionResponse struct {
+	ApiID         string `json:"api_id,omitempty" url:"api_id,omitempty"`
+	SessionUUID   string `json:"session_uuid,omitempty" url:"session_uuid,omitempty"`
+	VirtualNumber string `json:"virtual_number,omitempty" url:"virtual_number,omitempty"`
+	Message       string `json:"message,omitempty" url:"message,omitempty"`
+}
+
+type DeleteMaskingSessionResponse struct {
+	ApiID   string `json:"api_id,omitempty" url:"api_id,omitempty"`
+	Message string `json:"message,omitempty" url:"message,omitempty"`
+}
+
 func (service *CallService) List(params CallListParams) (response *CallListResponse, err error) {
 	req, err := service.client.NewRequest("GET", params, "Call")
 	if err != nil {
@@ -389,5 +418,25 @@ func (service *CallService) CancelRequest(requestId string) (err error) {
 		return
 	}
 	err = service.client.ExecuteRequest(req, nil, isVoiceRequest())
+	return
+}
+
+func (service *CallService) CreateMaskingSession(params CreateMaskingSessionParams) (response *CreateMaskingSessionResponse, err error) {
+	req, err := service.client.NewRequest("POST", params, "Session")
+	if err != nil {
+		return
+	}
+	response = &CreateMaskingSessionResponse{}
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
+	return
+}
+
+func (service *CallService) DeleteMaskingSession(sessionId string) (response *DeleteMaskingSessionResponse, err error) {
+	req, err := service.client.NewRequest("DELETE", nil, "Session/%s", sessionId)
+	if err != nil {
+		return
+	}
+	response = &DeleteMaskingSessionResponse{}
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }

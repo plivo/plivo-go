@@ -1,4 +1,8 @@
 # Change Log
+## [7.16.0](https://github.com/plivo/plivo-go/tree/v7.16.0) (2023-01-09)
+**Feature - Number Masking**
+- Added Create and Delete Masking Session API
+
 ## [7.15.0](https://github.com/plivo/plivo-go/tree/v7.15.0) (2022-12-06)
 **Feature - Delete campaign and brand API**
 - Added Delete campaign and brand API

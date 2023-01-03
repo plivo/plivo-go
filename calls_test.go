@@ -306,3 +306,42 @@ func TestCallService_CancelRequest(t *testing.T) {
 
 	assertRequest(t, "DELETE", "Request/%s", RequestID)
 }
+
+func TestCallService_CreateMaskingSession(t *testing.T) {
+	expectResponse("createMaskingSessionResponse.json", 200)
+
+	if _, err := client.Calls.CreateMaskingSession(CreateMaskingSessionParams{}); err != nil {
+		panic(err)
+	}
+
+	cl := client.httpClient
+	client.httpClient = nil
+	_, err := client.Calls.CreateMaskingSession(CreateMaskingSessionParams{})
+	if err == nil {
+		client.httpClient = cl
+		panic(errors.New("error expected"))
+	}
+	client.httpClient = cl
+
+	assertRequest(t, "POST", "Session")
+}
+
+func TestCallService_DeleteMaskingSession(t *testing.T) {
+	expectResponse("deleteMaskingSessionResponse.json", 204)
+	SessionUuid := "15e4256c-be01-475c-9a69-95cf65bbed71"
+
+	if _, err := client.Calls.DeleteMaskingSession(SessionUuid); err != nil {
+		panic(err)
+	}
+
+	cl := client.httpClient
+	client.httpClient = nil
+	_, err := client.Calls.DeleteMaskingSession(SessionUuid)
+	if err == nil {
+		client.httpClient = cl
+		panic(errors.New("error expected"))
+	}
+	client.httpClient = cl
+
+	assertRequest(t, "DELETE", "Session/%s", SessionUuid)
+}
