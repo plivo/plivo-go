@@ -13,6 +13,8 @@ func TestMessageService_List(t *testing.T) {
 	assert.NotNil(resp)
 	assert.Nil(err)
 	assert.NotEmpty(resp.Objects[0].MessageUUID)
+	assert.Equal(resp.Objects[0].RequesterIP, "192.168.1.1")
+	assert.Equal(resp.Objects[19].RequesterIP, "192.168.1.20")
 	assert.NotNil(resp.Objects)
 	assert.NotNil(resp.Meta)
 	cl := client.httpClient
@@ -32,6 +34,7 @@ func TestMessageService_Get(t *testing.T) {
 	assert.NotNil(resp)
 	assert.Nil(err)
 	assert.Equal(resp.MessageUUID, uuid)
+	assert.Equal(resp.RequesterIP, "192.168.1.1")
 	cl := client.httpClient
 	client.httpClient = nil
 	resp, err = client.Messages.Get(uuid)
