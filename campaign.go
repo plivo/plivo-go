@@ -32,6 +32,20 @@ type CampaignCreationParams struct {
 	HelpKeywords       string    `json:"help_keywords,omitempty" url:"help_keywords"`
 }
 
+type CampaignUpdateParams struct {
+	ResellerID     string  `json:" reseller_id,omitempty" url:" reseller_id,omitempty"`
+	Description    string  `json:"description,omitempty" url:"description,omitempty"`
+	Sample1        string `json:"sample1" url:"sample1"`
+	Sample2        string `json:"sample2,omitempty" url:"sample2,omitempty"`
+	MessageFlow    string  `json:"message_flow,omitempty" url:"message_flow"`
+	HelpMessage    string  `json:"help_message,omitempty" url:"help_message"`
+	OptinKeywords  string  `json:"optin_keywords,omitempty" url:"optin_keywords"`
+	OptinMessage   string  `json:"optin_message,omitempty" url:"optin_message"`
+	OptoutKeywords string  `json:"optout_keywords,omitempty" url:"optout_keywords"`
+	OptoutMessage  string  `json:"optout_message,omitempty" url:"optout_message"`
+	HelpKeywords   string  `json:"help_keywords,omitempty" url:"help_keywords"`
+}
+
 type CampaignListResponse struct {
 	ApiID            string     `json:"api_id,omitempty"`
 	CampaignResponse []Campaign `json:"campaigns,omitempty"`
@@ -48,36 +62,42 @@ type CampaignCreateResponse struct {
 	Message    string `json:"message,omitempty"`
 }
 
-type Campaign struct {
-	BrandID            string      `json:"brand_id,omitempty"`
-	CampaignID         string      `json:"campaign_id,omitempty"`
-	MnoMetadata        MnoMetadata `json:"mno_metadata,omitempty"`
-	ResellerID         string      `json:"reseller_id,omitempty"`
-	Usecase            string      `json:"usecase,omitempty"`
-	SubUsecase         string      `json:"sub_usecase,omitempty"`
-	RegistrationStatus string      `json:"registration_status,omitempty"`
-	MessageFlow        string      `json:"message_flow,omitempty"`
-	HelpMessage        string      `json:"help_message,omitempty"`
-	OptinKeywords      string      `json:"optin_keywords,omitempty"`
-	OptinMessage       string      `json:"optin_message,omitempty"`
-	OptoutKeywords     string      `json:"optout_keywords,omitempty"`
-	OptoutMessage      string      `json:"optout_message,omitempty"`
-	HelpKeywords       string      `json:"help_keywords,omitempty"`
-	SampleMessage1     		   string      `json:"sample1,omitempty"`
-	SampleMessage2     		   string      `json:"sample2,omitempty"`
-	CampaignDescription		   string      `json:"description,omitempty"`
-	CampaignAttributes CampaignAttributes  `json:"campaign_attributes,omitempty"`
+type CampaignDeleteResponse struct {
+	ApiID              string  `json:"api_id"`
+	CampaignID         string  `json:"campaign_id,omitempty"`
+	Message    		   string  `json:"message,omitempty"`
 }
 
-type CampaignAttributes struct{
-	EmbeddedLink       		   bool        `json:"embedded_link"`
-	EmbeddedPhone      		   bool        `json:"embedded_phone"`
-	AgeGated           		   bool        `json:"age_gated"`
-	DirectLending      		   bool        `json:"direct_lending"`
-	SubscriberOptin    		   bool        `json:"subscriber_optin"`
-	SubscriberOptout   		   bool        `json:"subscriber_optout"`
-	SubscriberHelp     		   bool        `json:"subscriber_help"`
-	AffiliateMarketing 		   bool        `json:"affiliate_marketing"`
+type Campaign struct {
+	BrandID             string             `json:"brand_id,omitempty"`
+	CampaignID          string             `json:"campaign_id,omitempty"`
+	MnoMetadata         MnoMetadata        `json:"mno_metadata,omitempty"`
+	ResellerID          string             `json:"reseller_id,omitempty"`
+	Usecase             string             `json:"usecase,omitempty"`
+	SubUsecase          string             `json:"sub_usecase,omitempty"`
+	RegistrationStatus  string             `json:"registration_status,omitempty"`
+	MessageFlow         string             `json:"message_flow,omitempty"`
+	HelpMessage         string             `json:"help_message,omitempty"`
+	OptinKeywords       string             `json:"optin_keywords,omitempty"`
+	OptinMessage        string             `json:"optin_message,omitempty"`
+	OptoutKeywords      string             `json:"optout_keywords,omitempty"`
+	OptoutMessage       string             `json:"optout_message,omitempty"`
+	HelpKeywords        string             `json:"help_keywords,omitempty"`
+	SampleMessage1      string             `json:"sample1,omitempty"`
+	SampleMessage2      string             `json:"sample2,omitempty"`
+	CampaignDescription string             `json:"description,omitempty"`
+	CampaignAttributes  CampaignAttributes `json:"campaign_attributes,omitempty"`
+}
+
+type CampaignAttributes struct {
+	EmbeddedLink       bool `json:"embedded_link"`
+	EmbeddedPhone      bool `json:"embedded_phone"`
+	AgeGated           bool `json:"age_gated"`
+	DirectLending      bool `json:"direct_lending"`
+	SubscriberOptin    bool `json:"subscriber_optin"`
+	SubscriberOptout   bool `json:"subscriber_optout"`
+	SubscriberHelp     bool `json:"subscriber_help"`
+	AffiliateMarketing bool `json:"affiliate_marketing"`
 }
 
 type MnoMetadata struct {
@@ -119,13 +139,13 @@ type CampaignNumberLinkUnlinkResponse struct {
 }
 
 type CampaignNumberGetResponse struct {
-	ApiID           string           `json:"api_id"`
-	CampaignID      string           `json:"campaign_id"`
-	CampaignAlias   string           `json:"campaign_alias"`
-	CampaignUseCase string           `json:"usecase"`
-	CampaignNumbers []CampaignNumber `json:"phone_numbers"`
+	ApiID                 string           `json:"api_id"`
+	CampaignID            string           `json:"campaign_id"`
+	CampaignAlias         string           `json:"campaign_alias"`
+	CampaignUseCase       string           `json:"usecase"`
+	CampaignNumbers       []CampaignNumber `json:"phone_numbers"`
 	CampaignNumberSummary map[string]int   `json:"phone_numbers_summary,omitempty"`
-	NumberPoolLimit int					   `json:"number_pool_limit,omitempty"`
+	NumberPoolLimit       int              `json:"number_pool_limit,omitempty"`
 }
 
 type CampaignNumber struct {
@@ -159,6 +179,28 @@ func (service *CampaignService) Create(params CampaignCreationParams) (response 
 		return
 	}
 	response = &CampaignCreateResponse{}
+	err = service.client.ExecuteRequest(req, response)
+	return
+}
+
+
+func (service *CampaignService) Update(campaignID string, params CampaignUpdateParams) (response *CampaignGetResponse, err error) {
+	// response needs to be same as CampaignGetResponse
+	req, err := service.client.NewRequest("POST", params, "10dlc/Campaign/%s", campaignID)
+	if err != nil {
+		return
+	}
+	response = &CampaignGetResponse{}
+	err = service.client.ExecuteRequest(req, response)
+	return
+}
+
+func (service *CampaignService) Delete(campaignID string) (response *CampaignDeleteResponse, err error) {
+	req, err := service.client.NewRequest("DELETE", nil, "10dlc/Campaign/%s", campaignID)
+	if err != nil {
+		return
+	}
+	response = &CampaignDeleteResponse{}
 	err = service.client.ExecuteRequest(req, response)
 	return
 }
