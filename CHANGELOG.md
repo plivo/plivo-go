@@ -1,6 +1,6 @@
 # Change Log
 
-## [7.17.0](https://github.com/plivo/plivo-go/tree/v7.17.0) (2023-01-18)
+## [7.17.1](https://github.com/plivo/plivo-go/tree/v7.17.1) (2023-01-18)
 **Feature - Adding new param 'message_expiry' in Send Message API**
 -  Added new param 'message_expiry' in Send Message API 
 
