@@ -24,6 +24,7 @@ type MessageCreateParams struct {
 	MediaIds  []string    `json:"media_ids,omitempty" url:"media_ids,omitempty"`
 	// Either one of src and powerpackuuid should be given
 	PowerpackUUID string `json:"powerpack_uuid,omitempty" url:"powerpack_uuid,omitempty"`
+	MessageExpiry int    `json:"message_expiry,omitempty" url:"message_expiry,omitempty"`
 }
 
 type Message struct {
