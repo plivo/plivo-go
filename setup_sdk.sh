@@ -45,7 +45,7 @@ if [ ! -f $testDir/go.mod ]; then
     go mod edit -replace github.com/plivo/plivo-go=/usr/src/app
     go mod tidy
 else 
-    echo "packages has setup:: at $testDir"
+    echo "package has been setup at $testDir"
 fi
 
 echo -e "\n\nSDK setup complete!"
