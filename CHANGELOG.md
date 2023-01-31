@@ -1,5 +1,9 @@
 # Change Log
 
+## [7.18.0](https://github.com/plivo/plivo-go/tree/v7.18.0) (2023-01-25)
+**Feature - Added New Param 'requester_ip' in Get Message and List Mssage APIs**
+- Add `requester_ip` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+
 ## [7.17.1](https://github.com/plivo/plivo-go/tree/v7.17.1) (2023-01-18)
 **Feature - Adding new param 'message_expiry' in Send Message API**
 -  Added new param 'message_expiry' in Send Message API 
