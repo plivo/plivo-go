@@ -114,7 +114,7 @@ func (client *BaseClient) ExecuteRequest(request *http.Request, body interface{}
 		}
 
 		if _, ok := extra[0]["is_lookup_request"]; ok {
-			if request.URL.Host == "api-voice.non-prod.plivops.com" { // hack for unit tests
+			if request.URL.Host == "api.plivo.com" { // hack for unit tests
 				request.URL.Host = lookupBaseUrl
 				request.Host = lookupBaseUrl
 				request.URL.Scheme = HttpsScheme

@@ -9,12 +9,12 @@ import (
 	"time"
 )
 
-const baseUrlString = "https://api-voice.non-prod.plivops.com/"
+const baseUrlString = "https://api.plivo.com/"
 
 var HttpsScheme = "https"
-var voiceBaseUrlString = "api-voice.non-prod.plivops.com"
-var voiceBaseUrlStringFallback1 = "api-voice.non-prod.plivops.com"
-var voiceBaseUrlStringFallback2 = "api-voice.non-prod.plivops.com"
+var voiceBaseUrlString = "api.plivo.com"
+var voiceBaseUrlStringFallback1 = "api.plivo.com"
+var voiceBaseUrlStringFallback2 = "api.plivo.comm"
 
 const baseRequestString = "/v1/Account/%s/"
 
