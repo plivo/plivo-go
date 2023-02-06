@@ -14,7 +14,7 @@ const baseUrlString = "https://api.plivo.com/"
 var HttpsScheme = "https"
 var voiceBaseUrlString = "api.plivo.com"
 var voiceBaseUrlStringFallback1 = "api.plivo.com"
-var voiceBaseUrlStringFallback2 = "api.plivo.comm"
+var voiceBaseUrlStringFallback2 = "api.plivo.com"
 
 const baseRequestString = "/v1/Account/%s/"
 
