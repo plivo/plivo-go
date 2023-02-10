@@ -171,6 +171,33 @@ func TestCampaign_Create_WithMoreAttribute(t *testing.T) {
 	assertRequest(t, "POST", "10dlc/Campaign")
 }
 
+func TestCampaign_Update(t *testing.T) {
+	expectResponse("campaignUpdateResponse.json", 200)
+	campaignID := "CXNSG9W"
+	assert := require.New(t)
+	sample1 := "test1"
+	sample2 := "test2"
+	resp, err := client.Campaign.Update(campaignID, CampaignUpdateParams{
+		Sample1: sample1,
+		Sample2: sample2,
+	})
+	assert.NotNil(resp)
+	assert.Nil(err)
+	assert.NotEmpty(resp.ApiID)
+	assert.NotEmpty(resp.Campaign.CampaignID)
+	cl := client.httpClient
+	client.httpClient = nil
+	resp, err = client.Campaign.Update(campaignID, CampaignUpdateParams{
+		Sample1: sample1,
+		Sample2: sample2,
+	})
+	assert.NotNil(err)
+	assert.Nil(resp)
+	client.httpClient = cl
+
+	assertRequest(t, "POST", "10dlc/Campaign/%s", campaignID)
+}
+
 func TestCampaign_NumberLink(t *testing.T) {
 	expectResponse("campaignNumberLinkUnlinkResponse.json", 200)
 	assert := require.New(t)
@@ -259,4 +286,24 @@ func TestCampaign_NumberUnlink(t *testing.T) {
 	client.httpClient = cl
 
 	assertRequest(t, "DELETE", "10dlc/Campaign/CY5NVUA/Number/9876564598")
+}
+
+func TestCampaign_Delete(t *testing.T) {
+	expectResponse("campaignDeleteResponse.json", 200)
+	CampaignID := "CY5NVUA"
+	assert := require.New(t)
+	campaign, err := client.Campaign.Delete(CampaignID)
+	assert.NotNil(campaign)
+	assert.Nil(err)
+	assert.Equal(CampaignID, campaign.CampaignID)
+	assert.NotEmpty(campaign.ApiID)
+
+	cl := client.httpClient
+	client.httpClient = nil
+	campaign, err = client.Campaign.Delete(CampaignID)
+	assert.NotNil(err)
+	assert.Nil(campaign)
+	client.httpClient = cl
+
+	assertRequest(t, "DELETE", "10dlc/Campaign/%s", CampaignID)
 }
