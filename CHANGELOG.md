@@ -1,5 +1,9 @@
 # Change Log
 
+## [7.19.0](https://github.com/plivo/plivo-go/tree/v7.19.0) (2023-02-16)
+**Feature - MPC AddParticipant API**
+- Added two new param - agent_hold_music and customer_hold_music in AddParticipant API
+
 ## [7.18.0](https://github.com/plivo/plivo-go/tree/v7.18.0) (2023-01-25)
 **Feature - Added New Param 'requester_ip' in Get Message and List Mssage APIs**
 - Add `requester_ip` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
