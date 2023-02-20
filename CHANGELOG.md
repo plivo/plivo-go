@@ -1,5 +1,9 @@
 # Change Log
 
+## [7.20.0](https://github.com/plivo/plivo-go/tree/v7.20.0) (2023-02-20)
+**Feature - MPC API**
+- Added support for agent_hold_nusic and customer_hold_music in the XML generation
+
 ## [7.19.0](https://github.com/plivo/plivo-go/tree/v7.19.0) (2023-02-16)
 **Feature - MPC AddParticipant API**
 - Added two new param - agent_hold_music and customer_hold_music in AddParticipant API
