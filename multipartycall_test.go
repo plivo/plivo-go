@@ -193,3 +193,24 @@ func TestMPCService_StopPlayAudio(t *testing.T) {
 	}
 	assertRequest(t, "DELETE", "MultiPartyCall/%s/Member/%s/Play", "uuid_ebacced2-21ab-466d-9df4-67339991761b", "209")
 }
+
+func TestMultiPartyCallService_StartSpeak(t *testing.T) {
+	expectResponse("MPCStartSpeakResponse.json", 202)
+
+	if response, err := client.MultiPartyCall.StartSpeak(MultiPartyCallParticipantParams{FriendlyName: "MyMPC", ParticipantId: "209"}, MultiPartyCallSpeakParams{Text: "Hello", Language: "en-UK", Voice: "WOMAN", Mix: false}); err != nil {
+		panic(err)
+	} else {
+		log.Println(response)
+	}
+
+	assertRequest(t, "POST", "MultiPartyCall/%s/Member/%s/Speak", "name_MyMPC", "209")
+}
+
+func TestMultiPartyCallService_StopSpeak(t *testing.T) {
+	expectResponse("", 204)
+
+	if err := client.MultiPartyCall.StopSpeak(MultiPartyCallParticipantParams{FriendlyName: "MyMPC", ParticipantId: "209"}); err != nil {
+		panic(err)
+	}
+	assertRequest(t, "DELETE", "MultiPartyCall/%s/Member/%s/Speak", "name_MyMPC", "209")
+}

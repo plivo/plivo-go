@@ -1,5 +1,9 @@
 # Change Log
 
+## [7.21.0](https://github.com/plivo/plivo-go/tree/v7.21.0) (2023-02-21)
+**Feature - MPC Speak API**
+- Added functionality to start and stop Speak in an MPC
+
 ## [7.20.0](https://github.com/plivo/plivo-go/tree/v7.20.0) (2023-02-20)
 **Feature - MPC API**
 - Added support for agent_hold_nusic and customer_hold_music in the XML generation
