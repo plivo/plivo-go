@@ -1,4 +1,25 @@
 # Change Log
+
+## [7.21.0](https://github.com/plivo/plivo-go/tree/v7.21.0) (2023-02-21)
+**Feature - MPC Speak API**
+- Added functionality to start and stop Speak in an MPC
+
+## [7.20.0](https://github.com/plivo/plivo-go/tree/v7.20.0) (2023-02-20)
+**Feature - MPC API**
+- Added support for agent_hold_nusic and customer_hold_music in the XML generation
+
+## [7.19.0](https://github.com/plivo/plivo-go/tree/v7.19.0) (2023-02-16)
+**Feature - MPC AddParticipant API**
+- Added two new param - agent_hold_music and customer_hold_music in AddParticipant API
+
+## [7.18.0](https://github.com/plivo/plivo-go/tree/v7.18.0) (2023-01-25)
+**Feature - Added New Param 'requester_ip' in Get Message and List Mssage APIs**
+- Add `requester_ip` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+
+## [7.17.1](https://github.com/plivo/plivo-go/tree/v7.17.1) (2023-01-18)
+**Feature - Adding new param 'message_expiry' in Send Message API**
+-  Added new param 'message_expiry' in Send Message API 
+
 ## [7.16.0](https://github.com/plivo/plivo-go/tree/v7.16.0) (2022-12-16)
 **Feature - Update campaign**
 - Update campaign API

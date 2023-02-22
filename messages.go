@@ -24,6 +24,7 @@ type MessageCreateParams struct {
 	MediaIds  []string    `json:"media_ids,omitempty" url:"media_ids,omitempty"`
 	// Either one of src and powerpackuuid should be given
 	PowerpackUUID string `json:"powerpack_uuid,omitempty" url:"powerpack_uuid,omitempty"`
+	MessageExpiry int    `json:"message_expiry,omitempty" url:"message_expiry,omitempty"`
 }
 
 type Message struct {
@@ -40,6 +41,7 @@ type Message struct {
 	MessageTime              string `json:"message_time,omitempty" url:"message_time,omitempty"`
 	ErrorCode                string `json:"error_code,omitempty" url:"error_code,omitempty"`
 	PowerpackID              string `json:"powerpack_id,omitempty" url:"powerpack_id,omitempty"`
+  RequesterIP      string `json:"requester_ip,omitempty" url:"requester_ip,omitempty"`
 	TendlcCampaignID         string `json:"tendlc_campaign_id" url:"tendlc_campaign_id,omitempty"`
 	TendlcRegistrationStatus string `json:"tendlc_registration_status" url:"tendlc_registration_status,omitempty"`
 	DestinationCountryISO2   string `json:"destination_country_iso2" url:"destination_country_iso2,omitempty"`
