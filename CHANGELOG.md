@@ -1,4 +1,7 @@
 # Change Log
+## [7.22.0](https://github.com/plivo/plivo-go/tree/v7.22.0) (2023-02-23)
+**Feature - Enhance MDR filtering capabilities **
+- Added new fields on MDR object response
 
 ## [7.21.0](https://github.com/plivo/plivo-go/tree/v7.21.0) (2023-02-21)
 **Feature - MPC Speak API**
