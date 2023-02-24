@@ -7,6 +7,8 @@ type RecordingService struct {
 type Recording struct {
 	AddTime             string `json:"add_time,omitempty" url:"add_time,omitempty"`
 	CallUUID            string `json:"call_uuid,omitempty" url:"call_uuid,omitempty"`
+	Cost                string `json:"cost,omitempty" url:"cost,omitempty"`
+	DaysOfStorage       string `json:"days_of_storage,omitempty" url:"days_of_storage,omitempty"`
 	RecordingID         string `json:"recording_id,omitempty" url:"recording_id,omitempty"`
 	RecordingType       string `json:"recording_type,omitempty" url:"recording_type,omitempty"`
 	RecordingFormat     string `json:"recording_format,omitempty" url:"recording_format,omitempty"`
@@ -16,6 +18,7 @@ type Recording struct {
 	RecordingStartMS    string `json:"recording_start_ms,omitempty" url:"recording_start_ms,omitempty"`
 	RecordingEndMS      string `json:"recording_end_ms,omitempty" url:"recording_end_ms,omitempty"`
 	RecordingDurationMS string `json:"recording_duration_ms,omitempty" url:"recording_duration_ms,omitempty"`
+	RoundedDuration     string `json:"rounded_duration,omitempty" url:"rounded_duration,omitempty"`
 	FromNumber          string `json:"from_number,omitempty" url:"from_number,omitempty"`
 	ToNumber            string `json:"to_number,omitempty" url:"to_number,omitempty"`
 }
@@ -37,6 +40,7 @@ type RecordingListParams struct {
 	MpcName               string `json:"mpc_name,omitempty" url:"mpc_name,omitempty"`
 	ConferenceUuid        string `json:"conference_uuid,omitempty" url:"conference_uuid,omitempty"`
 	MpcUuid               string `json:"mpc_uuid,omitempty" url:"mpc_uuid,omitempty"`
+	RoundedDuration       string `json:"rounded_duration,omitempty" url:"rounded_duration,omitempty"`
 }
 
 type RecordingListResponse struct {
