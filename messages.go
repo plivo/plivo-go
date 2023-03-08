@@ -41,7 +41,8 @@ type Message struct {
 	MessageTime              string `json:"message_time,omitempty" url:"message_time,omitempty"`
 	ErrorCode                string `json:"error_code,omitempty" url:"error_code,omitempty"`
 	PowerpackID              string `json:"powerpack_id,omitempty" url:"powerpack_id,omitempty"`
-  RequesterIP      string `json:"requester_ip,omitempty" url:"requester_ip,omitempty"`
+	RequesterIP              string `json:"requester_ip,omitempty" url:"requester_ip,omitempty"`
+	IsDomestic               *bool  `json:"is_domestic,omitempty" url:"is_domestic,omitempty"`
 	TendlcCampaignID         string `json:"tendlc_campaign_id" url:"tendlc_campaign_id,omitempty"`
 	TendlcRegistrationStatus string `json:"tendlc_registration_status" url:"tendlc_registration_status,omitempty"`
 	DestinationCountryISO2   string `json:"destination_country_iso2" url:"destination_country_iso2,omitempty"`
