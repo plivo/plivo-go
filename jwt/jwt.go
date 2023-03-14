@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/dgrijalva/jwt-go"
+	jwt "github.com/golang-jwt/jwt/v5"
 )
 
 type AccessToken struct {
@@ -29,7 +29,7 @@ type VoiceGrants struct {
 }
 
 type JwtClaims struct {
-	jwt.StandardClaims
+	jwt.RegisteredClaims
 	Grants Grants `json:"grants"`
 }
 
@@ -91,12 +91,12 @@ func (acctkn *AccessToken) AddVoiceGrants(grants VoiceGrants) {
 func (acctkn *AccessToken) ToJwt() string {
 	// Create the Claims
 	claims := JwtClaims{
-		jwt.StandardClaims{
-			Id:        acctkn.Uid,
+		jwt.RegisteredClaims{
+			ID:        acctkn.Uid,
 			Issuer:    acctkn.AuthId,
 			Subject:   acctkn.Username,
-			NotBefore: acctkn.ValidFrom.Unix(),
-			ExpiresAt: acctkn.ValidFrom.Add(acctkn.Lifetime).Unix(),
+			NotBefore: jwt.NewNumericDate(acctkn.ValidFrom),
+			ExpiresAt: jwt.NewNumericDate(acctkn.ValidFrom.Add(acctkn.Lifetime)),
 		},
 		acctkn.Grants,
 	}
