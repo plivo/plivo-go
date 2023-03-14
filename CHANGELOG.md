@@ -1,5 +1,9 @@
 # Change Log
 
+## [7.24.0](https://github.com/plivo/plivo-go/tree/v7.24.0) (2023-03-14)
+**Fix - Add fix for CVE-2020-26160 and CVE-2022-32149**
+- Upgrade dependencies to fix security vulnerabilities.
+
 ## [7.23.0](https://github.com/plivo/plivo-go/tree/v7.23.0) (2023-03-03)
 **Feature - Added New Param 'is_domestic' in Get Message and List Message APIs**
 - Add `is_domestic` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
