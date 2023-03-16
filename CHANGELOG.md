@@ -1,5 +1,9 @@
 # Change Log
 
+## [7.24.1](https://github.com/plivo/plivo-go/tree/v7.24.1) (2023-03-16)
+**Feature - Added a new param in getCallDetails api**
+- From now on we can see CNAM (caller_id name) details at CDR level.
+
 ## [7.24.0](https://github.com/plivo/plivo-go/tree/v7.24.0) (2023-03-14)
 **Fix - Add fix for CVE-2020-26160 and CVE-2022-32149**
 - Upgrade dependencies to fix security vulnerabilities.

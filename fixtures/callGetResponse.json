@@ -16,5 +16,6 @@
   "total_rate": "0.03570",
   "stir_verification": "Not Applicable",
   "voice_network_group": "India All Networks",
-  "stir_attestation": ""
+  "stir_attestation": "",
+  "cnam_lookup_number_config": ""
 }
