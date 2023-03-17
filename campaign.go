@@ -33,17 +33,17 @@ type CampaignCreationParams struct {
 }
 
 type CampaignUpdateParams struct {
-	ResellerID     string  `json:" reseller_id,omitempty" url:" reseller_id,omitempty"`
-	Description    string  `json:"description,omitempty" url:"description,omitempty"`
+	ResellerID     string `json:" reseller_id,omitempty" url:" reseller_id,omitempty"`
+	Description    string `json:"description,omitempty" url:"description,omitempty"`
 	Sample1        string `json:"sample1" url:"sample1"`
 	Sample2        string `json:"sample2,omitempty" url:"sample2,omitempty"`
-	MessageFlow    string  `json:"message_flow,omitempty" url:"message_flow"`
-	HelpMessage    string  `json:"help_message,omitempty" url:"help_message"`
-	OptinKeywords  string  `json:"optin_keywords,omitempty" url:"optin_keywords"`
-	OptinMessage   string  `json:"optin_message,omitempty" url:"optin_message"`
-	OptoutKeywords string  `json:"optout_keywords,omitempty" url:"optout_keywords"`
-	OptoutMessage  string  `json:"optout_message,omitempty" url:"optout_message"`
-	HelpKeywords   string  `json:"help_keywords,omitempty" url:"help_keywords"`
+	MessageFlow    string `json:"message_flow,omitempty" url:"message_flow"`
+	HelpMessage    string `json:"help_message,omitempty" url:"help_message"`
+	OptinKeywords  string `json:"optin_keywords,omitempty" url:"optin_keywords"`
+	OptinMessage   string `json:"optin_message,omitempty" url:"optin_message"`
+	OptoutKeywords string `json:"optout_keywords,omitempty" url:"optout_keywords"`
+	OptoutMessage  string `json:"optout_message,omitempty" url:"optout_message"`
+	HelpKeywords   string `json:"help_keywords,omitempty" url:"help_keywords"`
 }
 
 type CampaignListResponse struct {
@@ -63,9 +63,9 @@ type CampaignCreateResponse struct {
 }
 
 type CampaignDeleteResponse struct {
-	ApiID              string  `json:"api_id"`
-	CampaignID         string  `json:"campaign_id,omitempty"`
-	Message    		   string  `json:"message,omitempty"`
+	ApiID      string `json:"api_id"`
+	CampaignID string `json:"campaign_id,omitempty"`
+	Message    string `json:"message,omitempty"`
 }
 
 type Campaign struct {
@@ -87,6 +87,7 @@ type Campaign struct {
 	SampleMessage2      string             `json:"sample2,omitempty"`
 	CampaignDescription string             `json:"description,omitempty"`
 	CampaignAttributes  CampaignAttributes `json:"campaign_attributes,omitempty"`
+	CreatedAt           string             `json:"created_at,omitempty"`
 }
 
 type CampaignAttributes struct {
@@ -182,7 +183,6 @@ func (service *CampaignService) Create(params CampaignCreationParams) (response 
 	err = service.client.ExecuteRequest(req, response)
 	return
 }
-
 
 func (service *CampaignService) Update(campaignID string, params CampaignUpdateParams) (response *CampaignGetResponse, err error) {
 	// response needs to be same as CampaignGetResponse
