@@ -27,7 +27,7 @@
       "stir_verification": "Not Verified",
       "voice_network_group": "USA All Networks",
       "stir_attestation": "",
-      "cnam_lookup_number_config": ""
+      "cnam_lookup": ""
     },
     {
       "answer_time": "2015-07-26 16:45:02+05:30",
@@ -48,7 +48,7 @@
       "stir_verification": "Verified",
       "voice_network_group": "USA All Networks",
       "stir_attestation": "A",
-      "cnam_lookup_number_config": ""
+      "cnam_lookup": ""
     }
   ]
 }
