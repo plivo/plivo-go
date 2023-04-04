@@ -19,15 +19,15 @@ type BrandCreationResponse struct {
 }
 
 type BrandUsecaseResponse struct {
-	ApiID     string     `json:"api_id,omitempty"`
-	Usecases  []Usecase  `json:"use_cases"`
-	BrandID   string     `json:"brand_id"`
+	ApiID    string    `json:"api_id,omitempty"`
+	Usecases []Usecase `json:"use_cases"`
+	BrandID  string    `json:"brand_id"`
 }
 
 type Usecase struct {
-	Name      string      `json:"name"`
-	Code      string      `json:"code"`
-	Details   string      `json:"details"`
+	Name    string `json:"name"`
+	Code    string `json:"code"`
+	Details string `json:"details"`
 }
 
 type BrandListResponse struct {
@@ -62,6 +62,7 @@ type Brand struct {
 	VettingScore       int64             `json:"vetting_score,omitempty"`
 	Address            Address           `json:"address,omitempty"`
 	AuthorizedContact  AuthorizedContact `json:"authorized_contact,omitempty"`
+	CreatedAt          string            `json:"created_at,omitempty"`
 }
 
 type BrandDeleteResponse struct {

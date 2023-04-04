@@ -1,9 +1,17 @@
 # Change Log
 
-## [7.23.1](https://github.com/plivo/plivo-java/tree/v7.23.1) (2023-03-08)
+## [7.25.1](https://github.com/plivo/plivo-go/tree/v7.25.1) (2023-04-04)
 **Feature - Recording API changes**
 - Added `cost`, `rounded_duration`, and `days_of_storage` parameters to the response for [get single recording API](https://www.plivo.com/docs/voice/api/recording#retrieve-a-recording) and [get all recordings API](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
 - Added `rounded_duration` parameter as a filter option for [get all recordings API](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
+
+## [7.25.0](https://github.com/plivo/plivo-go/tree/v7.25.0) (2023-17-03)
+- Added New Param `created_at` to the response for the [list all profiles API](https://www.plivo.com/docs/sms/api/10dlc/profile#retrieve-all-profiles) and the [get profile API](https://www.plivo.com/docs/sms/api/10dlc/profile#retrieve-a-specific-profile) and the [list all brands API](https://www.plivo.com/docs/sms/api/10dlc/brand#retrieve-all-brands) and the [get brand API](https://www.plivo.com/docs/sms/api/10dlc/brand#retrieve-a-specific-brand)
+and the [list all campaigns API](https://www.plivo.com/docs/sms/api/10dlc/campaign#retrieve-all-campaigns) and the [get campaign API](https://www.plivo.com/docs/sms/api/10dlc/campaign#retrieve-a-specific-campaign)
+
+## [7.24.0](https://github.com/plivo/plivo-go/tree/v7.24.0) (2023-03-14)
+**Fix - Add fix for CVE-2020-26160 and CVE-2022-32149**
+- Upgrade dependencies to fix security vulnerabilities.
 
 ## [7.23.0](https://github.com/plivo/plivo-go/tree/v7.23.0) (2023-03-03)
 **Feature - Added New Param 'is_domestic' in Get Message and List Message APIs**
