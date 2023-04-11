@@ -52,17 +52,17 @@ type Client struct {
 /*
 To set a proxy for all requests, configure the Transport for the HttpClient passed in:
 
-	&http.Client{
- 		Transport: &http.Transport{
- 			Proxy: http.ProxyURL("http//your.proxy.here"),
- 		},
- 	}
+		&http.Client{
+	 		Transport: &http.Transport{
+	 			Proxy: http.ProxyURL("http//your.proxy.here"),
+	 		},
+	 	}
 
 Similarly, to configure the timeout, set it on the HttpClient passed in:
 
-	&http.Client{
- 		Timeout: time.Minute,
- 	}
+		&http.Client{
+	 		Timeout: time.Minute,
+	 	}
 */
 func NewClient(authId, authToken string, options *ClientOptions) (client *Client, err error) {
 
