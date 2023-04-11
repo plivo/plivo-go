@@ -12,6 +12,7 @@
         "brand_id": "BRPXS6E",
         "brand_type": "STARTER",
         "ein_issuing_country": "US",
-        "registration_status": "COMPLETED"
+        "registration_status": "COMPLETED",
+        "created_at": "2023-02-28T11:06:00.360401Z"
     }
 }

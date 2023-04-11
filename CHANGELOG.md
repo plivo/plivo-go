@@ -1,8 +1,37 @@
 # Change Log
 
-## [7.19.0](https://github.com/plivo/plivo-go/tree/v7.19.0) (2023-02-06)
+
+## [7.26.0](https://github.com/plivo/plivo-go/tree/v7.26.0) (2023-04-11)
 **Feature - Added New Param 'source_ip' in GetCall and ListCalls**
-- Add`source_ip` to the response for the [retrieve a call details API](https://www.plivo.com/docs/voice/api/call#retrieve-a-call) and the [retreive all call details API](https://www.plivo.com/docs/voice/api/call#retrieve-all-calls)
+- Add`source_ip` to the response for the [retrieve a call details API](https://www.plivo.com/docs/voice/api/call#retrieve-a-call) and the [retreive all call details API]
+
+## [7.25.0](https://github.com/plivo/plivo-go/tree/v7.25.0) (2023-17-03)
+- Added New Param `created_at` to the response for the [list all profiles API](https://www.plivo.com/docs/sms/api/10dlc/profile#retrieve-all-profiles) and the [get profile API](https://www.plivo.com/docs/sms/api/10dlc/profile#retrieve-a-specific-profile) and the [list all brands API](https://www.plivo.com/docs/sms/api/10dlc/brand#retrieve-all-brands) and the [get brand API](https://www.plivo.com/docs/sms/api/10dlc/brand#retrieve-a-specific-brand)
+and the [list all campaigns API](https://www.plivo.com/docs/sms/api/10dlc/campaign#retrieve-all-campaigns) and the [get campaign API](https://www.plivo.com/docs/sms/api/10dlc/campaign#retrieve-a-specific-campaign)
+
+## [7.24.0](https://github.com/plivo/plivo-go/tree/v7.24.0) (2023-03-14)
+**Fix - Add fix for CVE-2020-26160 and CVE-2022-32149**
+- Upgrade dependencies to fix security vulnerabilities.
+
+## [7.23.0](https://github.com/plivo/plivo-go/tree/v7.23.0) (2023-03-03)
+**Feature - Added New Param 'is_domestic' in Get Message and List Message APIs**
+- Add `is_domestic` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+
+## [7.22.0](https://github.com/plivo/plivo-go/tree/v7.22.0) (2023-02-23)
+**Feature - Enhance MDR filtering capabilities **
+- Added new fields on MDR object response
+
+## [7.21.0](https://github.com/plivo/plivo-go/tree/v7.21.0) (2023-02-21)
+**Feature - MPC Speak API**
+- Added functionality to start and stop Speak in an MPC
+
+## [7.20.0](https://github.com/plivo/plivo-go/tree/v7.20.0) (2023-02-20)
+**Feature - MPC API**
+- Added support for agent_hold_nusic and customer_hold_music in the XML generation
+
+## [7.19.0](https://github.com/plivo/plivo-go/tree/v7.19.0) (2023-02-16)
+**Feature - MPC AddParticipant API**
+- Added two new param - agent_hold_music and customer_hold_music in AddParticipant API
 
 ## [7.18.0](https://github.com/plivo/plivo-go/tree/v7.18.0) (2023-01-25)
 **Feature - Added New Param 'requester_ip' in Get Message and List Mssage APIs**

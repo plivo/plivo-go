@@ -68,6 +68,8 @@ type MultiPartyCallAddParticipantParams struct {
 	StopRecordingAudio        string      `json:"stop_recording_audio,omitempty" url:"stop_recording_audio,omitempty"`
 	StopRecordingAudioMethod  string      `json:"stop_recording_audio_method,omitempty" url:"stop_recording_audio_method,omitempty"`
 	RecordMinMemberCount      int64       `json:"record_min_member_count,omitempty" url:"record_min_member_count,omitempty"`
+	AgentHoldMusic            string      `json:"agent_hold_music,omitempty" url:"agent_hold_music,omitempty"`
+	CustomerHoldMusic         string      `json:"customer_hold_music,omitempty" url:"customer_hold_music,omitempty"`
 }
 
 type MultiPartyCallListParams struct {
@@ -199,6 +201,13 @@ type MultiPartyCallAudioResponse struct {
 	Message      string   `json:"message" url:"message"`
 	MemberId     []string `json:"mpcMemberId,omitempty" url:"mpcMemberId,omitempty"`
 	FriendlyName string   `json:"mpcName,omitempty" url:"mpcName,omitempty"`
+}
+
+type MultiPartyCallSpeakParams struct {
+	Text     string `json:"text" url:"text"`
+	Voice    string `json:"voice" url:"voice,omitempty"`
+	Language string `json:"language" url:"language,omitempty"`
+	Mix      bool   `json:"mix" url:"mix,omitempty"`
 }
 
 func (service *MultiPartyCallService) List(params MultiPartyCallListParams) (response *MultiPartyCallListResponse, err error) {
@@ -422,6 +431,28 @@ func (service *MultiPartyCallService) StopPlayAudio(basicParams MultiPartyCallPa
 	err = service.client.ExecuteRequest(req, nil, isVoiceRequest())
 	return
 }
+
+func (service *MultiPartyCallService) StartSpeak(basicParams MultiPartyCallParticipantParams, params MultiPartyCallSpeakParams) (response *MultiPartyCallAudioResponse, err error) {
+	mpcId := MakeMPCId(basicParams.MpcUuid, basicParams.FriendlyName)
+	req, err := service.client.NewRequest("POST", params, "MultiPartyCall/%s/Member/%s/Speak", mpcId, basicParams.ParticipantId)
+	if err != nil {
+		return
+	}
+	response = &MultiPartyCallAudioResponse{}
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
+	return
+}
+
+func (service *MultiPartyCallService) StopSpeak(basicParams MultiPartyCallParticipantParams) (err error) {
+	mpcId := MakeMPCId(basicParams.MpcUuid, basicParams.FriendlyName)
+	req, err := service.client.NewRequest("DELETE", nil, "MultiPartyCall/%s/Member/%s/Speak", mpcId, basicParams.ParticipantId)
+	if err != nil {
+		return
+	}
+	err = service.client.ExecuteRequest(req, nil, isVoiceRequest())
+	return
+}
+
 func MakeMPCId(MpcUuid string, FriendlyName string) string {
 	mpcId := ""
 	if MpcUuid != "" {

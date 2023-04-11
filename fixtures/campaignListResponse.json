@@ -32,7 +32,8 @@
                 "subscriber_optin":false,
                 "subscriber_optout":false,
                 "subscriber_help":false
-            }
+            },
+            "created_at": "2023-02-28T11:06:00.360401Z"
         },
         {
             "brand_id": "BNOOLMO",
@@ -65,7 +66,8 @@
                 "subscriber_optin":false,
                 "subscriber_optout":false,
                 "subscriber_help":false
-            }
+            },
+            "created_at": "2023-02-28T11:06:00.360401Z"
         },
         {
             "brand_id": "BWDWMAC",
@@ -98,7 +100,8 @@
                 "subscriber_optin":false,
                 "subscriber_optout":false,
                 "subscriber_help":false
-            }
+            },
+            "created_at": "2023-02-28T11:06:00.360401Z"
         },
         {
             "brand_id": "BCKWPKX",
@@ -131,7 +134,8 @@
                 "subscriber_optin":false,
                 "subscriber_optout":false,
                 "subscriber_help":false
-            }
+            },
+            "created_at": "2023-02-28T11:06:00.360401Z"
         },
         {
             "brand_id": "B2IYFNC",
@@ -164,7 +168,8 @@
                 "subscriber_optin":false,
                 "subscriber_optout":false,
                 "subscriber_help":false
-            }
+            },
+            "created_at": "2023-02-28T11:06:00.360401Z"
         },
         {
             "brand_id": "BK98MJL",
@@ -184,7 +189,8 @@
                 }
             },
             "registration_status": "ACTIVE",
-            "reseller_id": ""
+            "reseller_id": "",
+            "created_at": "2023-02-28T11:06:00.360401Z"
         },
         {
             "brand_id": "B3WKVGC",
@@ -217,7 +223,8 @@
                 "subscriber_optin":false,
                 "subscriber_optout":false,
                 "subscriber_help":false
-            }
+            },
+            "created_at": "2023-02-28T11:06:00.360401Z"
         },
         {
             "brand_id": "BBYQU0Z",
@@ -249,7 +256,8 @@
                 "subscriber_optin":false,
                 "subscriber_optout":false,
                 "subscriber_help":false
-            }
+            },
+            "created_at": "2023-02-28T11:06:00.360401Z"
         },
         {
             "brand_id": "BBYQU0Z",
@@ -281,7 +289,8 @@
                 "subscriber_optin":false,
                 "subscriber_optout":false,
                 "subscriber_help":false
-            }
+            },
+            "created_at": "2023-02-28T11:06:00.360401Z"
         },
         {
             "brand_id": "BBYQU0Z",
@@ -313,7 +322,8 @@
                 "subscriber_optin":false,
                 "subscriber_optout":false,
                 "subscriber_help":false
-            }
+            },
+            "created_at": "2023-02-28T11:06:00.360401Z"
         }
     ],
     "meta": {
