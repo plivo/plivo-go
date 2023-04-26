@@ -28,6 +28,7 @@ type MessageCreateParams struct {
 }
 
 type Message struct {
+	ApiID                    string `json:"api_id,omitempty" url:"api_id,omitempty"`
 	ToNumber                 string `json:"to_number,omitempty" url:"to_number,omitempty"`
 	FromNumber               string `json:"from_number,omitempty" url:"from_number,omitempty"`
 	CloudRate                string `json:"cloud_rate,omitempty" url:"cloud_rate,omitempty"`

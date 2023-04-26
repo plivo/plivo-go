@@ -3,6 +3,7 @@
 ## [7.27.0](https://github.com/plivo/plivo-go/tree/v7.27.0) (2023-04-25)
 **Feature - Added New Param 'replaced_sender' in Get Message and List Message APIs**
 - Add `replaced_sender` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+- Add `api_id` to the response for the get message details API
 
 ## [7.26.0](https://github.com/plivo/plivo-go/tree/v7.26.0) (2023-04-11)
 **Feature - Added New Param 'source_ip' in GetCall and ListCalls**
