@@ -51,6 +51,11 @@ type NumberListParams struct {
 	NumberType               string `json:"number_type,omitempty" url:"number_type,omitempty"`
 	NumberStartsWith         string `json:"number_startswith,omitempty" url:"number_startswith,omitempty"`
 	Subaccount               string `json:"subaccount,omitempty" url:"subaccount,omitempty"`
+	RenewalDate              string `json:"renewal_date,omitempty" url:"renewal_date,omitempty"`
+	RenewalDateLt            string `json:"renewal_date__lt,omitempty" url:"renewal_date__lt,omitempty"`
+	RenewalDateLte           string `json:"renewal_date__lte,omitempty" url:"renewal_date__lte,omitempty"`
+	RenewalDateGt            string `json:"renewal_date__gt,omitempty" url:"renewal_date__gt,omitempty"`
+	RenewalDateGte           string `json:"renewal_date__gte,omitempty" url:"renewal_date__gte,omitempty"`
 	Services                 string `json:"services,omitempty" url:"services,omitempty"`
 	Alias                    string `json:"alias,omitempty" url:"alias,omitempty"`
 	Limit                    int64  `json:"limit,omitempty" url:"limit,omitempty"`
