@@ -25,7 +25,8 @@
       "voice_rate": "0.00850",
       "tendlc_campaign_id": "ACB1234",
       "tendlc_registration_status": "COMPLETED",
-      "toll_free_sms_verification": "verified"
+      "toll_free_sms_verification": "verified",
+      "renewal_date":"2014-09-15"
     },
     {
       "added_on": "2013-01-01",
@@ -44,7 +45,8 @@
       "voice_rate": "0.00850",
       "tendlc_campaign_id": "ACB1235",
       "tendlc_registration_status": "COMPLETED",
-      "toll_free_sms_verification": "unverified"
+      "toll_free_sms_verification": "unverified",
+      "renewal_date":"2014-02-01"
     },
     {
       "added_on": "2013-03-25",
@@ -63,7 +65,8 @@
       "voice_rate": "0.00850",
       "tendlc_campaign_id": "ACB1236",
       "tendlc_registration_status": "COMPLETED",
-      "toll_free_sms_verification": "verified"
+      "toll_free_sms_verification": "verified",
+      "renewal_date":"2013-04-25"
     }
   ]
 }
