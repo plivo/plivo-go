@@ -20,3 +20,6 @@ go.work
 
 # testing files
 go-sdk-test/
+
+# temp files exclusion
+.DS_Store
