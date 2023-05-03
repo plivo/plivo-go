@@ -20,3 +20,5 @@ go.work
 
 # testing files
 go-sdk-test/
+
+*.DS_Store
