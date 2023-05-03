@@ -28,6 +28,7 @@ type MessageCreateParams struct {
 }
 
 type Message struct {
+	ApiID                    string `json:"api_id,omitempty" url:"api_id,omitempty"`
 	ToNumber                 string `json:"to_number,omitempty" url:"to_number,omitempty"`
 	FromNumber               string `json:"from_number,omitempty" url:"from_number,omitempty"`
 	CloudRate                string `json:"cloud_rate,omitempty" url:"cloud_rate,omitempty"`
@@ -43,6 +44,7 @@ type Message struct {
 	PowerpackID              string `json:"powerpack_id,omitempty" url:"powerpack_id,omitempty"`
 	RequesterIP              string `json:"requester_ip,omitempty" url:"requester_ip,omitempty"`
 	IsDomestic               *bool  `json:"is_domestic,omitempty" url:"is_domestic,omitempty"`
+	ReplacedSender           string `json:"replaced_sender,omitempty" url:"replaced_sender,omitempty"`
 	TendlcCampaignID         string `json:"tendlc_campaign_id" url:"tendlc_campaign_id,omitempty"`
 	TendlcRegistrationStatus string `json:"tendlc_registration_status" url:"tendlc_registration_status,omitempty"`
 	DestinationCountryISO2   string `json:"destination_country_iso2" url:"destination_country_iso2,omitempty"`
