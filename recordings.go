@@ -28,7 +28,6 @@ type RecordingListParams struct {
 	// Query parameters.
 	Subaccount                             string `json:"subaccount,omitempty" url:"subaccount,omitempty"`
 	CallUUID                               string `json:"call_uuid,omitempty" url:"call_uuid,omitempty"`
-	AddTimeEquals                          string `json:"add_time,omitempty" url:"add_time,omitempty"`
 	AddTimeLessThan                        string `json:"add_time__lt,omitempty" url:"add_time__lt,omitempty"`
 	AddTimeGreaterThan                     string `json:"add_time__gt,omitempty" url:"add_time__gt,omitempty"`
 	AddTimeLessOrEqual                     string `json:"add_time__lte,omitempty" url:"add_time__lte,omitempty"`
