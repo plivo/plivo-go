@@ -42,10 +42,10 @@ type RecordingListParams struct {
 	ConferenceUuid                         string `json:"conference_uuid,omitempty" url:"conference_uuid,omitempty"`
 	MpcUuid                                string `json:"mpc_uuid,omitempty" url:"mpc_uuid,omitempty"`
 	RecordingStorageDurationEquals         int64  `json:"recording_storage_duration,omitempty" url:"recording_storage_duration,omitempty"`
-	RecordingStorageDurationLessThan       int64  `json:"recording_storage_duration__lt,omitempty" url:"recording_storage_duration,omitempty"`
-	RecordingStorageDurationGreaterThan    int64  `json:"recording_storage_duration__gt,omitempty" url:"recording_storage_duration,omitempty"`
-	RecordingStorageDurationLessOrEqual    int64  `json:"recording_storage_duration__lte,omitempty" url:"recording_storage_duration,omitempty"`
-	RecordingStorageDurationGreaterOrEqual int64  `json:"recording_storage_duration__gte,omitempty" url:"recording_storage_duration,omitempty"`
+	RecordingStorageDurationLessThan       int64  `json:"recording_storage_duration__lt,omitempty" url:"recording_storage_duration__lt,omitempty"`
+	RecordingStorageDurationGreaterThan    int64  `json:"recording_storage_duration__gt,omitempty" url:"recording_storage_duration__gt,omitempty"`
+	RecordingStorageDurationLessOrEqual    int64  `json:"recording_storage_duration__lte,omitempty" url:"recording_storage_duration__lte,omitempty"`
+	RecordingStorageDurationGreaterOrEqual int64  `json:"recording_storage_duration__gte,omitempty" url:"recording_storage_duration__gte,omitempty"`
 }
 
 type RecordingListResponse struct {
