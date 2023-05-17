@@ -32,8 +32,8 @@ type RecordingListParams struct {
 	AddTimeGreaterThan                     string `json:"add_time__gt,omitempty" url:"add_time__gt,omitempty"`
 	AddTimeLessOrEqual                     string `json:"add_time__lte,omitempty" url:"add_time__lte,omitempty"`
 	AddTimeGreaterOrEqual                  string `json:"add_time__gte,omitempty" url:"add_time__gte,omitempty"`
-	Limit                                  int64  `json:"limit:omitempty" url:"limit:omitempty"`
-	Offset                                 int64  `json:"offset:omitempty" url:"offset:omitempty"`
+	Limit                                  int64  `json:"limit,omitempty" url:"limit,omitempty"`
+	Offset                                 int64  `json:"offset,omitempty" url:"offset,omitempty"`
 	FromNumber                             string `json:"from_number,omitempty" url:"from_number,omitempty"`
 	ToNumber                               string `json:"to_number,omitempty" url:"to_number,omitempty"`
 	ConferenceName                         string `json:"conference_name,omitempty" url:"conference_name,omitempty"`
