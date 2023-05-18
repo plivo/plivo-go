@@ -19,6 +19,7 @@ type Number struct {
 	MonthlyRentalRate        string `json:"monthly_rental_rate,omitempty" url:"monthly_rental_rate,omitempty"`
 	Application              string `json:"application,omitempty" url:"application,omitempty"`
 	RenewalDate              string `json:"renewal_date,omitempty" url:"renewal_date,omitempty"`
+	CNAMLookup               string `json:"cnam_lookup,omitempty" url:"cnam_lookup,omitempty"`
 	AddedOn                  string `json:"added_on,omitempty" url:"added_on,omitempty"`
 	ResourceURI              string `json:"resource_uri,omitempty" url:"resource_uri,omitempty"`
 	VoiceRate                string `json:"voice_rate,omitempty" url:"voice_rate,omitempty"`
