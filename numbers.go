@@ -157,7 +157,8 @@ type PhoneNumberListParams struct {
 }
 
 type PhoneNumberCreateParams struct {
-	AppID string `json:"app_id,omitempty" url:"app_id,omitempty"`
+	AppID      string `json:"app_id,omitempty" url:"app_id,omitempty"`
+	CNAMLookup string `json:"cnam_lookup,omitempty" url:"cnam_lookup,omitempty"`
 }
 
 type PhoneNumberService struct {
