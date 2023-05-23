@@ -46,6 +46,7 @@ type NumberUpdateParams struct {
 	AppID      string `json:"app_id,omitempty" url:"app_id,omitempty"`
 	Subaccount string `json:"subaccount,omitempty" url:"subaccount,omitempty"`
 	Alias      string `json:"alias,omitempty" url:"alias,omitempty"`
+	CNAMLookup string `json:"cnam_lookup,omitempty" url:"cnam_lookup,omitempty"`
 }
 
 type NumberListParams struct {
