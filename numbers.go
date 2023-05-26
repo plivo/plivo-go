@@ -65,6 +65,7 @@ type NumberListParams struct {
 	TendlcCampaignID         string `json:"tendlc_campaign_id,omitempty" url:"tendlc_campaign_id,omitempty"`
 	TendlcRegistrationStatus string `json:"tendlc_registration_status,omitempty" url:"tendlc_registration_status,omitempty"`
 	TollFreeSMSVerification  string `json:"toll_free_sms_verification,omitempty" url:"toll_free_sms_verification,omitempty"`
+	CNAMLookup               string `json:"cnam_lookup,omitempty" url:"cnam_lookup,omitempty"`
 }
 
 type NumberListResponse struct {
