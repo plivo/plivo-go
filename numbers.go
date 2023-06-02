@@ -19,6 +19,7 @@ type Number struct {
 	MonthlyRentalRate        string `json:"monthly_rental_rate,omitempty" url:"monthly_rental_rate,omitempty"`
 	Application              string `json:"application,omitempty" url:"application,omitempty"`
 	RenewalDate              string `json:"renewal_date,omitempty" url:"renewal_date,omitempty"`
+	CNAMLookup               string `json:"cnam_lookup,omitempty" url:"cnam_lookup,omitempty"`
 	AddedOn                  string `json:"added_on,omitempty" url:"added_on,omitempty"`
 	ResourceURI              string `json:"resource_uri,omitempty" url:"resource_uri,omitempty"`
 	VoiceRate                string `json:"voice_rate,omitempty" url:"voice_rate,omitempty"`
@@ -45,6 +46,7 @@ type NumberUpdateParams struct {
 	AppID      string `json:"app_id,omitempty" url:"app_id,omitempty"`
 	Subaccount string `json:"subaccount,omitempty" url:"subaccount,omitempty"`
 	Alias      string `json:"alias,omitempty" url:"alias,omitempty"`
+	CNAMLookup string `json:"cnam_lookup,omitempty" url:"cnam_lookup,omitempty"`
 }
 
 type NumberListParams struct {
@@ -63,6 +65,7 @@ type NumberListParams struct {
 	TendlcCampaignID         string `json:"tendlc_campaign_id,omitempty" url:"tendlc_campaign_id,omitempty"`
 	TendlcRegistrationStatus string `json:"tendlc_registration_status,omitempty" url:"tendlc_registration_status,omitempty"`
 	TollFreeSMSVerification  string `json:"toll_free_sms_verification,omitempty" url:"toll_free_sms_verification,omitempty"`
+	CNAMLookup               string `json:"cnam_lookup,omitempty" url:"cnam_lookup,omitempty"`
 }
 
 type NumberListResponse struct {
@@ -156,7 +159,8 @@ type PhoneNumberListParams struct {
 }
 
 type PhoneNumberCreateParams struct {
-	AppID string `json:"app_id,omitempty" url:"app_id,omitempty"`
+	AppID      string `json:"app_id,omitempty" url:"app_id,omitempty"`
+	CNAMLookup string `json:"cnam_lookup,omitempty" url:"cnam_lookup,omitempty"`
 }
 
 type PhoneNumberService struct {
