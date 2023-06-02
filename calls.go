@@ -36,6 +36,7 @@ type Call struct {
 	VoiceNetworkGroup string `json:"voice_network_group,omitempty" url:"voice_network_group,omitempty"`
 	StirAttestation   string `json:"stir_attestation,omitempty" url:"stir_attestation,omitempty"`
 	SourceIp          string `json:"source_ip,omitempty" url:"source_ip,omitempty"`
+	CnamLookup        string `json:"cnam_lookup,omitempty" url:"cnam_lookup,omitempty"`
 }
 
 type LiveCall struct {
