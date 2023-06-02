@@ -1,5 +1,12 @@
 # Change Log
 
+## [7.31.0](https://github.com/plivo/plivo-go/tree/v7.31.0) (2023-06-02)
+**Feature - CNAM Lookup**
+- Added New Param `cnam_lookup` in to the response of the [list all numbers API], [list single number API]
+- Added `cnam_lookup` filter to AccountPhoneNumber - list all my numbers API.
+- Added `cnam_lookup` parameter to buy number[Buy a Phone Number]  to configure CNAM Lookup while buying a US number
+- Added `cnam_lookup` parameter to update number[Update an account phone number] to configure CNAM Lookup while buying a US number
+
 ## [7.30.0](https://github.com/plivo/plivo-go/tree/v7.24.1) (2023-03-16)
 **Feature - Added a new param in getCallDetails api**
 - From now on we can see CNAM (caller_id name) details at CDR level.
