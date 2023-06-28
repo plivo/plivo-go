@@ -1,9 +1,67 @@
 # Change Log
 
-## [7.19.0](https://github.com/plivo/plivo-go/tree/v7.19.0) (2022-02-10)
+## [7.32.0](https://github.com/plivo/plivo-go/tree/v7.32.0) (2023-06-28)
 **Audio Streaming**
 - API support for starting, deleting, getting streams on a live call
 - XML creation support for stream element
+
+## [7.31.0](https://github.com/plivo/plivo-go/tree/v7.31.0) (2023-06-02)
+**Feature - CNAM Lookup**
+- Added New Param `cnam_lookup` in to the response of the [list all numbers API], [list single number API]
+- Added `cnam_lookup` filter to AccountPhoneNumber - list all my numbers API.
+- Added `cnam_lookup` parameter to buy number[Buy a Phone Number]  to configure CNAM Lookup while buying a US number
+- Added `cnam_lookup` parameter to update number[Update an account phone number] to configure CNAM Lookup while buying a US number
+
+## [7.30.0](https://github.com/plivo/plivo-go/tree/v7.24.1) (2023-03-16)
+**Feature - Added a new param in getCallDetails api**
+- From now on we can see CNAM (caller_id name) details at CDR level.
+
+## [7.29.0](https://github.com/plivo/plivo-java/tree/v7.29.0) (2023-05-29)
+**Feature - Recording API changes**
+- Added `monthly_recording_storage_amount`, `recording_storage_rate`, `rounded_recording_duration`, and `recording_storage_duration` parameters to the response for [get single recording API](https://www.plivo.com/docs/voice/api/recording#retrieve-a-recording) and [get all recordings API](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
+- Added `recording_storage_duration` parameter as a filter option for [get all recordings API](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
+
+## [7.28.0](https://github.com/plivo/plivo-go/tree/v7.28.0) (2023-05-04)
+**Feature - Added New Param 'renewalDate' in Get Number and List Numbers APIs**
+- Add New Param `renewalDate` to the response of the [list all numbers API], [list single number API]
+- Add 3 new filters to AccountPhoneNumber - list all my numbers API:`renewal_date`, `renewal_date__gt`, `renewal_date__gte`,`renewal_date__lt` and `renewal_date__lte` (https://www.plivo.com/docs/numbers/api/account-phone-number#list-all-my-numbers)
+
+## [7.27.0](https://github.com/plivo/plivo-go/tree/v7.27.0) (2023-04-25)
+**Feature - Added New Param 'replaced_sender' in Get Message and List Message APIs**
+- Add `replaced_sender` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+- Add `api_id` to the response for the get message details API
+
+## [7.26.0](https://github.com/plivo/plivo-go/tree/v7.26.0) (2023-04-11)
+**Feature - Added New Param 'source_ip' in GetCall and ListCalls**
+- Added `source_ip` to the response for the [retrieve a call details API](https://www.plivo.com/docs/voice/api/call#retrieve-a-call) and the [retreive all call details API]
+
+## [7.25.0](https://github.com/plivo/plivo-go/tree/v7.25.0) (2023-17-03)
+- Added New Param `created_at` to the response for the [list all profiles API](https://www.plivo.com/docs/sms/api/10dlc/profile#retrieve-all-profiles) and the [get profile API](https://www.plivo.com/docs/sms/api/10dlc/profile#retrieve-a-specific-profile) and the [list all brands API](https://www.plivo.com/docs/sms/api/10dlc/brand#retrieve-all-brands) and the [get brand API](https://www.plivo.com/docs/sms/api/10dlc/brand#retrieve-a-specific-brand)
+and the [list all campaigns API](https://www.plivo.com/docs/sms/api/10dlc/campaign#retrieve-all-campaigns) and the [get campaign API](https://www.plivo.com/docs/sms/api/10dlc/campaign#retrieve-a-specific-campaign)
+
+## [7.24.0](https://github.com/plivo/plivo-go/tree/v7.24.0) (2023-03-14)
+**Fix - Add fix for CVE-2020-26160 and CVE-2022-32149**
+- Upgrade dependencies to fix security vulnerabilities.
+
+## [7.23.0](https://github.com/plivo/plivo-go/tree/v7.23.0) (2023-03-03)
+**Feature - Added New Param 'is_domestic' in Get Message and List Message APIs**
+- Add `is_domestic` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+
+## [7.22.0](https://github.com/plivo/plivo-go/tree/v7.22.0) (2023-02-23)
+**Feature - Enhance MDR filtering capabilities **
+- Added new fields on MDR object response
+
+## [7.21.0](https://github.com/plivo/plivo-go/tree/v7.21.0) (2023-02-21)
+**Feature - MPC Speak API**
+- Added functionality to start and stop Speak in an MPC
+
+## [7.20.0](https://github.com/plivo/plivo-go/tree/v7.20.0) (2023-02-20)
+**Feature - MPC API**
+- Added support for agent_hold_nusic and customer_hold_music in the XML generation
+
+## [7.19.0](https://github.com/plivo/plivo-go/tree/v7.19.0) (2023-02-16)
+**Feature - MPC AddParticipant API**
+- Added two new param - agent_hold_music and customer_hold_music in AddParticipant API
 
 ## [7.18.0](https://github.com/plivo/plivo-go/tree/v7.18.0) (2023-01-25)
 **Feature - Added New Param 'requester_ip' in Get Message and List Mssage APIs**

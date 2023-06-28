@@ -1,7 +1,7 @@
 FROM golang:1.17-alpine
 
 WORKDIR /usr/src/app
-RUN apk update && apk add git vim bash gcc musl-dev
+RUN apk update && apk add git vim bash gcc musl-dev make
 
 ENV PATH $PATH:/usr/local/go/bin
 

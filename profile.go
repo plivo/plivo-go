@@ -76,6 +76,7 @@ type Profile struct {
 	AltBusinessidType string            `json:"alt_business_id_type,omitempty"`
 	PlivoSubaccount   string            `json:"plivo_subaccount,omitempty"`
 	AuthorizedContact AuthorizedContact `json:"authorized_contact,omitempty"`
+	CreatedAt         string            `json:"created_at,omitempty"`
 }
 
 func (service *ProfileService) List(param ProfileListParams) (response *ProfileListResponse, err error) {
