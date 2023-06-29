@@ -78,3 +78,11 @@ func TestMPCXMLWithHold(t *testing.T) {
 		},
 		}.String())
 }
+
+func TestStreamXML(t *testing.T) {
+	assert.Equal(t, "<Response><Stream bidirectional=\"true\" extraHeaders=\"a=1,b=2\">wss://test.url</Stream></Response>", ResponseElement{
+		Contents: []interface{}{
+			new(StreamElement).SetBidirectional(true).SetContents("wss://test.url").SetExtraHeaders("a=1,b=2"),
+		},
+	}.String())
+}

@@ -1,5 +1,10 @@
 # Change Log
 
+## [7.32.0](https://github.com/plivo/plivo-go/tree/v7.32.0) (2023-06-28)
+**Audio Streaming**
+- API support for starting, deleting, getting streams on a live call
+- XML creation support for stream element
+
 ## [7.31.0](https://github.com/plivo/plivo-go/tree/v7.31.0) (2023-06-02)
 **Feature - CNAM Lookup**
 - Added New Param `cnam_lookup` in to the response of the [list all numbers API], [list single number API]

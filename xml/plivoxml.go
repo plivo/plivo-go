@@ -1383,3 +1383,63 @@ func wordTitle(str string) string {
 	lengthOfFinalString := len(finalString)
 	return finalString[1:lengthOfFinalString]
 }
+
+type StreamElement struct {
+	Contents string `xml:",innerxml"`
+
+	Bidirectional *bool `xml:"bidirectional,attr"`
+
+	AudioTrack *string `xml:"audioTrack,attr"`
+
+	StreamTimeout *int `xml:"streamTimeout,attr"`
+
+	StatusCallbackUrl *string `xml:"statusCallbackUrl,attr"`
+
+	StatusCallbackMethod *string `xml:"statusCallbackMethod,attr"`
+
+	ContentType *string `xml:"contentType,attr"`
+
+	ExtraHeaders *string `xml:"extraHeaders,attr"`
+
+	XMLName xml.Name `xml:"Stream"`
+}
+
+func (e StreamElement) SetBidirectional(value bool) StreamElement {
+	e.Bidirectional = &value
+	return e
+}
+
+func (e StreamElement) SetAudioTrack(value string) StreamElement {
+	e.AudioTrack = &value
+	return e
+}
+
+func (e StreamElement) SetStreamTimeout(value int) StreamElement {
+	e.StreamTimeout = &value
+	return e
+}
+
+func (e StreamElement) SetStatusCallbackUrl(value string) StreamElement {
+	e.StatusCallbackUrl = &value
+	return e
+}
+
+func (e StreamElement) SetStatusCallbackMethod(value string) StreamElement {
+	e.StatusCallbackMethod = &value
+	return e
+}
+
+func (e StreamElement) SetContentType(value string) StreamElement {
+	e.ContentType = &value
+	return e
+}
+
+func (e StreamElement) SetExtraHeaders(value string) StreamElement {
+	e.ExtraHeaders = &value
+	return e
+}
+
+func (e StreamElement) SetContents(value string) StreamElement {
+	e.Contents = value
+	return e
+}
