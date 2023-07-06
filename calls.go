@@ -35,6 +35,8 @@ type Call struct {
 	StirVerification  string `json:"stir_verification,omitempty" url:"stir_verification,omitempty"`
 	VoiceNetworkGroup string `json:"voice_network_group,omitempty" url:"voice_network_group,omitempty"`
 	StirAttestation   string `json:"stir_attestation,omitempty" url:"stir_attestation,omitempty"`
+	SourceIp          string `json:"source_ip,omitempty" url:"source_ip,omitempty"`
+	CnamLookup        string `json:"cnam_lookup,omitempty" url:"cnam_lookup,omitempty"`
 }
 
 type LiveCall struct {
@@ -179,6 +181,12 @@ type CallRecordResponse struct {
 	RecordingID string `json:"recording_id,omitempty" url:"recording_id,omitempty"`
 }
 
+type CallStreamResponse struct {
+	Message  string `json:"message,omitempty" url:"message,omitempty"`
+	APIID    string `json:"api_id,omitempty" url:"api_id,omitempty"`
+	StreamID string `json:"stream_id,omitempty" url:"stream_id,omitempty"`
+}
+
 type CallPlayParams struct {
 	URLs   string `json:"urls" url:"urls"`
 	Length string `json:"length,omitempty" url:"length,omitempty"`
@@ -214,6 +222,60 @@ type CallDTMFParams struct {
 type CallDTMFResponseBody struct {
 	Message string `json:"message,omitempty" url:"message,omitempty"`
 	ApiID   string `json:"api_id,omitempty" url:"api_id,omitempty"`
+}
+
+type CallStreamParams struct {
+	ServiceUrl           string `json:"service_url,omitempty" url:"service_url,omitempty"`
+	Bidirectional        bool   `json:"bidirectional,omitempty" url:"bidirectional,omitempty"`
+	AudioTrack           string `json:"audio_track,omitempty" url:"audio_track,omitempty"`
+	StreamTimeout        int64  `json:"stream_timeout,omitempty" url:"stream_timeout,omitempty"`
+	StatusCallbackUrl    string `json:"status_callback_url,omitempty" url:"status_callback_url,omitempty"`
+	StatusCallbackMethod string `json:"status_callback_method,omitempty" url:"status_callback_method,omitempty"`
+	ContentType          string `json:"content_type,omitempty" url:"content_type,omitempty"`
+	ExtraHeaders         string `json:"extra_headers,omitempty" url:"extra_headers,omitempty"`
+}
+
+type CallStreamGetAllObject struct {
+	AudioTrack          string `json:"audio_track" url:"audio_track"`
+	Bidirectional       bool   `json:"bidirectional" url:"bidirectional"`
+	BilledAmount        string `json:"billed_amount" url:"billed_amount"`
+	BillDuration        int64  `json:"bill_duration" url:"bill_duration"`
+	CallUUID            string `json:"call_uuid" url:"call_uuid"`
+	CreatedAt           string `json:"created_at" url:"created_at"`
+	EndTime             string `json:"end_time" url:"end_time"`
+	PlivoAuthId         string `json:"plivo_auth_id" url:"plivo_auth_id"`
+	ResourceURI         string `json:"resource_uri" url:"resource_uri"`
+	RoundedBillDuration string `json:"rounded_bill_duration" url:"rounded_bill_duration"`
+	ServiceURL          string `json:"service_url" url:"service_url"`
+	StartTime           string `json:"start_time" url:"start_time"`
+	Status              string `json:"status" url:"status"`
+	StatusCallbackURL   string `json:"status_callback_url" url:"status_callback_url"`
+	StreamID            string `json:"stream_id" url:"stream_id"`
+}
+
+type CallStreamGetAll struct {
+	ApiID   string                   `json:"api_id,omitempty" url:"api_id,omitempty"`
+	Meta    Meta                     `json:"meta,omitempty" url:"meta,omitempty"`
+	Objects []CallStreamGetAllObject `json:"objects" url:"objects"`
+}
+
+type CallStreamGetSpecific struct {
+	ApiID               string `json:"api_id,omitempty" url:"api_id,omitempty"`
+	AudioTrack          string `json:"audio_track" url:"audio_track"`
+	Bidirectional       bool   `json:"bidirectional" url:"bidirectional"`
+	BilledAmount        string `json:"billed_amount" url:"billed_amount"`
+	BillDuration        int64  `json:"bill_duration" url:"bill_duration"`
+	CallUUID            string `json:"call_uuid" url:"call_uuid"`
+	CreatedAt           string `json:"created_at" url:"created_at"`
+	EndTime             string `json:"end_time" url:"end_time"`
+	PlivoAuthId         string `json:"plivo_auth_id" url:"plivo_auth_id"`
+	ResourceURI         string `json:"resource_uri" url:"resource_uri"`
+	RoundedBillDuration string `json:"rounded_bill_duration" url:"rounded_bill_duration"`
+	ServiceURL          string `json:"service_url" url:"service_url"`
+	StartTime           string `json:"start_time" url:"start_time"`
+	Status              string `json:"status" url:"status"`
+	StatusCallbackURL   string `json:"status_callback_url" url:"status_callback_url"`
+	StreamID            string `json:"stream_id" url:"stream_id"`
 }
 
 type VoiceInteractionResponse struct {
@@ -467,6 +529,54 @@ func (service *CallService) StopRecording(callId string) (err error) {
 		return
 	}
 	err = service.client.ExecuteRequest(req, nil, isVoiceRequest())
+	return
+}
+
+func (service *CallService) Stream(CallId string, params CallStreamParams) (response *CallStreamResponse, err error) {
+	req, err := service.client.NewRequest("POST", params, "Call/%s/Stream", CallId)
+	if err != nil {
+		return
+	}
+	response = &CallStreamResponse{}
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
+	return
+}
+
+func (service *CallService) StopAllStreams(CallId string) (err error) {
+	req, err := service.client.NewRequest("DELETE", nil, "Call/%s/Stream", CallId)
+	if err != nil {
+		return
+	}
+	err = service.client.ExecuteRequest(req, nil, isVoiceRequest())
+	return
+}
+
+func (service *CallService) StopSpecificStream(CallId string, StreamId string) (err error) {
+	req, err := service.client.NewRequest("DELETE", nil, "Call/%s/Stream/%s", CallId, StreamId)
+	if err != nil {
+		return
+	}
+	err = service.client.ExecuteRequest(req, nil, isVoiceRequest())
+	return
+}
+
+func (service *CallService) GetAllStreams(CallId string) (response *CallStreamGetAll, err error) {
+	req, err := service.client.NewRequest("GET", nil, "Call/%s/Stream", CallId)
+	if err != nil {
+		return
+	}
+	response = &CallStreamGetAll{}
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
+	return
+}
+
+func (service *CallService) GetSpecificStream(CallId string, StreamId string) (response *CallStreamGetSpecific, err error) {
+	req, err := service.client.NewRequest("GET", nil, "Call/%s/Stream/%s", CallId, StreamId)
+	if err != nil {
+		return
+	}
+	response = &CallStreamGetSpecific{}
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 

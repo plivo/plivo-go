@@ -67,3 +67,22 @@ func TestMPCXML(t *testing.T) {
 		},
 	}.String())
 }
+
+func TestMPCXMLWithHold(t *testing.T) {
+	assert.Equal(t,
+		"<Response><MultiPartyCall role=\"Agent\">mpc_name<AgentHoldMusic><Play loop=\"1\">https://www.abc.com/speak.wav</Play><Wait length=\"5\"></Wait><Speak>Hi There</Speak></AgentHoldMusic><CustomerHoldMusic><Play loop=\"1\">https://www.abc.com/speak.wav</Play><Wait length=\"5\"></Wait><Speak>Hi There</Speak></CustomerHoldMusic></MultiPartyCall></Response>",
+		ResponseElement{Contents: []interface{}{new(MultiPartyCallElement).SetRole("Agent").SetContents("mpc_name").AddContents([]interface{}{
+			new(AgentHoldMusicElement).SetContents([]interface{}{new(PlayElement).SetLoop(1).SetContents("https://www.abc.com/speak.wav"), new(WaitElement).SetLength(5), new(SpeakElement).AddSpeak("Hi There")}),
+			new(CustomerHoldMusicElement).SetContents([]interface{}{new(PlayElement).SetLoop(1).SetContents("https://www.abc.com/speak.wav"), new(WaitElement).SetLength(5), new(SpeakElement).AddSpeak("Hi There")})},
+		),
+		},
+		}.String())
+}
+
+func TestStreamXML(t *testing.T) {
+	assert.Equal(t, "<Response><Stream bidirectional=\"true\" extraHeaders=\"a=1,b=2\">wss://test.url</Stream></Response>", ResponseElement{
+		Contents: []interface{}{
+			new(StreamElement).SetBidirectional(true).SetContents("wss://test.url").SetExtraHeaders("a=1,b=2"),
+		},
+	}.String())
+}
