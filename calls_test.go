@@ -323,7 +323,7 @@ func TestCallService_CreateMaskingSession(t *testing.T) {
 	}
 	client.httpClient = cl
 
-	assertRequest(t, "POST", "Session")
+	assertRequest(t, "POST", "Masking/Session")
 }
 
 func TestCallService_DeleteMaskingSession(t *testing.T) {
@@ -343,5 +343,64 @@ func TestCallService_DeleteMaskingSession(t *testing.T) {
 	}
 	client.httpClient = cl
 
-	assertRequest(t, "DELETE", "Session/%s", SessionUuid)
+	assertRequest(t, "DELETE", "Masking/Session/%s", SessionUuid)
+}
+
+func TestCallService_GetMaskingSession(t *testing.T) {
+	expectResponse("getMaskingSessionResponse.json", 200)
+	SessionUuid := "15e4256c-be01-475c-9a69-95cf65bbed71"
+
+	if _, err := client.Calls.GetMaskingSession(SessionUuid); err != nil {
+		panic(err)
+	}
+
+	cl := client.httpClient
+	client.httpClient = nil
+	_, err := client.Calls.GetMaskingSession(SessionUuid)
+	if err == nil {
+		client.httpClient = cl
+		panic(errors.New("error expected"))
+	}
+	client.httpClient = cl
+
+	assertRequest(t, "GET", "Masking/Session/%s", SessionUuid)
+}
+
+func TestCallService_updateMaskingSession(t *testing.T) {
+	expectResponse("updateMaskingSessionResponse.json", 204)
+	SessionUuid := "15e4256c-be01-475c-9a69-95cf65bbed71"
+
+	if _, err := client.Calls.UpdateMaskingSession(UpdateMaskingSessionParams{}, SessionUuid); err != nil {
+		panic(err)
+	}
+
+	cl := client.httpClient
+	client.httpClient = nil
+	_, err := client.Calls.UpdateMaskingSession(UpdateMaskingSessionParams{}, SessionUuid)
+	if err == nil {
+		client.httpClient = cl
+		panic(errors.New("error expected"))
+	}
+	client.httpClient = cl
+
+	assertRequest(t, "POST", "Masking/Session/%s", SessionUuid)
+}
+
+func TestCallService_ListMaskingSession(t *testing.T) {
+	expectResponse("listMaskingSessionResponse.json", 204)
+
+	if _, err := client.Calls.ListMaskingSession(ListSessionFilterParams{}); err != nil {
+		panic(err)
+	}
+
+	cl := client.httpClient
+	client.httpClient = nil
+	_, err := client.Calls.ListMaskingSession(ListSessionFilterParams{})
+	if err == nil {
+		client.httpClient = cl
+		panic(errors.New("error expected"))
+	}
+	client.httpClient = cl
+
+	assertRequest(t, "GET", "Masking/Session")
 }
