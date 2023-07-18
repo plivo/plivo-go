@@ -23,8 +23,9 @@ type MessageCreateParams struct {
 	MediaUrls []string    `json:"media_urls,omitempty" url:"media_urls,omitempty"`
 	MediaIds  []string    `json:"media_ids,omitempty" url:"media_ids,omitempty"`
 	// Either one of src and powerpackuuid should be given
-	PowerpackUUID string `json:"powerpack_uuid,omitempty" url:"powerpack_uuid,omitempty"`
-	MessageExpiry int    `json:"message_expiry,omitempty" url:"message_expiry,omitempty"`
+	PowerpackUUID string    `json:"powerpack_uuid,omitempty" url:"powerpack_uuid,omitempty"`
+	MessageExpiry int       `json:"message_expiry,omitempty" url:"message_expiry,omitempty"`
+	Template      *Template `json:"template,omitempty" url:"template,omitempty"`
 }
 
 type Message struct {
@@ -48,6 +49,9 @@ type Message struct {
 	TendlcCampaignID         string `json:"tendlc_campaign_id" url:"tendlc_campaign_id,omitempty"`
 	TendlcRegistrationStatus string `json:"tendlc_registration_status" url:"tendlc_registration_status,omitempty"`
 	DestinationCountryISO2   string `json:"destination_country_iso2" url:"destination_country_iso2,omitempty"`
+	ConversationID           string `json:"conversation_id" url:"conversation_id,omitempty"`
+	ConversationOrigin       string `json:"conversation_origin" url:"conversation_origin,omitempty"`
+	ConversationExpiry       string `json:"conversation_expiration_timestamp" url:"conversation_expiration_timestamp,omitempty"`
 }
 
 // Stores response for ending a message.
@@ -101,6 +105,48 @@ type MessageListParams struct {
 	TendlcCampaignID          string `url:"tendlc_campaign_id,omitempty"`
 	TendlcRegistrationStatus  string `url:"tendlc_registration_status,omitempty"`
 	DestinationCountryISO2    string `url:"destination_country_iso2,omitempty"`
+	MessageType               string `url:"message_type,omitempty,enum:sms,mms,whatsapp"`
+	ConversationID            string `url:"conversation_id,omitempty"`
+	ConversationOrigin        string `url:"conversation_origin,omitempty,enum:service,utility,authentication,marketing"`
+}
+
+type Template struct {
+	Name       string      `mapstructure:"name" json:"name" validate:"required"`
+	Language   string      `mapstructure:"language" json:"language" validate:"required"`
+	Components []Component `mapstructure:"components" json:"components"`
+}
+type Component struct {
+	Type       string      `mapstructure:"type" json:"type" validate:"required"`
+	SubType    string      `mapstructure:"sub_type" json:"sub_type,omitempty"`
+	Index      string      `mapstructure:"index" json:"index,omitempty"`
+	Parameters []Parameter `mapstructure:"parameters" json:"parameters"`
+}
+
+type Parameter struct {
+	Type     string    `mapstructure:"type" json:"type" validate:"required"`
+	Text     string    `mapstructure:"text" json:"text,omitempty"`
+	Media    string    `mapstructure:"media" json:"media,omitempty"`
+	Currency *Currency `mapstructure:"currency" json:"currency,omitempty"`
+	DateTime *DateTime `mapstructure:"date_time" json:"date_time,omitempty"`
+}
+
+type Currency struct {
+	CurrencyCode string `mapstructure:"currency_code" json:"currency_code" validate:"required"`
+	Amount1000   int    `mapstructure:"amount_1000" json:"amount_1000" validate:"required"`
+}
+
+type HSMDateTimeComponent struct {
+	DayOfWeek  string `mapstructure:"day_of_week" json:"day_of_week,omitempty"`
+	Year       int    `mapstructure:"year" json:"year,omitempty"`
+	Month      int    `mapstructure:"month" json:"month,omitempty"`
+	DayOfMonth int    `mapstructure:"day_of_month" json:"day_of_month,omitempty"`
+	Hour       int    `mapstructure:"hour" json:"hour,omitempty"`
+	Minute     int    `mapstructure:"minute" json:"minute,omitempty"`
+	Calendar   string `mapstructure:"calendar" json:"calendar,omitempty"`
+}
+
+type DateTime struct {
+	Component *HSMDateTimeComponent `mapstructure:"component" json:"component" validate:"required"`
 }
 
 func (service *MessageService) List(params MessageListParams) (response *MessageList, err error) {
