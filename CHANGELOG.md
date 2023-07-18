@@ -7,6 +7,12 @@
 - Added new parameters `conversation_id`, `conversation_name`,`conversation_expiry` in [list all messages API](https://www.plivo.com/docs/sms/api/message#list-all-messages) and [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
 - Added  `message_state` filter in [list all messages API](https://www.plivo.com/docs/sms/api/message#list-all-messages)
 
+## [7.32.0](https://github.com/plivo/plivo-go/tree/v7.32.0) (2023-06-28)
+**Audio Streaming**
+- API support for starting, deleting, getting streams on a live call
+- XML creation support for stream element
+
+
 ## [7.31.0](https://github.com/plivo/plivo-go/tree/v7.31.0) (2023-06-02)
 **Feature - CNAM Lookup**
 - Added New Param `cnam_lookup` in to the response of the [list all numbers API], [list single number API]

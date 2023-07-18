@@ -306,3 +306,63 @@ func TestCallService_CancelRequest(t *testing.T) {
 
 	assertRequest(t, "DELETE", "Request/%s", RequestID)
 }
+
+func TestCallService_Stream(t *testing.T) {
+	expectResponse("liveCallStreamCreateResponse.json", 202)
+	CallID := "CallId"
+
+	if _, err := client.Calls.Stream(CallID, CallStreamParams{ServiceUrl: "test-url"}); err != nil {
+		panic(err)
+	}
+
+	cl := client.httpClient
+	client.httpClient = nil
+	_, err := client.Calls.Stream(CallID, CallStreamParams{ServiceUrl: "test-url"})
+	if err == nil {
+		client.httpClient = cl
+		panic(errors.New("error expected"))
+	}
+	client.httpClient = cl
+
+	assertRequest(t, "POST", "Call/%s/Stream", CallID)
+}
+
+func TestCallService_StopAllStreams(t *testing.T) {
+	expectResponse("", 204)
+	CallID := "CallId"
+
+	if err := client.Calls.StopAllStreams(CallID); err != nil {
+		panic(err)
+	}
+
+	cl := client.httpClient
+	client.httpClient = nil
+	err := client.Calls.StopAllStreams(CallID)
+	if err == nil {
+		client.httpClient = cl
+		panic(errors.New("error expected"))
+	}
+	client.httpClient = cl
+
+	assertRequest(t, "DELETE", "Call/%s/Stream", CallID)
+}
+
+func TestCallService_GetAllStreams(t *testing.T) {
+	expectResponse("liveCallStreamGetAllResponse.json", 200)
+	CallID := "CallId"
+
+	if _, err := client.Calls.GetAllStreams(CallID); err != nil {
+		panic(err)
+	}
+
+	cl := client.httpClient
+	client.httpClient = nil
+	_, err := client.Calls.GetAllStreams(CallID)
+	if err == nil {
+		client.httpClient = cl
+		panic(errors.New("error expected"))
+	}
+	client.httpClient = cl
+
+	assertRequest(t, "GET", "Call/%s/Stream", CallID)
+}
