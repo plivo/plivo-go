@@ -1,7 +1,7 @@
 # Change Log
 
 
-## [7.32.0](https://github.com/plivo/plivo-go/tree/v7.32.0) (2023-07-19)
+## [7.33.0](https://github.com/plivo/plivo-go/tree/v7.32.0) (2023-07-19)
 **Feature - WhatsApp message support **
 - Added new param `template` to [send message API](https://www.plivo.com/docs/sms/api/message#send-a-message)
 - Added new parameters `conversation_id`, `conversation_name`,`conversation_expiry` in [list all messages API](https://www.plivo.com/docs/sms/api/message#list-all-messages) and [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
