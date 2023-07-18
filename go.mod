@@ -7,5 +7,6 @@ require (
 	github.com/golang-jwt/jwt/v5 v5.0.0-rc.1
 	github.com/google/go-querystring v1.1.0
 	github.com/stretchr/testify v1.8.2
-	golang.org/x/text v0.8.0
+	golang.org/x/net v0.12.0 // indirect
+	golang.org/x/text v0.11.0
 )
