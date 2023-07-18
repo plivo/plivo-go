@@ -1,5 +1,12 @@
 # Change Log
 
+
+## [7.32.0](https://github.com/plivo/plivo-go/tree/v7.32.0) (2023-07-19)
+**Feature - WhatsApp message support **
+- Added new param `template` to [send message API](https://www.plivo.com/docs/sms/api/message#send-a-message)
+- Added new parameters `conversation_id`, `conversation_name`,`conversation_expiry` in [list all messages API](https://www.plivo.com/docs/sms/api/message#list-all-messages) and [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+- Added  `message_state` filter in [list all messages API](https://www.plivo.com/docs/sms/api/message#list-all-messages)
+
 ## [7.31.0](https://github.com/plivo/plivo-go/tree/v7.31.0) (2023-06-02)
 **Feature - CNAM Lookup**
 - Added New Param `cnam_lookup` in to the response of the [list all numbers API], [list single number API]

@@ -174,3 +174,64 @@ func TestValidateSignatureV3Pass4(t *testing.T) {
 		),
 	)
 }
+
+func TestCreateWhatsappTemplatePass(t *testing.T){
+	template_data := `{
+        "name": "plivo_verification",
+        "language": "en_US",
+        "components": [
+        {
+          "type": "body",
+          "parameters": [
+            {
+              "type": "text",
+              "text": "J$FpnYnP"
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "sub_type": "url",
+          "index": "0",
+          "parameters": [
+            {
+              "type": "text",
+              "text": "J$FpnYnP"
+            }
+          ]
+        }
+      ]
+    }`
+	template := Template{
+		Name:     "plivo_verification",
+		Language: "en_US",
+		Components: []Component{
+			{
+				Type:    "body",
+				Parameters: []Parameter{
+					{
+						Type: "text",
+						Text: "J$FpnYnP",
+					},
+				},
+			},
+			{
+				Type:    "button",
+				SubType: "url",
+				Index:   "0",
+				Parameters: []Parameter{
+					{
+						Type: "text",
+						Text: "J$FpnYnP",
+					},
+				},
+			},
+		},
+	}
+	templateCreated, _ := CreateWhatsappTemplate(template_data)
+	assert.Equal(t, template, templateCreated)
+}
+
+
+
+
