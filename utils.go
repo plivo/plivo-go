@@ -13,7 +13,7 @@ import (
 	"sort"
 	"strings"
 
-	validator "github.com/go-playground/validator/v10"
+	validator "gopkg.in/go-playground/validator.v9"
 )
 
 func Numbers(numbers ...string) string {
