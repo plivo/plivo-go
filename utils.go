@@ -6,11 +6,14 @@ import (
 	"crypto/sha1"
 	"crypto/sha256"
 	"encoding/base64"
+	"encoding/json"
 	"fmt"
 	"net/url"
 	"reflect"
 	"sort"
 	"strings"
+
+	validator "github.com/go-playground/validator/v10"
 )
 
 func Numbers(numbers ...string) string {
@@ -169,6 +172,60 @@ func ValidateSignatureV3(uri, nonce, method, signature, authToken string, params
 	}
 	multipleSignatures := strings.Split(signature, ",")
 	return Find(ComputeSignatureV3(authToken, uri, method, nonce, parameters), multipleSignatures)
+}
+
+func CreateWhatsappTemplate(templateData string) (template Template, err error) {
+	err = json.Unmarshal([]byte(templateData), &template)
+	if err != nil {
+		return
+	}
+	err = validateWhatsappTemplate(template)
+	if err !=nil{
+		return
+	}
+	return 
+}
+
+func validateWhatsappTemplate(template Template) (err error) {
+	validate := validator.New()
+	err = validate.Struct(template)
+	if err != nil {
+		return
+	}
+	if template.Components != nil {
+		for _, component := range template.Components {
+			err = validate.Struct(component)
+			if err != nil {
+				return
+			}
+			if component.Parameters != nil {
+				for _, parameter := range component.Parameters {
+					err = validate.Struct(parameter)
+					if err != nil {
+						return
+					}
+					if parameter.Currency != nil {
+						err = validate.Struct(parameter.Currency)
+						if err != nil {
+							return
+						}
+					}
+					if parameter.DateTime != nil {
+						err = validate.Struct(parameter.DateTime)
+						if err != nil {
+							return
+						}
+						err = validate.Struct(parameter.DateTime.Component)
+						if err != nil {
+							return
+						}
+					}
+				}
+			}
+
+		}
+	}
+	return
 }
 
 func Find(val string, slice []string) bool {
