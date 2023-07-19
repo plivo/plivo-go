@@ -4,10 +4,21 @@ import "time"
 
 type VerifyService struct {
 	client *Client
-	Verify
+	Session
 }
 
-type Verify struct {
+type SessionList struct {
+	APIID string `json:"api_id"`
+	Meta  struct {
+		Limit    int     `json:"limit"`
+		Offset   int     `json:"offset"`
+		Next     *string `json:"next"`
+		Previous *string `json:"previous"`
+	} `json:"meta"`
+	Sessions []Session `json:"sessions"`
+}
+
+type Session struct {
 	APIID              string           `json:"api_id,omitempty"`
 	SessionUUID        string           `json:"session_uuid,omitempty"`
 	AppUUID            string           `json:"app_uuid,omitempty"`
@@ -44,7 +55,7 @@ type AttemptCharges struct {
 	Charge      string `json:"charge,omitempty"`
 }
 
-type VerifyCreateParams struct {
+type SessionCreateParams struct {
 	Recipient string `json:"recipient,omitempty"`
 	// Optional parameters.
 	AppUUID string `json:"app_uuid,omitempty"`
@@ -54,29 +65,39 @@ type VerifyCreateParams struct {
 	Src     string `json:"src,omitempty"`
 }
 
-type VerifyCreateResponseBody struct {
+type SessionCreateResponseBody struct {
 	APIID       string `json:"api_id,omitempty"`
 	Error       string `json:"error,omitempty"`
 	Message     string `json:"message,omitempty"`
 	SessionUUID string `json:"session_uuid,omitempty"`
 }
 
-func (service *VerifyService) Create(params VerifyCreateParams) (response *VerifyCreateResponseBody, err error) {
+func (service *VerifyService) Create(params SessionCreateParams) (response *SessionCreateResponseBody, err error) {
 	req, err := service.client.NewRequest("POST", params, "Verify/Session")
 	if err != nil {
 		return
 	}
-	response = &VerifyCreateResponseBody{}
+	response = &SessionCreateResponseBody{}
 	err = service.client.ExecuteRequest(req, response)
 	return
 }
 
-func (service *VerifyService) Get(sessionUUID string) (response *Verify, err error) {
+func (service *VerifyService) Get(sessionUUID string) (response *Session, err error) {
 	req, err := service.client.NewRequest("GET", nil, "Verify/Session/%s", sessionUUID)
 	if err != nil {
 		return
 	}
-	response = &Verify{}
+	response = &Session{}
+	err = service.client.ExecuteRequest(req, response)
+	return
+}
+
+func (service *VerifyService) ListSessions() (response *SessionList, err error) {
+	req, err := service.client.NewRequest("GET", nil, "Verify/Session")
+	if err != nil {
+		return
+	}
+	response = &SessionList{}
 	err = service.client.ExecuteRequest(req, response)
 	return
 }
