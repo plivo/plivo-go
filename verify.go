@@ -1,6 +1,8 @@
 package plivo
 
-import "time"
+import (
+	"time"
+)
 
 type VerifyService struct {
 	client *Client
@@ -72,6 +74,10 @@ type SessionCreateResponseBody struct {
 	SessionUUID string `json:"session_uuid,omitempty"`
 }
 
+type SessionValidationParams struct {
+	OTP string `json:"otp,omitempty"`
+}
+
 func (service *VerifyService) Create(params SessionCreateParams) (response *SessionCreateResponseBody, err error) {
 	req, err := service.client.NewRequest("POST", params, "Verify/Session")
 	if err != nil {
@@ -98,6 +104,16 @@ func (service *VerifyService) ListSessions() (response *SessionList, err error) 
 		return
 	}
 	response = &SessionList{}
+	err = service.client.ExecuteRequest(req, response)
+	return
+}
+
+func (service *VerifyService) Validate(params SessionValidationParams, sessionUUID string) (response *SessionCreateResponseBody, err error) {
+	req, err := service.client.NewRequest("POST", params, "Verify/Session/%s", sessionUUID)
+	if err != nil {
+		return
+	}
+	response = &SessionCreateResponseBody{}
 	err = service.client.ExecuteRequest(req, response)
 	return
 }
