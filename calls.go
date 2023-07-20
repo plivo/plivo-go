@@ -278,22 +278,6 @@ type CallStreamGetSpecific struct {
 	StreamID            string `json:"stream_id" url:"stream_id"`
 }
 
-type VoiceInteractionResponse struct {
-	StartTime              string  `json:"start_time,omitempty" url:"start_time,omitempty"`
-	EndTime                string  `json:"end_time,omitempty" url:"end_time,omitempty"`
-	FirstPartyResourceUrl  string  `json:"first_party_resource_url,omitempty" url:"first_party_resource_url,omitempty"`
-	SecondPartyResourceUrl string  `json:"second_party_resource_url,omitempty" url:"second_party_resource_url,omitempty"`
-	FirstPartyStatus       string  `json:"first_party_status,omitempty" url:"first_party_status,omitempty"`
-	SecondPartyStatus      string  `json:"second_party_status,omitempty" url:"second_party_status,omitempty"`
-	Type                   string  `json:"type,omitempty" url:"type,omitempty"`
-	TotalCallAmount        float64 `json:"total_call_amount,omitempty" url:"total_call_amount,omitempty"`
-	CallBilledDuration     int     `json:"call_billed_duration,omitempty" url:"call_billed_duration,omitempty"`
-	RecordingResourceUrl   string  `json:"recording_resource_url,omitempty" url:"recording_resource_url,omitempty"`
-	AuthID                 string  `json:"auth_id,omitempty" url:"auth_id,omitempty"`
-	TotalCallCount         int     `json:"total_call_count" url:"total_call_count"`
-	Duration               float64 `json:"duration" url:"duration"`
-}
-
 func (service *CallService) List(params CallListParams) (response *CallListResponse, err error) {
 	req, err := service.client.NewRequest("GET", params, "Call")
 	if err != nil {

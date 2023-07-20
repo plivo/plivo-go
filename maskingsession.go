@@ -89,6 +89,22 @@ type ListSessionFilterParams struct {
 	Offset                    int64  `json:"offset,omitempty" url:"offset,omitempty"`
 }
 
+type VoiceInteractionResponse struct {
+	StartTime              string  `json:"start_time,omitempty" url:"start_time,omitempty"`
+	EndTime                string  `json:"end_time,omitempty" url:"end_time,omitempty"`
+	FirstPartyResourceUrl  string  `json:"first_party_resource_url,omitempty" url:"first_party_resource_url,omitempty"`
+	SecondPartyResourceUrl string  `json:"second_party_resource_url,omitempty" url:"second_party_resource_url,omitempty"`
+	FirstPartyStatus       string  `json:"first_party_status,omitempty" url:"first_party_status,omitempty"`
+	SecondPartyStatus      string  `json:"second_party_status,omitempty" url:"second_party_status,omitempty"`
+	Type                   string  `json:"type,omitempty" url:"type,omitempty"`
+	TotalCallAmount        float64 `json:"total_call_amount,omitempty" url:"total_call_amount,omitempty"`
+	CallBilledDuration     int     `json:"call_billed_duration,omitempty" url:"call_billed_duration,omitempty"`
+	RecordingResourceUrl   string  `json:"recording_resource_url,omitempty" url:"recording_resource_url,omitempty"`
+	AuthID                 string  `json:"auth_id,omitempty" url:"auth_id,omitempty"`
+	TotalCallCount         int     `json:"total_call_count" url:"total_call_count"`
+	Duration               float64 `json:"duration" url:"duration"`
+}
+
 type CreateMaskingSessionResponse struct {
 	ApiID         string         `json:"api_id,omitempty" url:"api_id,omitempty"`
 	SessionUUID   string         `json:"session_uuid,omitempty" url:"session_uuid,omitempty"`
