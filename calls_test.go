@@ -370,13 +370,13 @@ func TestCallService_GetAllStreams(t *testing.T) {
 func TestCallService_CreateMaskingSession(t *testing.T) {
 	expectResponse("createMaskingSessionResponse.json", 200)
 
-	if _, err := client.Calls.CreateMaskingSession(CreateMaskingSessionParams{}); err != nil {
+	if _, err := client.MaskingSession.CreateMaskingSession(CreateMaskingSessionParams{}); err != nil {
 		panic(err)
 	}
 
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Calls.CreateMaskingSession(CreateMaskingSessionParams{})
+	_, err := client.MaskingSession.CreateMaskingSession(CreateMaskingSessionParams{})
 	if err == nil {
 		client.httpClient = cl
 		panic(errors.New("error expected"))
@@ -390,13 +390,13 @@ func TestCallService_DeleteMaskingSession(t *testing.T) {
 	expectResponse("deleteMaskingSessionResponse.json", 204)
 	SessionUuid := "15e4256c-be01-475c-9a69-95cf65bbed71"
 
-	if _, err := client.Calls.DeleteMaskingSession(SessionUuid); err != nil {
+	if _, err := client.MaskingSession.DeleteMaskingSession(SessionUuid); err != nil {
 		panic(err)
 	}
 
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Calls.DeleteMaskingSession(SessionUuid)
+	_, err := client.MaskingSession.DeleteMaskingSession(SessionUuid)
 	if err == nil {
 		client.httpClient = cl
 		panic(errors.New("error expected"))
@@ -410,13 +410,13 @@ func TestCallService_GetMaskingSession(t *testing.T) {
 	expectResponse("getMaskingSessionResponse.json", 200)
 	SessionUuid := "15e4256c-be01-475c-9a69-95cf65bbed71"
 
-	if _, err := client.Calls.GetMaskingSession(SessionUuid); err != nil {
+	if _, err := client.MaskingSession.GetMaskingSession(SessionUuid); err != nil {
 		panic(err)
 	}
 
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Calls.GetMaskingSession(SessionUuid)
+	_, err := client.MaskingSession.GetMaskingSession(SessionUuid)
 	if err == nil {
 		client.httpClient = cl
 		panic(errors.New("error expected"))
@@ -430,13 +430,13 @@ func TestCallService_updateMaskingSession(t *testing.T) {
 	expectResponse("updateMaskingSessionResponse.json", 204)
 	SessionUuid := "15e4256c-be01-475c-9a69-95cf65bbed71"
 
-	if _, err := client.Calls.UpdateMaskingSession(UpdateMaskingSessionParams{}, SessionUuid); err != nil {
+	if _, err := client.MaskingSession.UpdateMaskingSession(UpdateMaskingSessionParams{}, SessionUuid); err != nil {
 		panic(err)
 	}
 
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Calls.UpdateMaskingSession(UpdateMaskingSessionParams{}, SessionUuid)
+	_, err := client.MaskingSession.UpdateMaskingSession(UpdateMaskingSessionParams{}, SessionUuid)
 	if err == nil {
 		client.httpClient = cl
 		panic(errors.New("error expected"))
@@ -449,13 +449,13 @@ func TestCallService_updateMaskingSession(t *testing.T) {
 func TestCallService_ListMaskingSession(t *testing.T) {
 	expectResponse("listMaskingSessionResponse.json", 204)
 
-	if _, err := client.Calls.ListMaskingSession(ListSessionFilterParams{}); err != nil {
+	if _, err := client.MaskingSession.ListMaskingSession(ListSessionFilterParams{}); err != nil {
 		panic(err)
 	}
 
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Calls.ListMaskingSession(ListSessionFilterParams{})
+	_, err := client.MaskingSession.ListMaskingSession(ListSessionFilterParams{})
 	if err == nil {
 		client.httpClient = cl
 		panic(errors.New("error expected"))
