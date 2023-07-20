@@ -98,7 +98,7 @@ func (service *VerifyService) Get(sessionUUID string) (response *Session, err er
 	return
 }
 
-func (service *VerifyService) ListSessions() (response *SessionList, err error) {
+func (service *VerifyService) List() (response *SessionList, err error) {
 	req, err := service.client.NewRequest("GET", nil, "Verify/Session")
 	if err != nil {
 		return
