@@ -1,5 +1,12 @@
 # Change Log
 
+## [7.33.0] (https://github.com/plivo/plivo-go/tree/v7.33.0) (2023-07-20)
+**Feature - Verify**
+- Added Create Session API
+- Added Get Session API
+- Added List Session API
+- Added Validate Session API
+
 ## [7.32.0](https://github.com/plivo/plivo-go/tree/v7.32.0) (2023-06-28)
 **Audio Streaming**
 - API support for starting, deleting, getting streams on a live call
