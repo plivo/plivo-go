@@ -78,6 +78,21 @@ type SessionValidationParams struct {
 	OTP string `json:"otp,omitempty"`
 }
 
+type SessionListParams struct {
+	Limit                     int    `url:"limit,omitempty"`
+	Offset                    int    `url:"offset,omitempty"`
+	Status                    string `url:"status,omitempty"`
+	Recipient                 string `url:"recipient,omitempty"`
+	AppUUID                   string `url:"app_uuid,omitempty"`
+	Country                   string `url:"country,omitempty"`
+	Alias                     string `url:"alias,omitempty"`
+	SessionTime               string `url:"session_time,omitempty"`
+	SessionTimeGreaterThan    string `url:"session_time__gt,omitempty"`
+	SessionTimeGreaterOrEqual string `url:"session_time__gte,omitempty"`
+	SessionTimeLessThan       string `url:"session_time__lt,omitempty"`
+	SessionTimeLessOrEqual    string `url:"session_time__lte,omitempty"`
+}
+
 func (service *VerifyService) Create(params SessionCreateParams) (response *SessionCreateResponseBody, err error) {
 	req, err := service.client.NewRequest("POST", params, "Verify/Session")
 	if err != nil {
@@ -98,8 +113,8 @@ func (service *VerifyService) Get(sessionUUID string) (response *Session, err er
 	return
 }
 
-func (service *VerifyService) List() (response *SessionList, err error) {
-	req, err := service.client.NewRequest("GET", nil, "Verify/Session")
+func (service *VerifyService) List(params SessionListParams) (response *SessionList, err error) {
+	req, err := service.client.NewRequest("GET", params, "Verify/Session")
 	if err != nil {
 		return
 	}
