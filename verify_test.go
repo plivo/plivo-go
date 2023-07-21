@@ -9,7 +9,7 @@ import (
 func TestVerifyService_List(t *testing.T) {
 	expectResponse("verifySessionListResponse.json", 200)
 	assert := require.New(t)
-	resp, err := client.Verify.List(SessionListParams{})
+	resp, err := client.VerifySession.List(SessionListParams{})
 	assert.NotNil(resp)
 	assert.Nil(err)
 	assert.NotEmpty(resp.Sessions[0].SessionUUID)
@@ -17,7 +17,7 @@ func TestVerifyService_List(t *testing.T) {
 	assert.NotNil(resp.Meta)
 	cl := client.httpClient
 	client.httpClient = nil
-	resp, err = client.Verify.List(SessionListParams{})
+	resp, err = client.VerifySession.List(SessionListParams{})
 	assert.NotNil(err)
 	assert.Nil(resp)
 	client.httpClient = cl
@@ -28,13 +28,13 @@ func TestVerifyService_Get(t *testing.T) {
 	expectResponse("verifySessionGetResponse.json", 200)
 	uuid := "4124e518-a8c9-4feb-8cff-d86636ba9234"
 	assert := require.New(t)
-	resp, err := client.Verify.Get(uuid)
+	resp, err := client.VerifySession.Get(uuid)
 	assert.NotNil(resp)
 	assert.Nil(err)
 	assert.Equal(resp.SessionUUID, uuid)
 	cl := client.httpClient
 	client.httpClient = nil
-	resp, err = client.Verify.Get(uuid)
+	resp, err = client.VerifySession.Get(uuid)
 	assert.NotNil(err)
 	assert.Nil(resp)
 	client.httpClient = cl
@@ -45,7 +45,7 @@ func TestVerifyService_Get(t *testing.T) {
 func TestVerifyService_Create(t *testing.T) {
 	expectResponse("verifySessionSendResponse.json", 202)
 	assert := require.New(t)
-	resp, err := client.Verify.Create(SessionCreateParams{
+	resp, err := client.VerifySession.Create(SessionCreateParams{
 		Recipient: "9089789099",
 	})
 	assert.NotNil(resp)
@@ -55,7 +55,7 @@ func TestVerifyService_Create(t *testing.T) {
 	assert.Equal(resp.Error, "")
 	cl := client.httpClient
 	client.httpClient = nil
-	resp, err = client.Verify.Create(SessionCreateParams{
+	resp, err = client.VerifySession.Create(SessionCreateParams{
 		Recipient: "9089789099",
 	})
 	assert.NotNil(err)
@@ -68,7 +68,7 @@ func TestVerifyService_Create(t *testing.T) {
 func TestVerifyService_Validate(t *testing.T) {
 	expectResponse("verifySessionValidateResponse.json", 200)
 	assert := require.New(t)
-	resp, err := client.Verify.Validate(SessionValidationParams{
+	resp, err := client.VerifySession.Validate(SessionValidationParams{
 		OTP: "9089789",
 	}, "5b40a428-bfc7-4daf-9d06-726c558bf3b8")
 	assert.NotNil(resp)
@@ -77,7 +77,7 @@ func TestVerifyService_Validate(t *testing.T) {
 	assert.Equal(resp.Error, "")
 	cl := client.httpClient
 	client.httpClient = nil
-	resp, err = client.Verify.Validate(SessionValidationParams{
+	resp, err = client.VerifySession.Validate(SessionValidationParams{
 		OTP: "9089789",
 	}, "5b40a428-bfc7-4daf-9d06-726c558bf3b8")
 	assert.NotNil(err)

@@ -47,7 +47,7 @@ type Client struct {
 	Brand                   *BrandService
 	Profile                 *ProfileService
 	Campaign                *CampaignService
-	Verify                  *VerifyService
+	VerifySession           *VerifyService
 }
 
 /*
@@ -117,7 +117,7 @@ func NewClient(authId, authToken string, options *ClientOptions) (client *Client
 	client.Brand = &BrandService{client: client}
 	client.Campaign = &CampaignService{client: client}
 	client.Profile = &ProfileService{client: client}
-	client.Verify = &VerifyService{client: client}
+	client.VerifySession = &VerifyService{client: client}
 	return
 }
 
