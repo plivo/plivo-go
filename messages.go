@@ -131,22 +131,13 @@ type Parameter struct {
 }
 
 type Currency struct {
+	FallbackValue string `mapstructure:"fallback_value" json:"fallback_value" validate:"required"`
 	CurrencyCode string `mapstructure:"currency_code" json:"currency_code" validate:"required"`
 	Amount1000   int    `mapstructure:"amount_1000" json:"amount_1000" validate:"required"`
 }
 
-type HSMDateTimeComponent struct {
-	DayOfWeek  string `mapstructure:"day_of_week" json:"day_of_week,omitempty"`
-	Year       int    `mapstructure:"year" json:"year,omitempty"`
-	Month      int    `mapstructure:"month" json:"month,omitempty"`
-	DayOfMonth int    `mapstructure:"day_of_month" json:"day_of_month,omitempty"`
-	Hour       int    `mapstructure:"hour" json:"hour,omitempty"`
-	Minute     int    `mapstructure:"minute" json:"minute,omitempty"`
-	Calendar   string `mapstructure:"calendar" json:"calendar,omitempty"`
-}
-
 type DateTime struct {
-	Component *HSMDateTimeComponent `mapstructure:"component" json:"component" validate:"required"`
+	FallbackValue string `mapstructure:"fallback_value" json:"fallback_value" validate:"required"`
 }
 
 func (service *MessageService) List(params MessageListParams) (response *MessageList, err error) {

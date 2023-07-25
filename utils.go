@@ -215,10 +215,6 @@ func validateWhatsappTemplate(template Template) (err error) {
 						if err != nil {
 							return
 						}
-						err = validate.Struct(parameter.DateTime.Component)
-						if err != nil {
-							return
-						}
 					}
 				}
 			}
