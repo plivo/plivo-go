@@ -12,9 +12,9 @@ import (
 const baseUrlString = "https://api.plivo.com/"
 
 var HttpsScheme = "https"
-var voiceBaseUrlString = "api.plivo.com"
-var voiceBaseUrlStringFallback1 = "api.plivo.com"
-var voiceBaseUrlStringFallback2 = "api.plivo.com"
+var voiceBaseUrlString = "api-qa.voice.plivodev.com"
+var voiceBaseUrlStringFallback1 = "api-qa.voice.plivodev.com"
+var voiceBaseUrlStringFallback2 = "api-qa.voice.plivodev.com"
 
 const baseRequestString = "/v1/Account/%s/"
 
