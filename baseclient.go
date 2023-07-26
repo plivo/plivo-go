@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io"
+	"io/ioutil"
 	"net/http"
 	"net/url"
 	"reflect"
@@ -121,15 +121,15 @@ func (client *BaseClient) ExecuteRequest(request *http.Request, body interface{}
 			}
 		}
 	}
-	bodyCopy, _ := io.ReadAll(request.Body)
-	request.Body = io.NopCloser(bytes.NewReader(bodyCopy))
+	bodyCopy, _ := ioutil.ReadAll(request.Body)
+	request.Body = ioutil.NopCloser(bytes.NewReader(bodyCopy))
 	response, err := client.httpClient.Do(request)
 
 	if err != nil {
 		return
 	}
 
-	data, err := io.ReadAll(response.Body)
+	data, err := ioutil.ReadAll(response.Body)
 	if err == nil && data != nil && len(data) > 0 {
 		if isVoiceRequest && response.StatusCode >= 500 {
 			if extra[0]["retry"] == 2 {
