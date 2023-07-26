@@ -1,7 +1,5 @@
 package plivo
 
-import "fmt"
-
 type NumberService struct {
 	client *Client
 }
@@ -104,7 +102,6 @@ func (service *NumberService) Update(NumberId string, params NumberUpdateParams)
 	}
 	response = &NumberUpdateResponse{}
 	err = service.client.ExecuteRequest(req, response)
-	fmt.Println(response)
 	return
 }
 
