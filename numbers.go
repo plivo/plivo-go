@@ -1,5 +1,7 @@
 package plivo
 
+import "fmt"
+
 type NumberService struct {
 	client *Client
 }
@@ -20,6 +22,7 @@ type Number struct {
 	Application              string `json:"application,omitempty" url:"application,omitempty"`
 	RenewalDate              string `json:"renewal_date,omitempty" url:"renewal_date,omitempty"`
 	CNAMLookup               string `json:"cnam_lookup,omitempty" url:"cnam_lookup,omitempty"`
+	CNAM                     string `json:"cnam,omitempty" url:"cnam,omitempty"`
 	AddedOn                  string `json:"added_on,omitempty" url:"added_on,omitempty"`
 	ResourceURI              string `json:"resource_uri,omitempty" url:"resource_uri,omitempty"`
 	VoiceRate                string `json:"voice_rate,omitempty" url:"voice_rate,omitempty"`
@@ -40,13 +43,22 @@ type NumberCreateParams struct {
 }
 
 type NumberCreateResponse BaseResponse
-type NumberUpdateResponse BaseResponse
+
+type NumberUpdateResponse struct {
+	ApiId            string `json:"api_id" url:"api_id"`
+	Message          string `json:"message" url:"message"`
+	NewCnam          string `json:"new_cnam,omitempty"`
+	CNAMUpdateStatus string `json:"cnam_update_status,omitempty"`
+}
 
 type NumberUpdateParams struct {
-	AppID      string `json:"app_id,omitempty" url:"app_id,omitempty"`
-	Subaccount string `json:"subaccount,omitempty" url:"subaccount,omitempty"`
-	Alias      string `json:"alias,omitempty" url:"alias,omitempty"`
-	CNAMLookup string `json:"cnam_lookup,omitempty" url:"cnam_lookup,omitempty"`
+	AppID           string `json:"app_id,omitempty" url:"app_id,omitempty"`
+	Subaccount      string `json:"subaccount,omitempty" url:"subaccount,omitempty"`
+	Alias           string `json:"alias,omitempty" url:"alias,omitempty"`
+	CNAMLookup      string `json:"cnam_lookup,omitempty" url:"cnam_lookup,omitempty"`
+	CNAM            string `json:"cnam,omitempty" url:"cnam,omitempty"`
+	CNAMCallbackURL string `json:"callback_url"`
+	CallbackMethod  string `json:"callback_method"`
 }
 
 type NumberListParams struct {
@@ -66,6 +78,7 @@ type NumberListParams struct {
 	TendlcRegistrationStatus string `json:"tendlc_registration_status,omitempty" url:"tendlc_registration_status,omitempty"`
 	TollFreeSMSVerification  string `json:"toll_free_sms_verification,omitempty" url:"toll_free_sms_verification,omitempty"`
 	CNAMLookup               string `json:"cnam_lookup,omitempty" url:"cnam_lookup,omitempty"`
+	CNAM                     string `json:"cnam,omitempty" url:"cnam,omitempty"`
 }
 
 type NumberListResponse struct {
@@ -91,6 +104,7 @@ func (service *NumberService) Update(NumberId string, params NumberUpdateParams)
 	}
 	response = &NumberUpdateResponse{}
 	err = service.client.ExecuteRequest(req, response)
+	fmt.Println(response)
 	return
 }
 
@@ -159,8 +173,11 @@ type PhoneNumberListParams struct {
 }
 
 type PhoneNumberCreateParams struct {
-	AppID      string `json:"app_id,omitempty" url:"app_id,omitempty"`
-	CNAMLookup string `json:"cnam_lookup,omitempty" url:"cnam_lookup,omitempty"`
+	AppID           string `json:"app_id,omitempty" url:"app_id,omitempty"`
+	CNAMLookup      string `json:"cnam_lookup,omitempty" url:"cnam_lookup,omitempty"`
+	CNAM            string `json:"cnam,omitempty" url:"cnam,omitempty"`
+	CNAMCallbackURL string `json:"callback_url"`
+	CallbackMethod  string `json:"callback_method"`
 }
 
 type PhoneNumberService struct {
@@ -171,9 +188,11 @@ type PhoneNumberCreateResponse struct {
 	APIID   string `json:"api_id" url:"api_id"`
 	Message string `json:"message" url:"message"`
 	Numbers []struct {
-		Number string `json:"number" url:"number"`
-		Status string `json:"status" url:"status"`
-	} `json:"numbers" url:"numbers"`
+		Number           string `json:"number" url:"number"`
+		Status           string `json:"status" url:"status"`
+		NewCnam          string `json:"new_cnam,omitempty"`
+		CNAMUpdateStatus string `json:"cnam_update_status,omitempty"`
+	} `json:"numbers"`
 	Status string `json:"status" url:"status"`
 }
 
