@@ -43,8 +43,8 @@ type NumberCreateParams struct {
 type NumberCreateResponse BaseResponse
 
 type NumberUpdateResponse struct {
-	ApiId            string `json:"api_id" url:"api_id"`
 	Message          string `json:"message" url:"message"`
+	ApiId            string `json:"api_id" url:"api_id"`
 	NewCnam          string `json:"new_cnam,omitempty"`
 	CNAMUpdateStatus string `json:"cnam_update_status,omitempty"`
 }
