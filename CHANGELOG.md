@@ -1,5 +1,9 @@
 # Change Log
 
+## [7.33.0](https://github.com/plivo/plivo-go/tree/v7.17.0) (2023-07-31)
+**Feature - Number Masking**
+- Added Get, Update and List Masking Session API and modified the Create and Delete API
+
 ## [7.32.0](https://github.com/plivo/plivo-go/tree/v7.32.0) (2023-06-28)
 **Audio Streaming**
 - API support for starting, deleting, getting streams on a live call
