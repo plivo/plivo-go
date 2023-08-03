@@ -1,5 +1,9 @@
 # Change Log
 
+## [7.33.0](https://github.com/plivo/plivo-go/tree/v7.33.0) (2023-07-31)
+**Feature - Number Masking**
+- Added Get, Update and List Masking Session API and modified the Create and Delete API
+
 ## [7.32.0](https://github.com/plivo/plivo-go/tree/v7.32.0) (2023-06-28)
 **Audio Streaming**
 - API support for starting, deleting, getting streams on a live call
@@ -70,6 +74,11 @@ and the [list all campaigns API](https://www.plivo.com/docs/sms/api/10dlc/campai
 ## [7.17.1](https://github.com/plivo/plivo-go/tree/v7.17.1) (2023-01-18)
 **Feature - Adding new param 'message_expiry' in Send Message API**
 -  Added new param 'message_expiry' in Send Message API 
+
+
+## [7.17.0](https://github.com/plivo/plivo-go/tree/v7.17.0) (2023-01-10)
+**Feature - Number Masking**
+- Added Create and Delete Masking Session API
 
 ## [7.16.0](https://github.com/plivo/plivo-go/tree/v7.16.0) (2022-12-16)
 **Feature - Update campaign**
