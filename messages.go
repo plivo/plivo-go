@@ -23,8 +23,11 @@ type MessageCreateParams struct {
 	MediaUrls []string    `json:"media_urls,omitempty" url:"media_urls,omitempty"`
 	MediaIds  []string    `json:"media_ids,omitempty" url:"media_ids,omitempty"`
 	// Either one of src and powerpackuuid should be given
-	PowerpackUUID string `json:"powerpack_uuid,omitempty" url:"powerpack_uuid,omitempty"`
-	MessageExpiry int    `json:"message_expiry,omitempty" url:"message_expiry,omitempty"`
+	PowerpackUUID       string `json:"powerpack_uuid,omitempty" url:"powerpack_uuid,omitempty"`
+	MessageExpiry       int    `json:"message_expiry,omitempty" url:"message_expiry,omitempty"`
+	DLTEntityID         string `json:"dlt_entity_id,omitempty" url:"dlt_entity_id,omitempty"`
+	DLTTemplateID       string `json:"dlt_template_id,omitempty" url:"dlt_template_id,omitempty"`
+	DLTTemplateCategory string `json:"dlt_template_category,omitempty" url:"dlt_template_category,omitempty"`
 }
 
 type Message struct {
@@ -48,6 +51,9 @@ type Message struct {
 	TendlcCampaignID         string `json:"tendlc_campaign_id" url:"tendlc_campaign_id,omitempty"`
 	TendlcRegistrationStatus string `json:"tendlc_registration_status" url:"tendlc_registration_status,omitempty"`
 	DestinationCountryISO2   string `json:"destination_country_iso2" url:"destination_country_iso2,omitempty"`
+	DLTEntityID              string `json:"dlt_entity_id" url:"dlt_entity_id,omitempty"`
+	DLTTemplateID            string `json:"dlt_template_id" url:"dlt_template_id,omitempty"`
+	DLTTemplateCategory      string `json:"dlt_template_category" url:"dlt_template_category,omitempty"`
 }
 
 // Stores response for ending a message.
