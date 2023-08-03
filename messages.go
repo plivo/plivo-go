@@ -48,6 +48,9 @@ type Message struct {
 	TendlcCampaignID         string `json:"tendlc_campaign_id" url:"tendlc_campaign_id,omitempty"`
 	TendlcRegistrationStatus string `json:"tendlc_registration_status" url:"tendlc_registration_status,omitempty"`
 	DestinationCountryISO2   string `json:"destination_country_iso2" url:"destination_country_iso2,omitempty"`
+	DestinationNetwork       string `json:"destination_network" url:"destination_network,omitempty"`
+	CarrierFeesRate          string `json:"carrier_fees_rate" url:"carrier_fees_rate,omitempty"`
+	CarrierFees              string `json:"carrier_fees" url:"carrier_fees,omitempty"`
 }
 
 // Stores response for ending a message.
@@ -101,6 +104,9 @@ type MessageListParams struct {
 	TendlcCampaignID          string `url:"tendlc_campaign_id,omitempty"`
 	TendlcRegistrationStatus  string `url:"tendlc_registration_status,omitempty"`
 	DestinationCountryISO2    string `url:"destination_country_iso2,omitempty"`
+	DestinationNetwork        string `url:"destination_network,omitempty"`
+	CarrierFeesRate           string `url:"carrier_fees_rate,omitempty"`
+	CarrierFees               string `url:"carrier_fees,omitempty"`
 }
 
 func (service *MessageService) List(params MessageListParams) (response *MessageList, err error) {
