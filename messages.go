@@ -23,9 +23,12 @@ type MessageCreateParams struct {
 	MediaUrls []string    `json:"media_urls,omitempty" url:"media_urls,omitempty"`
 	MediaIds  []string    `json:"media_ids,omitempty" url:"media_ids,omitempty"`
 	// Either one of src and powerpackuuid should be given
-	PowerpackUUID string    `json:"powerpack_uuid,omitempty" url:"powerpack_uuid,omitempty"`
-	MessageExpiry int       `json:"message_expiry,omitempty" url:"message_expiry,omitempty"`
-	Template      *Template `json:"template,omitempty" url:"template,omitempty"`
+	PowerpackUUID       string    `json:"powerpack_uuid,omitempty" url:"powerpack_uuid,omitempty"`
+	MessageExpiry       int       `json:"message_expiry,omitempty" url:"message_expiry,omitempty"`
+	Template            *Template `json:"template,omitempty" url:"template,omitempty"`
+	DLTEntityID         string    `json:"dlt_entity_id,omitempty" url:"dlt_entity_id,omitempty"`
+	DLTTemplateID       string    `json:"dlt_template_id,omitempty" url:"dlt_template_id,omitempty"`
+	DLTTemplateCategory string    `json:"dlt_template_category,omitempty" url:"dlt_template_category,omitempty"`
 }
 
 type Message struct {
@@ -52,6 +55,9 @@ type Message struct {
 	ConversationID           string `json:"conversation_id" url:"conversation_id,omitempty"`
 	ConversationOrigin       string `json:"conversation_origin" url:"conversation_origin,omitempty"`
 	ConversationExpiry       string `json:"conversation_expiration_timestamp" url:"conversation_expiration_timestamp,omitempty"`
+	DLTEntityID              string `json:"dlt_entity_id" url:"dlt_entity_id,omitempty"`
+	DLTTemplateID            string `json:"dlt_template_id" url:"dlt_template_id,omitempty"`
+	DLTTemplateCategory      string `json:"dlt_template_category" url:"dlt_template_category,omitempty"`
 }
 
 // Stores response for ending a message.
@@ -132,8 +138,8 @@ type Parameter struct {
 
 type Currency struct {
 	FallbackValue string `mapstructure:"fallback_value" json:"fallback_value" validate:"required"`
-	CurrencyCode string `mapstructure:"currency_code" json:"currency_code" validate:"required"`
-	Amount1000   int    `mapstructure:"amount_1000" json:"amount_1000" validate:"required"`
+	CurrencyCode  string `mapstructure:"currency_code" json:"currency_code" validate:"required"`
+	Amount1000    int    `mapstructure:"amount_1000" json:"amount_1000" validate:"required"`
 }
 
 type DateTime struct {
