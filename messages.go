@@ -32,32 +32,32 @@ type MessageCreateParams struct {
 }
 
 type Message struct {
-	ApiID                    string `json:"api_id,omitempty" url:"api_id,omitempty"`
-	ToNumber                 string `json:"to_number,omitempty" url:"to_number,omitempty"`
-	FromNumber               string `json:"from_number,omitempty" url:"from_number,omitempty"`
-	CloudRate                string `json:"cloud_rate,omitempty" url:"cloud_rate,omitempty"`
-	MessageType              string `json:"message_type,omitempty" url:"message_type,omitempty"`
-	ResourceURI              string `json:"resource_uri,omitempty" url:"resource_uri,omitempty"`
-	CarrierRate              string `json:"carrier_rate,omitempty" url:"carrier_rate,omitempty"`
-	MessageDirection         string `json:"message_direction,omitempty" url:"message_direction,omitempty"`
-	MessageState             string `json:"message_state,omitempty" url:"message_state,omitempty"`
-	TotalAmount              string `json:"total_amount,omitempty" url:"total_amount,omitempty"`
-	MessageUUID              string `json:"message_uuid,omitempty" url:"message_uuid,omitempty"`
-	MessageTime              string `json:"message_time,omitempty" url:"message_time,omitempty"`
-	ErrorCode                string `json:"error_code,omitempty" url:"error_code,omitempty"`
-	PowerpackID              string `json:"powerpack_id,omitempty" url:"powerpack_id,omitempty"`
-	RequesterIP              string `json:"requester_ip,omitempty" url:"requester_ip,omitempty"`
-	IsDomestic               *bool  `json:"is_domestic,omitempty" url:"is_domestic,omitempty"`
-	ReplacedSender           string `json:"replaced_sender,omitempty" url:"replaced_sender,omitempty"`
-	TendlcCampaignID         string `json:"tendlc_campaign_id" url:"tendlc_campaign_id,omitempty"`
-	TendlcRegistrationStatus string `json:"tendlc_registration_status" url:"tendlc_registration_status,omitempty"`
-	DestinationCountryISO2   string `json:"destination_country_iso2" url:"destination_country_iso2,omitempty"`
-	ConversationID           string `json:"conversation_id" url:"conversation_id,omitempty"`
-	ConversationOrigin       string `json:"conversation_origin" url:"conversation_origin,omitempty"`
-	ConversationExpiry       string `json:"conversation_expiration_timestamp" url:"conversation_expiration_timestamp,omitempty"`
-	DLTEntityID              string `json:"dlt_entity_id" url:"dlt_entity_id,omitempty"`
-	DLTTemplateID            string `json:"dlt_template_id" url:"dlt_template_id,omitempty"`
-	DLTTemplateCategory      string `json:"dlt_template_category" url:"dlt_template_category,omitempty"`
+	ApiID                           string `json:"api_id,omitempty" url:"api_id,omitempty"`
+	ToNumber                        string `json:"to_number,omitempty" url:"to_number,omitempty"`
+	FromNumber                      string `json:"from_number,omitempty" url:"from_number,omitempty"`
+	CloudRate                       string `json:"cloud_rate,omitempty" url:"cloud_rate,omitempty"`
+	MessageType                     string `json:"message_type,omitempty" url:"message_type,omitempty"`
+	ResourceURI                     string `json:"resource_uri,omitempty" url:"resource_uri,omitempty"`
+	CarrierRate                     string `json:"carrier_rate,omitempty" url:"carrier_rate,omitempty"`
+	MessageDirection                string `json:"message_direction,omitempty" url:"message_direction,omitempty"`
+	MessageState                    string `json:"message_state,omitempty" url:"message_state,omitempty"`
+	TotalAmount                     string `json:"total_amount,omitempty" url:"total_amount,omitempty"`
+	MessageUUID                     string `json:"message_uuid,omitempty" url:"message_uuid,omitempty"`
+	MessageTime                     string `json:"message_time,omitempty" url:"message_time,omitempty"`
+	ErrorCode                       string `json:"error_code,omitempty" url:"error_code,omitempty"`
+	PowerpackID                     string `json:"powerpack_id,omitempty" url:"powerpack_id,omitempty"`
+	RequesterIP                     string `json:"requester_ip,omitempty" url:"requester_ip,omitempty"`
+	IsDomestic                      *bool  `json:"is_domestic,omitempty" url:"is_domestic,omitempty"`
+	ReplacedSender                  string `json:"replaced_sender,omitempty" url:"replaced_sender,omitempty"`
+	TendlcCampaignID                string `json:"tendlc_campaign_id" url:"tendlc_campaign_id,omitempty"`
+	TendlcRegistrationStatus        string `json:"tendlc_registration_status" url:"tendlc_registration_status,omitempty"`
+	DestinationCountryISO2          string `json:"destination_country_iso2" url:"destination_country_iso2,omitempty"`
+	ConversationID                  string `json:"conversation_id" url:"conversation_id,omitempty"`
+	ConversationOrigin              string `json:"conversation_origin" url:"conversation_origin,omitempty"`
+	ConversationExpirationTimestamp string `json:"conversation_expiration_timestamp" url:"conversation_expiration_timestamp,omitempty"`
+	DLTEntityID                     string `json:"dlt_entity_id" url:"dlt_entity_id,omitempty"`
+	DLTTemplateID                   string `json:"dlt_template_id" url:"dlt_template_id,omitempty"`
+	DLTTemplateCategory             string `json:"dlt_template_category" url:"dlt_template_category,omitempty"`
 }
 
 // Stores response for ending a message.
