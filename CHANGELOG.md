@@ -2,7 +2,7 @@
 ## [7.35.0](https://github.com/plivo/plivo-go/tree/v7.35.0) (2023-08-07)
 **Feature - WhatsApp message support**
 - Added new param `template` and  new message_type `whatsapp` to [send message API](https://www.plivo.com/docs/sms/api/message#send-a-message)
-- Added  new  `message_states` (`read`)   `message_type`(`whatsapp`),`conversation_id`, `conversation_origin`, 'conversation_expiry_timestamp' in [list all messages API](https://www.plivo.com/docs/sms/api/message#list-all-messages) and [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message) response
+- Added  new  `message_states` (`read`)   `message_type`(`whatsapp`),`conversation_id`, `conversation_origin`, `conversation_expiry_timestamp` in [list all messages API](https://www.plivo.com/docs/sms/api/message#list-all-messages) and [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message) response
 
 
 ## [7.34.0](https://github.com/plivo/plivo-go/tree/v7.34.0) (2023-08-03)
