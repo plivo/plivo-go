@@ -1,4 +1,9 @@
 # Change Log
+## [7.35.0](https://github.com/plivo/plivo-go/tree/v7.35.0) (2023-08-07)
+**Feature - WhatsApp message support**
+- Added new param `template` and  new message_type `whatsapp` to [send message API](https://www.plivo.com/docs/sms/api/message#send-a-message)
+- Added  new  `message_states` (`read`)   `message_type`(`whatsapp`),`conversation_id`, `conversation_origin`, `conversation_expiry_timestamp` in [list all messages API](https://www.plivo.com/docs/sms/api/message#list-all-messages) and [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message) response
+
 
 ## [7.34.0](https://github.com/plivo/plivo-go/tree/v7.34.0) (2023-08-03)
 **Feature - DLT parameters**
@@ -8,11 +13,11 @@
 ## [7.33.0](https://github.com/plivo/plivo-go/tree/v7.33.0) (2023-07-31)
 **Feature - Number Masking**
 - Added Get, Update and List Masking Session API and modified the Create and Delete API
-
 ## [7.32.0](https://github.com/plivo/plivo-go/tree/v7.32.0) (2023-06-28)
 **Audio Streaming**
 - API support for starting, deleting, getting streams on a live call
 - XML creation support for stream element
+
 
 ## [7.31.0](https://github.com/plivo/plivo-go/tree/v7.31.0) (2023-06-02)
 **Feature - CNAM Lookup**
