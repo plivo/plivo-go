@@ -87,6 +87,7 @@ type SessionListParams struct {
 	Country                   string `url:"country,omitempty"`
 	Alias                     string `url:"alias,omitempty"`
 	SessionTime               string `url:"session_time,omitempty"`
+	Subaccount                string `url:"subaccount,omitempty"`
 	SessionTimeGreaterThan    string `url:"session_time__gt,omitempty"`
 	SessionTimeGreaterOrEqual string `url:"session_time__gte,omitempty"`
 	SessionTimeLessThan       string `url:"session_time__lt,omitempty"`
