@@ -50,13 +50,13 @@ type NumberUpdateResponse struct {
 }
 
 type NumberUpdateParams struct {
-	AppID           string `json:"app_id,omitempty" url:"app_id,omitempty"`
-	Subaccount      string `json:"subaccount,omitempty" url:"subaccount,omitempty"`
-	Alias           string `json:"alias,omitempty" url:"alias,omitempty"`
-	CNAMLookup      string `json:"cnam_lookup,omitempty" url:"cnam_lookup,omitempty"`
-	CNAM            string `json:"cnam,omitempty" url:"cnam,omitempty"`
-	CNAMCallbackURL string `json:"callback_url"`
-	CallbackMethod  string `json:"callback_method"`
+	AppID          string `json:"app_id,omitempty" url:"app_id,omitempty"`
+	Subaccount     string `json:"subaccount,omitempty" url:"subaccount,omitempty"`
+	Alias          string `json:"alias,omitempty" url:"alias,omitempty"`
+	CNAMLookup     string `json:"cnam_lookup,omitempty" url:"cnam_lookup,omitempty"`
+	CNAM           string `json:"cnam,omitempty" url:"cnam,omitempty"`
+	CallbackURL    string `json:"callback_url"`
+	CallbackMethod string `json:"callback_method"`
 }
 
 type NumberListParams struct {
@@ -170,11 +170,11 @@ type PhoneNumberListParams struct {
 }
 
 type PhoneNumberCreateParams struct {
-	AppID           string `json:"app_id,omitempty" url:"app_id,omitempty"`
-	CNAMLookup      string `json:"cnam_lookup,omitempty" url:"cnam_lookup,omitempty"`
-	CNAM            string `json:"cnam,omitempty" url:"cnam,omitempty"`
-	CNAMCallbackURL string `json:"callback_url"`
-	CallbackMethod  string `json:"callback_method"`
+	AppID          string `json:"app_id,omitempty" url:"app_id,omitempty"`
+	CNAMLookup     string `json:"cnam_lookup,omitempty" url:"cnam_lookup,omitempty"`
+	CNAM           string `json:"cnam,omitempty" url:"cnam,omitempty"`
+	CallbackURL    string `json:"callback_url"`
+	CallbackMethod string `json:"callback_method"`
 }
 
 type PhoneNumberService struct {
