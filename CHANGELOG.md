@@ -1,5 +1,5 @@
 # Change Log
-## [7.36.0] (https://github.com/plivo/plivo-go/tree/v7.33.0) (2023-07-20)
+## [7.36.0] (https://github.com/plivo/plivo-go/tree/v7.36.0) (2023-08-10)
 **Feature - Verify**
 - Added Create Session API
 - Added Get Session API
