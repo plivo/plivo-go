@@ -1,4 +1,11 @@
 # Change Log
+## [7.36.0] (https://github.com/plivo/plivo-go/tree/v7.36.0) (2023-08-10)
+**Feature - Verify**
+- Added Create Session API
+- Added Get Session API
+- Added List Session API
+- Added Validate Session API
+
 ## [7.35.0](https://github.com/plivo/plivo-go/tree/v7.35.0) (2023-08-07)
 **Feature - WhatsApp message support**
 - Added new param `template` and  new message_type `whatsapp` to [send message API](https://www.plivo.com/docs/sms/api/message#send-a-message)
