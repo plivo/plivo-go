@@ -58,6 +58,9 @@ type Message struct {
 	DLTEntityID                     string `json:"dlt_entity_id" url:"dlt_entity_id,omitempty"`
 	DLTTemplateID                   string `json:"dlt_template_id" url:"dlt_template_id,omitempty"`
 	DLTTemplateCategory             string `json:"dlt_template_category" url:"dlt_template_category,omitempty"`
+	DestinationNetwork              string `json:"destination_network" url:"destination_network,omitempty"`
+	CarrierFeesRate                 string `json:"carrier_fees_rate" url:"carrier_fees_rate,omitempty"`
+	CarrierFees                     string `json:"carrier_fees" url:"carrier_fees,omitempty"`
 }
 
 // Stores response for ending a message.
