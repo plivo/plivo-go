@@ -3,6 +3,12 @@ package plivo
 type CampaignService struct {
 	client *Client
 }
+type ImportCampaignParams struct {
+	CampaignID    string `json:"campaign_id,omitempty" url:"campaign_id,omitempty"`
+	CampaignAlias string `json:"campaign_alias,omitempty" url:"campaign_alias,omitempty"`
+	URL           string `json:"url,omitempty" url:"url,omitempty"`
+	Method        string `json:"method,omitempty" url:"method,omitempty"`
+}
 type CampaignCreationParams struct {
 	BrandID            string    `json:"brand_id" url:"brand_id" validate:"required"`
 	CampaignAlias      *string   `json:"campaign_alias,omitempty" url:"campaign_alias,omitempty"`
@@ -88,6 +94,7 @@ type Campaign struct {
 	CampaignDescription string             `json:"description,omitempty"`
 	CampaignAttributes  CampaignAttributes `json:"campaign_attributes,omitempty"`
 	CreatedAt           string             `json:"created_at,omitempty"`
+	CampaignSource      string             `json:"campaign_source,omitempty"`
 }
 
 type CampaignAttributes struct {
@@ -112,10 +119,11 @@ type OperatorDetail struct {
 	TPM       int    `json:"tpm,omitempty"`
 }
 type CampaignListParams struct {
-	BrandID *string `json:"brand,omitempty"`
-	Usecase *string `json:"usecase,omitempty"`
-	Limit   int     `url:"limit,omitempty"`
-	Offset  int     `url:"offset,omitempty"`
+	BrandID        *string `json:"brand,omitempty"`
+	Usecase        *string `json:"usecase,omitempty"`
+	CampaignSource *string `json:"campaign_source,omitempty"`
+	Limit          int     `url:"limit,omitempty"`
+	Offset         int     `url:"offset,omitempty"`
 }
 
 type CampaignNumberLinkParams struct {
@@ -176,6 +184,16 @@ func (service *CampaignService) Get(campaignID string) (response *CampaignGetRes
 
 func (service *CampaignService) Create(params CampaignCreationParams) (response *CampaignCreateResponse, err error) {
 	req, err := service.client.NewRequest("POST", params, "10dlc/Campaign")
+	if err != nil {
+		return
+	}
+	response = &CampaignCreateResponse{}
+	err = service.client.ExecuteRequest(req, response)
+	return
+}
+
+func (service *CampaignService) Import(params ImportCampaignParams) (response *CampaignCreateResponse, err error) {
+	req, err := service.client.NewRequest("POST", params, "10dlc/Campaign/Import")
 	if err != nil {
 		return
 	}
