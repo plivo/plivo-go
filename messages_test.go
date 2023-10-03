@@ -10,7 +10,6 @@ func TestMessageService_List(t *testing.T) {
 	expectResponse("messageListResponse.json", 200)
 	assert := require.New(t)
 	resp, err := client.Messages.List(MessageListParams{})
-
 	assert.NotNil(resp)
 	assert.Nil(err)
 	assert.NotNil(resp.Objects)
