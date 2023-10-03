@@ -47,7 +47,13 @@ type CampaignUpdateParams struct {
 }
 
 type CampaignListResponse struct {
-	ApiID            string     `json:"api_id,omitempty"`
+	ApiID string `json:"api_id,omitempty"`
+	Meta  struct {
+		Previous *string
+		Next     *string
+		Offset   int64
+		Limit    int64
+	} `json:"meta"`
 	CampaignResponse []Campaign `json:"campaigns,omitempty"`
 }
 
