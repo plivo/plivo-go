@@ -10,6 +10,7 @@ func TestMessageService_List(t *testing.T) {
 	expectResponse("messageListResponse.json", 200)
 	assert := require.New(t)
 	resp, err := client.Messages.List(MessageListParams{})
+
 	assert.NotNil(resp)
 	assert.Nil(err)
 	assert.NotNil(resp.Objects)
@@ -26,13 +27,13 @@ func TestMessageService_List(t *testing.T) {
 	assert.Equal(resp.Objects[19].DLTTemplateID, "")
 	assert.Equal(resp.Objects[19].DLTTemplateCategory, "")
 
-	assert.Equal(resp.Objects[0].ConversationID, "0079");
-	assert.Equal(resp.Objects[0].ConversationOrigin, "marketing");
-	assert.Equal(resp.Objects[0].ConversationExpirationTimestamp, "2023-08-03 23:02:00+05:30");
+	assert.Equal(resp.Objects[0].ConversationID, "0079")
+	assert.Equal(resp.Objects[0].ConversationOrigin, "marketing")
+	assert.Equal(resp.Objects[0].ConversationExpirationTimestamp, "2023-08-03 23:02:00+05:30")
 
-	assert.Equal(resp.Objects[19].ConversationID, "");
-	assert.Equal(resp.Objects[19].ConversationOrigin, "");
-	assert.Equal(resp.Objects[19].ConversationExpirationTimestamp, "");
+	assert.Equal(resp.Objects[19].ConversationID, "")
+	assert.Equal(resp.Objects[19].ConversationOrigin, "")
+	assert.Equal(resp.Objects[19].ConversationExpirationTimestamp, "")
 
 	assert.NotNil(resp.Meta)
 	cl := client.httpClient
@@ -58,9 +59,9 @@ func TestMessageService_Get(t *testing.T) {
 	assert.Equal(resp.DLTTemplateID, "5678")
 	assert.Equal(resp.DLTTemplateCategory, "service_implicit")
 
-	assert.Equal(resp.ConversationID, "9876");
-	assert.Equal(resp.ConversationOrigin, "utility");
-	assert.Equal(resp.ConversationExpirationTimestamp, "2023-08-03 23:02:00+05:30");
+	assert.Equal(resp.ConversationID, "9876")
+	assert.Equal(resp.ConversationOrigin, "utility")
+	assert.Equal(resp.ConversationExpirationTimestamp, "2023-08-03 23:02:00+05:30")
 
 	cl := client.httpClient
 	client.httpClient = nil
