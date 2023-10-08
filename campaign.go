@@ -119,7 +119,7 @@ type OperatorDetail struct {
 	TPM       int    `json:"tpm,omitempty"`
 }
 type CampaignListParams struct {
-	BrandID        *string `json:"brand,omitempty"`
+	BrandID        *string `json:"brand_id,omitempty"`
 	Usecase        *string `json:"usecase,omitempty"`
 	CampaignSource *string `json:"campaign_source,omitempty"`
 	Limit          int     `url:"limit,omitempty"`
