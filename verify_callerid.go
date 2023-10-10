@@ -49,10 +49,32 @@ type UpdateVerifiedCallerIDParams struct {
 	SubAccount string `json:"subaccount,omitempty"`
 }
 
+type GetVerifyResponse struct {
+	Alias            string    `json:"alias,omitempty"`
+	ApiID            string    `json:"api_id,omitempty" url:"api_id,omitempty"`
+	Country          string    `json:"country"`
+	CreatedAt        time.Time `json:"created_at"`
+	ModifiedAt       time.Time `json:"modified_at"`
+	PhoneNumber      string    `json:"phone_number"`
+	SubAccount       string    `json:"subaccount,omitempty" url:"subaccount,omitempty"`
+	VerificationUUID string    `json:"verification_uuid"`
+}
+
+type ListVerifyResponse struct {
+	Alias            string    `json:"alias,omitempty"`
+	Country          string    `json:"country"`
+	CreatedAt        time.Time `json:"created_at"`
+	ModifiedAt       time.Time `json:"modified_at"`
+	PhoneNumber      string    `json:"phone_number"`
+	ResourceUri      string    `json:"resource_uri,omitempty"`
+	SubAccount       string    `json:"subaccount,omitempty"`
+	VerificationUUID string    `json:"verification_uuid"`
+}
+
 type ListVerifiedCallerIDResponse struct {
-	ApiID   string           `json:"api_id,omitempty" url:"api_id,omitempty"`
-	Meta    Meta             `json:"meta" url:"meta"`
-	Objects []VerifyResponse `json:"objects" url:"objects"`
+	ApiID   string               `json:"api_id,omitempty" url:"api_id,omitempty"`
+	Meta    Meta                 `json:"meta" url:"meta"`
+	Objects []ListVerifyResponse `json:"objects" url:"objects"`
 }
 
 func (service *VerifyCallerIdService) InitiateVerify(params InitiateVerify) (response *InitiateVerifyResponse, err error) {
@@ -85,22 +107,22 @@ func (service *VerifyCallerIdService) DeleteVerifiedCallerID(phoneNumber string)
 	return
 }
 
-func (service *VerifyCallerIdService) UpdateVerifiedCallerID(phoneNumber string, params UpdateVerifiedCallerIDParams) (response *VerifyResponse, err error) {
+func (service *VerifyCallerIdService) UpdateVerifiedCallerID(phoneNumber string, params UpdateVerifiedCallerIDParams) (response *GetVerifyResponse, err error) {
 	req, err := service.client.NewRequest("POST", params, "VerifiedCallerId/%s", phoneNumber)
 	if err != nil {
 		return
 	}
-	response = &VerifyResponse{}
+	response = &GetVerifyResponse{}
 	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
 
-func (service *VerifyCallerIdService) GetVerifiedCallerID(phoneNumber string) (response *VerifyResponse, err error) {
+func (service *VerifyCallerIdService) GetVerifiedCallerID(phoneNumber string) (response *GetVerifyResponse, err error) {
 	req, err := service.client.NewRequest("GET", nil, "VerifiedCallerId/%s", phoneNumber)
 	if err != nil {
 		return
 	}
-	response = &VerifyResponse{}
+	response = &GetVerifyResponse{}
 	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
