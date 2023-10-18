@@ -13,7 +13,7 @@ import (
 	"github.com/google/go-querystring/query"
 )
 
-const sdkVersion = "7.38.0"
+const sdkVersion = "7.39.0"
 
 const lookupBaseUrl = "lookup.plivo.com"
 
@@ -72,7 +72,7 @@ func (client *BaseClient) NewRequest(method string, params interface{}, baseRequ
 
 		requestUrl.RawQuery = values.Encode()
 	} else {
-		if reflect.ValueOf(params).Kind().String() != "map" {
+		if reflect.ValueOf(params).Kind().String() != "map" && params != nil {
 			if err = json.NewEncoder(buffer).Encode(params); err != nil {
 				return
 			}

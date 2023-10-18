@@ -49,6 +49,7 @@ type Client struct {
 	Campaign                *CampaignService
 	MaskingSession          *MaskingSessionService
 	VerifySession           *VerifyService
+	VerifyCallerId          *VerifyCallerIdService
 }
 
 /*
@@ -120,6 +121,7 @@ func NewClient(authId, authToken string, options *ClientOptions) (client *Client
 	client.Profile = &ProfileService{client: client}
 	client.MaskingSession = &MaskingSessionService{client: client}
 	client.VerifySession = &VerifyService{client: client}
+	client.VerifyCallerId = &VerifyCallerIdService{client: client}
 	return
 }
 
