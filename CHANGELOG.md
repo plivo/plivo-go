@@ -1,5 +1,10 @@
 # Change Log
 
+## [7.39.0](https://github.com/plivo/plivo-go/tree/v7.39.0) (2023-10-18)
+**Feature - Verify CallerID**
+- Added Initiate and Verify VerifyCallerID API
+- Added Update, Delete, Get and List verified CallerIDs API
+
 ## [7.38.0](https://github.com/plivo/plivo-go/tree/v7.38.0) (2023-10-16)
 **Feature - Campaign API Enhancements & New API for Importing Partner Campaigns**
 - Import Partner Campaign API
