@@ -72,7 +72,7 @@ func (client *BaseClient) NewRequest(method string, params interface{}, baseRequ
 
 		requestUrl.RawQuery = values.Encode()
 	} else {
-		if reflect.ValueOf(params).Kind().String() != "map" {
+		if reflect.ValueOf(params).Kind().String() != "map" && params != nil {
 			if err = json.NewEncoder(buffer).Encode(params); err != nil {
 				return
 			}
