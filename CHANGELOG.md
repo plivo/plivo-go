@@ -1,6 +1,6 @@
 # Change Log
 
-## [7.39.0](https://github.com/plivo/plivo-go/tree/v7.39.0) (2023-10-17)
+## [7.40.0](https://github.com/plivo/plivo-go/tree/v7.40.0) (2023-10-18)
 **Feature - Fixes for Campaign services list API meta data**
 - Fixed Meta data response for campaign, brand and profile list
 
