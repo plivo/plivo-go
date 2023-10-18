@@ -1,5 +1,10 @@
 # Change Log
 
+## [7.38.0](https://github.com/plivo/plivo-go/tree/v7.38.0) (2023-10-16)
+**Feature - Campaign API Enhancements & New API for Importing Partner Campaigns**
+- Import Partner Campaign API
+- campaign_source field in LIST / GET API
+
 ## [7.37.0](https://github.com/plivo/plivo-go/tree/v7.37.0) (2023-08-25)
 **Feature - Added New Param 'carrier_fees', 'carrier_fees_rate', 'destination_network' in Get Message and List Message APIs**
 - Added new params on message get and list response
