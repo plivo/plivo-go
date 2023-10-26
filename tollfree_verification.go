@@ -42,16 +42,16 @@ type TollFreeUpdateParams struct {
 }
 
 type TollFreeListParams struct {
-	Number               string `json:"number,omitempty"  url:"number,omitempty"`
-	Status               string `json:"status,omitempty"  url:"status,omitempty"`
-	ProfileUUID          string `json:"profile_uuid,omitempty" url:"profile_uuid,omitempty"`
-	GreaterThan          string `json:"created_gt,omitempty" url:"created_gt,omitempty"`
-	GreaterThanOrEqualTo string `json:"created_gte,omitempty" url:"created_gte,omitempty"`
-	LessThan             string `json:"created_lt,omitempty" url:"created_lt,omitempty"`
-	LessThanOrEqualTo    string `json:"created_lte,omitempty" url:"created_lte,omitempty"`
-	Usecase              string `json:"usecase,omitempty" url:"usecase,omitempty"`
-	Limit                int64  `json:"limit,omitempty" url:"limit,omitempty"`
-	Offset               int64  `json:"offset,omitempty" url:"offset,omitempty"`
+	Number      string `json:"number,omitempty"  url:"number,omitempty"`
+	Status      string `json:"status,omitempty"  url:"status,omitempty"`
+	ProfileUUID string `json:"profile_uuid,omitempty" url:"profile_uuid,omitempty"`
+	CreatedGT   string `json:"created_gt,omitempty" url:"created_gt,omitempty"`
+	CreatedGTE  string `json:"created_gte,omitempty" url:"created_gte,omitempty"`
+	CreatedLT   string `json:"created_lt,omitempty" url:"created_lt,omitempty"`
+	CreatedLTE  string `json:"created_lte,omitempty" url:"created_lte,omitempty"`
+	Usecase     string `json:"usecase,omitempty" url:"usecase,omitempty"`
+	Limit       int64  `json:"limit,omitempty" url:"limit,omitempty"`
+	Offset      int64  `json:"offset,omitempty" url:"offset,omitempty"`
 }
 
 // TollfreeVerificationRequest struct
