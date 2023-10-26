@@ -20,35 +20,36 @@ const baseRequestString = "/v1/Account/%s/"
 
 type Client struct {
 	BaseClient
-	Messages                *MessageService
-	Accounts                *AccountService
-	Subaccounts             *SubaccountService
-	Applications            *ApplicationService
-	Endpoints               *EndpointService
-	Numbers                 *NumberService
-	PhoneNumbers            *PhoneNumberService
-	Pricing                 *PricingService // TODO Rename?
-	Recordings              *RecordingService
-	Calls                   *CallService
-	Token                   *TokenService
-	LiveCalls               *LiveCallService
-	QueuedCalls             *QueuedCallService
-	Conferences             *ConferenceService
-	CallFeedback            *CallFeedbackService
-	Powerpack               *PowerpackService
-	Media                   *MediaService
-	Lookup                  *LookupService
-	EndUsers                *EndUserService
-	ComplianceDocuments     *ComplianceDocumentService
-	ComplianceDocumentTypes *ComplianceDocumentTypeService
-	ComplianceRequirements  *ComplianceRequirementService
-	ComplianceApplications  *ComplianceApplicationService
-	MultiPartyCall          *MultiPartyCallService
-	Brand                   *BrandService
-	Profile                 *ProfileService
-	Campaign                *CampaignService
-	MaskingSession          *MaskingSessionService
-	VerifySession           *VerifyService
+	Messages                    *MessageService
+	Accounts                    *AccountService
+	Subaccounts                 *SubaccountService
+	Applications                *ApplicationService
+	Endpoints                   *EndpointService
+	Numbers                     *NumberService
+	PhoneNumbers                *PhoneNumberService
+	Pricing                     *PricingService // TODO Rename?
+	Recordings                  *RecordingService
+	Calls                       *CallService
+	Token                       *TokenService
+	LiveCalls                   *LiveCallService
+	QueuedCalls                 *QueuedCallService
+	Conferences                 *ConferenceService
+	CallFeedback                *CallFeedbackService
+	Powerpack                   *PowerpackService
+	Media                       *MediaService
+	Lookup                      *LookupService
+	EndUsers                    *EndUserService
+	ComplianceDocuments         *ComplianceDocumentService
+	ComplianceDocumentTypes     *ComplianceDocumentTypeService
+	ComplianceRequirements      *ComplianceRequirementService
+	ComplianceApplications      *ComplianceApplicationService
+	MultiPartyCall              *MultiPartyCallService
+	Brand                       *BrandService
+	Profile                     *ProfileService
+	Campaign                    *CampaignService
+	MaskingSession              *MaskingSessionService
+	VerifySession               *VerifyService
+	TollFreeRequestVerification *TollFreeRequestVerificationService
 }
 
 /*
@@ -120,6 +121,7 @@ func NewClient(authId, authToken string, options *ClientOptions) (client *Client
 	client.Profile = &ProfileService{client: client}
 	client.MaskingSession = &MaskingSessionService{client: client}
 	client.VerifySession = &VerifyService{client: client}
+	client.TollFreeRequestVerification = &TollFreeRequestVerificationService{client: client}
 	return
 }
 
