@@ -27,7 +27,9 @@
       "tendlc_campaign_id": "ACB1234",
       "tendlc_registration_status": "COMPLETED",
       "toll_free_sms_verification": "verified",
-      "renewal_date":"2014-09-15"
+      "renewal_date":"2014-09-15",
+      "toll_free_sms_verification_id": null,
+      "toll_free_sms_verification_order_status": null
     },
     {
       "added_on": "2013-01-01",
@@ -48,7 +50,9 @@
       "tendlc_campaign_id": "ACB1235",
       "tendlc_registration_status": "COMPLETED",
       "toll_free_sms_verification": "unverified",
-      "renewal_date":"2014-02-01"
+      "renewal_date":"2014-02-01",
+      "toll_free_sms_verification_id": null,
+      "toll_free_sms_verification_order_status": null
     },
     {
       "added_on": "2013-03-25",
@@ -69,7 +73,9 @@
       "tendlc_campaign_id": "ACB1236",
       "tendlc_registration_status": "COMPLETED",
       "toll_free_sms_verification": "verified",
-      "renewal_date":"2013-04-25"
+      "renewal_date":"2013-04-25",
+      "toll_free_sms_verification_id": null,
+      "toll_free_sms_verification_order_status": null
     }
   ]
 }
