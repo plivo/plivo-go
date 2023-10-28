@@ -4,6 +4,7 @@
   "api_id": "88625e5e-1c92-11e4-80aa-12313f048015",
   "application": "/v1/Account/MANWVLYTK4ZWU1YTY4ZT/Application/29986316244302815/",
   "carrier": "Plivo",
+  "cnam": "plivo",
   "cnam_lookup":"enabled",
   "monthly_rental_rate": "0.80000",
   "number": "17609915566",
