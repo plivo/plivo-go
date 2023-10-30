@@ -44,10 +44,10 @@ type TollFreeListParams struct {
 	Number      string `json:"number,omitempty"  url:"number,omitempty"`
 	Status      string `json:"status,omitempty"  url:"status,omitempty"`
 	ProfileUUID string `json:"profile_uuid,omitempty" url:"profile_uuid,omitempty"`
-	CreatedGT   string `json:"created_gt,omitempty" url:"created_gt,omitempty"`
-	CreatedGTE  string `json:"created_gte,omitempty" url:"created_gte,omitempty"`
-	CreatedLT   string `json:"created_lt,omitempty" url:"created_lt,omitempty"`
-	CreatedLTE  string `json:"created_lte,omitempty" url:"created_lte,omitempty"`
+	CreatedGT   string `json:"created__gt,omitempty" url:"created__gt,omitempty"`
+	CreatedGTE  string `json:"created__gte,omitempty" url:"created__gte,omitempty"`
+	CreatedLT   string `json:"created__lt,omitempty" url:"created__lt,omitempty"`
+	CreatedLTE  string `json:"created__lte,omitempty" url:"created__lte,omitempty"`
 	Usecase     string `json:"usecase,omitempty" url:"usecase,omitempty"`
 	Limit       int64  `json:"limit,omitempty" url:"limit,omitempty"`
 	Offset      int64  `json:"offset,omitempty" url:"offset,omitempty"`
