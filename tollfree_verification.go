@@ -8,8 +8,7 @@ type TollFreeRequestVerificationService struct {
 
 type TollFreeResponse struct {
 	ApiId   string `json:"api_id" url:"api_id"`
-	Message string `json:"message,omitempty" url:"message"`
-	Error   string `json:"error,omitempty" url:"error"`
+	Message string `json:"message,omitempty" url:"message,omitempty"`
 }
 
 type TollFreeCreateParams struct {
@@ -77,7 +76,6 @@ type TollfreeVerificationRequest struct {
 
 type TollfreeVerificationRequestListResponse struct {
 	APIID   string                        `json:"api_id" url:"api_id"`
-	Error   string                        `json:"error,omitempty" url:"error,omitempty"`
 	Meta    *Meta                         `json:"meta,omitempty" url:"meta,omitempty"`
 	Objects []TollfreeVerificationRequest `json:"objects,omitempty" url:"objects,omitempty"`
 }
