@@ -13,6 +13,13 @@ type TollFreeResponse struct {
 	Message string `json:"message,omitempty" url:"message,omitempty"`
 }
 
+// TollFreeCreateResponse - Default response
+type TollFreeCreateResponse struct {
+	APIID   string `json:"api_id" url:"api_id"`
+	Message string `json:"message,omitempty" url:"message,omitempty"`
+	UUID    string `json:"uuid" url:"uuid"`
+}
+
 // TollFreeCreateParams - List of params to create a TF verification request
 type TollFreeCreateParams struct {
 	ProfileUUID           string `json:"profile_uuid,omitempty" url:"profile_uuid,omitempty"`
@@ -87,12 +94,12 @@ type TollfreeVerificationRequestListResponse struct {
 }
 
 // Create - create API for Tollfree Verification Request
-func (service *TollFreeRequestVerificationService) Create(params TollFreeCreateParams) (response *TollFreeResponse, err error) {
+func (service *TollFreeRequestVerificationService) Create(params TollFreeCreateParams) (response *TollFreeCreateResponse, err error) {
 	req, err := service.client.NewRequest("POST", params, "TollfreeVerification")
 	if err != nil {
 		return
 	}
-	response = &TollFreeResponse{}
+	response = &TollFreeCreateResponse{}
 	err = service.client.ExecuteRequest(req, response)
 	return
 }
