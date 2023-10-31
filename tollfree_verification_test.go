@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestTollFreeRequestVerificationService_Create(t *testing.T) {
+func TestTollFreeRequestVerificationServiceCreate(t *testing.T) {
 	expectResponse("TollFreeRequestVerificationCreateResponse.json", 201)
 
 	if _, err := client.TollFreeRequestVerification.Create(TollFreeCreateParams{}); err != nil {
@@ -26,7 +26,7 @@ func TestTollFreeRequestVerificationService_Create(t *testing.T) {
 	assertRequest(t, "POST", "TollfreeVerification")
 }
 
-func TestTollFreeRequestVerificationService_Update(t *testing.T) {
+func TestTollFreeRequestVerificationServiceUpdate(t *testing.T) {
 	expectResponse("TollFreeRequestVerificationUpdateResponse.json", 202)
 	RequestId := "RequestId"
 
@@ -46,7 +46,7 @@ func TestTollFreeRequestVerificationService_Update(t *testing.T) {
 	assertRequest(t, "POST", "TollfreeVerification/%s", RequestId)
 }
 
-func TestTollFreeRequestVerificationService_List(t *testing.T) {
+func TestTollFreeRequestVerificationServiceList(t *testing.T) {
 	expectResponse("TollFreeRequestVerificationListResponse.json", 200)
 
 	if _, err := client.TollFreeRequestVerification.List(TollFreeListParams{}); err != nil {
@@ -65,7 +65,7 @@ func TestTollFreeRequestVerificationService_List(t *testing.T) {
 	assertRequest(t, "GET", "TollfreeVerification")
 }
 
-func TestTollFreeRequestVerificationService_Get(t *testing.T) {
+func TestTollFreeRequestVerificationServiceGet(t *testing.T) {
 	expectResponse("TollFreeRequestVerificationGetResponse.json", 200)
 	RequestId := "RequestId"
 
@@ -87,7 +87,7 @@ func TestTollFreeRequestVerificationService_Get(t *testing.T) {
 	assertRequest(t, "GET", "TollfreeVerification/%s", RequestId)
 }
 
-func TestTollFreeRequestVerificationService_Delete(t *testing.T) {
+func TestTollFreeRequestVerificationServiceDelete(t *testing.T) {
 	expectResponse("", 204)
 	RequestId := "RequestId"
 
