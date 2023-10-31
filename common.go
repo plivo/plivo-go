@@ -59,7 +59,7 @@ func (self Number) ID() string {
 	return self.Number
 }
 
-func (self TollfreeVerificationRequest) ID() string {
+func (self TollfreeVerification) ID() string {
 	return self.UUID
 }
 

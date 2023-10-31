@@ -10,13 +10,13 @@ import (
 func TestTollFreeRequestVerificationServiceCreate(t *testing.T) {
 	expectResponse("TollFreeRequestVerificationCreateResponse.json", 201)
 
-	if _, err := client.TollFreeRequestVerification.Create(TollFreeCreateParams{}); err != nil {
+	if _, err := client.TollFreeRequestVerification.Create(TollfreeVerificationCreateParams{}); err != nil {
 		panic(err)
 	}
 
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.TollFreeRequestVerification.Create(TollFreeCreateParams{})
+	_, err := client.TollFreeRequestVerification.Create(TollfreeVerificationCreateParams{})
 	if err == nil {
 		client.httpClient = cl
 		panic(errors.New("error expected"))
@@ -30,13 +30,13 @@ func TestTollFreeRequestVerificationServiceUpdate(t *testing.T) {
 	expectResponse("TollFreeRequestVerificationUpdateResponse.json", 202)
 	RequestId := "RequestId"
 
-	if _, err := client.TollFreeRequestVerification.Update(RequestId, TollFreeUpdateParams{}); err != nil {
+	if _, err := client.TollFreeRequestVerification.Update(RequestId, TollfreeVerificationUpdateParams{}); err != nil {
 		panic(err)
 	}
 
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.TollFreeRequestVerification.Update(RequestId, TollFreeUpdateParams{})
+	_, err := client.TollFreeRequestVerification.Update(RequestId, TollfreeVerificationUpdateParams{})
 	if err == nil {
 		client.httpClient = cl
 		panic(errors.New("error expected"))
@@ -49,13 +49,13 @@ func TestTollFreeRequestVerificationServiceUpdate(t *testing.T) {
 func TestTollFreeRequestVerificationServiceList(t *testing.T) {
 	expectResponse("TollFreeRequestVerificationListResponse.json", 200)
 
-	if _, err := client.TollFreeRequestVerification.List(TollFreeListParams{}); err != nil {
+	if _, err := client.TollFreeRequestVerification.List(TollfreeVerificationListParams{}); err != nil {
 		panic(err)
 	}
 
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.TollFreeRequestVerification.List(TollFreeListParams{})
+	_, err := client.TollFreeRequestVerification.List(TollfreeVerificationListParams{})
 	if err == nil {
 		client.httpClient = cl
 		panic(errors.New("error expected"))
