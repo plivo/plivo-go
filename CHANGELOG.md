@@ -1,5 +1,11 @@
 # Change Log
 
+## [7.41.0](https://github.com/plivo/plivo-go/tree/v7.41.0) (2023-10-31)
+**Feature - TollFree Verification API Support**
+- API support for Create, Update, Get, Delete and List Tollfree Verification.
+- Added New Param `toll_free_sms_verification_id` and `toll_free_sms_verification_order_status `in to the response of the [list all numbers API], [list single number API]
+- Added `toll_free_sms_verification_order_status` filter to AccountPhoneNumber - list all my numbers API.
+
 ## [7.40.0](https://github.com/plivo/plivo-go/tree/v7.40.0) (2023-10-18)
 **Feature - Fixes for Campaign services list API meta data**
 - Fixed Meta data response for campaign, brand and profile list
