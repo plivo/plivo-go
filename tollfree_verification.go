@@ -69,9 +69,9 @@ type TollfreeVerificationRequest struct {
 	CallbackURL           string    `json:"callback_url" url:"callback_url"`
 	CallbackMethod        string    `json:"callback_method" url:"callback_method"`
 	Status                string    `json:"status" url:"status"`
-	RejectionReason       string    `json:"rejection_reason" url:"rejection_reason"`
-	CreatedAt             time.Time `json:"created_at" url:"created_at"`
-	UpdatedAt             time.Time `json:"updated_at" url:"updated_at"`
+	ErrorMessage          string    `json:"error_message" url:"error_message"`
+	Created               time.Time `json:"created" url:"created"`
+	LastModified          time.Time `json:"last_modified" url:"last_modified"`
 }
 
 type TollfreeVerificationRequestListResponse struct {
