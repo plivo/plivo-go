@@ -52,22 +52,23 @@ type NumberUpdateParams struct {
 }
 
 type NumberListParams struct {
-	NumberType               string `json:"number_type,omitempty" url:"number_type,omitempty"`
-	NumberStartsWith         string `json:"number_startswith,omitempty" url:"number_startswith,omitempty"`
-	Subaccount               string `json:"subaccount,omitempty" url:"subaccount,omitempty"`
-	RenewalDate              string `json:"renewal_date,omitempty" url:"renewal_date,omitempty"`
-	RenewalDateLt            string `json:"renewal_date__lt,omitempty" url:"renewal_date__lt,omitempty"`
-	RenewalDateLte           string `json:"renewal_date__lte,omitempty" url:"renewal_date__lte,omitempty"`
-	RenewalDateGt            string `json:"renewal_date__gt,omitempty" url:"renewal_date__gt,omitempty"`
-	RenewalDateGte           string `json:"renewal_date__gte,omitempty" url:"renewal_date__gte,omitempty"`
-	Services                 string `json:"services,omitempty" url:"services,omitempty"`
-	Alias                    string `json:"alias,omitempty" url:"alias,omitempty"`
-	Limit                    int64  `json:"limit,omitempty" url:"limit,omitempty"`
-	Offset                   int64  `json:"offset,omitempty" url:"offset,omitempty"`
-	TendlcCampaignID         string `json:"tendlc_campaign_id,omitempty" url:"tendlc_campaign_id,omitempty"`
-	TendlcRegistrationStatus string `json:"tendlc_registration_status,omitempty" url:"tendlc_registration_status,omitempty"`
-	TollFreeSMSVerification  string `json:"toll_free_sms_verification,omitempty" url:"toll_free_sms_verification,omitempty"`
-	CNAMLookup               string `json:"cnam_lookup,omitempty" url:"cnam_lookup,omitempty"`
+	NumberType                         string `json:"number_type,omitempty" url:"number_type,omitempty"`
+	NumberStartsWith                   string `json:"number_startswith,omitempty" url:"number_startswith,omitempty"`
+	Subaccount                         string `json:"subaccount,omitempty" url:"subaccount,omitempty"`
+	RenewalDate                        string `json:"renewal_date,omitempty" url:"renewal_date,omitempty"`
+	RenewalDateLt                      string `json:"renewal_date__lt,omitempty" url:"renewal_date__lt,omitempty"`
+	RenewalDateLte                     string `json:"renewal_date__lte,omitempty" url:"renewal_date__lte,omitempty"`
+	RenewalDateGt                      string `json:"renewal_date__gt,omitempty" url:"renewal_date__gt,omitempty"`
+	RenewalDateGte                     string `json:"renewal_date__gte,omitempty" url:"renewal_date__gte,omitempty"`
+	Services                           string `json:"services,omitempty" url:"services,omitempty"`
+	Alias                              string `json:"alias,omitempty" url:"alias,omitempty"`
+	Limit                              int64  `json:"limit,omitempty" url:"limit,omitempty"`
+	Offset                             int64  `json:"offset,omitempty" url:"offset,omitempty"`
+	TendlcCampaignID                   string `json:"tendlc_campaign_id,omitempty" url:"tendlc_campaign_id,omitempty"`
+	TendlcRegistrationStatus           string `json:"tendlc_registration_status,omitempty" url:"tendlc_registration_status,omitempty"`
+	TollFreeSMSVerification            string `json:"toll_free_sms_verification,omitempty" url:"toll_free_sms_verification,omitempty"`
+	CNAMLookup                         string `json:"cnam_lookup,omitempty" url:"cnam_lookup,omitempty"`
+	TollFreeSMSVerificationOrderStatus string `json:"toll_free_sms_verification_order_status,omitempty" url:"toll_free_sms_verification_order_status,omitempty"`
 }
 
 type NumberListResponse struct {
