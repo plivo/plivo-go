@@ -2,15 +2,18 @@ package plivo
 
 import "time"
 
+// TollFreeRequestVerificationService - TF verification service struct
 type TollFreeRequestVerificationService struct {
 	client *Client
 }
 
+// TollFreeResponse - Default response
 type TollFreeResponse struct {
-	ApiId   string `json:"api_id" url:"api_id"`
+	APIID   string `json:"api_id" url:"api_id"`
 	Message string `json:"message,omitempty" url:"message,omitempty"`
 }
 
+// TollFreeCreateParams - List of params to create a TF verification request
 type TollFreeCreateParams struct {
 	ProfileUUID           string `json:"profile_uuid,omitempty" url:"profile_uuid,omitempty"`
 	Usecase               string `json:"usecase,omitempty" url:"usecase,omitempty"`
@@ -26,6 +29,7 @@ type TollFreeCreateParams struct {
 	CallbackMethod        string `json:"callback_method,omitempty" url:"callback_method,omitempty"`
 }
 
+// TollFreeUpdateParams - List of update params to update in TF verification request
 type TollFreeUpdateParams struct {
 	ProfileUUID           string `json:"profile_uuid,omitempty" url:"profile_uuid,omitempty"`
 	Usecase               string `json:"usecase,omitempty" url:"usecase,omitempty"`
@@ -40,6 +44,7 @@ type TollFreeUpdateParams struct {
 	CallbackMethod        string `json:"callback_method,omitempty" url:"callback_method,omitempty"`
 }
 
+// TollFreeListParams - List of params to search in list API
 type TollFreeListParams struct {
 	Number      string `json:"number,omitempty"  url:"number,omitempty"`
 	Status      string `json:"status,omitempty"  url:"status,omitempty"`
@@ -74,12 +79,14 @@ type TollfreeVerificationRequest struct {
 	LastModified          time.Time `json:"last_modified" url:"last_modified"`
 }
 
+// TollfreeVerificationRequestListResponse - list API response struct
 type TollfreeVerificationRequestListResponse struct {
 	APIID   string                        `json:"api_id" url:"api_id"`
 	Meta    *Meta                         `json:"meta,omitempty" url:"meta,omitempty"`
 	Objects []TollfreeVerificationRequest `json:"objects,omitempty" url:"objects,omitempty"`
 }
 
+// Create - create API for Tollfree Verification Request
 func (service *TollFreeRequestVerificationService) Create(params TollFreeCreateParams) (response *TollFreeResponse, err error) {
 	req, err := service.client.NewRequest("POST", params, "TollfreeVerification")
 	if err != nil {
@@ -90,6 +97,7 @@ func (service *TollFreeRequestVerificationService) Create(params TollFreeCreateP
 	return
 }
 
+// Update - Update API for Tollfree Verification Request
 func (service *TollFreeRequestVerificationService) Update(UUID string, params TollFreeUpdateParams) (response *TollFreeResponse, err error) {
 	req, err := service.client.NewRequest("POST", params, "TollfreeVerification/%s", UUID)
 	if err != nil {
@@ -100,6 +108,7 @@ func (service *TollFreeRequestVerificationService) Update(UUID string, params To
 	return
 }
 
+// Get - Get API for Tollfree Verification Request
 func (service *TollFreeRequestVerificationService) Get(UUID string) (response *TollfreeVerificationRequest, err error) {
 	req, err := service.client.NewRequest("GET", nil, "TollfreeVerification/%s", UUID)
 	if err != nil {
@@ -110,6 +119,7 @@ func (service *TollFreeRequestVerificationService) Get(UUID string) (response *T
 	return
 }
 
+// List - List API for Tollfree Verification Request
 func (service *TollFreeRequestVerificationService) List(params TollFreeListParams) (response *TollfreeVerificationRequestListResponse, err error) {
 	req, err := service.client.NewRequest("GET", params, "TollfreeVerification")
 	if err != nil {
@@ -120,6 +130,7 @@ func (service *TollFreeRequestVerificationService) List(params TollFreeListParam
 	return
 }
 
+// Delete - Delete API for Tollfree Verification Request
 func (service *TollFreeRequestVerificationService) Delete(UUID string) (err error) {
 	req, err := service.client.NewRequest("DELETE", nil, "TollfreeVerification/%s", UUID)
 	if err != nil {
