@@ -59,6 +59,10 @@ func (self Number) ID() string {
 	return self.Number
 }
 
+func (self TollfreeVerification) ID() string {
+	return self.UUID
+}
+
 func (self PhoneNumber) ID() string {
 	return self.Number
 }
