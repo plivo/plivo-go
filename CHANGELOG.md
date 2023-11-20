@@ -1,5 +1,9 @@
 # Change Log
 
+## [7.42.0](https://github.com/plivo/plivo-go/tree/v7.42.0) (2023-11-20)
+**Feature - New params for GET and LIST Campaign API**
+-  Added new params 'error_code', 'error_reason' for GET and LIST Campaign API
+
 ## [7.41.0](https://github.com/plivo/plivo-go/tree/v7.41.0) (2023-10-31)
 **Feature - TollFree Verification API Support**
 - API support for Create, Update, Get, Delete and List Tollfree Verification.
