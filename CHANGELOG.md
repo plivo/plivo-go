@@ -1,5 +1,9 @@
 # Change Log
 
+## [7.43.0](https://github.com/plivo/plivo-go/tree/v7.43.0) (2023-11-29)
+**Bug Fix - Create Powerpack and Update Powerpack**
+- Create Powerpack and Update Powerpack now take boolean inputs for sticky sender and local connect.
+
 ## [7.42.0](https://github.com/plivo/plivo-go/tree/v7.42.0) (2023-11-07)
 **Feature - Campaign List API Enhancements**
 - registration_status field in LIST API
