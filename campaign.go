@@ -128,11 +128,12 @@ type OperatorDetail struct {
 	TPM       int    `json:"tpm,omitempty"`
 }
 type CampaignListParams struct {
-	BrandID        *string `json:"brand_id,omitempty"`
-	Usecase        *string `json:"usecase,omitempty"`
-	CampaignSource *string `json:"campaign_source,omitempty"`
-	Limit          int     `url:"limit,omitempty"`
-	Offset         int     `url:"offset,omitempty"`
+	BrandID            *string `url:"brand_id,omitempty"`
+	Usecase            *string `url:"usecase,omitempty"`
+	RegistrationStatus *string `url:"registration_status,omitempty"`
+	CampaignSource     *string `url:"campaign_source,omitempty"`
+	Limit              int     `url:"limit,omitempty"`
+	Offset             int     `url:"offset,omitempty"`
 }
 
 type CampaignNumberLinkParams struct {
