@@ -1,8 +1,12 @@
 # Change Log
 
-## [7.43.0](https://github.com/plivo/plivo-go/tree/v7.42.0) (2023-11-20)
+## [7.44.0](https://github.com/plivo/plivo-go/tree/v7.44.0) (2023-11-20)
 **Feature - New params for GET and LIST Campaign API**
 -  Added new params 'error_code', 'error_reason' for GET and LIST Campaign API
+
+## [7.43.0](https://github.com/plivo/plivo-go/tree/v7.43.0) (2023-11-29)
+**Bug Fix - Create Powerpack and Update Powerpack**
+- Create Powerpack and Update Powerpack now take boolean inputs for sticky sender and local connect.
 
 ## [7.42.0](https://github.com/plivo/plivo-go/tree/v7.42.0) (2023-11-07)
 **Feature - Campaign List API Enhancements**
