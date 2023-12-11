@@ -1,5 +1,9 @@
 # Change Log
 
+## [7.45.0](https://github.com/plivo/plivo-go/tree/v7.45.0) (2023-11-30)
+**Feature - Added params for GET and LIST Campaign APIs**
+-  Added params 'vertical', 'campaign_alias' for GET and LIST Campaign APIs
+
 ## [7.44.0](https://github.com/plivo/plivo-go/tree/v7.44.0) (2023-11-20)
 **Feature - New params for GET and LIST Campaign API**
 -  Added new params 'error_code', 'error_reason' for GET and LIST Campaign API
