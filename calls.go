@@ -207,6 +207,7 @@ type CallSpeakParams struct {
 	Legs     string `json:"legs,omitempty" url:"legs,omitempty"`
 	Loop     bool   `json:"loop,omitempty" url:"loop,omitempty"`
 	Mix      bool   `json:"mix,omitempty" url:"mix,omitempty"`
+	Type     string `json:"type,omitempty" url:"type,omitempty"`
 }
 
 type CallSpeakResponse struct {

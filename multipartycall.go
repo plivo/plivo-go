@@ -208,6 +208,7 @@ type MultiPartyCallSpeakParams struct {
 	Voice    string `json:"voice" url:"voice,omitempty"`
 	Language string `json:"language" url:"language,omitempty"`
 	Mix      bool   `json:"mix" url:"mix,omitempty"`
+	Type     string `json:"type,omitempty" url:"type,omitempty"`
 }
 
 func (service *MultiPartyCallService) List(params MultiPartyCallListParams) (response *MultiPartyCallListResponse, err error) {
