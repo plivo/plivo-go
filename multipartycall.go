@@ -204,10 +204,13 @@ type MultiPartyCallAudioResponse struct {
 }
 
 type MultiPartyCallSpeakParams struct {
-	Text     string `json:"text" url:"text"`
-	Voice    string `json:"voice" url:"voice,omitempty"`
-	Language string `json:"language" url:"language,omitempty"`
-	Mix      bool   `json:"mix" url:"mix,omitempty"`
+	Text           string `json:"text" url:"text"`
+	Voice          string `json:"voice" url:"voice,omitempty"`
+	Language       string `json:"language" url:"language,omitempty"`
+	Mix            bool   `json:"mix" url:"mix,omitempty"`
+	Type           string `json:"type,omitempty" url:"type,omitempty"`
+	CallbackURL    string `json:"callback_url,omitempty" url:"callback_url,omitempty"`
+	CallbackMethod string `json:"callback_method,omitempty" url:"callback_method,omitempty"`
 }
 
 func (service *MultiPartyCallService) List(params MultiPartyCallListParams) (response *MultiPartyCallListResponse, err error) {

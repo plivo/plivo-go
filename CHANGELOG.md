@@ -1,5 +1,9 @@
 # Change Log
 
+## [7.45.1](https://github.com/plivo/plivo-go/tree/v7.45.1) (2023-12-19)
+**Feature - Added type params for speak api in call and mpc**
+-  Added params 'type' for POST Speak API for Call and MPC
+
 ## [7.45.0](https://github.com/plivo/plivo-go/tree/v7.45.0) (2023-12-14)
 **Feature - Added params for GET and LIST Campaign APIs**
 -  Added params 'vertical', 'campaign_alias' for GET and LIST Campaign APIs
