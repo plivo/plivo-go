@@ -201,13 +201,15 @@ type CallPlayResponse struct {
 }
 
 type CallSpeakParams struct {
-	Text     string `json:"text" url:"text"`
-	Voice    string `json:"length,omitempty" url:"length,omitempty"`
-	Language string `json:"language,omitempty" url:"language,omitempty"`
-	Legs     string `json:"legs,omitempty" url:"legs,omitempty"`
-	Loop     bool   `json:"loop,omitempty" url:"loop,omitempty"`
-	Mix      bool   `json:"mix,omitempty" url:"mix,omitempty"`
-	Type     string `json:"type,omitempty" url:"type,omitempty"`
+	Text           string `json:"text" url:"text"`
+	Voice          string `json:"length,omitempty" url:"length,omitempty"`
+	Language       string `json:"language,omitempty" url:"language,omitempty"`
+	Legs           string `json:"legs,omitempty" url:"legs,omitempty"`
+	Loop           bool   `json:"loop,omitempty" url:"loop,omitempty"`
+	Mix            bool   `json:"mix,omitempty" url:"mix,omitempty"`
+	Type           string `json:"type,omitempty" url:"type,omitempty"`
+	CallbackURL    string `json:"callback_url,omitempty" url:"callback_url,omitempty"`
+	CallbackMethod string `json:"callback_method,omitempty" url:"callback_method,omitempty"`
 }
 
 type CallSpeakResponse struct {
