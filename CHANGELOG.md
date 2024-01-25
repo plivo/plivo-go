@@ -1,5 +1,9 @@
 # Change Log
 
+## [7.45.2](https://github.com/plivo/plivo-go/tree/v7.45.2) (2024-01-25)
+**Feature - Added new params 'create_mpc_with_single_participant' for MPC**
+-  Added new params 'create_mpc_with_single_participant' for MPC
+
 ## [7.45.1](https://github.com/plivo/plivo-go/tree/v7.45.1) (2023-12-19)
 **Feature - Added type params for speak api in call and mpc**
 -  Added params 'type' for POST Speak API for Call and MPC
