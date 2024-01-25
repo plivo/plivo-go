@@ -1,7 +1,7 @@
 # Change Log
 
 ## [7.45.2](https://github.com/plivo/plivo-go/tree/v7.45.2) (2024-01-25)
-**Feature - Added new params 'create_mpc_with_single_participant' for MPC**
+**Feature - Added new params 'create_mpc_with_single_participant' for Add Participant API of MPC**
 -  Added new params 'create_mpc_with_single_participant' for Add Participant API of MPC
 
 ## [7.45.1](https://github.com/plivo/plivo-go/tree/v7.45.1) (2023-12-19)
