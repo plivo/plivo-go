@@ -1,5 +1,10 @@
 # Change Log
 
+## [7.45.3](https://github.com/plivo/plivo-go/tree/v7.45.3) (2024-02-05)
+**Feature - Log Redaction Enhancement**
+-  Added log attribute in GET and List MDR response
+-  Change log field from bool to string in send SMS 
+
 ## [7.45.2](https://github.com/plivo/plivo-go/tree/v7.45.2) (2024-01-25)
 **Feature - Added new params 'create_mpc_with_single_participant' for Add Participant API of MPC**
 -  Added new params 'create_mpc_with_single_participant' for Add Participant API of MPC
