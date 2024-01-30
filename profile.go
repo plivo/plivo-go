@@ -39,7 +39,13 @@ type ProfileListParams struct {
 }
 
 type ProfileListResponse struct {
-	ApiID           string    `json:"api_id"`
+	ApiID string `json:"api_id"`
+	Meta  struct {
+		Previous *string
+		Next     *string
+		Offset   int64
+		Limit    int64
+	} `json:"meta"`
 	ProfileResponse []Profile `json:"profiles"`
 }
 

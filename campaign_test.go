@@ -48,6 +48,30 @@ func TestCampaign_Get(t *testing.T) {
 	assertRequest(t, "GET", "10dlc/Campaign/%s", CampaignID)
 }
 
+func TestImportCampaign(t *testing.T) {
+	expectResponse("campaignImportResponse.json", 200)
+	assert := require.New(t)
+	resp, err := client.Campaign.Import(ImportCampaignParams{
+		CampaignID:    "C1QGYD1",
+		CampaignAlias: "import campaign",
+	})
+	assert.NotNil(resp)
+	assert.Nil(err)
+	assert.NotEmpty(resp.ApiID)
+	assert.NotEmpty(resp.CampaignID)
+	cl := client.httpClient
+	client.httpClient = nil
+	resp, err = client.Campaign.Import(ImportCampaignParams{
+		CampaignID:    "C1QGYD1",
+		CampaignAlias: "import campaign",
+	})
+	assert.NotNil(err)
+	assert.Nil(resp)
+	client.httpClient = cl
+
+	assertRequest(t, "POST", "10dlc/Campaign/Import")
+}
+
 func TestCampaign_Create(t *testing.T) {
 	expectResponse("campaignCreationResponse.json", 200)
 	assert := require.New(t)

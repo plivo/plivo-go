@@ -31,7 +31,14 @@ type Usecase struct {
 }
 
 type BrandListResponse struct {
-	ApiID         string  `json:"api_id,omitempty"`
+	ApiID string `json:"api_id,omitempty"`
+	Meta  struct {
+		Previous   *string
+		Next       *string
+		Offset     int64
+		Limit      int64
+		TotalCount int64 `json:"total_count"`
+	} `json:"meta"`
 	BrandResponse []Brand `json:"brands,omitempty"`
 }
 

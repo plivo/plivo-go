@@ -18,5 +18,7 @@
   "tendlc_campaign_id": "ACB1234",
   "tendlc_registration_status": "COMPLETED",
   "toll_free_sms_verification": "verified",
-  "renewal_date":"2014-03-14"
+  "renewal_date":"2014-03-14",
+  "toll_free_sms_verification_id": "gd4de006-1c95-11e4-8a4a-12ff40008dd",
+  "toll_free_sms_verification_order_status": "APPROVED"
 }
