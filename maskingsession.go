@@ -35,8 +35,8 @@ type MaskingSession struct {
 	IsPinAuthenticationRequired bool                       `json:"is_pin_authentication_required" url:"is_pin_authentication_required"`
 	GeneratePin                 bool                       `json:"generate_pin" url:"generate_pin"`
 	GeneratePinLength           int64                      `json:"generate_pin_length" url:"generate_pin_length"`
-	FirstPartyPin               int64                      `json:"first_party_pin" url:"first_party_pin"`
-	SecondPartyPin              int64                      `json:"second_party_pin" url:"second_party_pin"`
+	FirstPartyPin               string                     `json:"first_party_pin" url:"first_party_pin"`
+	SecondPartyPin              string                     `json:"second_party_pin" url:"second_party_pin"`
 	PinPromptPlay               string                     `json:"pin_prompt_play" url:"pin_prompt_play"`
 	PinRetry                    int64                      `json:"pin_retry" url:"pin_retry"`
 	PinRetryWait                int64                      `json:"pin_retry_wait" url:"pin_retry_wait"`
@@ -61,8 +61,8 @@ type CreateMaskingSessionParams struct {
 	IsPinAuthenticationRequired bool   `json:"is_pin_authentication_required" url:"is_pin_authentication_required"`
 	GeneratePin                 bool   `json:"generate_pin" url:"generate_pin"`
 	GeneratePinLength           int64  `json:"generate_pin_length" url:"generate_pin_length"`
-	FirstPartyPin               int64  `json:"first_party_pin" url:"first_party_pin"`
-	SecondPartyPin              int64  `json:"second_party_pin" url:"second_party_pin"`
+	FirstPartyPin               string `json:"first_party_pin" url:"first_party_pin"`
+	SecondPartyPin              string `json:"second_party_pin" url:"second_party_pin"`
 	PinPromptPlay               string `json:"pin_prompt_play" url:"pin_prompt_play"`
 	PinRetry                    int64  `json:"pin_retry" url:"pin_retry"`
 	PinRetryWait                int64  `json:"pin_retry_wait" url:"pin_retry_wait"`
