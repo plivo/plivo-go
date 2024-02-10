@@ -58,16 +58,16 @@ type CreateMaskingSessionParams struct {
 	FirstPartyPlayUrl           string `json:"first_party_play_url,omitempty" url:"first_party_play_url,omitempty"`
 	SecondPartyPlayUrl          string `json:"second_party_play_url,omitempty" url:"second_party_play_url,omitempty"`
 	RecordingCallbackMethod     string `json:"recording_callback_method,omitempty" url:"recording_callback_method,omitempty"`
-	IsPinAuthenticationRequired bool   `json:"is_pin_authentication_required" url:"is_pin_authentication_required"`
-	GeneratePin                 bool   `json:"generate_pin" url:"generate_pin"`
-	GeneratePinLength           int64  `json:"generate_pin_length" url:"generate_pin_length"`
-	FirstPartyPin               string `json:"first_party_pin" url:"first_party_pin"`
-	SecondPartyPin              string `json:"second_party_pin" url:"second_party_pin"`
-	PinPromptPlay               string `json:"pin_prompt_play" url:"pin_prompt_play"`
-	PinRetry                    int64  `json:"pin_retry" url:"pin_retry"`
-	PinRetryWait                int64  `json:"pin_retry_wait" url:"pin_retry_wait"`
-	IncorrectPinPlay            string `json:"incorrect_pin_play" url:"incorrect_pin_play"`
-	UnknownCallerPlay           string `json:"unknown_caller_play" url:"unknown_caller_play"`
+	IsPinAuthenticationRequired bool   `json:"is_pin_authentication_required,omitempty" url:"is_pin_authentication_required,omitempty"`
+	GeneratePin                 bool   `json:"generate_pin,omitempty" url:"generate_pin,omitempty"`
+	GeneratePinLength           int64  `json:"generate_pin_length,omitempty" url:"generate_pin_length,omitempty"`
+	FirstPartyPin               string `json:"first_party_pin,omitempty" url:"first_party_pin,omitempty"`
+	SecondPartyPin              string `json:"second_party_pin,omitempty" url:"second_party_pin,omitempty"`
+	PinPromptPlay               string `json:"pin_prompt_play,omitempty" url:"pin_prompt_play,omitempty"`
+	PinRetry                    int64  `json:"pin_retry,omitempty" url:"pin_retry,omitempty"`
+	PinRetryWait                int64  `json:"pin_retry_wait,omitempty" url:"pin_retry_wait,omitempty"`
+	IncorrectPinPlay            string `json:"incorrect_pin_play,omitempty" url:"incorrect_pin_play,omitempty"`
+	UnknownCallerPlay           string `json:"unknown_caller_play,omitempty" url:"unknown_caller_play,omitempty"`
 }
 
 type UpdateMaskingSessionParams struct {
