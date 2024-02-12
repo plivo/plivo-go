@@ -1,6 +1,6 @@
 # Change Log
 
-## [7.45.3](https://github.com/plivo/plivo-go/tree/v7.45.3) (2024-03-12)
+## [7.45.3](https://github.com/plivo/plivo-go/tree/v7.45.3) (2024-02-12)
 **Feature - Added few new PIN related params for Create Masking Session API of Number Masking.**
 -  Added few new PIN related params for Create Masking Session API of Number Masking
 
