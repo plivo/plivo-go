@@ -1,6 +1,6 @@
 # Change Log
 
-## [7.45.4](https://github.com/plivo/plivo-go/tree/v7.45.4) (2024-02-23)
+## [7.45.4](https://github.com/plivo/plivo-go/tree/v7.45.4) (2024-02-26)
 **Feature - Added new param 'waitTime' for MPC XML**
 -  Added new param 'waitTime' for MPC XML
 
