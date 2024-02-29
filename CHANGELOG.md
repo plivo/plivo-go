@@ -1,9 +1,17 @@
 # Change Log
 
-## [7.45.3](https://github.com/plivo/plivo-go/tree/v7.45.3) (2024-02-05)
+## [7.45.5](https://github.com/plivo/plivo-go/tree/v7.45.5) (2024-02-29)
 **Feature - Log Redaction Enhancement**
 -  Added log attribute in GET and List MDR response
 -  Change log field from bool to string in send SMS 
+
+## [7.45.4](https://github.com/plivo/plivo-go/tree/v7.45.4) (2024-02-26)
+**Feature - Added new param 'waitTime' for MPC XML**
+-  Added new param 'waitTime' for MPC XML
+
+## [7.45.3](https://github.com/plivo/plivo-go/tree/v7.45.3) (2024-02-12)
+**Feature - Added few new PIN related params for Create Masking Session API of Number Masking.**
+-  Added few new PIN related params for Create Masking Session API of Number Masking
 
 ## [7.45.2](https://github.com/plivo/plivo-go/tree/v7.45.2) (2024-01-25)
 **Feature - Added new params 'create_mpc_with_single_participant' for Add Participant API of MPC**
