@@ -1,6 +1,6 @@
 # Change Log
 
-## [7.45.6](https://github.com/plivo/plivo-go/tree/v7.45.6) (2024-03-19)
+## [7.45.6](https://github.com/plivo/plivo-go/tree/v7.45.6) (2024-04-02)
 **Feature - New params for GET and LIST Brand API**
 -  Added new param 'decline_reasons' for GET and LIST Brand API
 
