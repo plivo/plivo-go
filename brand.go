@@ -69,6 +69,7 @@ type Brand struct {
 	VettingScore       int64             `json:"vetting_score,omitempty"`
 	Address            Address           `json:"address,omitempty"`
 	AuthorizedContact  AuthorizedContact `json:"authorized_contact,omitempty"`
+	DeclineReasons     []TCRErrorDetail  `json:"decline_reasons,omitempty"`
 	CreatedAt          string            `json:"created_at,omitempty"`
 }
 
@@ -100,6 +101,11 @@ type AuthorizedContact struct {
 	Email     string `json:"email,omitempty" validate:"max=100"`
 	Title     string `json:"title,omitempty"`
 	Seniority string `json:"seniority,omitempty"`
+}
+
+type TCRErrorDetail struct {
+	Code    string `json:"code,omitempty"`
+	Message string `json:"message,omitempty"`
 }
 
 func (service *BrandService) List(params BrandListParams) (response *BrandListResponse, err error) {
