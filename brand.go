@@ -69,7 +69,7 @@ type Brand struct {
 	VettingScore       int64             `json:"vetting_score,omitempty"`
 	Address            Address           `json:"address,omitempty"`
 	AuthorizedContact  AuthorizedContact `json:"authorized_contact,omitempty"`
-	DeclineReasons     []TCRErrorDetail  `json:"decline_reasons,omitempty"`
+	DeclinedReasons    []TCRErrorDetail  `json:"declined_reasons,omitempty"`
 	CreatedAt          string            `json:"created_at,omitempty"`
 }
 
