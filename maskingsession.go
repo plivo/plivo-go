@@ -42,7 +42,6 @@ type MaskingSession struct {
 	PinRetryWait                int64                      `json:"pin_retry_wait" url:"pin_retry_wait"`
 	IncorrectPinPlay            string                     `json:"incorrect_pin_play" url:"incorrect_pin_play"`
 	UnknownCallerPlay           string                     `json:"unknown_caller_play" url:"unknown_caller_play"`
-	GeoMatch                    bool                       `json:"geomatch" url:"geomatch"`
 }
 
 type CreateMaskingSessionParams struct {
