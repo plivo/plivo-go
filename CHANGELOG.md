@@ -1,5 +1,9 @@
 # Change Log
 
+## [7.45.6](https://github.com/plivo/plivo-go/tree/v7.45.6) (2024-04-04)
+**Feature - New params for GET and LIST Brand API**
+-  Added new param 'declined_reasons' for GET and LIST Brand API
+
 ## [7.45.5](https://github.com/plivo/plivo-go/tree/v7.45.5) (2024-02-29)
 **Feature - Log Redaction Enhancement**
 -  Added log attribute in GET and List MDR response
