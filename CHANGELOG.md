@@ -1,8 +1,12 @@
 # Change Log
 
-## [7.46.0](https://github.com/plivo/plivo-go/tree/v7.46.0) (2024-04-12)
-**Feature - Support for dynamic payload in whatsapp templates**
-- Added new params `payload` in templates to support dynamic payload in templates
+## [7.46.0](https://github.com/plivo/plivo-go/tree/v7.46.0) (2024-04-18)
+**Feature - Support for dynamic button components when sending a templated WhatsApp message**
+- Added new param `payload` in templates to support dynamic payload in templates
+
+## [7.45.6](https://github.com/plivo/plivo-go/tree/v7.45.6) (2024-04-04)
+**Feature - New params for GET and LIST Brand API**
+-  Added new param 'declined_reasons' for GET and LIST Brand API
 
 ## [7.45.5](https://github.com/plivo/plivo-go/tree/v7.45.5) (2024-02-29)
 **Feature - Log Redaction Enhancement**
