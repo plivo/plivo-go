@@ -173,6 +173,18 @@ func ValidateSignatureV3(uri, nonce, method, signature, authToken string, params
 	multipleSignatures := strings.Split(signature, ",")
 	return Find(ComputeSignatureV3(authToken, uri, method, nonce, parameters), multipleSignatures)
 }
+func CreateWhatsappInteractive(interactiveData string) (interactive Interactive, err error) {
+	err = json.Unmarshal([]byte(interactiveData), &interactive)
+	if err != nil {
+		return
+	}
+	validate := validator.New()
+	err = validate.Struct(interactive) // other validations handled by api-messaging
+	if err != nil {
+		return
+	}
+	return
+}
 
 func CreateWhatsappTemplate(templateData string) (template Template, err error) {
 	err = json.Unmarshal([]byte(templateData), &template)
@@ -180,10 +192,10 @@ func CreateWhatsappTemplate(templateData string) (template Template, err error) 
 		return
 	}
 	err = validateWhatsappTemplate(template)
-	if err !=nil{
+	if err != nil {
 		return
 	}
-	return 
+	return
 }
 
 func validateWhatsappTemplate(template Template) (err error) {
