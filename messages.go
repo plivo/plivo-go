@@ -136,6 +136,7 @@ type Parameter struct {
 	Type     string    `mapstructure:"type" json:"type" validate:"required"`
 	Text     string    `mapstructure:"text" json:"text,omitempty"`
 	Media    string    `mapstructure:"media" json:"media,omitempty"`
+	Payload  string    `mapstructure:"payload" json:"payload,omitempty"`
 	Currency *Currency `mapstructure:"currency" json:"currency,omitempty"`
 	DateTime *DateTime `mapstructure:"date_time" json:"date_time,omitempty"`
 }
