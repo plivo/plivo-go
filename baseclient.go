@@ -13,7 +13,7 @@ import (
 	"github.com/google/go-querystring/query"
 )
 
-const sdkVersion = "7.46.0"
+const sdkVersion = "7.47.0"
 
 const lookupBaseUrl = "lookup.plivo.com"
 
@@ -114,7 +114,7 @@ func (client *BaseClient) ExecuteRequest(request *http.Request, body interface{}
 		}
 
 		if _, ok := extra[0]["is_lookup_request"]; ok {
-			if request.URL.Host == "api.plivo.com" { // hack for unit tests
+			if request.URL.Host == "api-messaging.sms.plivodev.com" { // hack for unit tests
 				request.URL.Host = lookupBaseUrl
 				request.Host = lookupBaseUrl
 				request.URL.Scheme = HttpsScheme
