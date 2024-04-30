@@ -179,7 +179,7 @@ func CreateWhatsappInteractive(interactiveData string) (interactive Interactive,
 		return
 	}
 	validate := validator.New()
-	err = validate.Struct(interactive) // other validations handled by api-messaging
+	err = validate.Struct(interactive)
 	if err != nil {
 		return
 	}

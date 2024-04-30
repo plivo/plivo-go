@@ -218,6 +218,305 @@ func testPhloRunWithParams() {
 }
 ```
 
+
+## WhatsApp Messaging
+Plivo's WhatsApp API allows you to send different types of messages over WhatsApp, including templated messages, free form messages and interactive messages. Below are some examples on how to use the Plivo Go SDK to send these types of messages.
+
+### Templated Messages
+Templated messages allow you to send pre-approved messages to customers. These messages can include placeholders for dynamic content.
+
+Example:
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/plivo/plivo-go/v7"
+)
+
+func main() {
+	client, err := plivo.NewClient("<auth-id>", "<auth-token>", &plivo.ClientOptions{})
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+
+	// Create a WhatsApp template
+	template, err := plivo.CreateWhatsappTemplate(`{ 
+            "name": "sample_purchase_feedback",
+            "language": "en_US",
+            "components": [
+                {
+                    "type": "header",
+                    "parameters": [
+                        {
+                            "type": "media",
+                            "media": "https://xyz.com/img.jpg"
+                        }
+                    ]
+                },
+                {
+                    "type": "body",
+                    "parameters": [
+                        {
+                            "type": "text",
+                            "text": "Livpure Water Purifier"
+                        }
+                    ]
+                }
+            ]
+          }`)
+	if err != nil {
+		fmt.Println("Error creating template:", err)
+		return
+	}
+
+	// Send a templated message
+	response, err := client.Messages.Create(plivo.MessageCreateParams{
+		Src:     "source_number",
+		Dst:     "destination_number",
+		Type:    "whatsapp",
+		Template: &template,
+	})
+	if err != nil {
+		fmt.Println("Error sending message:", err)
+		return
+	}
+
+	fmt.Printf("Response: %#v\n", response)
+}
+```
+
+### Free Form Messages
+Free form messages allow you to send custom messages to your customers. These messages can be sent during an active conversation between the business and the customer.
+
+Example:
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/plivo/plivo-go/v7"
+)
+
+func main() {
+	client, err := plivo.NewClient("<auth-id>", "<auth-token>", &plivo.ClientOptions{})
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+
+	// Send a free form message
+	response, err := client.Messages.Create(plivo.MessageCreateParams{
+		Src:  "source_number",
+		Dst:  "destination_number",
+		Text: "Hello! How can I help you today?",
+		Type: "whatsapp",
+	})
+	if err != nil {
+		fmt.Println("Error sending message:", err)
+		return
+	}
+
+	fmt.Printf("Response: %#v\n", response)
+}
+```
+
+### Interactive Messages
+Interactive messages allow you to engage with customers in a more interactive way, such as sending quick replies, lists, or buttons.
+
+#### Quick Reply Buttons
+Quick reply buttons allow customers to quickly respond to your message with predefined options.
+
+Example:
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/plivo/plivo-go/v7"
+)
+
+func main() {
+	client, err := plivo.NewClient("<auth-id>", "<auth-token>", &plivo.ClientOptions{})
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+
+	// Create quick reply buttons
+	interactive, err := plivo.CreateWhatsappInteractive(`{
+		"type": "button",
+		"body": {
+			"text": "Would you like to proceed?"
+		},
+		"action": {
+			"buttons": [
+				{
+					"title": "Yes",
+					"id": "yes"
+				},
+				{
+					"title": "No",
+					"id": "no"
+				}
+			]
+		}
+	}`)
+	if err != nil {
+		fmt.Println("Error creating interactive buttons:", err)
+		return
+	}
+
+	// Send interactive message with quick reply buttons
+	response, err := client.Messages.Create(plivo.MessageCreateParams{
+		Src:       "source_number",
+		Dst:       "destination_number",
+		Type:      "whatsapp",
+		Interactive: &interactive,
+	})
+	if err != nil {
+		fmt.Println("Error sending interactive message:", err)
+		return
+	}
+
+	fmt.Printf("Response: %#v\n", response)
+}
+```
+
+#### Interactive Lists
+Interactive lists allow you to present customers with a list of options.
+
+Example:
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/plivo/plivo-go/v7"
+)
+
+func main() {
+	client, err := plivo.NewClient("<auth-id>", "<auth-token>", &plivo.ClientOptions{})
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+
+	// Create an interactive list
+	interactive, err := plivo.CreateWhatsappInteractive(`{
+		"type": "list",
+		"header": {
+			"type": "text",
+			"text": "Select an option"
+		},
+		"body": {
+			"text": "Choose from the following options:"
+		},
+		"action": {
+			"sections": [
+				{
+					"title": "Options",
+					"rows": [
+						{
+							"id": "option1",
+							"title": "Option 1",
+							"description": "Description of option 1"
+						},
+						{
+							"id": "option2",
+							"title": "Option 2",
+							"description": "Description of option 2"
+						}
+					]
+				}
+			]
+		}
+	}`)
+	if err != nil {
+		fmt.Println("Error creating interactive list:", err)
+		return
+	}
+
+	// Send interactive message with list
+	response, err := client.Messages.Create(plivo.MessageCreateParams{
+		Src:       "source_number",
+		Dst:       "destination_number",
+		Type:      "whatsapp",
+		Interactive: &interactive,
+	})
+	if err != nil {
+		fmt.Println("Error sending interactive message:", err)
+		return
+	}
+
+	fmt.Printf("Response: %#v\n", response)
+}
+```
+
+#### Interactive CTA URLs
+CTA URL messages allow you to send links and call-to-action buttons.
+
+Example:
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/plivo/plivo-go/v7"
+)
+
+func main() {
+	client, err := plivo.NewClient("<auth-id>", "<auth-token>", &plivo.ClientOptions{})
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+
+	// Create a CTA URL message
+	interactive, err := plivo.CreateWhatsappInteractive(`{
+		"type": "cta_url",
+		"header": {
+			"type": "media",
+			"media": "https://example.com/image.jpg"
+		},
+		"body": {
+			"text": "Check out this link!"
+		},
+		"footer": {
+			"text": "Footer text"
+		},
+		"action": {
+			"buttons": [
+				{
+					"title": "Visit Website",
+					"url": "https://example.com"
+				}
+			]
+		}
+	}`)
+	if err != nil {
+		fmt.Println("Error creating CTA URL:", err)
+		return
+	}
+
+	// Send interactive message with CTA URL
+	response, err := client.Messages.Create(plivo.MessageCreateParams{
+		Src:       "source_number",
+		Dst:       "destination_number",
+		Type:      "whatsapp",
+		Interactive: &interactive,
+	})
+	if err != nil {
+		fmt.Println("Error sending interactive message:", err)
+		return
+	}
+
+	fmt.Printf("Response: %#v\n", response)
+}
+```
+
+
 ### More examples
 Refer to the [Plivo API Reference](https://www.plivo.com/docs/sms/api/overview/) for more examples.
 
