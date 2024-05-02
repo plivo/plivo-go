@@ -1,8 +1,8 @@
 # Change Log
 
-## [7.46.1](https://github.com/plivo/plivo-go/tree/v7.46.1) (2024-04-26)
-**Feature - SubAccount and GeoMatch**
--  Added sub_account and geo_match support
+## [7.47.0](https://github.com/plivo/plivo-go/tree/v7.47.0) (2024-05-02)
+**Feature - Added SubAccount and GeoMatch for PIN related params for Create Masking Session API of Number Masking.**
+-  Added sub_account and geo_match support in MaskingSession APIs
 
 ## [7.46.0](https://github.com/plivo/plivo-go/tree/v7.46.0) (2024-04-18)
 **Feature - Support for dynamic button components when sending a templated WhatsApp message**
