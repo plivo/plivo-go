@@ -5,6 +5,66 @@ import (
 	"testing"
 )
 
+func TestMaskingSessionService_CreateMaskingSession_GeoMatch(t *testing.T) {
+	t.Run("GeoMatch::False", func(t *testing.T) {
+		falseValue := false
+		_, err := client.MaskingSession.CreateMaskingSession(CreateMaskingSessionParams{
+			FirstParty:  "+919999323467",
+			SecondParty: "+919891865130",
+			GeoMatch:    &falseValue,
+		})
+		if err != nil {
+			t.Logf("err :: %v", err)
+		}
+	})
+
+	t.Run("GeoMatch::True", func(t *testing.T) {
+		trueValue := true
+		_, err := client.MaskingSession.CreateMaskingSession(CreateMaskingSessionParams{
+			FirstParty:  "+919999323467",
+			SecondParty: "+919891865130",
+			GeoMatch:    &trueValue,
+		})
+		if err != nil {
+			t.Logf("err :: %v", err)
+		}
+	})
+
+	t.Run("GeoMatch::nil", func(t *testing.T) {
+		_, err := client.MaskingSession.CreateMaskingSession(CreateMaskingSessionParams{
+			FirstParty:  "+919999323467",
+			SecondParty: "+919891865130",
+			GeoMatch:    nil,
+		})
+		if err != nil {
+			t.Logf("err :: %v", err)
+		}
+	})
+}
+
+func TestMaskingSessionService_CreateMaskingSession_SubAccount(t *testing.T) {
+	t.Run("SubAccount::Empty", func(t *testing.T) {
+		_, err := client.MaskingSession.CreateMaskingSession(CreateMaskingSessionParams{
+			FirstParty:  "+919999323467",
+			SecondParty: "+919891865130",
+		})
+		if err != nil {
+			t.Logf("err :: %v", err)
+		}
+	})
+
+	t.Run("SubAccount::Valid SubAccount", func(t *testing.T) {
+		_, err := client.MaskingSession.CreateMaskingSession(CreateMaskingSessionParams{
+			FirstParty:  "+919999323467",
+			SecondParty: "+919891865130",
+			SubAccount:  "SAZTA0ZJJHMDETOWQ4YI",
+		})
+		if err != nil {
+			t.Logf("err :: %v", err)
+		}
+	})
+}
+
 func TestMaskingSessionService_CreateMaskingSession(t *testing.T) {
 	expectResponse("createMaskingSessionResponse.json", 200)
 
