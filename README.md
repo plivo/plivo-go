@@ -223,7 +223,9 @@ func testPhloRunWithParams() {
 Plivo's WhatsApp API allows you to send different types of messages over WhatsApp, including templated messages, free form messages and interactive messages. Below are some examples on how to use the Plivo Go SDK to send these types of messages.
 
 ### Templated Messages
-Templated messages allow you to send pre-approved messages to customers. These messages can include placeholders for dynamic content.
+Templated messages are a crucial to your WhatsApp messaging experience, as businesses can only initiate WhatsApp conversation with their customers using templated messages.
+
+WhatsApp templates support 4 components:  `header` ,  `body`,  `footer`  and `button`. At the point of sending messages, the template object you see in the code acts as a way to pass the dynamic values within these components.  `header`  can accomodate `text` or `media` (images, video, documents) content.  `body`  can accomodate text content.  `button`  can support dynamic values in a `url` button or to specify a developer-defined payload which will be returned when the WhatsApp user clicks on the `quick_reply` button. `footer`  cannot have any dynamic variables.
 
 Example:
 ```go
@@ -288,7 +290,7 @@ func main() {
 ```
 
 ### Free Form Messages
-Free form messages allow you to send custom messages to your customers. These messages can be sent during an active conversation between the business and the customer.
+Non-templated or Free Form WhatsApp messages can be sent as a reply to a user-initiated conversation (Service conversation) or if there is an existing ongoing conversation created previously by sending a templated WhatsApp message.
 
 Example:
 ```go
