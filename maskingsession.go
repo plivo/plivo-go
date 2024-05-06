@@ -43,6 +43,7 @@ type MaskingSession struct {
 	IncorrectPinPlay            string                     `json:"incorrect_pin_play" url:"incorrect_pin_play"`
 	UnknownCallerPlay           string                     `json:"unknown_caller_play" url:"unknown_caller_play"`
 }
+
 type CreateMaskingSessionParams struct {
 	FirstParty                  string `json:"first_party,omitempty" url:"first_party,omitempty"`
 	SecondParty                 string `json:"second_party,omitempty" url:"second_party,omitempty"`
@@ -68,6 +69,8 @@ type CreateMaskingSessionParams struct {
 	PinRetryWait                int64  `json:"pin_retry_wait,omitempty" url:"pin_retry_wait,omitempty"`
 	IncorrectPinPlay            string `json:"incorrect_pin_play,omitempty" url:"incorrect_pin_play,omitempty"`
 	UnknownCallerPlay           string `json:"unknown_caller_play,omitempty" url:"unknown_caller_play,omitempty"`
+	SubAccount                  string `json:"subaccount,omitempty" url:"subaccount,omitempty"`
+	GeoMatch                    *bool  `json:"geomatch,omitempty" url:"geomatch,omitempty"`
 }
 
 type UpdateMaskingSessionParams struct {
@@ -82,6 +85,8 @@ type UpdateMaskingSessionParams struct {
 	FirstPartyPlayUrl       string `json:"first_party_play_url,omitempty" url:"first_party_play_url,omitempty"`
 	SecondPartyPlayUrl      string `json:"second_party_play_url,omitempty" url:"second_party_play_url,omitempty"`
 	RecordingCallbackMethod string `json:"recording_callback_method,omitempty" url:"recording_callback_method,omitempty"`
+	SubAccount              string `json:"subaccount,omitempty" url:"subaccount,omitempty"`
+	GeoMatch                *bool  `json:"geomatch,omitempty" url:"geomatch,omitempty"`
 }
 
 type ListSessionFilterParams struct {
@@ -107,6 +112,7 @@ type ListSessionFilterParams struct {
 	DurationGreaterOrEqual    int64  `json:"duration__gte,omitempty" url:"duration__gte,omitempty"`
 	Limit                     int64  `json:"limit,omitempty" url:"limit,omitempty"`
 	Offset                    int64  `json:"offset,omitempty" url:"offset,omitempty"`
+	SubAccount                string `json:"subaccount,omitempty" url:"subaccount,omitempty"`
 }
 
 type VoiceInteractionResponse struct {

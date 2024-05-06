@@ -1,8 +1,12 @@
 # Change Log
 
-## [7.47.0](https://github.com/plivo/plivo-go/tree/v7.47.0) (2024-05-01)
+## [7.48.0](https://github.com/plivo/plivo-go/tree/v7.48.0) (2024-05-06)
 **Feature - Adding support for interactive whatsapp messages**
 - Added new param 'interactive' to [send message API](https://www.plivo.com/docs/sms/api/message#send-a-message) to support interactive 'whatsapp' messages
+
+## [7.47.0](https://github.com/plivo/plivo-go/tree/v7.47.0) (2024-05-02)
+**Feature - Added SubAccount and GeoMatch for Create Masking Session API of Number Masking.**
+-  Added sub_account and geo_match support in MaskingSession APIs
 
 ## [7.46.0](https://github.com/plivo/plivo-go/tree/v7.46.0) (2024-04-18)
 **Feature - Support for dynamic button components when sending a templated WhatsApp message**
