@@ -1,6 +1,6 @@
 # Change Log
 
-## [7.48.0](https://github.com/plivo/plivo-go/tree/v7.48.0) (2024-05-06)
+## [7.48.0](https://github.com/plivo/plivo-go/tree/v7.48.0) (2024-05-07)
 **Feature - Adding support for interactive whatsapp messages**
 - Added new param 'interactive' to [send message API](https://www.plivo.com/docs/sms/api/message#send-a-message) to support interactive 'whatsapp' messages
 
