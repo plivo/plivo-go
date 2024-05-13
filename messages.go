@@ -141,7 +141,7 @@ type Parameter struct {
 	Payload  string    `mapstructure:"payload" json:"payload,omitempty"`
 	Currency *Currency `mapstructure:"currency" json:"currency,omitempty"`
 	DateTime *DateTime `mapstructure:"date_time" json:"date_time,omitempty"`
-	Location Location  `mapstructure:"location" json:"location,omitempty"`
+	Location *Location `mapstructure:"location" json:"location,omitempty"`
 }
 
 type Location struct {
