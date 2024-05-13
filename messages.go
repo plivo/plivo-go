@@ -145,20 +145,20 @@ type Parameter struct {
 }
 
 type Location struct {
-	Longitude string `mapstructure:"longitude" json:"longitude,omitempty" validate:"required"`
-	Latitude  string `mapstructure:"latitude" json:"latitude,omitempty" validate:"required"`
-	Name      string `mapstructure:"name" json:"name,omitempty" validate:"required"`
-	Address   string `mapstructure:"address" json:"address,omitempty" validate:"required"`
+	Longitude string `mapstructure:"longitude" json:"longitude,omitempty"`
+	Latitude  string `mapstructure:"latitude" json:"latitude,omitempty"`
+	Name      string `mapstructure:"name" json:"name,omitempty"`
+	Address   string `mapstructure:"address" json:"address,omitempty"`
 }
 
 type Currency struct {
-	FallbackValue string `mapstructure:"fallback_value" json:"fallback_value" validate:"required"`
-	CurrencyCode  string `mapstructure:"currency_code" json:"currency_code" validate:"required"`
-	Amount1000    int    `mapstructure:"amount_1000" json:"amount_1000" validate:"required"`
+	FallbackValue string `mapstructure:"fallback_value" json:"fallback_value"`
+	CurrencyCode  string `mapstructure:"currency_code" json:"currency_code"`
+	Amount1000    int    `mapstructure:"amount_1000" json:"amount_1000"`
 }
 
 type DateTime struct {
-	FallbackValue string `mapstructure:"fallback_value" json:"fallback_value" validate:"required"`
+	FallbackValue string `mapstructure:"fallback_value" json:"fallback_value"`
 }
 
 type Interactive struct {
