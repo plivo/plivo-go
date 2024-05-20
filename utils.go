@@ -180,9 +180,16 @@ func CreateWhatsappInteractive(interactiveData string) (interactive Interactive,
 	}
 	validate := validator.New()
 	err = validate.Struct(interactive)
+	return
+}
+
+func CreateWhatsappLocation(locationData string) (location Location, err error) {
+	err = json.Unmarshal([]byte(locationData), &location)
 	if err != nil {
 		return
 	}
+	validate := validator.New()
+	err = validate.Struct(location)
 	return
 }
 
@@ -192,9 +199,6 @@ func CreateWhatsappTemplate(templateData string) (template Template, err error) 
 		return
 	}
 	err = validateWhatsappTemplate(template)
-	if err != nil {
-		return
-	}
 	return
 }
 

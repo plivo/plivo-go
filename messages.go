@@ -27,6 +27,7 @@ type MessageCreateParams struct {
 	MessageExpiry       int          `json:"message_expiry,omitempty" url:"message_expiry,omitempty"`
 	Template            *Template    `json:"template,omitempty" url:"template,omitempty"`
 	Interactive         *Interactive `json:"interactive,omitempty" url:"interactive,omitempty"`
+	Location            *Location    `json:"location,omitempty" url:"location,omitempty"`
 	DLTEntityID         string       `json:"dlt_entity_id,omitempty" url:"dlt_entity_id,omitempty"`
 	DLTTemplateID       string       `json:"dlt_template_id,omitempty" url:"dlt_template_id,omitempty"`
 	DLTTemplateCategory string       `json:"dlt_template_category,omitempty" url:"dlt_template_category,omitempty"`
@@ -140,16 +141,24 @@ type Parameter struct {
 	Payload  string    `mapstructure:"payload" json:"payload,omitempty"`
 	Currency *Currency `mapstructure:"currency" json:"currency,omitempty"`
 	DateTime *DateTime `mapstructure:"date_time" json:"date_time,omitempty"`
+	Location *Location `mapstructure:"location" json:"location,omitempty"`
+}
+
+type Location struct {
+	Longitude string `mapstructure:"longitude" json:"longitude,omitempty"`
+	Latitude  string `mapstructure:"latitude" json:"latitude,omitempty"`
+	Name      string `mapstructure:"name" json:"name,omitempty"`
+	Address   string `mapstructure:"address" json:"address,omitempty"`
 }
 
 type Currency struct {
-	FallbackValue string `mapstructure:"fallback_value" json:"fallback_value" validate:"required"`
-	CurrencyCode  string `mapstructure:"currency_code" json:"currency_code" validate:"required"`
-	Amount1000    int    `mapstructure:"amount_1000" json:"amount_1000" validate:"required"`
+	FallbackValue string `mapstructure:"fallback_value" json:"fallback_value"`
+	CurrencyCode  string `mapstructure:"currency_code" json:"currency_code"`
+	Amount1000    int    `mapstructure:"amount_1000" json:"amount_1000"`
 }
 
 type DateTime struct {
-	FallbackValue string `mapstructure:"fallback_value" json:"fallback_value" validate:"required"`
+	FallbackValue string `mapstructure:"fallback_value" json:"fallback_value"`
 }
 
 type Interactive struct {
