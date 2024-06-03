@@ -1,5 +1,9 @@
 # Change Log
 
+## [7.49.1](https://github.com/plivo/plivo-go/tree/v7.49.1) (2024-05-28)
+**Feature - Filter support for AppName in ListApplication API**
+- Added new filter param 'app_name' in list application api
+
 ## [7.49.0](https://github.com/plivo/plivo-go/tree/v7.49.0) (2024-05-20)
 **Feature - Adding support for location whatsapp messages**
 - Added new param 'location' to [send message API](https://www.plivo.com/docs/sms/api/message#send-a-message) to support location 'whatsapp' messages
