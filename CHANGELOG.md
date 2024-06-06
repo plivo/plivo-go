@@ -1,4 +1,7 @@
 # Change Log
+## [7.49.2](https://github.com/plivo/plivo-go/tree/v7.49.2) (2024-06-07)
+**Bug Fix - List and Get Media object url fix**
+- Fixed the media_url response value
 
 ## [7.49.1](https://github.com/plivo/plivo-go/tree/v7.49.1) (2024-05-28)
 **Feature - Filter support for AppName in ListApplication API**
