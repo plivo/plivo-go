@@ -25,10 +25,10 @@ type Media struct {
 	MediaID     string `json:"media_id,omitempty" url:"media_id,omitempty"`
 	Size        int    `json:"size,omitempty" url:"size,omitempty"`
 	UploadTime  string `json:"upload_time,omitempty" url:"upload_time,omitempty"`
-	URL         string `json:"url,omitempty" url:"url,omitempty"`
+	URL         string `json:"media_url,omitempty" url:"media_url,omitempty"`
 }
 
-//Media related information
+// Media related information
 type MediaUploadResponse struct {
 	ContentType  string `json:"content_type,omitempty" url:"content_type,omitempty"`
 	FileName     string `json:"file_name,omitempty" url:"file_name,omitempty"`
@@ -42,7 +42,7 @@ type MediaUploadResponse struct {
 	ErrorCode    int    `json:"error_code,omitempty" url:"error_code,omitempty"`
 }
 
-//Meta data information
+// Meta data information
 type MediaMeta struct {
 	Previous   *string
 	Next       *string
@@ -51,7 +51,7 @@ type MediaMeta struct {
 	Limit      int `json:"limit,omitempty" url:"limit,omitempty"`
 }
 
-//Media upload response to client
+// Media upload response to client
 type MediaResponseBody struct {
 	Media []MediaUploadResponse `json:"objects" url:"objects"`
 	ApiID string                `json:"api_id" url:"api_id"`
@@ -64,18 +64,18 @@ type BaseListMediaResponse struct {
 	Media []Media   `json:"objects" url:"objects"`
 }
 
-//Input param to upload media
+// Input param to upload media
 type MediaUpload struct {
 	UploadFiles []Files
 }
 
-//Information about files
+// Information about files
 type Files struct {
 	FilePath    string
 	ContentType string
 }
 
-//Media list metadata
+// Media list metadata
 type MediaListParams struct {
 	Limit  int `url:"limit,omitempty"`
 	Offset int `url:"offset,omitempty"`
@@ -87,7 +87,7 @@ func escapeQuotes(s string) string {
 	return quoteEscaper.Replace(s)
 }
 
-//Upload the media to plivo api, use media id for sending MMS
+// Upload the media to plivo api, use media id for sending MMS
 func (service *MediaService) Upload(params MediaUpload) (response *MediaResponseBody, err error) {
 	payload := &bytes.Buffer{}
 	writer := multipart.NewWriter(payload)
@@ -144,7 +144,7 @@ func (service *MediaService) Get(media_id string) (response *Media, err error) {
 	return resp, nil
 }
 
-//List all the media information
+// List all the media information
 func (service *MediaService) List(param MediaListParams) (response *BaseListMediaResponse, err error) {
 	req, err := service.client.NewRequest("GET", param, "Media")
 	if err != nil {
