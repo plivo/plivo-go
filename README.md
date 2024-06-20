@@ -329,7 +329,7 @@ func main() {
                 "type": "carousel",
                 "cards": [
                     {
-                        "card_index": 0,
+                        "card_index": "0",
                         "components": [
                             {
                                 "type": "header",
@@ -356,7 +356,7 @@ func main() {
                             {
                                 "type": "button",
                                 "sub_type": "quick_reply",
-                                "index": 0,
+                                "index": "0",
                                 "parameters": [
                                     {
                                         "type": "payload",
@@ -367,7 +367,7 @@ func main() {
                             {
                                 "type": "button",
                                 "sub_type": "url",
-                                "index": 1,
+                                "index": "1",
                                 "parameters": [
                                     {
                                         "type": "text",
@@ -378,7 +378,7 @@ func main() {
                         ]
                     },
                     {
-                        "card_index": 1,
+                        "card_index": "1",
                         "components": [
                             {
                                 "type": "header",
@@ -405,7 +405,7 @@ func main() {
                             {
                                 "type": "button",
                                 "sub_type": "quick_reply",
-                                "index": 0,
+                                "index": "0",
                                 "parameters": [
                                     {
                                         "type": "payload",
@@ -416,7 +416,7 @@ func main() {
                             {
                                 "type": "button",
                                 "sub_type": "url",
-                                "index": 1,
+                                "index": "1",
                                 "parameters": [
                                     {
                                         "type": "text",
