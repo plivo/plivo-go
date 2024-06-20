@@ -65,6 +65,7 @@ type SessionCreateParams struct {
 	URL     string `json:"url,omitempty"`
 	Method  string `json:"method,omitempty"`
 	Src     string `json:"src,omitempty"`
+	Locale  string `json:"locale,omitempty"`
 }
 
 type SessionCreateResponseBody struct {
