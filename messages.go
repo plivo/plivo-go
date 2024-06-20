@@ -132,6 +132,12 @@ type Component struct {
 	SubType    string      `mapstructure:"sub_type" json:"sub_type,omitempty"`
 	Index      string      `mapstructure:"index" json:"index,omitempty"`
 	Parameters []Parameter `mapstructure:"parameters" json:"parameters"`
+	Cards      []Card      `mapstructure:"cards" json:"cards,omitempty"`
+}
+
+type Card struct {
+	CardIndex  int         `mapstructure:"card_index" json:"card_index,omitempty"`
+	Components []Component `mapstructure:"components" json:"components,omitempty"`
 }
 
 type Parameter struct {
