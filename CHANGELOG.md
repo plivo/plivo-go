@@ -1,8 +1,7 @@
 # Change Log
 
 ## [7.50.0](https://github.com/plivo/plivo-go/tree/v7.50.0) (2024-06-20)
-**Feature - Carousel Template Support**
-- Added support for WhatsApp cards in carousel templates
+- Added support for cards in templates
 
 ## [7.49.2](https://github.com/plivo/plivo-go/tree/v7.49.2) (2024-06-07)
 **Bug Fix - List and Get Media object url fix**
