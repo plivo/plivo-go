@@ -1,7 +1,7 @@
 # Change Log
 
 ## [7.50.0](https://github.com/plivo/plivo-go/tree/v7.50.0) (2024-06-20)
-- Added support for cards in templates
+- Improving outbound templated message capabilities
 
 ## [7.49.2](https://github.com/plivo/plivo-go/tree/v7.49.2) (2024-06-07)
 **Bug Fix - List and Get Media object url fix**
