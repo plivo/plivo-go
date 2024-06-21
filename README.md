@@ -329,7 +329,7 @@ func main() {
                 "type": "carousel",
                 "cards": [
                     {
-                        "card_index": "0",
+                        "card_index": 0,
                         "components": [
                             {
                                 "type": "header",
@@ -378,7 +378,7 @@ func main() {
                         ]
                     },
                     {
-                        "card_index": "1",
+                        "card_index": 1,
                         "components": [
                             {
                                 "type": "header",

@@ -136,7 +136,7 @@ type Component struct {
 }
 
 type Card struct {
-	CardIndex  string      `mapstructure:"card_index" json:"card_index,omitempty"`
+	CardIndex  int         `mapstructure:"card_index" json:"card_index,omitempty"`
 	Components []Component `mapstructure:"components" json:"components,omitempty"`
 }
 
