@@ -70,6 +70,8 @@ type MultiPartyCallAddParticipantParams struct {
 	RecordMinMemberCount      int64       `json:"record_min_member_count,omitempty" url:"record_min_member_count,omitempty"`
 	AgentHoldMusic            string      `json:"agent_hold_music,omitempty" url:"agent_hold_music,omitempty"`
 	CustomerHoldMusic         string      `json:"customer_hold_music,omitempty" url:"customer_hold_music,omitempty"`
+	SendDigits                string      `json:"send_digits,omitempty" url:"send_digits,omitempty"`
+	SendOnPreanswer           bool        `json:"send_on_preanswer,omitempty" url:"send_on_preanswer,omitempty"`
 }
 
 type MultiPartyCallListParams struct {
