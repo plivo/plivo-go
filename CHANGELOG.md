@@ -1,5 +1,8 @@
 # Change Log
 
+## [7.50.1](https://github.com/plivo/plivo-go/tree/v7.50.1) (2024-06-27)
+- Added Send digits and send on preanswer attribute in add participant
+
 ## [7.50.0](https://github.com/plivo/plivo-go/tree/v7.50.0) (2024-06-20)
 - Improving outbound templated message capabilities
 
