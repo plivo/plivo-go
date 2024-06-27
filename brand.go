@@ -31,7 +31,14 @@ type Usecase struct {
 }
 
 type BrandListResponse struct {
-	ApiID         string  `json:"api_id,omitempty"`
+	ApiID string `json:"api_id,omitempty"`
+	Meta  struct {
+		Previous   *string
+		Next       *string
+		Offset     int64
+		Limit      int64
+		TotalCount int64 `json:"total_count"`
+	} `json:"meta"`
 	BrandResponse []Brand `json:"brands,omitempty"`
 }
 
@@ -62,6 +69,7 @@ type Brand struct {
 	VettingScore       int64             `json:"vetting_score,omitempty"`
 	Address            Address           `json:"address,omitempty"`
 	AuthorizedContact  AuthorizedContact `json:"authorized_contact,omitempty"`
+	DeclinedReasons    []TCRErrorDetail  `json:"declined_reasons,omitempty"`
 	CreatedAt          string            `json:"created_at,omitempty"`
 }
 
@@ -93,6 +101,11 @@ type AuthorizedContact struct {
 	Email     string `json:"email,omitempty" validate:"max=100"`
 	Title     string `json:"title,omitempty"`
 	Seniority string `json:"seniority,omitempty"`
+}
+
+type TCRErrorDetail struct {
+	Code    string `json:"code,omitempty"`
+	Message string `json:"message,omitempty"`
 }
 
 func (service *BrandService) List(params BrandListParams) (response *BrandListResponse, err error) {

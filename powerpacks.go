@@ -25,8 +25,8 @@ type NumberPriority struct {
 type PowerackCreateParams struct {
 	Name string `json:"name,omitempty"`
 	// Optional parameters.
-	StickySender     string           `json:"sticky_sender,omitempty"`
-	LocalConnect     string           `json:"local_connect,omitempty"`
+	StickySender     bool             `json:"sticky_sender,omitempty"`
+	LocalConnect     bool             `json:"local_connect,omitempty"`
 	ApplicationType  string           `json:"application_type,omitempty"`
 	ApplicationID    string           `json:"application_id,omitempty"`
 	NumberPriorities []NumberPriority `json:"number_priority,omitempty"`
@@ -35,8 +35,8 @@ type PowerackCreateParams struct {
 type PowerackUpdateParams struct {
 	// Optional parameters.
 	Name             string           `json:"name,omitempty"`
-	StickySender     string           `json:"sticky_sender,omitempty"`
-	LocalConnect     string           `json:"local_connect,omitempty"`
+	StickySender     bool             `json:"sticky_sender,omitempty"`
+	LocalConnect     bool             `json:"local_connect,omitempty"`
 	ApplicationType  string           `json:"application_type,omitempty"`
 	ApplicationID    string           `json:"application_id,omitempty"`
 	NumberPriorities []NumberPriority `json:"number_priority,omitempty"`
@@ -161,7 +161,7 @@ type PowerpackUpdateResponse struct {
 	PowerpackCreateResponseBody
 }
 
-//powerpack list
+// powerpack list
 type PowerpackList struct {
 	BaseListPPKResponse
 	Objects []Powerpack `json:"objects" url:"objects"`

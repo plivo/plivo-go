@@ -63,9 +63,9 @@ type ApplicationCreateResponseBody struct {
 
 type ApplicationListParams struct {
 	Subaccount string `url:"subaccount,omitempty"`
-
-	Limit  int `url:"limit,omitempty"`
-	Offset int `url:"offset,omitempty"`
+	AppName    string `url:"app_name,omitempty"`
+	Limit      int    `url:"limit,omitempty"`
+	Offset     int    `url:"offset,omitempty"`
 }
 
 type ApplicationList struct {

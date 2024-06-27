@@ -23,12 +23,14 @@ type MessageCreateParams struct {
 	MediaUrls []string    `json:"media_urls,omitempty" url:"media_urls,omitempty"`
 	MediaIds  []string    `json:"media_ids,omitempty" url:"media_ids,omitempty"`
 	// Either one of src and powerpackuuid should be given
-	PowerpackUUID       string    `json:"powerpack_uuid,omitempty" url:"powerpack_uuid,omitempty"`
-	MessageExpiry       int       `json:"message_expiry,omitempty" url:"message_expiry,omitempty"`
-	Template            *Template `json:"template,omitempty" url:"template,omitempty"`
-	DLTEntityID         string    `json:"dlt_entity_id,omitempty" url:"dlt_entity_id,omitempty"`
-	DLTTemplateID       string    `json:"dlt_template_id,omitempty" url:"dlt_template_id,omitempty"`
-	DLTTemplateCategory string    `json:"dlt_template_category,omitempty" url:"dlt_template_category,omitempty"`
+	PowerpackUUID       string       `json:"powerpack_uuid,omitempty" url:"powerpack_uuid,omitempty"`
+	MessageExpiry       int          `json:"message_expiry,omitempty" url:"message_expiry,omitempty"`
+	Template            *Template    `json:"template,omitempty" url:"template,omitempty"`
+	Interactive         *Interactive `json:"interactive,omitempty" url:"interactive,omitempty"`
+	Location            *Location    `json:"location,omitempty" url:"location,omitempty"`
+	DLTEntityID         string       `json:"dlt_entity_id,omitempty" url:"dlt_entity_id,omitempty"`
+	DLTTemplateID       string       `json:"dlt_template_id,omitempty" url:"dlt_template_id,omitempty"`
+	DLTTemplateCategory string       `json:"dlt_template_category,omitempty" url:"dlt_template_category,omitempty"`
 }
 
 type Message struct {
@@ -61,6 +63,7 @@ type Message struct {
 	DestinationNetwork              string `json:"destination_network" url:"destination_network,omitempty"`
 	CarrierFeesRate                 string `json:"carrier_fees_rate" url:"carrier_fees_rate,omitempty"`
 	CarrierFees                     string `json:"carrier_fees" url:"carrier_fees,omitempty"`
+	Log                             string `json:"log" url:"log,omitempty"`
 }
 
 // Stores response for ending a message.
@@ -129,24 +132,83 @@ type Component struct {
 	SubType    string      `mapstructure:"sub_type" json:"sub_type,omitempty"`
 	Index      string      `mapstructure:"index" json:"index,omitempty"`
 	Parameters []Parameter `mapstructure:"parameters" json:"parameters"`
+	Cards      []Card      `mapstructure:"cards" json:"cards,omitempty"`
+}
+
+type Card struct {
+	CardIndex  int         `mapstructure:"card_index" json:"card_index,omitempty"`
+	Components []Component `mapstructure:"components" json:"components,omitempty"`
 }
 
 type Parameter struct {
 	Type     string    `mapstructure:"type" json:"type" validate:"required"`
 	Text     string    `mapstructure:"text" json:"text,omitempty"`
 	Media    string    `mapstructure:"media" json:"media,omitempty"`
+	Payload  string    `mapstructure:"payload" json:"payload,omitempty"`
 	Currency *Currency `mapstructure:"currency" json:"currency,omitempty"`
 	DateTime *DateTime `mapstructure:"date_time" json:"date_time,omitempty"`
+	Location *Location `mapstructure:"location" json:"location,omitempty"`
+}
+
+type Location struct {
+	Longitude string `mapstructure:"longitude" json:"longitude,omitempty"`
+	Latitude  string `mapstructure:"latitude" json:"latitude,omitempty"`
+	Name      string `mapstructure:"name" json:"name,omitempty"`
+	Address   string `mapstructure:"address" json:"address,omitempty"`
 }
 
 type Currency struct {
-	FallbackValue string `mapstructure:"fallback_value" json:"fallback_value" validate:"required"`
-	CurrencyCode  string `mapstructure:"currency_code" json:"currency_code" validate:"required"`
-	Amount1000    int    `mapstructure:"amount_1000" json:"amount_1000" validate:"required"`
+	FallbackValue string `mapstructure:"fallback_value" json:"fallback_value"`
+	CurrencyCode  string `mapstructure:"currency_code" json:"currency_code"`
+	Amount1000    int    `mapstructure:"amount_1000" json:"amount_1000"`
 }
 
 type DateTime struct {
-	FallbackValue string `mapstructure:"fallback_value" json:"fallback_value" validate:"required"`
+	FallbackValue string `mapstructure:"fallback_value" json:"fallback_value"`
+}
+
+type Interactive struct {
+	Type   string  `mapstructure:"type" json:"type,omitempty"`
+	Header *Header `mapstructure:"header" json:"header,omitempty"`
+	Body   *Body   `mapstructure:"body" json:"body,omitempty"`
+	Footer *Footer `mapstructure:"footer" json:"footer,omitempty"`
+	Action *Action `mapstructure:"action" json:"action,omitempty"`
+}
+
+type Header struct {
+	Type  string  `mapstructure:"type" json:"type,omitempty"`
+	Text  *string `mapstructure:"text" json:"text,omitempty"`
+	Media *string `mapstructure:"media" json:"media,omitempty"`
+}
+
+type Body struct {
+	Text string `mapstructure:"text" json:"text,omitempty"`
+}
+
+type Footer struct {
+	Text string `mapstructure:"text" json:"text,omitempty"`
+}
+
+type Action struct {
+	Button  []*Buttons `mapstructure:"buttons" json:"buttons,omitempty"`
+	Section []*Section `mapstructure:"sections" json:"sections,omitempty"`
+}
+
+type Buttons struct {
+	ID     string `mapstructure:"id" json:"id,omitempty"`
+	Title  string `mapstructure:"title" json:"title,omitempty"`
+	CTAURL string `mapstructure:"cta_url" json:"cta_url,omitempty"`
+}
+
+type Section struct {
+	Title string `mapstructure:"title" json:"title,omitempty"`
+	Row   []*Row `mapstructure:"rows" json:"rows,omitempty"`
+}
+
+type Row struct {
+	ID          string `mapstructure:"id" json:"id,omitempty"`
+	Title       string `mapstructure:"title" json:"title,omitempty"`
+	Description string `mapstructure:"description" json:"description,omitempty"`
 }
 
 func (service *MessageService) List(params MessageListParams) (response *MessageList, err error) {

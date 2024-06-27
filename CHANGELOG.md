@@ -1,5 +1,94 @@
 # Change Log
 
+## [7.50.0](https://github.com/plivo/plivo-go/tree/v7.50.0) (2024-06-20)
+- Improving outbound templated message capabilities
+
+## [7.49.2](https://github.com/plivo/plivo-go/tree/v7.49.2) (2024-06-07)
+**Bug Fix - List and Get Media object url fix**
+- Fixed the media_url response value
+
+## [7.49.1](https://github.com/plivo/plivo-go/tree/v7.49.1) (2024-05-28)
+**Feature - Filter support for AppName in ListApplication API**
+- Added new filter param 'app_name' in list application api
+
+## [7.49.0](https://github.com/plivo/plivo-go/tree/v7.49.0) (2024-05-20)
+**Feature - Adding support for location whatsapp messages**
+- Added new param 'location' to [send message API](https://www.plivo.com/docs/sms/api/message#send-a-message) to support location 'whatsapp' messages
+- Added new param 'location' in templates to support location based templated messages
+
+## [7.48.0](https://github.com/plivo/plivo-go/tree/v7.48.0) (2024-05-07)
+**Feature - Adding support for interactive whatsapp messages**
+- Added new param 'interactive' to [send message API](https://www.plivo.com/docs/sms/api/message#send-a-message) to support interactive 'whatsapp' messages
+
+## [7.47.0](https://github.com/plivo/plivo-go/tree/v7.47.0) (2024-05-02)
+**Feature - Added SubAccount and GeoMatch for Create Masking Session API of Number Masking.**
+-  Added sub_account and geo_match support in MaskingSession APIs
+
+## [7.46.0](https://github.com/plivo/plivo-go/tree/v7.46.0) (2024-04-18)
+**Feature - Support for dynamic button components when sending a templated WhatsApp message**
+- Added new param `payload` in templates to support dynamic payload in templates
+
+## [7.45.6](https://github.com/plivo/plivo-go/tree/v7.45.6) (2024-04-04)
+**Feature - New params for GET and LIST Brand API**
+-  Added new param 'declined_reasons' for GET and LIST Brand API
+
+## [7.45.5](https://github.com/plivo/plivo-go/tree/v7.45.5) (2024-02-29)
+**Feature - Log Redaction Enhancement**
+-  Added log attribute in GET and List MDR response
+-  Change log field from bool to string in send SMS 
+
+## [7.45.4](https://github.com/plivo/plivo-go/tree/v7.45.4) (2024-02-26)
+**Feature - Added new param 'waitTime' for MPC XML**
+-  Added new param 'waitTime' for MPC XML
+
+## [7.45.3](https://github.com/plivo/plivo-go/tree/v7.45.3) (2024-02-12)
+**Feature - Added few new PIN related params for Create Masking Session API of Number Masking.**
+-  Added few new PIN related params for Create Masking Session API of Number Masking
+
+## [7.45.2](https://github.com/plivo/plivo-go/tree/v7.45.2) (2024-01-25)
+**Feature - Added new params 'create_mpc_with_single_participant' for Add Participant API of MPC**
+-  Added new params 'create_mpc_with_single_participant' for Add Participant API of MPC
+
+## [7.45.1](https://github.com/plivo/plivo-go/tree/v7.45.1) (2023-12-19)
+**Feature - Added type params for speak api in call and mpc**
+-  Added params 'type' for POST Speak API for Call and MPC
+
+## [7.45.0](https://github.com/plivo/plivo-go/tree/v7.45.0) (2023-12-14)
+**Feature - Added params for GET and LIST Campaign APIs**
+-  Added params 'vertical', 'campaign_alias' for GET and LIST Campaign APIs
+
+## [7.44.0](https://github.com/plivo/plivo-go/tree/v7.44.0) (2023-11-20)
+**Feature - New params for GET and LIST Campaign API**
+-  Added new params 'error_code', 'error_reason' for GET and LIST Campaign API
+
+## [7.43.0](https://github.com/plivo/plivo-go/tree/v7.43.0) (2023-11-29)
+**Bug Fix - Create Powerpack and Update Powerpack**
+- Create Powerpack and Update Powerpack now take boolean inputs for sticky sender and local connect.
+
+## [7.42.0](https://github.com/plivo/plivo-go/tree/v7.42.0) (2023-11-07)
+**Feature - Campaign List API Enhancements**
+- registration_status field in LIST API
+
+## [7.41.0](https://github.com/plivo/plivo-go/tree/v7.41.0) (2023-10-31)
+**Feature - TollFree Verification API Support**
+- API support for Create, Update, Get, Delete and List Tollfree Verification.
+- Added New Param `toll_free_sms_verification_id` and `toll_free_sms_verification_order_status `in to the response of the [list all numbers API], [list single number API]
+- Added `toll_free_sms_verification_order_status` filter to AccountPhoneNumber - list all my numbers API.
+
+## [7.40.0](https://github.com/plivo/plivo-go/tree/v7.40.0) (2023-10-18)
+**Feature - Fixes for Campaign services list API meta data**
+- Fixed Meta data response for campaign, brand and profile list
+
+## [7.39.0](https://github.com/plivo/plivo-go/tree/v7.39.0) (2023-10-18)
+**Feature - Verify CallerID**
+- Added Initiate and Verify VerifyCallerID API
+- Added Update, Delete, Get and List verified CallerIDs API
+
+## [7.38.0](https://github.com/plivo/plivo-go/tree/v7.38.0) (2023-10-16)
+**Feature - Campaign API Enhancements & New API for Importing Partner Campaigns**
+- Import Partner Campaign API
+- campaign_source field in LIST / GET API
+
 ## [7.37.0](https://github.com/plivo/plivo-go/tree/v7.37.0) (2023-08-25)
 **Feature - Added New Param 'carrier_fees', 'carrier_fees_rate', 'destination_network' in Get Message and List Message APIs**
 - Added new params on message get and list response

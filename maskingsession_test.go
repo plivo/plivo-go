@@ -5,7 +5,67 @@ import (
 	"testing"
 )
 
-func TestCallService_CreateMaskingSession(t *testing.T) {
+func TestMaskingSessionService_CreateMaskingSession_GeoMatch(t *testing.T) {
+	t.Run("GeoMatch::False", func(t *testing.T) {
+		falseValue := false
+		_, err := client.MaskingSession.CreateMaskingSession(CreateMaskingSessionParams{
+			FirstParty:  "+919999323467",
+			SecondParty: "+919891865130",
+			GeoMatch:    &falseValue,
+		})
+		if err != nil {
+			t.Logf("err :: %v", err)
+		}
+	})
+
+	t.Run("GeoMatch::True", func(t *testing.T) {
+		trueValue := true
+		_, err := client.MaskingSession.CreateMaskingSession(CreateMaskingSessionParams{
+			FirstParty:  "+919999323467",
+			SecondParty: "+919891865130",
+			GeoMatch:    &trueValue,
+		})
+		if err != nil {
+			t.Logf("err :: %v", err)
+		}
+	})
+
+	t.Run("GeoMatch::nil", func(t *testing.T) {
+		_, err := client.MaskingSession.CreateMaskingSession(CreateMaskingSessionParams{
+			FirstParty:  "+919999323467",
+			SecondParty: "+919891865130",
+			GeoMatch:    nil,
+		})
+		if err != nil {
+			t.Logf("err :: %v", err)
+		}
+	})
+}
+
+func TestMaskingSessionService_CreateMaskingSession_SubAccount(t *testing.T) {
+	t.Run("SubAccount::Empty", func(t *testing.T) {
+		_, err := client.MaskingSession.CreateMaskingSession(CreateMaskingSessionParams{
+			FirstParty:  "+919999323467",
+			SecondParty: "+919891865130",
+		})
+		if err != nil {
+			t.Logf("err :: %v", err)
+		}
+	})
+
+	t.Run("SubAccount::Valid SubAccount", func(t *testing.T) {
+		_, err := client.MaskingSession.CreateMaskingSession(CreateMaskingSessionParams{
+			FirstParty:  "+919999323467",
+			SecondParty: "+919891865130",
+			SubAccount:  "SAZTA0ZJJHMDETOWQ4YI",
+		})
+		if err != nil {
+			t.Logf("err :: %v", err)
+		}
+	})
+}
+
+func TestMaskingSessionService_CreateMaskingSession(t *testing.T) {
 	expectResponse("createMaskingSessionResponse.json", 200)
 
 	if _, err := client.MaskingSession.CreateMaskingSession(CreateMaskingSessionParams{}); err != nil {
@@ -24,7 +84,7 @@ func TestCallService_CreateMaskingSession(t *testing.T) {
 	assertRequest(t, "POST", "Masking/Session")
 }
 
-func TestCallService_DeleteMaskingSession(t *testing.T) {
+func TestMaskingSessionService_DeleteMaskingSession(t *testing.T) {
 	expectResponse("deleteMaskingSessionResponse.json", 204)
 	SessionUuid := "15e4256c-be01-475c-9a69-95cf65bbed71"
 
@@ -44,7 +104,7 @@ func TestCallService_DeleteMaskingSession(t *testing.T) {
 	assertRequest(t, "DELETE", "Masking/Session/%s", SessionUuid)
 }
 
-func TestCallService_GetMaskingSession(t *testing.T) {
+func TestMaskingSessionService_GetMaskingSession(t *testing.T) {
 	expectResponse("getMaskingSessionResponse.json", 200)
 	SessionUuid := "15e4256c-be01-475c-9a69-95cf65bbed71"
 
@@ -64,7 +124,7 @@ func TestCallService_GetMaskingSession(t *testing.T) {
 	assertRequest(t, "GET", "Masking/Session/%s", SessionUuid)
 }
 
-func TestCallService_updateMaskingSession(t *testing.T) {
+func TestMaskingSessionService_updateMaskingSession(t *testing.T) {
 	expectResponse("updateMaskingSessionResponse.json", 204)
 	SessionUuid := "15e4256c-be01-475c-9a69-95cf65bbed71"
 
@@ -84,7 +144,7 @@ func TestCallService_updateMaskingSession(t *testing.T) {
 	assertRequest(t, "POST", "Masking/Session/%s", SessionUuid)
 }
 
-func TestCallService_ListMaskingSession(t *testing.T) {
+func TestMaskingSessionService_ListMaskingSession(t *testing.T) {
 	expectResponse("listMaskingSessionResponse.json", 204)
 
 	if _, err := client.MaskingSession.ListMaskingSession(ListSessionFilterParams{}); err != nil {

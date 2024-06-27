@@ -1,7 +1,8 @@
 package plivo
 
-import "testing"
 import (
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 )
 
@@ -175,7 +176,7 @@ func TestValidateSignatureV3Pass4(t *testing.T) {
 	)
 }
 
-func TestCreateWhatsappTemplatePass(t *testing.T){
+func TestCreateWhatsappTemplatePass(t *testing.T) {
 	template_data := `{
         "name": "plivo_verification",
         "language": "en_US",
@@ -207,7 +208,7 @@ func TestCreateWhatsappTemplatePass(t *testing.T){
 		Language: "en_US",
 		Components: []Component{
 			{
-				Type:    "body",
+				Type: "body",
 				Parameters: []Parameter{
 					{
 						Type: "text",
@@ -232,6 +233,228 @@ func TestCreateWhatsappTemplatePass(t *testing.T){
 	assert.Equal(t, template, templateCreated)
 }
 
+func TestCreateWhatsappInteractiveList(t *testing.T) {
+	interactiveData := `{
+		"type": "list",
+		"header": {
+			"type": "text",
+			"text": "Welcome to Plivo"
+		},
+		"body": {
+			"text": "You can review the list of rewards we offer"
+		},
+		"footer": {
+			"text": "Yours Truly"
+		},
+		"action": {
+			"buttons": [{
+				"title": "Click here",
+				"id": "bt1j1k2jkjk"
+			}],
+			"sections": [{
+				"title": "SECTION_1_TITLE",
+				"rows": [{
+					"id": "SECTION_1_ROW_1_ID",
+					"title": "SECTION_1_ROW_1_TITLE",
+					"description": "SECTION_1_ROW_1_DESCRIPTION"
+				}, {
+					"id": "SECTION_1_ROW_2_ID",
+					"title": "SECTION_1_ROW_2_TITLE",
+					"description": "SECTION_1_ROW_2_DESCRIPTION"
+				}]
+			}, {
+				"title": "SECTION_2_TITLE",
+				"rows": [{
+					"id": "SECTION_2_ROW_1_ID",
+					"title": "SECTION_2_ROW_1_TITLE",
+					"description": "SECTION_2_ROW_1_DESCRIPTION"
+				}, {
+					"id": "SECTION_2_ROW_2_ID",
+					"title": "SECTION_2_ROW_2_TITLE",
+					"description": "SECTION_2_ROW_2_DESCRIPTION"
+				}]
+			}]
+		}
+	}`
+	txt := "Welcome to Plivo"
+	expectedInteractive := Interactive{
+		Type: "list",
+		Header: &Header{
+			Type: "text",
+			Text: &txt,
+		},
+		Body: &Body{
+			Text: "You can review the list of rewards we offer",
+		},
+		Footer: &Footer{
+			Text: "Yours Truly",
+		},
+		Action: &Action{
+			Button: []*Buttons{
+				{
+					ID:    "bt1j1k2jkjk",
+					Title: "Click here",
+				},
+			},
+			Section: []*Section{
+				{
+					Title: "SECTION_1_TITLE",
+					Row: []*Row{
+						{
+							ID:          "SECTION_1_ROW_1_ID",
+							Title:       "SECTION_1_ROW_1_TITLE",
+							Description: "SECTION_1_ROW_1_DESCRIPTION",
+						},
+						{
+							ID:          "SECTION_1_ROW_2_ID",
+							Title:       "SECTION_1_ROW_2_TITLE",
+							Description: "SECTION_1_ROW_2_DESCRIPTION",
+						},
+					},
+				},
+				{
+					Title: "SECTION_2_TITLE",
+					Row: []*Row{
+						{
+							ID:          "SECTION_2_ROW_1_ID",
+							Title:       "SECTION_2_ROW_1_TITLE",
+							Description: "SECTION_2_ROW_1_DESCRIPTION",
+						},
+						{
+							ID:          "SECTION_2_ROW_2_ID",
+							Title:       "SECTION_2_ROW_2_TITLE",
+							Description: "SECTION_2_ROW_2_DESCRIPTION",
+						},
+					},
+				},
+			},
+		},
+	}
 
+	interactive, _ := CreateWhatsappInteractive(interactiveData)
+	assert.Equal(t, expectedInteractive, interactive)
+}
 
+func TestCreateWhatsappInteractiveReply(t *testing.T) {
+	interactiveData := `{
+        "type": "reply",
+        "header": {
+            "type": "media",
+            "media": "https://media.geeksforgeeks.org/wp-content/uploads/20190712220639/ybearoutput-300x225.png"
+        },
+        "body": {
+            "text": "Make your selection"
+        },
+        "action": {
+            "buttons": [
+                {
+                    "title": "Click here",
+                    "id": "bt1"
+                },
+                {
+                    "title": "Know More",
+                    "id": "bt2"
+                },
+                {
+                    "title": "Request Callback",
+                    "id": "bt3"
+                }
+            ]
+        }
+    }`
+	mediaLink := "https://media.geeksforgeeks.org/wp-content/uploads/20190712220639/ybearoutput-300x225.png"
+	expectedInteractive := Interactive{
+		Type: "reply",
+		Header: &Header{
+			Type:  "media",
+			Media: &mediaLink,
+		},
+		Body: &Body{
+			Text: "Make your selection",
+		},
+		Action: &Action{
+			Button: []*Buttons{
+				{
+					ID:    "bt1",
+					Title: "Click here",
+				},
+				{
+					ID:    "bt2",
+					Title: "Know More",
+				},
+				{
+					ID:    "bt3",
+					Title: "Request Callback",
+				},
+			},
+		},
+	}
 
+	interactive, _ := CreateWhatsappInteractive(interactiveData)
+	assert.Equal(t, expectedInteractive, interactive)
+}
+
+func TestCreateWhatsappInteractiveCTA(t *testing.T) {
+	interactiveData := `{
+        "type": "cta_url",
+        "header": {
+            "type": "media",
+            "media": "https://media.geeksforgeeks.org/wp-content/uploads/20190712220639/ybearoutput-300x225.png"
+        },
+        "body": {
+            "text": "Know More"
+        },
+        "action": {
+            "buttons": [
+                {
+                    "title": "Click here",
+                    "id": "bt1",
+                    "cta_url": "https://plivo.com"
+                }
+            ]
+        }
+    }`
+
+	mediaLink := "https://media.geeksforgeeks.org/wp-content/uploads/20190712220639/ybearoutput-300x225.png"
+
+	expectedInteractive := Interactive{
+		Type: "cta_url",
+		Header: &Header{
+			Type:  "media",
+			Media: &mediaLink,
+		},
+		Body: &Body{
+			Text: "Know More",
+		},
+		Action: &Action{
+			Button: []*Buttons{
+				{
+					ID:     "bt1",
+					Title:  "Click here",
+					CTAURL: "https://plivo.com",
+				},
+			},
+		},
+	}
+
+	interactive, err := CreateWhatsappInteractive(interactiveData)
+	assert.NoError(t, err)
+	assert.Equal(t, expectedInteractive, interactive)
+}
+
+func TestCreateWhatsappLocationPass(t *testing.T) {
+	location_data := `{
+        "latitude": "37.483307",
+        "longitude": "122.148981",
+        "name": "Pablo Morales",
+        "address": "1 Hacker Way, Menlo Park, CA 94025"
+    }`
+	location := Location{
+		Latitude:  "37.483307",
+		Longitude: "122.148981",
+		Name:      "Pablo Morales",
+		Address:   "1 Hacker Way, Menlo Park, CA 94025",
+	}
+	locaitonCreated, _ := CreateWhatsappLocation(location_data)
+	assert.Equal(t, location, locaitonCreated)
+}
