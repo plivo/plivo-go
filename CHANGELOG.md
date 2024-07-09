@@ -1,7 +1,8 @@
 # Change Log
 ## [7.49.3](https://github.com/plivo/plivo-go/tree/v7.49.3) (2024-06-22)
 **Feature - Adding support for Locale param in Create, Get and List Session**
-- Added new request param `locale` in create, get and list Session API
+- Added new request param `locale` in create Session API
+- Added support for `locale` param in get and list Session response
 
 ## [7.49.2](https://github.com/plivo/plivo-go/tree/v7.49.2) (2024-06-07)
 **Bug Fix - List and Get Media object url fix**
