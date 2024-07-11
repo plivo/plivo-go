@@ -27,6 +27,7 @@ type Session struct {
 	Alias              string           `json:"alias,omitempty"`
 	Recipient          string           `json:"recipient,omitempty"`
 	Channel            string           `json:"channel,omitempty"`
+	Locale             string           `json:"locale,omitempty"`
 	Status             string           `json:"status,omitempty"`
 	Count              int              `json:"count,omitempty"`
 	RequesterIP        string           `json:"requestor_ip,omitempty"`
@@ -65,6 +66,7 @@ type SessionCreateParams struct {
 	URL     string `json:"url,omitempty"`
 	Method  string `json:"method,omitempty"`
 	Src     string `json:"src,omitempty"`
+	Locale  string `json:"locale,omitempty"`
 }
 
 type SessionCreateResponseBody struct {

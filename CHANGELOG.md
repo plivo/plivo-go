@@ -1,4 +1,8 @@
 # Change Log
+## [7.51.0](https://github.com/plivo/plivo-go/tree/v7.51.0) (2024-07-11)
+**Feature - Adding support for Locale param in Create, Get and List Session**
+- Added new request param `locale` in create Session API
+- Added support for `locale` param in get and list Session response
 
 ## [7.50.1](https://github.com/plivo/plivo-go/tree/v7.50.1) (2024-07-01)
 - Added Send digits and send on preanswer attribute in add participant
