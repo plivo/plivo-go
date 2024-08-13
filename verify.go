@@ -45,6 +45,7 @@ type AttemptDetails struct {
 	Status      string    `json:"status,omitempty"`
 	BrandName   string    `json:"brand_name,omitempty"`
 	AppHash     string    `json:"app_hash,omitempty"`
+	CodeLength  int       `json:"code_length,omitempty"`
 	Time        time.Time `json:"time,omitempty"`
 }
 
@@ -63,14 +64,15 @@ type AttemptCharges struct {
 type SessionCreateParams struct {
 	Recipient string `json:"recipient,omitempty"`
 	// Optional parameters.
-	AppUUID   string `json:"app_uuid,omitempty"`
-	Channel   string `json:"channel,omitempty"`
-	URL       string `json:"url,omitempty"`
-	Method    string `json:"method,omitempty"`
-	Src       string `json:"src,omitempty"`
-	Locale    string `json:"locale,omitempty"`
-	BrandName string `json:"brand_name,omitempty"`
-	AppHash   string `json:"app_hash,omitempty"`
+	AppUUID    string `json:"app_uuid,omitempty"`
+	Channel    string `json:"channel,omitempty"`
+	URL        string `json:"url,omitempty"`
+	Method     string `json:"method,omitempty"`
+	Src        string `json:"src,omitempty"`
+	Locale     string `json:"locale,omitempty"`
+	BrandName  string `json:"brand_name,omitempty"`
+	AppHash    string `json:"app_hash,omitempty"`
+	CodeLength int    `json:"code_length,omitempty"`
 }
 
 type SessionCreateResponseBody struct {
