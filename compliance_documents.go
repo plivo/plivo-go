@@ -208,7 +208,7 @@ func newfileUploadRequest(uri string, params map[string]string, paramName, path 
 
 func (service *ComplianceDocumentService) Create(params CreateComplianceDocumentParams) (response *GetComplianceDocumentResponse, err error) {
 	requestUrl := service.client.BaseUrl
-	requestUrl.Path = fmt.Sprintf("/v1/Account/%s/", fmt.Sprintf(service.client.AuthId+"/ComplianceDocument"))
+	requestUrl.Path = fmt.Sprintf("%sComplianceDocument/", fmt.Sprintf(baseRequestString, service.client.AuthId))
 
 	requestParams := make(map[string]string)
 	fields := reflect.TypeOf(params)
@@ -235,7 +235,7 @@ func (service *ComplianceDocumentService) Create(params CreateComplianceDocument
 
 func (service *ComplianceDocumentService) Update(params UpdateComplianceDocumentParams) (response *UpdateComplianceDocumentResponse, err error) {
 	requestUrl := service.client.BaseUrl
-	requestUrl.Path = fmt.Sprintf("/v1/Account/%s/", fmt.Sprintf(service.client.AuthId+"/ComplianceDocument/"+params.ComplianceDocumentID))
+	requestUrl.Path = fmt.Sprintf(baseRequestString, service.client.AuthId) + "ComplianceDocument/" + params.ComplianceDocumentID + "/"
 
 	requestParams := make(map[string]string)
 

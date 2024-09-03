@@ -66,5 +66,5 @@ func NewPhloClient(authId, authToken string, options *ClientOptions) (client *Ph
 func (client *PhloClient) NewRequest(method string, params interface{}, formatString string,
 	formatParams ...interface{}) (*http.Request, error) {
 
-	return client.BaseClient.NewRequest(method, params, "v1/%s", formatString, formatParams...)
+	return client.BaseClient.NewRequest(method, params, phloBaseRequestString, formatString, formatParams...)
 }

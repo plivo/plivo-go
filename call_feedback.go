@@ -48,7 +48,7 @@ func (service *CallFeedbackService) Create(params CallFeedbackParams) (response 
 	}
 	formatParams := map[string]interface{}{}
 	formatParams[CallInsightsParams] = make(map[string]interface{})
-	feedbackPath := fmt.Sprintf("v1/Call/%s/Feedback/", params.CallUUID)
+	feedbackPath := fmt.Sprintf(CallInsightsFeedbackPath, params.CallUUID)
 	formatParams[CallInsightsParams].(map[string]interface{})[CallInsightsRequestPath] = feedbackPath
 	req, err := service.client.NewRequest("POST", params, "Call", formatParams)
 	if err != nil {

@@ -117,7 +117,7 @@ func (service *MediaService) Upload(params MediaUpload) (response *MediaResponse
 		}
 	}
 	requestUrl := service.client.BaseUrl
-	requestUrl.Path = fmt.Sprintf("/v1/Account/%s/", fmt.Sprintf(service.client.AuthId+"/Media"))
+	requestUrl.Path = fmt.Sprintf("/v1/Account/%s/Media/", service.client.AuthId)
 	request, err := http.NewRequest("POST", requestUrl.String(), payload)
 	if err != nil {
 		return nil, err
