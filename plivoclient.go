@@ -131,5 +131,5 @@ func (client *Client) NewRequest(method string, params interface{}, formatString
 	formatParams ...interface{}) (*http.Request, error) {
 	formatParams = append([]interface{}{client.AuthId}, formatParams...)
 	formatString = fmt.Sprintf("%s/%s", "%s", formatString)
-	return client.BaseClient.NewRequest(method, params, baseRequestString, formatString, formatParams...)
+	return client.BaseClient.NewRequest(method, params, "/v1/Account/%s/", formatString, formatParams...)
 }
