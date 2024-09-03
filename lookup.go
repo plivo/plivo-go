@@ -9,6 +9,11 @@ import (
 // this imposes the limitation that each struct type has to be unique across
 // all of Plivo's product APIs.
 
+const (
+	numberString = "v1/Number/%s"
+	format       = "%s"
+)
+
 type Country struct {
 	Name string `json:"name"`
 	ISO2 string `json:"iso2"`
@@ -56,7 +61,7 @@ func (s *LookupService) Get(number string, params LookupParams) (*LookupResponse
 		params.Type = "carrier"
 	}
 
-	req, err := s.client.BaseClient.NewRequest("GET", params, fmt.Sprintf("v1/Number/%s", "%s"), number)
+	req, err := s.client.BaseClient.NewRequest("GET", params, fmt.Sprintf(numberString, format), number)
 	if err != nil {
 		return nil, err
 	}
