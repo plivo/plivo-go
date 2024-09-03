@@ -56,8 +56,7 @@ func (s *LookupService) Get(number string, params LookupParams) (*LookupResponse
 		params.Type = "carrier"
 	}
 
-	numBaseRequestString := fmt.Sprintf("v1/Number/%s", "%s")
-	req, err := s.client.BaseClient.NewRequest("GET", params, numBaseRequestString, number)
+	req, err := s.client.BaseClient.NewRequest("GET", params, fmt.Sprintf("v1/Number/%s", "%s"), number)
 	if err != nil {
 		return nil, err
 	}
