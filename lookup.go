@@ -2,13 +2,12 @@ package plivo
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // NOTE: All of Plivo's APIs are in a single Go package. Unfortunately,
 // this imposes the limitation that each struct type has to be unique across
 // all of Plivo's product APIs.
-
-const numBaseRequestString = "v1/Number/%s"
 
 type Country struct {
 	Name string `json:"name"`
@@ -57,6 +56,7 @@ func (s *LookupService) Get(number string, params LookupParams) (*LookupResponse
 		params.Type = "carrier"
 	}
 
+	numBaseRequestString := fmt.Sprintf("v1/Number/%s", "%s")
 	req, err := s.client.BaseClient.NewRequest("GET", params, numBaseRequestString, number)
 	if err != nil {
 		return nil, err
