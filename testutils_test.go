@@ -2,11 +2,11 @@ package plivo
 
 import (
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
-	"os"
 	"testing"
 	"unicode"
 
@@ -37,7 +37,7 @@ func expectResponse(fixturePath string, statusCode int) {
 		fixturePathRunes := []rune(fixturePath)
 		fixturePathRunes[0] = unicode.ToLower(fixturePathRunes[0])
 		fullFixturePath := fmt.Sprintf("fixtures/%s", string(fixturePathRunes))
-		contents, err := os.ReadFile(fullFixturePath)
+		contents, err := ioutil.ReadFile(fullFixturePath)
 		if err != nil {
 			panic(err)
 		}

@@ -1,5 +1,5 @@
 # Change Log
-## [7.51.1](https://github.com/plivo/plivo-go/tree/v7.51.1) (2024-09-03)
+## [7.51.1](https://github.com/plivo/plivo-go/tree/v7.51.1) (2024-09-05)
 **Feature - Adding new element for Audio Stream XML **
 - Added `keepCallAlive` element in Audio Stream XML
 
