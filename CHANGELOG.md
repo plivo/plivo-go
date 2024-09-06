@@ -1,4 +1,9 @@
 # Change Log
+## [7.51.3](https://github.com/plivo/plivo-go/tree/v7.53.0) (2024-09-06)
+**Feature - Adding support for Locale param in Create, Get and List Session**
+- Enhance message object
+- Added new object param on get and list mdr response: `message_sent_time`, `message_updated_time`, `error_message`
+
 ## [7.51.2](https://github.com/plivo/plivo-go/tree/v7.51.2) (2024-09-06)
 **Feature - Adding support for brand_name, code_length and app_hash in Create,Get and List Session**
 - Added new request param `brand_name`, `code_length` and `app_hash` in create Session API
