@@ -1406,6 +1406,8 @@ type StreamElement struct {
 
 	ExtraHeaders *string `xml:"extraHeaders,attr"`
 
+	KeepCallAlive *bool `xml:"keepCallAlive,attr"`
+
 	XMLName xml.Name `xml:"Stream"`
 }
 
@@ -1441,6 +1443,11 @@ func (e StreamElement) SetContentType(value string) StreamElement {
 
 func (e StreamElement) SetExtraHeaders(value string) StreamElement {
 	e.ExtraHeaders = &value
+	return e
+}
+
+func (e StreamElement) SetKeepCallAlive(value bool) StreamElement {
+	e.KeepCallAlive = &value
 	return e
 }
 
