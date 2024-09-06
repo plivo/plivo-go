@@ -3,7 +3,11 @@
 **Feature - Adding support for brand_name, code_length and app_hash in Create,Get and List Session**
 - Added new request param `brand_name`, `code_length` and `app_hash` in create Session API
 - Added support for `brand_name` , `app_hash`, `code_length` param in get and list Session response
-- 
+
+## [7.51.1](https://github.com/plivo/plivo-go/tree/v7.51.1) (2024-09-05)
+**Feature - Adding new element for Audio Stream XML **
+- Added `keepCallAlive` element in Audio Stream XML
+
 ## [7.51.0](https://github.com/plivo/plivo-go/tree/v7.51.0) (2024-07-11)
 **Feature - Adding support for Locale param in Create, Get and List Session**
 - Added new request param `locale` in create Session API
