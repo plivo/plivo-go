@@ -95,12 +95,12 @@ type CallCreateParams struct {
 	MachineDetectionTime                int64  `json:"machine_detection_time,omitempty" url:"machine_detection_time,omitempty"`
 	MachineDetectionUrl                 string `json:"machine_detection_url,omitempty" url:"machine_detection_url,omitempty"`
 	MachineDetectionMethod              string `json:"machine_detection_method,omitempty" url:"machine_detection_method,omitempty"`
-	MachineDetectionMaximumSpeechLength string `json:"machine_detection_maximum_speech_length,omitempty" url:"machine_detection_maximum_speech_length"`
-	MachineDetectionInitialSilence      string `json:"machine_detection_initial_silence,omitempty" url:"machine_detection_initial_silence"`
-	MachineDetectionMaximumWords        string `json:"machine_detection_maximum_words,omitempty" url:"machine_detection_maximum_words"`
-	MachineDetectionInitialGreeting     string `json:"machine_detection_initial_greeting,omitempty" url:"machine_detection_initial_greeting"`
-	MachineDetectionSilence             string `json:"machine_detection_silence,omitempty" url:"machine_detection_silence"`
-	MachineDetectionAnswerTime          string `json:"machine_detection_answer_time,omitempty" url:"machine_detection_answer_time"`
+	MachineDetectionMaximumSpeechLength int64  `json:"machine_detection_maximum_speech_length,omitempty" url:"machine_detection_maximum_speech_length"`
+	MachineDetectionInitialSilence      int64  `json:"machine_detection_initial_silence,omitempty" url:"machine_detection_initial_silence"`
+	MachineDetectionMaximumWords        int64  `json:"machine_detection_maximum_words,omitempty" url:"machine_detection_maximum_words"`
+	MachineDetectionInitialGreeting     int64  `json:"machine_detection_initial_greeting,omitempty" url:"machine_detection_initial_greeting"`
+	MachineDetectionSilence             int64  `json:"machine_detection_silence,omitempty" url:"machine_detection_silence"`
+	MachineDetectionAnswerTime          int64  `json:"machine_detection_answer_time,omitempty" url:"machine_detection_answer_time"`
 	SipHeaders                          string `json:"sip_headers,omitempty" url:"sip_headers,omitempty"`
 	RingTimeout                         int64  `json:"ring_timeout,omitempty" url:"ring_timeout,omitempty"`
 }
