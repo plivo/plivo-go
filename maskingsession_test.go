@@ -42,6 +42,60 @@ func TestMaskingSessionService_CreateMaskingSession_GeoMatch(t *testing.T) {
 	})
 }
 
+func TestMaskingSessionService_CreateMaskingSession_VirtualNumberCooloffPeriod(t *testing.T) {
+	t.Run("VirtualNumberCooloffPeriod::3500", func(t *testing.T) {
+		_, err := client.MaskingSession.CreateMaskingSession(CreateMaskingSessionParams{
+			FirstParty:                 "+919999323467",
+			SecondParty:                "+919891865130",
+			VirtualNumberCooloffPeriod: 3500,
+		})
+		if err != nil {
+			t.Logf("err :: %v", err)
+		}
+	})
+
+}
+
+func TestMaskingSessionService_CreateMaskingSession_CreateSessionWithSingleParty(t *testing.T) {
+	t.Run("CreateSessionWithSingleParty::True", func(t *testing.T) {
+		_, err := client.MaskingSession.CreateMaskingSession(CreateMaskingSessionParams{
+			FirstParty:                   "+919999323467",
+			CreateSessionWithSingleParty: true,
+		})
+		if err != nil {
+			t.Logf("err :: %v", err)
+		}
+	})
+
+}
+
+func TestMaskingSessionService_CreateMaskingSession_ForcePinAuthentication(t *testing.T) {
+	t.Run("ForcePinAuthentication::True", func(t *testing.T) {
+		_, err := client.MaskingSession.CreateMaskingSession(CreateMaskingSessionParams{
+			FirstParty:                  "+919999323467",
+			SecondParty:                 "+919891865130",
+			SessionExpiry:               600,
+			CallTimeLimit:               0,
+			Record:                      false,
+			RecordFileFormat:            "",
+			RecordingCallbackUrl:        "https://plivobin-prod-usw.plivops.com/api/v1/speak.xml",
+			InitiateCallToFirstParty:    false,
+			CallbackUrl:                 "http://plivobin.non-prod.plivops.com/12tksfd1",
+			CallbackMethod:              "",
+			RingTimeout:                 0,
+			FirstPartyPlayUrl:           "https://plivobin-prod-usw.plivops.com/api/v1/speak.xml",
+			SecondPartyPlayUrl:          "https://plivobin-prod-usw.plivops.com/api/v1/speak.xml",
+			RecordingCallbackMethod:     "",
+			IsPinAuthenticationRequired: true,
+			ForcePinAuthentication:      true,
+		})
+		if err != nil {
+			t.Logf("err :: %v", err)
+		}
+	})
+
+}
+
 func TestMaskingSessionService_CreateMaskingSession_SubAccount(t *testing.T) {
 	t.Run("SubAccount::Empty", func(t *testing.T) {
 		_, err := client.MaskingSession.CreateMaskingSession(CreateMaskingSessionParams{
