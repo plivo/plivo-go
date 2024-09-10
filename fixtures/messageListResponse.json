@@ -30,7 +30,10 @@
       "conversation_expiration_timestamp": "2023-08-03 23:02:00+05:30",
       "destination_network": "",
       "carrier_fees": "0.00000",
-      "carrier_fees_rate": "0.00000"
+      "carrier_fees_rate": "0.00000",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": null,
@@ -55,7 +58,10 @@
       "conversation_expiration_timestamp": "",
       "destination_network": "",
       "carrier_fees": "0.00000",
-      "carrier_fees_rate": "0.00000"
+      "carrier_fees_rate": "0.00000",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": null,
@@ -80,7 +86,10 @@
       "conversation_expiration_timestamp": "",
       "destination_network": "",
       "carrier_fees": "0.00000",
-      "carrier_fees_rate": "0.00000"
+      "carrier_fees_rate": "0.00000",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": null,
@@ -105,7 +114,10 @@
       "conversation_expiration_timestamp": "",
       "destination_network": "",
       "carrier_fees": "0.00000",
-      "carrier_fees_rate": "0.00000"
+      "carrier_fees_rate": "0.00000",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": null,
@@ -130,7 +142,10 @@
       "conversation_expiration_timestamp": "",
       "destination_network": "",
       "carrier_fees": "0.00000",
-      "carrier_fees_rate": "0.00000"
+      "carrier_fees_rate": "0.00000",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": null,
@@ -155,7 +170,10 @@
       "conversation_expiration_timestamp": "",
       "destination_network": "",
       "carrier_fees": "0.00000",
-      "carrier_fees_rate": "0.00000"
+      "carrier_fees_rate": "0.00000",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": null,
@@ -180,13 +198,16 @@
       "conversation_expiration_timestamp": "",
       "destination_network": "",
       "carrier_fees": "0.00000",
-      "carrier_fees_rate": "0.00000"
+      "carrier_fees_rate": "0.00000",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
-      "error_code": null,
+      "error_code": "450",
       "from_number": "919655100565",
       "message_direction": "outbound",
-      "message_state": "sent",
+      "message_state": "failed",
       "message_time": "2017-05-16 20:52:51+05:30",
       "message_type": "sms",
       "message_uuid": "937da994-4d07-4a85-9252-764d846cacf5",
@@ -205,7 +226,10 @@
       "conversation_expiration_timestamp": "",
       "destination_network": "",
       "carrier_fees": "0.00000",
-      "carrier_fees_rate": "0.00000"
+      "carrier_fees_rate": "0.00000",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": "Destination Country Disabled"
     },
     {
       "error_code": "000",
@@ -230,7 +254,10 @@
       "conversation_expiration_timestamp": "",
       "destination_network": "",
       "carrier_fees": "0.00000",
-      "carrier_fees_rate": "0.00000"
+      "carrier_fees_rate": "0.00000",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": null,
@@ -255,7 +282,10 @@
       "conversation_expiration_timestamp": "",
       "destination_network": "",
       "carrier_fees": "0.00000",
-      "carrier_fees_rate": "0.00000"
+      "carrier_fees_rate": "0.00000",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": "000",
@@ -280,7 +310,10 @@
       "conversation_expiration_timestamp": "",
       "destination_network": "",
       "carrier_fees": "0.00000",
-      "carrier_fees_rate": "0.00000"
+      "carrier_fees_rate": "0.00000",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": null,
@@ -305,7 +338,10 @@
       "conversation_expiration_timestamp": "",
       "destination_network": "",
       "carrier_fees": "0.00000",
-      "carrier_fees_rate": "0.00000"
+      "carrier_fees_rate": "0.00000",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": "000",
@@ -330,7 +366,10 @@
       "conversation_expiration_timestamp": "",
       "destination_network": "",
       "carrier_fees": "0.00000",
-      "carrier_fees_rate": "0.00000"
+      "carrier_fees_rate": "0.00000",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": null,
@@ -355,7 +394,10 @@
       "conversation_expiration_timestamp": "",
       "destination_network": "",
       "carrier_fees": "0.00000",
-      "carrier_fees_rate": "0.00000"
+      "carrier_fees_rate": "0.00000",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": "000",
@@ -380,7 +422,10 @@
       "conversation_expiration_timestamp": "",
       "destination_network": "",
       "carrier_fees": "0.00000",
-      "carrier_fees_rate": "0.00000"
+      "carrier_fees_rate": "0.00000",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": null,
@@ -405,7 +450,10 @@
       "conversation_expiration_timestamp": "",
       "destination_network": "",
       "carrier_fees": "0.00000",
-      "carrier_fees_rate": "0.00000"
+      "carrier_fees_rate": "0.00000",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": "000",
@@ -430,7 +478,10 @@
       "conversation_expiration_timestamp": "",
       "destination_network": "",
       "carrier_fees": "0.00000",
-      "carrier_fees_rate": "0.00000"
+      "carrier_fees_rate": "0.00000",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": "000",
@@ -455,7 +506,10 @@
       "conversation_expiration_timestamp": "",
       "destination_network": "",
       "carrier_fees": "0.00000",
-      "carrier_fees_rate": "0.00000"
+      "carrier_fees_rate": "0.00000",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": "000",
@@ -480,7 +534,10 @@
       "conversation_expiration_timestamp": "",
       "destination_network": "",
       "carrier_fees": "0.00000",
-      "carrier_fees_rate": "0.00000"
+      "carrier_fees_rate": "0.00000",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": "000",
@@ -505,7 +562,10 @@
       "conversation_expiration_timestamp": "",
       "destination_network": "",
       "carrier_fees": "0.00000",
-      "carrier_fees_rate": "0.00000"
+      "carrier_fees_rate": "0.00000",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     }
   ]
 }

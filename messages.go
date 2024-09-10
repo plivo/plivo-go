@@ -47,6 +47,7 @@ type Message struct {
 	MessageUUID                     string `json:"message_uuid,omitempty" url:"message_uuid,omitempty"`
 	MessageTime                     string `json:"message_time,omitempty" url:"message_time,omitempty"`
 	ErrorCode                       string `json:"error_code,omitempty" url:"error_code,omitempty"`
+	ErrorMessage                    string `json:"error_message,omitempty" url:"error_message,omitempty"`
 	PowerpackID                     string `json:"powerpack_id,omitempty" url:"powerpack_id,omitempty"`
 	RequesterIP                     string `json:"requester_ip,omitempty" url:"requester_ip,omitempty"`
 	IsDomestic                      *bool  `json:"is_domestic,omitempty" url:"is_domestic,omitempty"`
@@ -64,6 +65,8 @@ type Message struct {
 	CarrierFeesRate                 string `json:"carrier_fees_rate" url:"carrier_fees_rate,omitempty"`
 	CarrierFees                     string `json:"carrier_fees" url:"carrier_fees,omitempty"`
 	Log                             string `json:"log" url:"log,omitempty"`
+	MessageSentTime                 string `json:"message_sent_time" url:"message_sent_time,omitempty"`
+	MessageUpdatedTime              string `json:"message_updated_time" url:"message_updated_time,omitempty"`
 }
 
 // Stores response for ending a message.
