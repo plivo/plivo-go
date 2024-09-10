@@ -79,24 +79,30 @@ type CallCreateParams struct {
 	To        string `json:"to,omitempty" url:"to,omitempty"`
 	AnswerURL string `json:"answer_url,omitempty" url:"answer_url,omitempty"`
 	// Optional parameters.
-	AnswerMethod           string `json:"answer_method,omitempty" url:"answer_method,omitempty"`
-	RingURL                string `json:"ring_url,omitempty" url:"ring_url,omitempty"`
-	RingMethod             string `json:"ring_method,omitempty" url:"ring_method,omitempty"`
-	HangupURL              string `json:"hangup_url,omitempty" url:"hangup_url,omitempty"`
-	HangupMethod           string `json:"hangup_method,omitempty" url:"hangup_method,omitempty"`
-	FallbackURL            string `json:"fallback_url,omitempty" url:"fallback_url,omitempty"`
-	FallbackMethod         string `json:"fallback_method,omitempty" url:"fallback_method,omitempty"`
-	CallerName             string `json:"caller_name,omitempty" url:"caller_name,omitempty"`
-	SendDigits             string `json:"send_digits,omitempty" url:"send_digits,omitempty"`
-	SendOnPreanswer        bool   `json:"send_on_preanswer,omitempty" url:"send_on_preanswer,omitempty"`
-	TimeLimit              int64  `json:"time_limit,omitempty" url:"time_limit,omitempty"`
-	HangupOnRing           int64  `json:"hangup_on_ring,omitempty" url:"hangup_on_ring,omitempty"`
-	MachineDetection       string `json:"machine_detection,omitempty" url:"machine_detection,omitempty"`
-	MachineDetectionTime   int64  `json:"machine_detection_time,omitempty" url:"machine_detection_time,omitempty"`
-	MachineDetectionUrl    string `json:"machine_detection_url,omitempty" url:"machine_detection_url,omitempty"`
-	MachineDetectionMethod string `json:"machine_detection_method,omitempty" url:"machine_detection_method,omitempty"`
-	SipHeaders             string `json:"sip_headers,omitempty" url:"sip_headers,omitempty"`
-	RingTimeout            int64  `json:"ring_timeout,omitempty" url:"ring_timeout,omitempty"`
+	AnswerMethod                        string `json:"answer_method,omitempty" url:"answer_method,omitempty"`
+	RingURL                             string `json:"ring_url,omitempty" url:"ring_url,omitempty"`
+	RingMethod                          string `json:"ring_method,omitempty" url:"ring_method,omitempty"`
+	HangupURL                           string `json:"hangup_url,omitempty" url:"hangup_url,omitempty"`
+	HangupMethod                        string `json:"hangup_method,omitempty" url:"hangup_method,omitempty"`
+	FallbackURL                         string `json:"fallback_url,omitempty" url:"fallback_url,omitempty"`
+	FallbackMethod                      string `json:"fallback_method,omitempty" url:"fallback_method,omitempty"`
+	CallerName                          string `json:"caller_name,omitempty" url:"caller_name,omitempty"`
+	SendDigits                          string `json:"send_digits,omitempty" url:"send_digits,omitempty"`
+	SendOnPreanswer                     bool   `json:"send_on_preanswer,omitempty" url:"send_on_preanswer,omitempty"`
+	TimeLimit                           int64  `json:"time_limit,omitempty" url:"time_limit,omitempty"`
+	HangupOnRing                        int64  `json:"hangup_on_ring,omitempty" url:"hangup_on_ring,omitempty"`
+	MachineDetection                    string `json:"machine_detection,omitempty" url:"machine_detection,omitempty"`
+	MachineDetectionTime                int64  `json:"machine_detection_time,omitempty" url:"machine_detection_time,omitempty"`
+	MachineDetectionUrl                 string `json:"machine_detection_url,omitempty" url:"machine_detection_url,omitempty"`
+	MachineDetectionMethod              string `json:"machine_detection_method,omitempty" url:"machine_detection_method,omitempty"`
+	MachineDetectionMaximumSpeechLength string `json:"machine_detection_maximum_speech_length,omitempty" url:"machine_detection_maximum_speech_length"`
+	MachineDetectionInitialSilence      string `json:"machine_detection_initial_silence,omitempty" url:"machine_detection_initial_silence"`
+	MachineDetectionMaximumWords        string `json:"machine_detection_maximum_words,omitempty" url:"machine_detection_maximum_words"`
+	MachineDetectionInitialGreeting     string `json:"machine_detection_initial_greeting,omitempty" url:"machine_detection_initial_greeting"`
+	MachineDetectionSilence             string `json:"machine_detection_silence,omitempty" url:"machine_detection_silence"`
+	MachineDetectionAnswerTime          string `json:"machine_detection_answer_time,omitempty" url:"machine_detection_answer_time"`
+	SipHeaders                          string `json:"sip_headers,omitempty" url:"sip_headers,omitempty"`
+	RingTimeout                         int64  `json:"ring_timeout,omitempty" url:"ring_timeout,omitempty"`
 }
 
 // Stores response for making a call.
