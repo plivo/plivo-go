@@ -72,22 +72,20 @@ func TestMaskingSessionService_CreateMaskingSession_CreateSessionWithSingleParty
 func TestMaskingSessionService_CreateMaskingSession_ForcePinAuthentication(t *testing.T) {
 	t.Run("ForcePinAuthentication::True", func(t *testing.T) {
 		_, err := client.MaskingSession.CreateMaskingSession(CreateMaskingSessionParams{
-			FirstParty:                  "+919999323467",
-			SecondParty:                 "+919891865130",
-			SessionExpiry:               600,
-			CallTimeLimit:               0,
-			Record:                      false,
-			RecordFileFormat:            "",
-			RecordingCallbackUrl:        "https://plivobin-prod-usw.plivops.com/api/v1/speak.xml",
-			InitiateCallToFirstParty:    false,
-			CallbackUrl:                 "http://plivobin.non-prod.plivops.com/12tksfd1",
-			CallbackMethod:              "",
-			RingTimeout:                 0,
-			FirstPartyPlayUrl:           "https://plivobin-prod-usw.plivops.com/api/v1/speak.xml",
-			SecondPartyPlayUrl:          "https://plivobin-prod-usw.plivops.com/api/v1/speak.xml",
-			RecordingCallbackMethod:     "",
-			IsPinAuthenticationRequired: true,
-			ForcePinAuthentication:      true,
+			FirstParty:                   "916303955746",
+			SecondParty:                  "916384880853",
+			CreateSessionWithSingleParty: true,
+			IsPinAuthenticationRequired:  true,
+			GeneratePin:                  true,
+			GeneratePinLength:            4,
+			FirstPartyPin:                "1234",
+			SecondPartyPin:               "2435",
+			PinRetry:                     2,
+			PinRetryWait:                 5,
+			PinPromptPlay:                "https://plivobin-prod-usw.plivops.com/api/v1/speak.mp3",
+			UnknownCallerPlay:            "",
+			IncorrectPinPlay:             "https://plivobin-prod-usw.plivops.com/api/v1/speak.mp3",
+			ForcePinAuthentication:       true,
 		})
 		if err != nil {
 			t.Logf("err :: %v", err)
