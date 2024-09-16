@@ -80,6 +80,8 @@ type CreateMaskingSessionParams struct {
 }
 
 type UpdateMaskingSessionParams struct {
+	FirstParty                   string `json:"first_party,omitempty" url:"first_party,omitempty"`
+	SecondParty                  string `json:"second_party,omitempty" url:"second_party,omitempty"`
 	SessionExpiry                int64  `json:"session_expiry,omitempty" url:"session_expiry,omitempty"`
 	CallTimeLimit                int64  `json:"call_time_limit,omitempty" url:"call_time_limit,omitempty"`
 	Record                       bool   `json:"record,omitempty" url:"record,omitempty"`
