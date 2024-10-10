@@ -11,7 +11,7 @@
           "session_uuid": "7b28af5c-3e25-45e2-be1e-9235e00dc87a",
           "app_uuid": "3cdec449-a367-435e-b4f9-40d777a7cfcc",
           "recipient": "918707046409",
-          "channel": "sms",
+          "channel": "voice",
           "status": "expired",
           "count": 1,
           "attempt_details": [
@@ -19,7 +19,8 @@
                   "channel": "sms",
                   "attempt_uuid": "f26731c0-d076-42d3-b678-264b0a610b87",
                   "status": "failed",
-                  "time": "2023-07-20T08:02:18.981765Z"
+                  "time": "2023-07-20T08:02:18.981765Z",
+                  "dtmf": 9
               }
           ],
           "charges": {

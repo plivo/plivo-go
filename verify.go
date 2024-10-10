@@ -47,6 +47,7 @@ type AttemptDetails struct {
 	AppHash     string    `json:"app_hash,omitempty"`
 	CodeLength  int       `json:"code_length,omitempty"`
 	Time        time.Time `json:"time,omitempty"`
+	Dtmf        *int      `json:"dtmf,omitempty"`
 }
 
 type Charges struct {
@@ -73,6 +74,7 @@ type SessionCreateParams struct {
 	BrandName  string `json:"brand_name,omitempty"`
 	AppHash    string `json:"app_hash,omitempty"`
 	CodeLength int    `json:"code_length,omitempty"`
+	Dtmf       *int   `json:"dtmf,omitempty"`
 }
 
 type SessionCreateResponseBody struct {
