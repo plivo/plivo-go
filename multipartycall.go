@@ -117,8 +117,8 @@ type MultiPartyCallStartRecordingParams struct {
 	FileFormat              string `json:"file_format,omitempty" url:"file_format,omitempty"`
 	RecordingCallbackUrl    string `json:"recording_callback_url,omitempty" url:"recording_callback_url,omitempty"`
 	RecordingCallbackMethod string `json:"recording_callback_method,omitempty" url:"recording_callback_method,omitempty"`
-	TranscriptionUrl        string `json:"transcription_url,omitempty" form:"transcription_url" valid:"isurl~invalid url,optional"`
-	Transcript              bool   `json:"transcript" form:"transcript" valid:"-"`
+	TranscriptionUrl        string `json:"transcription_url,omitempty" url:"transcription_url,omitempty"`
+	Transcript              bool   `json:"transcript,omitempty" url:"transcript,omitempty"`
 }
 
 type MultiPartyCallListResponse struct {

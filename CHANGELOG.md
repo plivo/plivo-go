@@ -3,6 +3,7 @@
 ## [7.54.0](https://github.com/plivo/plivo-go/tree/v7.54.0) (2024-10-28)
 **Feature - GetRecordingTranscription feature to get transcription**
 - Support for the `type` filter parameter, supported filters are transcription, raw and diarized
+- Support added for Transcription in MPC
 
 ## [7.53.1](https://github.com/plivo/plivo-go/tree/v7.53.1) (2024-10-23)
 **Feature - FraudCheck param in Create, Get and List Session**
