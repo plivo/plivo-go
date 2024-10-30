@@ -1,6 +1,6 @@
 # Change Log
 
-## [7.54.0](https://github.com/plivo/plivo-go/tree/v7.54.0) (2024-10-28)
+## [7.54.0](https://github.com/plivo/plivo-go/tree/v7.54.0) (2024-10-30)
 **Feature - GetRecordingTranscription feature to get transcription**
 - Support for the `type` filter parameter, supported filters are transcription, raw and diarized
 - Support added for Transcription in MPC
