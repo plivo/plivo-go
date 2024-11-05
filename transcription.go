@@ -9,6 +9,10 @@ type GetRecordingTranscriptionRequest struct {
 	TranscriptionType string `json:"type"`
 }
 
+type RecordingTranscriptionRequest struct {
+	RecordingID string `json:"recording_id"`
+}
+
 type GetRecordingTranscriptionParams struct {
 	Type string `url:"type"`
 }
@@ -23,6 +27,16 @@ type GetRecordingTranscriptionResponse struct {
 	Transcription       interface{} `json:"transcription"`
 }
 
+func (service *TranscriptionService) CreateRecordingTranscription(request RecordingTranscriptionRequest) (response map[string]interface{}, err error) {
+	req, err := service.client.NewRequest("POST", nil, "Transcription/%s", request.RecordingID)
+	if err != nil {
+		return
+	}
+	response = make(map[string]interface{})
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
+	return
+}
+
 func (service *TranscriptionService) GetRecordingTranscription(request GetRecordingTranscriptionRequest) (response *GetRecordingTranscriptionResponse, err error) {
 	params := GetRecordingTranscriptionParams{
 		Type: request.TranscriptionType,
@@ -32,6 +46,16 @@ func (service *TranscriptionService) GetRecordingTranscription(request GetRecord
 		return
 	}
 	response = &GetRecordingTranscriptionResponse{}
+	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
+	return
+}
+
+func (service *TranscriptionService) DeleteRecordingTranscription(request RecordingTranscriptionRequest) (response map[string]interface{}, err error) {
+	req, err := service.client.NewRequest("DELETE", nil, "Transcription/%s", request.RecordingID)
+	if err != nil {
+		return
+	}
+	response = make(map[string]interface{})
 	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
 	return
 }
