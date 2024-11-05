@@ -42,6 +42,58 @@ func TestMaskingSessionService_CreateMaskingSession_GeoMatch(t *testing.T) {
 	})
 }
 
+func TestMaskingSessionService_CreateMaskingSession_VirtualNumberCooloffPeriod(t *testing.T) {
+	t.Run("VirtualNumberCooloffPeriod::3500", func(t *testing.T) {
+		_, err := client.MaskingSession.CreateMaskingSession(CreateMaskingSessionParams{
+			FirstParty:                 "+919999323467",
+			SecondParty:                "+919891865130",
+			VirtualNumberCooloffPeriod: 3500,
+		})
+		if err != nil {
+			t.Logf("err :: %v", err)
+		}
+	})
+
+}
+
+func TestMaskingSessionService_CreateMaskingSession_CreateSessionWithSingleParty(t *testing.T) {
+	t.Run("CreateSessionWithSingleParty::True", func(t *testing.T) {
+		_, err := client.MaskingSession.CreateMaskingSession(CreateMaskingSessionParams{
+			FirstParty:                   "+919999323467",
+			CreateSessionWithSingleParty: true,
+		})
+		if err != nil {
+			t.Logf("err :: %v", err)
+		}
+	})
+
+}
+
+func TestMaskingSessionService_CreateMaskingSession_ForcePinAuthentication(t *testing.T) {
+	t.Run("ForcePinAuthentication::True", func(t *testing.T) {
+		_, err := client.MaskingSession.CreateMaskingSession(CreateMaskingSessionParams{
+			FirstParty:                   "916303955746",
+			SecondParty:                  "916384880853",
+			CreateSessionWithSingleParty: true,
+			IsPinAuthenticationRequired:  true,
+			GeneratePin:                  true,
+			GeneratePinLength:            4,
+			FirstPartyPin:                "1234",
+			SecondPartyPin:               "2435",
+			PinRetry:                     2,
+			PinRetryWait:                 5,
+			PinPromptPlay:                "https://plivobin-prod-usw.plivops.com/api/v1/speak.mp3",
+			UnknownCallerPlay:            "",
+			IncorrectPinPlay:             "https://plivobin-prod-usw.plivops.com/api/v1/speak.mp3",
+			ForcePinAuthentication:       true,
+		})
+		if err != nil {
+			t.Logf("err :: %v", err)
+		}
+	})
+
+}
+
 func TestMaskingSessionService_CreateMaskingSession_SubAccount(t *testing.T) {
 	t.Run("SubAccount::Empty", func(t *testing.T) {
 		_, err := client.MaskingSession.CreateMaskingSession(CreateMaskingSessionParams{

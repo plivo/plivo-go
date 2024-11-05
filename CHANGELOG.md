@@ -1,7 +1,27 @@
 # Change Log
-## [7.51.4](https://github.com/plivo/plivo-go/tree/v7.51.4) (2024-09-10)
+
+## [7.55.0](https://github.com/plivo/plivo-go/tree/v7.55.0) (2024-11-06)
 **Feature - Adding few optional parameters to the existing machine detection params**
 - Added six new optional machine detection params `machine_detection_maximum_speech_length`,`machine_detection_initial_silence`,`machine_detection_maximum_words`,`machine_detection_initial_greeting`,`machine_detection_silence`,`machine_detection_answer_time`
+
+## [7.54.0](https://github.com/plivo/plivo-go/tree/v7.54.0) (2024-10-30)
+**Feature - GetRecordingTranscription feature to get transcription**
+- Support for the `type` filter parameter, supported filters are transcription, raw and diarized
+- Support added for Transcription in MPC
+
+## [7.53.1](https://github.com/plivo/plivo-go/tree/v7.53.1) (2024-10-23)
+**Feature - FraudCheck param in Create, Get and List Session**
+- Support for the `fraud_check` parameter in sms verify session request
+- Added support for `fraud_check` in GET and LIST verify session.
+
+## [7.53.0](https://github.com/plivo/plivo-go/tree/v7.53.0) (2024-10-10)
+**Feature - Dtmf param in Create, Get and List Session**
+- Support for the `dtmf` parameter in voice verify session request
+- Added support for `dtmf` in GET and LIST verify session.
+  
+## [7.52.0](https://github.com/plivo/plivo-go/tree/v7.52.0) (2024-09-30)
+**Feature - Adding new param support for Number Masking session with single party **
+- Added `create_session_with_single_party`, `virtual_number_cooloff_period` and `force_pin_authentication` attributes in Masking Session
 
 ## [7.51.3](https://github.com/plivo/plivo-go/tree/v7.53.0) (2024-09-06)
 **Feature - Adding support for Locale param in Create, Get and List Session**
