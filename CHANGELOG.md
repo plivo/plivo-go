@@ -1,5 +1,9 @@
 # Change Log
 
+## [7.55.0](https://github.com/plivo/plivo-go/tree/v7.55.0) (2024-11-06)
+**Feature - Adding few optional parameters to the existing machine detection params**
+- Added six new optional machine detection params `machine_detection_maximum_speech_length`,`machine_detection_initial_silence`,`machine_detection_maximum_words`,`machine_detection_initial_greeting`,`machine_detection_silence`,`machine_detection_answer_time`
+
 ## [7.54.0](https://github.com/plivo/plivo-go/tree/v7.54.0) (2024-10-30)
 **Feature - GetRecordingTranscription feature to get transcription**
 - Support for the `type` filter parameter, supported filters are transcription, raw and diarized
