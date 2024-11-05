@@ -1,5 +1,9 @@
 # Change Log
 
+## [7.54.1](https://github.com/plivo/plivo-go/tree/v7.54.1) (2024-11-05)
+**Feature - TranscriptionUrl and Transcript feature added in MPC Add Participant**
+- Support for the `transcription_url` and `transcript` parameter.
+
 ## [7.54.0](https://github.com/plivo/plivo-go/tree/v7.54.0) (2024-10-30)
 **Feature - GetRecordingTranscription feature to get transcription**
 - Support for the `type` filter parameter, supported filters are transcription, raw and diarized

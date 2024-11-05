@@ -73,6 +73,8 @@ type MultiPartyCallAddParticipantParams struct {
 	CreateMpcWithSingleParticipant *bool       `json:"create_mpc_with_single_participant,omitempty" url:"create_mpc_with_single_participant,omitempty"`
 	SendDigits                     string      `json:"send_digits,omitempty" url:"send_digits,omitempty"`
 	SendOnPreanswer                bool        `json:"send_on_preanswer,omitempty" url:"send_on_preanswer,omitempty"`
+	TranscriptionUrl               string      `json:"transcription_url,omitempty" url:"transcription_url,omitempty"`
+	Transcript                     bool        `json:"transcript,omitempty" url:"transcript,omitempty"`
 }
 
 type MultiPartyCallListParams struct {
