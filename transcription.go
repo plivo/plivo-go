@@ -13,6 +13,10 @@ type RecordingTranscriptionRequest struct {
 	RecordingID string `json:"recording_id"`
 }
 
+type DeleteRecordingTranscriptionRequest struct {
+	TranscriptionID string `json:"transcription_id"`
+}
+
 type GetRecordingTranscriptionParams struct {
 	Type string `url:"type"`
 }
@@ -33,7 +37,7 @@ func (service *TranscriptionService) CreateRecordingTranscription(request Record
 		return
 	}
 	response = make(map[string]interface{})
-	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
+	err = service.client.ExecuteRequest(req, &response, isVoiceRequest())
 	return
 }
 
@@ -50,8 +54,8 @@ func (service *TranscriptionService) GetRecordingTranscription(request GetRecord
 	return
 }
 
-func (service *TranscriptionService) DeleteRecordingTranscription(request RecordingTranscriptionRequest) (response map[string]interface{}, err error) {
-	req, err := service.client.NewRequest("DELETE", nil, "Transcription/%s", request.RecordingID)
+func (service *TranscriptionService) DeleteRecordingTranscription(request DeleteRecordingTranscriptionRequest) (response map[string]interface{}, err error) {
+	req, err := service.client.NewRequest("DELETE", nil, "Transcription/%s", request.TranscriptionID)
 	if err != nil {
 		return
 	}
