@@ -75,6 +75,7 @@ type MultiPartyCallAddParticipantParams struct {
 	SendOnPreanswer                bool        `json:"send_on_preanswer,omitempty" url:"send_on_preanswer,omitempty"`
 	TranscriptionUrl               string      `json:"transcription_url,omitempty" url:"transcription_url,omitempty"`
 	Transcript                     bool        `json:"transcript,omitempty" url:"transcript,omitempty"`
+	RecordParticipantTrack         bool        `json:"record_participant_track" url:"record_participant_track"`
 }
 
 type MultiPartyCallListParams struct {

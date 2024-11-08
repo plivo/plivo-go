@@ -60,6 +60,6 @@ func (service *TranscriptionService) DeleteRecordingTranscription(request Delete
 		return
 	}
 	response = make(map[string]interface{})
-	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
+	err = service.client.ExecuteRequest(req, &response, isVoiceRequest())
 	return
 }

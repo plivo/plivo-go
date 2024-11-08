@@ -68,3 +68,25 @@ func TestTranscriptionService_CreateRecordingTranscription(t *testing.T) {
 	}
 	client.httpClient = cl
 }
+
+func TestTranscriptionService_DeleteRecordingTranscription(t *testing.T) {
+	expectResponse("deleteRecordingTranscription.json", 202)
+	var response map[string]interface{}
+	if err := json.Unmarshal([]byte(expectedResponse), &response); err != nil {
+		t.Fatalf("failed to unmarshal expected response: %v", err)
+	}
+	if _, err := client.Transcription.DeleteRecordingTranscription(DeleteRecordingTranscriptionRequest{
+		TranscriptionID: "e12d05fe-6979-485c-83dc-9276114dba3b",
+	}); err != nil {
+		panic(err)
+	}
+
+	cl := client.httpClient
+	client.httpClient = nil
+	_, err := client.Transcription.DeleteRecordingTranscription(DeleteRecordingTranscriptionRequest{})
+	if err == nil {
+		client.httpClient = cl
+		panic(errors.New("error expected"))
+	}
+	client.httpClient = cl
+}
