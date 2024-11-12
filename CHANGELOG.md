@@ -1,5 +1,10 @@
 # Change Log
 
+## [7.55.0](https://github.com/plivo/plivo-go/tree/v7.55.0) (2024-11-12)
+**Feature - CreateRecordingTranscription and DeleteRecordingTranscription feature added**
+- This API would help in creating transcription for recorded calls for which transcription is not available and delete API to delete.
+- Support for the `transcription_url`, `transcript` and `record_participant_track` parameter in MPC Add Participant.
+
 ## [7.54.0](https://github.com/plivo/plivo-go/tree/v7.54.0) (2024-10-30)
 **Feature - GetRecordingTranscription feature to get transcription**
 - Support for the `type` filter parameter, supported filters are transcription, raw and diarized

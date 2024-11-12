@@ -9,6 +9,19 @@ type GetRecordingTranscriptionRequest struct {
 	TranscriptionType string `json:"type"`
 }
 
+type CallBackUrlStruct struct {
+	CallbackUrl string `json:"callback_url,omitempty" url:"callback_url,omitempty"`
+}
+
+type RecordingTranscriptionRequest struct {
+	RecordingID string `json:"recording_id"`
+	CallbackUrl string `json:"callback_url,omitempty" url:"callback_url,omitempty"`
+}
+
+type DeleteRecordingTranscriptionRequest struct {
+	TranscriptionID string `json:"transcription_id"`
+}
+
 type GetRecordingTranscriptionParams struct {
 	Type string `url:"type"`
 }
@@ -23,6 +36,17 @@ type GetRecordingTranscriptionResponse struct {
 	Transcription       interface{} `json:"transcription"`
 }
 
+func (service *TranscriptionService) CreateRecordingTranscription(request RecordingTranscriptionRequest) (response map[string]interface{}, err error) {
+	param := CallBackUrlStruct{CallbackUrl: request.CallbackUrl}
+	req, err := service.client.NewRequest("POST", param, "Transcription/%s", request.RecordingID)
+	if err != nil {
+		return
+	}
+	response = make(map[string]interface{})
+	err = service.client.ExecuteRequest(req, &response, isVoiceRequest())
+	return
+}
+
 func (service *TranscriptionService) GetRecordingTranscription(request GetRecordingTranscriptionRequest) (response *GetRecordingTranscriptionResponse, err error) {
 	params := GetRecordingTranscriptionParams{
 		Type: request.TranscriptionType,
@@ -33,5 +57,15 @@ func (service *TranscriptionService) GetRecordingTranscription(request GetRecord
 	}
 	response = &GetRecordingTranscriptionResponse{}
 	err = service.client.ExecuteRequest(req, response, isVoiceRequest())
+	return
+}
+
+func (service *TranscriptionService) DeleteRecordingTranscription(request DeleteRecordingTranscriptionRequest) (response map[string]interface{}, err error) {
+	req, err := service.client.NewRequest("DELETE", nil, "Transcription/%s", request.TranscriptionID)
+	if err != nil {
+		return
+	}
+	response = make(map[string]interface{})
+	err = service.client.ExecuteRequest(req, &response, isVoiceRequest())
 	return
 }
