@@ -9,8 +9,8 @@ type GetRecordingTranscriptionRequest struct {
 	TranscriptionType string `json:"type"`
 }
 
-type CallBackUrlStruct struct {
-	CallbackUrl string `json:"callback_url,omitempty" url:"callback_url,omitempty"`
+type TranscriptionCallbackUrlStruct struct {
+	TranscriptionCallbackUrl string `json:"transcription_callback_url,omitempty" url:"transcription_callback_url,omitempty"`
 }
 
 type RecordingTranscriptionRequest struct {
@@ -37,7 +37,7 @@ type GetRecordingTranscriptionResponse struct {
 }
 
 func (service *TranscriptionService) CreateRecordingTranscription(request RecordingTranscriptionRequest) (response map[string]interface{}, err error) {
-	param := CallBackUrlStruct{CallbackUrl: request.CallbackUrl}
+	param := TranscriptionCallbackUrlStruct{TranscriptionCallbackUrl: request.CallbackUrl}
 	req, err := service.client.NewRequest("POST", param, "Transcription/%s", request.RecordingID)
 	if err != nil {
 		return
