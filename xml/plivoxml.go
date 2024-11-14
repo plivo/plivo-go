@@ -1197,7 +1197,7 @@ type MultiPartyCallElement struct {
 	StartRecordingAudioMethod *string       `xml:"StartRecordingAudioMethod,attr"`
 	StopRecordingAudio        *string       `xml:"StopRecordingAudio,attr"`
 	StopRecordingAudioMethod  *string       `xml:"StopRecordingAudioMethod,attr"`
-	RecordParticipantTrack    *bool         `xml:"record_participant_track,attr"`
+	RecordParticipantTrack    *bool         `xml:"recordParticipantTrack,attr"`
 }
 
 func (e MultiPartyCallElement) SetRecordParticipantTrack(value bool) MultiPartyCallElement {
