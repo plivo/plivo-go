@@ -1,5 +1,9 @@
 # Change Log
 
+## [7.55.1](https://github.com/plivo/plivo-go/tree/v7.55.1) (2024-11-15)
+**Feature - RecordParticipantTrack param added in MPC XML creation**
+- Support for the `RecordParticipantTrack` parameter in MPC XML Creation.
+
 ## [7.55.0](https://github.com/plivo/plivo-go/tree/v7.55.0) (2024-11-12)
 **Feature - CreateRecordingTranscription and DeleteRecordingTranscription feature added**
 - This API would help in creating transcription for recorded calls for which transcription is not available and delete API to delete.
