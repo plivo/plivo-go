@@ -2,7 +2,7 @@
 
 ## [7.56.0](https://github.com/plivo/plivo-go/tree/v7.56.0) (2024-11-19)
 **Feature - Transcription params  added in  MPC XML Element**
-- Support for the `transcription_url`, `transcript`  parameter in MPC XML Element.
+- Support for the `transcriptionUrl`, `transcript`  parameter in MPC XML Element.
 
 
 ## [7.55.0](https://github.com/plivo/plivo-go/tree/v7.55.0) (2024-11-12)
