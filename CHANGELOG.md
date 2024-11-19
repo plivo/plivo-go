@@ -4,6 +4,9 @@
 **Feature - Transcription params  added in  MPC XML Element**
 - Support for the `transcriptionUrl`, `transcript`  parameter in MPC XML Element.
 
+## [7.55.1](https://github.com/plivo/plivo-go/tree/v7.55.1) (2024-11-15)
+**Feature - RecordParticipantTrack param added in MPC XML creation**
+- Support for the `RecordParticipantTrack` parameter in MPC XML Creation.
 
 ## [7.55.0](https://github.com/plivo/plivo-go/tree/v7.55.0) (2024-11-12)
 **Feature - CreateRecordingTranscription and DeleteRecordingTranscription feature added**
