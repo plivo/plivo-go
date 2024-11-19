@@ -82,9 +82,9 @@ func TestMaskingSessionService_CreateMaskingSession_ForcePinAuthentication(t *te
 			SecondPartyPin:               "2435",
 			PinRetry:                     2,
 			PinRetryWait:                 5,
-			PinPromptPlay:                "https://plivobin-prod-usw.plivops.com/api/v1/speak.mp3",
+			PinPromptPlay:                "https://s3.amazonaws.com/plivosamplexml/speak_url.xml",
 			UnknownCallerPlay:            "",
-			IncorrectPinPlay:             "https://plivobin-prod-usw.plivops.com/api/v1/speak.mp3",
+			IncorrectPinPlay:             "https://s3.amazonaws.com/plivosamplexml/speak_url.xml",
 			ForcePinAuthentication:       true,
 		})
 		if err != nil {
