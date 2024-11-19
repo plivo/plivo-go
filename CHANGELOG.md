@@ -1,5 +1,10 @@
 # Change Log
 
+## [7.56.0](https://github.com/plivo/plivo-go/tree/v7.56.0) (2024-11-19)
+**Feature - Transcription params  added in  MPC XML Element**
+- Support for the `transcription_url`, `transcript`  parameter in MPC XML Element.
+
+
 ## [7.55.0](https://github.com/plivo/plivo-go/tree/v7.55.0) (2024-11-12)
 **Feature - CreateRecordingTranscription and DeleteRecordingTranscription feature added**
 - This API would help in creating transcription for recorded calls for which transcription is not available and delete API to delete.
