@@ -1,7 +1,7 @@
 # Change Log
 
-## [7.57.0](https://github.com/plivo/plivo-go/tree/v7.57.0) (2024-12-06)
-**Feature - MachineDetection params added in  MPC XML Element**
+## [7.57.0](https://github.com/plivo/plivo-go/tree/v7.57.0) (2024-12-09)
+**Feature - MachineDetection params added in Dial XML Element**
 - Support for the `machineDetection` parameter in Dial XML Element.
 
 ## [7.56.0](https://github.com/plivo/plivo-go/tree/v7.56.0) (2024-11-19)
