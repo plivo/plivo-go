@@ -212,6 +212,8 @@ type DialElement struct {
 
 	SipHeaders *string `xml:"sipHeaders,attr"`
 
+	MachineDetection *string `xml:"machineDetection,attr"`
+
 	XMLName xml.Name `xml:"Dial"`
 }
 
@@ -297,6 +299,11 @@ func (e DialElement) SetDigitsMatchBLeg(value string) DialElement {
 
 func (e DialElement) SetSipHeaders(value string) DialElement {
 	e.SipHeaders = &value
+	return e
+}
+
+func (e DialElement) SetMachineDetection(value string) DialElement {
+	e.MachineDetection = &value
 	return e
 }
 
