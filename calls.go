@@ -236,6 +236,7 @@ type CallStreamParams struct {
 	StatusCallbackMethod string `json:"status_callback_method,omitempty" url:"status_callback_method,omitempty"`
 	ContentType          string `json:"content_type,omitempty" url:"content_type,omitempty"`
 	ExtraHeaders         string `json:"extra_headers,omitempty" url:"extra_headers,omitempty"`
+	CxBot                bool   `json:"cx_bot,omitempty" url:"cx_bot,omitempty"`
 }
 
 type CallStreamGetAllObject struct {

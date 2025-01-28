@@ -1,5 +1,9 @@
 # Change Log
 
+## [7.57.1](https://github.com/plivo/plivo-go/tree/v7.57.1) (2025-01-27)
+**New Param - Start Stream Api**
+- Support for `cx_bot` parameter in Start Stream API.
+
 ## [7.57.0](https://github.com/plivo/plivo-go/tree/v7.57.0) (2024-12-09)
 **Feature - MachineDetection params added in Dial XML Element**
 - Support for the `machineDetection` parameter in Dial XML Element.
