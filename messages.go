@@ -144,13 +144,14 @@ type Card struct {
 }
 
 type Parameter struct {
-	Type     string    `mapstructure:"type" json:"type" validate:"required"`
-	Text     string    `mapstructure:"text" json:"text,omitempty"`
-	Media    string    `mapstructure:"media" json:"media,omitempty"`
-	Payload  string    `mapstructure:"payload" json:"payload,omitempty"`
-	Currency *Currency `mapstructure:"currency" json:"currency,omitempty"`
-	DateTime *DateTime `mapstructure:"date_time" json:"date_time,omitempty"`
-	Location *Location `mapstructure:"location" json:"location,omitempty"`
+	Type          string    `mapstructure:"type" json:"type" validate:"required"`
+	Text          string    `mapstructure:"text" json:"text,omitempty"`
+	Media         string    `mapstructure:"media" json:"media,omitempty"`
+	Payload       string    `mapstructure:"payload" json:"payload,omitempty"`
+	Currency      *Currency `mapstructure:"currency" json:"currency,omitempty"`
+	DateTime      *DateTime `mapstructure:"date_time" json:"date_time,omitempty"`
+	Location      *Location `mapstructure:"location" json:"location,omitempty"`
+	ParameterName *string   `mapstructure:"parameter_name" json:"parameter_name,omitempty"`
 }
 
 type Location struct {
