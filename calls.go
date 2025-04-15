@@ -172,6 +172,7 @@ type CallRecordParams struct {
 	TranscriptionMethod string `json:"transcription_method,omitempty" url:"transcription_method,omitempty"`
 	CallbackURL         string `json:"callback_url,omitempty" url:"callback_url,omitempty"`
 	CallbackMethod      string `json:"callback_method,omitempty" url:"callback_method,omitempty"`
+	RecordChannelType   string `json:"record_channel_type,omitempty" url:"record_channel_type,omitempty"`
 }
 
 type CallRecordResponse struct {

@@ -1,6 +1,9 @@
 package plivo
 
-import "log"
+import (
+	"log"
+	"net/http"
+)
 
 type ListMPCMeta struct {
 	Previous   *string
@@ -122,6 +125,11 @@ type MultiPartyCallStartRecordingParams struct {
 	RecordingCallbackMethod string `json:"recording_callback_method,omitempty" url:"recording_callback_method,omitempty"`
 	TranscriptionUrl        string `json:"transcription_url,omitempty" url:"transcription_url,omitempty"`
 	Transcript              bool   `json:"transcript,omitempty" url:"transcript,omitempty"`
+	RecordTrackType         string `json:"record_track_type" url:"record_track_type"`
+}
+
+type MultiPartyCallParticipantRecordingParams struct {
+	RecordTrackType string `json:"record_track_type" url:"record_track_type"`
 }
 
 type MultiPartyCallListResponse struct {
@@ -350,31 +358,58 @@ func (service *MultiPartyCallService) StartParticipantRecording(basicParams Mult
 	return
 }
 
-func (service *MultiPartyCallService) StopParticipantRecording(basicParams MultiPartyCallParticipantParams) (err error) {
+func (service *MultiPartyCallService) StopParticipantRecording(basicParams MultiPartyCallParticipantParams, params ...MultiPartyCallParticipantRecordingParams) (err error) {
 	mpcId := MakeMPCId(basicParams.MpcUuid, basicParams.FriendlyName)
-	req, err := service.client.NewRequest("DELETE", nil, "MultiPartyCall/%s/Participant/%s/Record", mpcId, basicParams.ParticipantId)
-	if err != nil {
-		return
+	var req *http.Request
+	if len(params) == 0 {
+		req, err = service.client.NewRequest("DELETE", nil, "MultiPartyCall/%s/Participant/%s/Record", mpcId, basicParams.ParticipantId)
+		if err != nil {
+			return
+		}
+	} else {
+		param := params[0]
+		req, err = service.client.NewRequest("DELETE", param, "MultiPartyCall/%s/Participant/%s/Record", mpcId, basicParams.ParticipantId)
+		if err != nil {
+			return
+		}
 	}
 	err = service.client.ExecuteRequest(req, nil, isVoiceRequest())
 	return
 }
 
-func (service *MultiPartyCallService) PauseParticipantRecording(basicParams MultiPartyCallParticipantParams) (err error) {
+func (service *MultiPartyCallService) PauseParticipantRecording(basicParams MultiPartyCallParticipantParams, params ...MultiPartyCallParticipantRecordingParams) (err error) {
 	mpcId := MakeMPCId(basicParams.MpcUuid, basicParams.FriendlyName)
-	req, err := service.client.NewRequest("POST", nil, "MultiPartyCall/%s/Participant/%s/Record/Pause", mpcId, basicParams.ParticipantId)
-	if err != nil {
-		return
+	var req *http.Request
+	if len(params) == 0 {
+		req, err = service.client.NewRequest("POST", nil, "MultiPartyCall/%s/Participant/%s/Record/Pause", mpcId, basicParams.ParticipantId)
+		if err != nil {
+			return
+		}
+	} else {
+		param := params[0]
+		req, err = service.client.NewRequest("POST", param, "MultiPartyCall/%s/Participant/%s/Record/Pause", mpcId, basicParams.ParticipantId)
+		if err != nil {
+			return
+		}
 	}
 	err = service.client.ExecuteRequest(req, nil, isVoiceRequest())
 	return
 }
 
-func (service *MultiPartyCallService) ResumeParticipantRecording(basicParams MultiPartyCallParticipantParams) (err error) {
+func (service *MultiPartyCallService) ResumeParticipantRecording(basicParams MultiPartyCallParticipantParams, params ...MultiPartyCallParticipantRecordingParams) (err error) {
 	mpcId := MakeMPCId(basicParams.MpcUuid, basicParams.FriendlyName)
-	req, err := service.client.NewRequest("POST", nil, "MultiPartyCall/%s/Participant/%s/Record/Resume", mpcId, basicParams.ParticipantId)
-	if err != nil {
-		return
+	var req *http.Request
+	if len(params) == 0 {
+		req, err = service.client.NewRequest("POST", nil, "MultiPartyCall/%s/Participant/%s/Record/Resume", mpcId, basicParams.ParticipantId)
+		if err != nil {
+			return
+		}
+	} else {
+		param := params[0]
+		req, err = service.client.NewRequest("POST", param, "MultiPartyCall/%s/Participant/%s/Record/Resume", mpcId, basicParams.ParticipantId)
+		if err != nil {
+			return
+		}
 	}
 	err = service.client.ExecuteRequest(req, nil, isVoiceRequest())
 	return
