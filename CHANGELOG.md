@@ -1,7 +1,11 @@
 # Change Log
+## [7.59.0](https://github.com/plivo/plivo-go/tree/v7.59.0) (2025-04-21)
+**Feature - New Param added for Start Recording API.**
+- Support `record_channel_type` in Start Recording API and `recordChannelType` in Record XML.
+
 ## [7.58.0](https://github.com/plivo/plivo-go/tree/v7.58.0) (2025-04-16)
 **Feature - Support record_track_type in MPC Participant Recording Feature.**
-- Support record_track_type in MPC Participant Recording Feature .
+- Support record_track_type in MPC Participant Recording Feature.
 
 ## [7.57.2](https://github.com/plivo/plivo-go/tree/v7.57.2) (2025-02-24)
 **Enhancement - Supporting parameter_name in WhatsApp Template .**
