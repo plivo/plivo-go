@@ -1,8 +1,12 @@
 # Change Log
+## [7.58.0](https://github.com/plivo/plivo-go/tree/v7.58.0) (2025-04-16)
+**Feature - Support record_track_type in MPC Participant Recording Feature.**
+- Support record_track_type in MPC Participant Recording Feature .
+
 ## [7.57.2](https://github.com/plivo/plivo-go/tree/v7.57.2) (2025-02-24)
 **Enhancement - Supporting parameter_name in WhatsApp Template .**
 - Supporting parameter_name in WhatsApp Template .
-- 
+
 ## [7.57.1](https://github.com/plivo/plivo-go/tree/v7.57.1) (2025-01-27)
 **New Param - Start Stream Api**
 - Support for `cx_bot` parameter in Start Stream API.
