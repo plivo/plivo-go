@@ -729,6 +729,8 @@ type RecordElement struct {
 
 	CallbackMethod *string `xml:"callbackMethod,attr"`
 
+	RecordChannelType *string `xml:"recordChannelType,attr"`
+
 	XMLName xml.Name `xml:"Record"`
 }
 
@@ -804,6 +806,11 @@ func (e RecordElement) SetCallbackUrl(value string) RecordElement {
 
 func (e RecordElement) SetCallbackMethod(value string) RecordElement {
 	e.CallbackMethod = &value
+	return e
+}
+
+func (e RecordElement) SetRecordChannelType(value string) RecordElement {
+	e.RecordChannelType = &value
 	return e
 }
 
