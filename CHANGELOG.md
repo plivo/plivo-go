@@ -1,4 +1,7 @@
 # Change Log
+## [7.59.1](https://github.com/plivo/plivo-go/tree/v7.59.1) (2025-09-25)
+**Feature - Campaign Error Desciption Field.**
+
 ## [7.59.0](https://github.com/plivo/plivo-go/tree/v7.59.0) (2025-04-30)
 **Feature - New Param added for Start Recording API.**
 - Support `record_channel_type` in Start Recording API and `recordChannelType` in Record XML.
