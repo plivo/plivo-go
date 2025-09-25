@@ -106,6 +106,7 @@ type Campaign struct {
 	ErrorReason         string             `json:"error_reason,omitempty"`
 	Vertical            string             `json:"vertical,omitempty"`
 	CampaignAlias       string             `json:"campaign_alias,omitempty"`
+	ErrorDescription    string             `json:"error_description,omitempty"`
 }
 
 type CampaignAttributes struct {
