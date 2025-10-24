@@ -1,4 +1,7 @@
 # Change Log
+## [7.59.2](https://github.com/plivo/plivo-go/tree/v7.59.2) (2025-10-17)
+**Feature - Compliance Application rejection_reason field.**
+
 ## [7.59.1](https://github.com/plivo/plivo-go/tree/v7.59.1) (2025-09-25)
 **Feature - Campaign Error Desciption Field.**
 

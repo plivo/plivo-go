@@ -63,6 +63,7 @@ type ComplianceApplicationResponse struct {
 		DocumentTypeName string `json:"document_type_name,omitempty"`
 		Scope            string `json:"scope,omitempty"`
 	} `json:"documents"`
+	RejectionReason string `json:"rejection_reason,omitempty"`
 }
 
 type ComplianceApplicationListParams struct {
@@ -103,6 +104,7 @@ type ListComplianceApplicationResponse struct {
 			DocumentTypeName string `json:"document_type_name"`
 			Scope            string `json:"scope"`
 		} `json:"documents"`
+		RejectionReason string `json:"rejection_reason,omitempty"`
 	} `json:"objects"`
 }
 
