@@ -48,32 +48,33 @@ func TestProfile_Create(t *testing.T) {
 	expectResponse("profileCreationResponse.json", 200)
 	assert := require.New(t)
 	resp, err := client.Profile.Create(CreateProfileRequestParams{
-		ProfileAlias:      "used_in_automation_01",
+		ProfileAlias:      "Test Profile",
 		CustomerType:      "DIRECT",
-		EntityType:        "PRIVATE",
-		CompanyName:       "ABC Inc.",
-		Vertical:          "ENERGY",
-		StockSymbol:       "ABC",
-		StockExchange:     "NSE",
+		EntityType:        "PUBLIC",
+		CompanyName:       "Test Company Inc",
+		Vertical:          "TECHNOLOGY",
+		StockSymbol:       "TEST",
+		StockExchange:     "NASDAQ",
 		AltBusinessidType: "NONE",
-		Ein:               "123456789",
+		Ein:               "12-3456789",
 		EinIssuingCountry: "US",
-		Website:           "www.google.com",
+		Website:           "https://testcompany.com",
 		Address: &Address{
-			Street:     "123",
-			City:       "New York",
-			State:      "NY",
-			PostalCode: "10001",
-			Country:    "IN",
+			Street:     "123 Main Street",
+			City:       "San Francisco",
+			State:      "CA",
+			PostalCode: "94105",
+			Country:    "US",
 		},
 		AuthorizedContact: &AuthorizedContact{
 			FirstName: "John",
 			LastName:  "Doe",
-			Email:     "test@plivo.com",
-			Title:     "Doe",
-			Seniority: "admin",
-			Phone:     "919539113734",
+			Email:     "test@example.com",
+			Title:     "CEO",
+			Seniority: "C_LEVEL",
+			Phone:     "+14155551234",
 		},
+		BusinessContactEmail: "employee@company.com",
 	})
 	assert.NotNil(resp)
 	assert.Nil(err)
@@ -82,32 +83,33 @@ func TestProfile_Create(t *testing.T) {
 	cl := client.httpClient
 	client.httpClient = nil
 	resp, err = client.Profile.Create(CreateProfileRequestParams{
-		ProfileAlias:      "used_in_automation_01",
+		ProfileAlias:      "Test Profile",
 		CustomerType:      "DIRECT",
-		EntityType:        "PRIVATE",
-		CompanyName:       "ABC Inc.",
-		Vertical:          "ENERGY",
-		StockSymbol:       "ABC",
-		StockExchange:     "NSE",
+		EntityType:        "PUBLIC",
+		CompanyName:       "Test Company Inc",
+		Vertical:          "TECHNOLOGY",
+		StockSymbol:       "TEST",
+		StockExchange:     "NASDAQ",
 		AltBusinessidType: "NONE",
-		Ein:               "123456789",
+		Ein:               "12-3456789",
 		EinIssuingCountry: "US",
-		Website:           "www.google.com",
+		Website:           "https://testcompany.com",
 		Address: &Address{
-			Street:     "123",
-			City:       "New York",
-			State:      "NY",
-			PostalCode: "10001",
-			Country:    "IN",
+			Street:     "123 Main Street",
+			City:       "San Francisco",
+			State:      "CA",
+			PostalCode: "94105",
+			Country:    "US",
 		},
 		AuthorizedContact: &AuthorizedContact{
 			FirstName: "John",
 			LastName:  "Doe",
-			Email:     "test@plivo.com",
-			Title:     "Doe",
-			Seniority: "admin",
-			Phone:     "919539113734",
+			Email:     "test@example.com",
+			Title:     "CEO",
+			Seniority: "C_LEVEL",
+			Phone:     "+14155551234",
 		},
+		BusinessContactEmail: "employee@company.com",
 	})
 	assert.NotNil(err)
 	assert.Nil(resp)
@@ -139,25 +141,26 @@ func TestProfile_Update(t *testing.T) {
 	expectResponse("profileUpdateResponse.json", 200)
 	assert := require.New(t)
 	resp, err := client.Profile.Update("09322f43-fe16-4525-b8e4-4229c867795d", UpdateProfileRequestParams{
-		EntityType:  "PRIVATE",
-		CompanyName: "ABC Inc.",
-		Vertical:    "ENERGY",
-		Website:     "www.google.com",
+		EntityType:  "PUBLIC",
+		CompanyName: "Test Company Inc",
+		Vertical:    "TECHNOLOGY",
+		Website:     "https://testcompany.com",
 		Address: &Address{
-			Street:     "123",
-			City:       "New York",
-			State:      "NY",
-			PostalCode: "10001",
-			Country:    "IN",
+			Street:     "123 Main Street",
+			City:       "San Francisco",
+			State:      "CA",
+			PostalCode: "94105",
+			Country:    "US",
 		},
 		AuthorizedContact: &AuthorizedContact{
 			FirstName: "John",
 			LastName:  "Doe",
-			Email:     "test@plivo.com",
-			Title:     "Doe",
-			Seniority: "admin",
-			Phone:     "919539113734",
+			Email:     "test@example.com",
+			Title:     "CEO",
+			Seniority: "C_LEVEL",
+			Phone:     "+14155551234",
 		},
+		BusinessContactEmail: "employee@company.com",
 	})
 	assert.NotNil(resp)
 	assert.Nil(err)
@@ -165,25 +168,26 @@ func TestProfile_Update(t *testing.T) {
 	cl := client.httpClient
 	client.httpClient = nil
 	resp, err = client.Profile.Update("09322f43-fe16-4525-b8e4-4229c867795d", UpdateProfileRequestParams{
-		EntityType:  "PRIVATE",
-		CompanyName: "ABC Inc.",
-		Vertical:    "ENERGY",
-		Website:     "www.google.com",
+		EntityType:  "PUBLIC",
+		CompanyName: "Test Company Inc",
+		Vertical:    "TECHNOLOGY",
+		Website:     "https://testcompany.com",
 		Address: &Address{
-			Street:     "123",
-			City:       "New York",
-			State:      "NY",
-			PostalCode: "10001",
-			Country:    "IN",
+			Street:     "123 Main Street",
+			City:       "San Francisco",
+			State:      "CA",
+			PostalCode: "94105",
+			Country:    "US",
 		},
 		AuthorizedContact: &AuthorizedContact{
 			FirstName: "John",
 			LastName:  "Doe",
-			Email:     "test@plivo.com",
-			Title:     "Doe",
-			Seniority: "admin",
-			Phone:     "919539113734",
+			Email:     "test@example.com",
+			Title:     "CEO",
+			Seniority: "C_LEVEL",
+			Phone:     "+14155551234",
 		},
+		BusinessContactEmail: "employee@company.com",
 	})
 	assert.NotNil(err)
 	assert.Nil(resp)
