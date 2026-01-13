@@ -1,5 +1,5 @@
 # Change Log
-## [7.59.3](https://github.com/plivo/plivo-go/tree/v7.59.3) (2026-01-09)
+## [7.59.3](https://github.com/plivo/plivo-go/tree/v7.59.3) (2026-01-13)
 **Feature - Profile API business_contact_email support for PUBLIC entity types**
 - Added `business_contact_email` parameter support to Profile `create` and `update` methods
 
