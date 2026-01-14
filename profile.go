@@ -20,6 +20,7 @@ type CreateProfileRequestParams struct {
 	AltBusinessidType string             `json:"alt_business_id_type" validate:"oneof= DUNS LEI GIIN NONE ''"`
 	PlivoSubaccount   string             `json:"plivo_subaccount" validate:"max=20"`
 	AuthorizedContact *AuthorizedContact `json:"authorized_contact"`
+	BusinessContactEmail string         `json:"business_contact_email,omitempty" validate:"omitempty,email,max=255"`
 }
 
 type CreateProfileResponse struct {
@@ -61,6 +62,7 @@ type UpdateProfileRequestParams struct {
 	Website           string             `json:"website" validate:"max=100"`
 	Vertical          string             `json:"vertical" validate:"oneof= PROFESSIONAL REAL_ESTATE HEALTHCARE HUMAN_RESOURCES ENERGY ENTERTAINMENT RETAIL TRANSPORTATION AGRICULTURE INSURANCE POSTAL EDUCATION HOSPITALITY FINANCIAL POLITICAL GAMBLING LEGAL CONSTRUCTION NGO MANUFACTURING GOVERNMENT TECHNOLOGY COMMUNICATION"`
 	AuthorizedContact *AuthorizedContact `json:"authorized_contact"`
+	BusinessContactEmail string         `json:"business_contact_email,omitempty" validate:"omitempty,email,max=255"`
 }
 
 type Profile struct {
@@ -82,6 +84,7 @@ type Profile struct {
 	AltBusinessidType string            `json:"alt_business_id_type,omitempty"`
 	PlivoSubaccount   string            `json:"plivo_subaccount,omitempty"`
 	AuthorizedContact AuthorizedContact `json:"authorized_contact,omitempty"`
+	BusinessContactEmail string         `json:"business_contact_email,omitempty"`
 	CreatedAt         string            `json:"created_at,omitempty"`
 }
 
