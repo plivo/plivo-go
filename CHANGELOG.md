@@ -1,4 +1,9 @@
 # Change Log
+## [7.59.4](https://github.com/plivo/plivo-go/tree/v7.59.4) (2026-01-20)
+**Feature - HA Number support**
+- Added `ha_enabled` parameter to PhoneNumber rent API
+- Added `fallback_number` field to PhoneNumber rent API response
+
 ## [7.59.3](https://github.com/plivo/plivo-go/tree/v7.59.3) (2026-01-14)
 **Feature - Profile API business_contact_email support for PUBLIC entity types**
 - Added `business_contact_email` parameter support to Profile `create` and `update` methods

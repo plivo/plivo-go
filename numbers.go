@@ -164,6 +164,7 @@ type PhoneNumberListParams struct {
 type PhoneNumberCreateParams struct {
 	AppID      string `json:"app_id,omitempty" url:"app_id,omitempty"`
 	CNAMLookup string `json:"cnam_lookup,omitempty" url:"cnam_lookup,omitempty"`
+	HAEnabled  *bool  `json:"ha_enabled,omitempty" url:"ha_enabled,omitempty"`
 }
 
 type PhoneNumberService struct {
@@ -174,8 +175,9 @@ type PhoneNumberCreateResponse struct {
 	APIID   string `json:"api_id" url:"api_id"`
 	Message string `json:"message" url:"message"`
 	Numbers []struct {
-		Number string `json:"number" url:"number"`
-		Status string `json:"status" url:"status"`
+		Number         string `json:"number" url:"number"`
+		Status         string `json:"status" url:"status"`
+		FallbackNumber string `json:"fallback_number,omitempty" url:"fallback_number,omitempty"`
 	} `json:"numbers" url:"numbers"`
 	Status string `json:"status" url:"status"`
 }
