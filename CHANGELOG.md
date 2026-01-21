@@ -1,7 +1,11 @@
 # Change Log
+## [7.59.5](https://github.com/plivo/plivo-go/tree/v7.59.4) (2026-01-21)
+**Feature - HA Number support**
+- Added `ha_enable` parameter to PhoneNumber rent API
+
+# Change Log
 ## [7.59.4](https://github.com/plivo/plivo-go/tree/v7.59.4) (2026-01-20)
 **Feature - HA Number support**
-- Added `ha_enabled` parameter to PhoneNumber rent API
 - Added `fallback_number` field to PhoneNumber rent API response
 
 ## [7.59.3](https://github.com/plivo/plivo-go/tree/v7.59.3) (2026-01-14)

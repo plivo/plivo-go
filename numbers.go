@@ -166,7 +166,7 @@ type PhoneNumberListParams struct {
 type PhoneNumberCreateParams struct {
 	AppID      string `json:"app_id,omitempty" url:"app_id,omitempty"`
 	CNAMLookup string `json:"cnam_lookup,omitempty" url:"cnam_lookup,omitempty"`
-	HAEnabled  *bool  `json:"ha_enabled,omitempty" url:"ha_enabled,omitempty"`
+	HAEnable   *bool  `json:"ha_enable,omitempty" url:"ha_enable,omitempty"`
 }
 
 type PhoneNumberService struct {
