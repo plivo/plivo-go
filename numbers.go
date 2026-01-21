@@ -146,6 +146,8 @@ type PhoneNumber struct {
 	MmsRate           string `json:"mms_rate" url:"mms_rate"`
 	VoiceEnabled      bool   `json:"voice_enabled" url:"voice_enabled"`
 	VoiceRate         string `json:"voice_rate" url:"voice_rate"`
+	FallbackNumber    string `json:"fallback_number,omitempty" url:"fallback_number,omitempty"`
+	HAEnabled         bool   `json:"ha_enabled" url:"ha_enabled",omitempty`
 }
 
 type PhoneNumberListParams struct {
