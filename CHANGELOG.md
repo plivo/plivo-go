@@ -1,9 +1,12 @@
 # Change Log
+## [7.59.6](https://github.com/plivo/plivo-go/tree/v7.59.6) (2026-02-18)
+**Feature - Campaign API optional fields support**
+- Added `Sample3`, `Sample4`, `Sample5` optional sample message fields to Campaign `Create` and `Update` methods
+- Added `TermsAndConditionsLink` and `PrivacyPolicyLink` optional fields to Campaign `Create` and `Update` methods
+
 ## [7.59.5](https://github.com/plivo/plivo-go/tree/v7.59.4) (2026-01-21)
 **Feature - HA Number support**
 - Added `ha_enable` parameter to PhoneNumber rent API
-
-# Change Log
 ## [7.59.4](https://github.com/plivo/plivo-go/tree/v7.59.4) (2026-01-20)
 **Feature - HA Number support**
 - Added `fallback_number` field to PhoneNumber rent API response
