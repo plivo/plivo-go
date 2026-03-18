@@ -1,4 +1,8 @@
 # Change Log
+## [7.59.7](https://github.com/plivo/plivo-go/tree/v7.59.7) (2026-03-18)
+**Feature - Profile Update API additional fields support**
+- Added `ein`, `ein_issuing_country`, `alt_business_id`, `alt_business_id_type` parameters to Profile `Update` method
+
 ## [7.59.6](https://github.com/plivo/plivo-go/tree/v7.59.6) (2026-02-18)
 **Feature - Campaign API optional fields support**
 - Added `Sample3`, `Sample4`, `Sample5` optional sample message fields to Campaign `Create` and `Update` methods

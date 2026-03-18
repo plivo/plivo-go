@@ -161,6 +161,10 @@ func TestProfile_Update(t *testing.T) {
 			Phone:     "+14155551234",
 		},
 		BusinessContactEmail: "employee@company.com",
+		Ein:                  "12-3456789",
+		EinIssuingCountry:    "US",
+		AltBusinessID:        "123456789",
+		AltBusinessidType:    "DUNS",
 	})
 	assert.NotNil(resp)
 	assert.Nil(err)
@@ -188,6 +192,10 @@ func TestProfile_Update(t *testing.T) {
 			Phone:     "+14155551234",
 		},
 		BusinessContactEmail: "employee@company.com",
+		Ein:                  "12-3456789",
+		EinIssuingCountry:    "US",
+		AltBusinessID:        "123456789",
+		AltBusinessidType:    "DUNS",
 	})
 	assert.NotNil(err)
 	assert.Nil(resp)
