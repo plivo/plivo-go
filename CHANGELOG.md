@@ -1,4 +1,12 @@
 # Change Log
+## [7.60.0](https://github.com/plivo/plivo-go/tree/v7.60.0) (2026-04-08)
+**Feature - PhoneNumber Compliance API support**
+- Added `PhoneNumberComplianceRequirementService` for discovering compliance requirements by country, number type, and user type
+- Added `PhoneNumberComplianceService` with full CRUD support (Create, Get, List, Update, Delete) for compliance applications
+- Added `PhoneNumberComplianceLinkService` for bulk linking phone numbers to accepted compliance applications
+- Added PATCH HTTP method support for compliance application updates
+- Create and update operations support multipart file uploads for compliance documents via new `newComplianceMultipartRequest` helper
+
 ## [7.59.7](https://github.com/plivo/plivo-go/tree/v7.59.7) (2026-03-18)
 **Feature - Profile Update API additional fields support**
 - Added `ein`, `ein_issuing_country`, `alt_business_id`, `alt_business_id_type` parameters to Profile `Update` method
