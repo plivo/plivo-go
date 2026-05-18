@@ -32,6 +32,7 @@ func TestProfile_Get(t *testing.T) {
 	assert.NotNil(profile)
 	assert.Nil(err)
 	assert.Equal(ProfileUUID, profile.Profile.ProfileUUID)
+	assert.Equal("ABC DBA", profile.Profile.Dba)
 	assert.NotEmpty(profile.ApiID)
 
 	cl := client.httpClient
@@ -75,6 +76,7 @@ func TestProfile_Create(t *testing.T) {
 			Phone:     "+14155551234",
 		},
 		BusinessContactEmail: "employee@company.com",
+		Dba:                  "Test DBA",
 	})
 	assert.NotNil(resp)
 	assert.Nil(err)
@@ -110,6 +112,7 @@ func TestProfile_Create(t *testing.T) {
 			Phone:     "+14155551234",
 		},
 		BusinessContactEmail: "employee@company.com",
+		Dba:                  "Test DBA",
 	})
 	assert.NotNil(err)
 	assert.Nil(resp)
@@ -165,6 +168,7 @@ func TestProfile_Update(t *testing.T) {
 		EinIssuingCountry:    "US",
 		AltBusinessID:        "123456789",
 		AltBusinessidType:    "DUNS",
+		Dba:                  "Updated DBA",
 	})
 	assert.NotNil(resp)
 	assert.Nil(err)
@@ -196,6 +200,7 @@ func TestProfile_Update(t *testing.T) {
 		EinIssuingCountry:    "US",
 		AltBusinessID:        "123456789",
 		AltBusinessidType:    "DUNS",
+		Dba:                  "Updated DBA",
 	})
 	assert.NotNil(err)
 	assert.Nil(resp)
