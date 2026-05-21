@@ -21,7 +21,7 @@ type CreateProfileRequestParams struct {
 	PlivoSubaccount   string             `json:"plivo_subaccount" validate:"max=20"`
 	AuthorizedContact *AuthorizedContact `json:"authorized_contact"`
 	BusinessContactEmail string         `json:"business_contact_email,omitempty" validate:"omitempty,email,max=255"`
-	Dba                  string         `json:"doing_business_as,omitempty" validate:"max=100"`
+	DoingBusinessAs      string         `json:"doing_business_as,omitempty" validate:"max=100"`
 }
 
 type CreateProfileResponse struct {
@@ -68,7 +68,7 @@ type UpdateProfileRequestParams struct {
 	EinIssuingCountry    string             `json:"ein_issuing_country,omitempty" validate:"max=2"`
 	AltBusinessID        string             `json:"alt_business_id,omitempty" validate:"max=50"`
 	AltBusinessidType    string             `json:"alt_business_id_type,omitempty" validate:"oneof= DUNS LEI GIIN NONE ''"`
-	Dba                  string             `json:"doing_business_as,omitempty" validate:"max=100"`
+	DoingBusinessAs      string             `json:"doing_business_as,omitempty" validate:"max=100"`
 }
 
 type Profile struct {
@@ -91,7 +91,7 @@ type Profile struct {
 	PlivoSubaccount   string            `json:"plivo_subaccount,omitempty"`
 	AuthorizedContact AuthorizedContact `json:"authorized_contact,omitempty"`
 	BusinessContactEmail string         `json:"business_contact_email,omitempty"`
-	Dba               string            `json:"doing_business_as,omitempty"`
+	DoingBusinessAs   string            `json:"doing_business_as,omitempty"`
 	CreatedAt         string            `json:"created_at,omitempty"`
 }
 
