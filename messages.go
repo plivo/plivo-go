@@ -10,6 +10,13 @@ type MessageService struct {
 	Message
 }
 
+type ContentMessage struct {
+	// Rich elements for RCS messages; only used in RCS messaging.
+	// Using map to allow arbitrary rich content structure.
+	ContentType string      `json:"content_type,omitempty"`
+	Content     interface{} `json:"content,omitempty"`
+}
+
 type MessageCreateParams struct {
 	Src  string `json:"src,omitempty" url:"src,omitempty"`
 	Dst  string `json:"dst,omitempty" url:"dst,omitempty"`
@@ -23,14 +30,15 @@ type MessageCreateParams struct {
 	MediaUrls []string    `json:"media_urls,omitempty" url:"media_urls,omitempty"`
 	MediaIds  []string    `json:"media_ids,omitempty" url:"media_ids,omitempty"`
 	// Either one of src and powerpackuuid should be given
-	PowerpackUUID       string       `json:"powerpack_uuid,omitempty" url:"powerpack_uuid,omitempty"`
-	MessageExpiry       int          `json:"message_expiry,omitempty" url:"message_expiry,omitempty"`
-	Template            *Template    `json:"template,omitempty" url:"template,omitempty"`
-	Interactive         *Interactive `json:"interactive,omitempty" url:"interactive,omitempty"`
-	Location            *Location    `json:"location,omitempty" url:"location,omitempty"`
-	DLTEntityID         string       `json:"dlt_entity_id,omitempty" url:"dlt_entity_id,omitempty"`
-	DLTTemplateID       string       `json:"dlt_template_id,omitempty" url:"dlt_template_id,omitempty"`
-	DLTTemplateCategory string       `json:"dlt_template_category,omitempty" url:"dlt_template_category,omitempty"`
+	PowerpackUUID       string          `json:"powerpack_uuid,omitempty" url:"powerpack_uuid,omitempty"`
+	MessageExpiry       int             `json:"message_expiry,omitempty" url:"message_expiry,omitempty"`
+	Template            *Template       `json:"template,omitempty" url:"template,omitempty"`
+	Interactive         *Interactive    `json:"interactive,omitempty" url:"interactive,omitempty"`
+	Location            *Location       `json:"location,omitempty" url:"location,omitempty"`
+	DLTEntityID         string          `json:"dlt_entity_id,omitempty" url:"dlt_entity_id,omitempty"`
+	DLTTemplateID       string          `json:"dlt_template_id,omitempty" url:"dlt_template_id,omitempty"`
+	DLTTemplateCategory string          `json:"dlt_template_category,omitempty" url:"dlt_template_category,omitempty"`
+	ContentMessage      *ContentMessage `json:"content_message,omitempty" url:"content_message,omitempty"`
 }
 
 type Message struct {

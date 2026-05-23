@@ -117,3 +117,62 @@ func TestMessageService_Create(t *testing.T) {
 
 	assertRequest(t, "POST", "Message")
 }
+
+func TestMessageService_CreateWithContentMessage(t *testing.T) {
+	expectResponse("messageSendResponse.json", 202)
+	assert := require.New(t)
+	resp, err := client.Messages.Create(MessageCreateParams{
+		Src: "+911231231230",
+		Dst: "+911231231231",
+		ContentMessage: &ContentMessage{
+			ContentType: "rcs_card",
+			Content:     map[string]interface{}{"title": "Hello RCS"},
+		},
+	})
+	assert.NotNil(resp)
+	assert.Nil(err)
+	assert.NotEmpty(resp.ApiID)
+	assert.NotEmpty(resp.MessageUUID)
+	assert.Equal(resp.Error, "")
+	cl := client.httpClient
+	client.httpClient = nil
+	resp, err = client.Messages.Create(MessageCreateParams{
+		Src: "+911231231230",
+		Dst: "+911231231231",
+		ContentMessage: &ContentMessage{
+			ContentType: "rcs_card",
+			Content:     map[string]interface{}{"title": "Hello RCS"},
+		},
+	})
+	assert.NotNil(err)
+	assert.Nil(resp)
+	client.httpClient = cl
+
+	assertRequest(t, "POST", "Message")
+}
+
+func TestMessageGetResponseFields(t *testing.T) {
+	expectResponse("messageGetResponse.json", 200)
+	uuid := "5b40a428-bfc7-4daf-9d06-726c558bf3b8"
+	assert := require.New(t)
+	resp, err := client.Messages.Get(uuid)
+	assert.NotNil(resp)
+	assert.Nil(err)
+	// error_message, message_sent_time, message_updated_time are present on Message struct
+	_ = resp.ErrorMessage
+	_ = resp.MessageSentTime
+	_ = resp.MessageUpdatedTime
+}
+
+func TestMessageListResponseFields(t *testing.T) {
+	expectResponse("messageListResponse.json", 200)
+	assert := require.New(t)
+	resp, err := client.Messages.List(MessageListParams{})
+	assert.NotNil(resp)
+	assert.Nil(err)
+	assert.NotNil(resp.Objects)
+	// error_message, message_sent_time, message_updated_time are present on Message struct
+	_ = resp.Objects[0].ErrorMessage
+	_ = resp.Objects[0].MessageSentTime
+	_ = resp.Objects[0].MessageUpdatedTime
+}
