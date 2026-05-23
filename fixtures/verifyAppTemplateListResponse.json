@@ -1,0 +1,17 @@
+{
+  "api_id": "api-id-abcd-1234",
+  "templates": [
+    {
+      "template_uuid": "tmpl-uuid-0001",
+      "text": "Your OTP is {{otp}}. Valid for 10 minutes.",
+      "friendly_name": "Default OTP Template",
+      "locale": "en"
+    },
+    {
+      "template_uuid": "tmpl-uuid-0002",
+      "text": "{{otp}} is your verification code.",
+      "friendly_name": "Short OTP Template",
+      "locale": "en"
+    }
+  ]
+}
