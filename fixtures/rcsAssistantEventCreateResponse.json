@@ -1,0 +1,8 @@
+{
+  "api_id": "some-api-id",
+  "phone_number": "+14151234567",
+  "is_capable": true,
+  "features": ["RICHCARD_STANDALONE", "ACTION_CREATE_CALENDAR_EVENT"],
+  "message": "RCS assistant event sent successfully.",
+  "error": ""
+}
