@@ -1,0 +1,9 @@
+{
+  "api_id": "api-id-bulk-12345",
+  "message_uuid": [
+    "uuid-0000-0001",
+    "uuid-0000-0002"
+  ],
+  "message": "message(s) queued",
+  "invalid_number": []
+}

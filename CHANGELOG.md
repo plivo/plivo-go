@@ -1,4 +1,10 @@
 # Change Log
+## [7.61.0](https://github.com/plivo/plivo-go/tree/v7.61.0) (2026-05-23)
+**Major - bulk_messages.create**
+- Added `src`, `dst`, `text`, `type`, `url`, `method`, `log`, `powerpack_uuid` parameters to bulk_messages.create (POST /v1/Account/{auth_id}/Message/Bulk/)
+
+_Source: plivo/api-messaging#9001_
+
 ## [7.60.0](https://github.com/plivo/plivo-go/tree/v7.60.0) (2026-04-08)
 **Feature - PhoneNumber Compliance API support**
 - Added `PhoneNumberComplianceRequirementService` for discovering compliance requirements by country, number type, and user type
