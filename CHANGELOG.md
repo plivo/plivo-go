@@ -1,4 +1,8 @@
 # Change Log
+## [7.60.0](https://github.com/plivo/plivo-go/tree/v7.60.0) (2026-05-25)
+**Feature - Profile API DBA field support**
+- Added Doing Business As (DBA) field support to Profile API
+
 ## [7.59.7](https://github.com/plivo/plivo-go/tree/v7.59.7) (2026-03-18)
 **Feature - Profile Update API additional fields support**
 - Added `ein`, `ein_issuing_country`, `alt_business_id`, `alt_business_id_type` parameters to Profile `Update` method
