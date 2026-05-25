@@ -49,13 +49,16 @@ func TestNumberService_Update(t *testing.T) {
 func TestNumberService_List(t *testing.T) {
 	expectResponse("NumberListResponse.json", 200)
 
-	if _, err := client.Numbers.List(NumberListParams{}); err != nil {
+	resp, err := client.Numbers.List(NumberListParams{})
+	if err != nil {
 		panic(err)
 	}
+	assert.Equal(t, "SAXXXXXXXXXXXXXXXXXX", resp.Objects[0].SubAccount)
+	assert.Equal(t, "Marketing", resp.Objects[0].SubAccountName)
 
 	cl := client.httpClient
 	client.httpClient = nil
-	_, err := client.Numbers.List(NumberListParams{})
+	_, err = client.Numbers.List(NumberListParams{})
 	if err == nil {
 		client.httpClient = cl
 		panic(errors.New("error expected"))
@@ -71,6 +74,8 @@ func TestNumberService_Get(t *testing.T) {
 
 	number, err := client.Numbers.Get(NumberId)
 	assert.Equal(t, number.ID(), number.Number)
+	assert.Equal(t, "SAXXXXXXXXXXXXXXXXXX", number.SubAccount)
+	assert.Equal(t, "Marketing", number.SubAccountName)
 	if err != nil {
 		panic(err)
 	}

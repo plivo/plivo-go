@@ -25,6 +25,8 @@ type Number struct {
 	VoiceRate                          string `json:"voice_rate,omitempty" url:"voice_rate,omitempty"`
 	SMSRate                            string `json:"sms_rate,omitempty" url:"sms_rate,omitempty"`
 	MMSRate                            string `json:"mms_rate,omitempty" url:"mms_rate,omitempty"`
+	SubAccount                         string `json:"sub_account,omitempty" url:"sub_account,omitempty"`
+	SubAccountName                     string `json:"sub_account_name,omitempty" url:"sub_account_name,omitempty"`
 	TendlcCampaignID                   string `json:"tendlc_campaign_id,omitempty" url:"tendlc_campaign_id,omitempty"`
 	TendlcRegistrationStatus           string `json:"tendlc_registration_status,omitempty" url:"tendlc_registration_status,omitempty"`
 	TollFreeSMSVerification            string `json:"toll_free_sms_verification,omitempty" url:"toll_free_sms_verification,omitempty"`
