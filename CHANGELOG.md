@@ -1,5 +1,5 @@
 # Change Log
-## [7.60.1](https://github.com/plivo/plivo-go/tree/v7.60.1) (2026-05-25)
+## [7.60.1](https://github.com/plivo/plivo-go/tree/v7.60.1) (2026-05-26)
 **Feature - Expose sub_account and sub_account_name on Number resource**
 - Added `SubAccount` and `SubAccountName` fields to the `Number` response struct, surfacing the subaccount's auth_id and name on rented number listing and get APIs
 
