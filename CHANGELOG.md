@@ -1,7 +1,18 @@
 # Change Log
-## [7.60.0](https://github.com/plivo/plivo-go/tree/v7.60.0) (2026-05-25)
+## [7.60.1](https://github.com/plivo/plivo-go/tree/v7.60.1) (2026-05-26)
 **Feature - Profile API DBA field support**
 - Added Doing Business As (DBA) field support to Profile API
+
+**Feature - Expose sub_account and sub_account_name on Number resource**
+- Added `SubAccount` and `SubAccountName` fields to the `Number` response struct, surfacing the subaccount's auth_id and name on rented number listing and get APIs
+
+## [7.60.0](https://github.com/plivo/plivo-go/tree/v7.60.0) (2026-04-08)
+**Feature - PhoneNumber Compliance API support**
+- Added `PhoneNumberComplianceRequirementService` for discovering compliance requirements by country, number type, and user type
+- Added `PhoneNumberComplianceService` with full CRUD support (Create, Get, List, Update, Delete) for compliance applications
+- Added `PhoneNumberComplianceLinkService` for bulk linking phone numbers to accepted compliance applications
+- Added PATCH HTTP method support for compliance application updates
+- Create and update operations support multipart file uploads for compliance documents via new `newComplianceMultipartRequest` helper
 
 ## [7.59.7](https://github.com/plivo/plivo-go/tree/v7.59.7) (2026-03-18)
 **Feature - Profile Update API additional fields support**
