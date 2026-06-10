@@ -33,6 +33,7 @@ func TestProfile_Get(t *testing.T) {
 	assert.Nil(err)
 	assert.Equal(ProfileUUID, profile.Profile.ProfileUUID)
 	assert.Equal("ABC DBA", profile.Profile.DoingBusinessAs)
+	assert.Equal("BETWEEN_1_AND_10", profile.Profile.NumberOfEmployees)
 	assert.NotEmpty(profile.ApiID)
 
 	cl := client.httpClient
@@ -77,6 +78,7 @@ func TestProfile_Create(t *testing.T) {
 		},
 		BusinessContactEmail: "employee@company.com",
 		DoingBusinessAs:      "Test DBA",
+		NumberOfEmployees:    "BETWEEN_1_AND_10",
 	})
 	assert.NotNil(resp)
 	assert.Nil(err)
@@ -113,6 +115,7 @@ func TestProfile_Create(t *testing.T) {
 		},
 		BusinessContactEmail: "employee@company.com",
 		DoingBusinessAs:      "Test DBA",
+		NumberOfEmployees:    "BETWEEN_1_AND_10",
 	})
 	assert.NotNil(err)
 	assert.Nil(resp)
@@ -169,6 +172,7 @@ func TestProfile_Update(t *testing.T) {
 		AltBusinessID:        "123456789",
 		AltBusinessidType:    "DUNS",
 		DoingBusinessAs:      "Updated DBA",
+		NumberOfEmployees:    "BETWEEN_11_AND_50",
 	})
 	assert.NotNil(resp)
 	assert.Nil(err)
@@ -201,6 +205,7 @@ func TestProfile_Update(t *testing.T) {
 		AltBusinessID:        "123456789",
 		AltBusinessidType:    "DUNS",
 		DoingBusinessAs:      "Updated DBA",
+		NumberOfEmployees:    "BETWEEN_11_AND_50",
 	})
 	assert.NotNil(err)
 	assert.Nil(resp)
