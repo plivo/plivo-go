@@ -1,4 +1,8 @@
 # Change Log
+## [7.60.2](https://github.com/plivo/plivo-go/tree/v7.60.2) (2026-06-10)
+**Feature - Profile API number of employees field support**
+- Added Number of Employees field support to Profile API
+
 ## [7.60.1](https://github.com/plivo/plivo-go/tree/v7.60.1) (2026-05-26)
 **Feature - Profile API DBA field support**
 - Added Doing Business As (DBA) field support to Profile API
