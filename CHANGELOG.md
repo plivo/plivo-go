@@ -1,4 +1,8 @@
 # Change Log
+## [7.60.2](https://github.com/plivo/plivo-go/tree/v7.60.2) (2026-06-11)
+**Feature - Compliance Application support on PhoneNumber rent API**
+- Added `compliance_application_id` parameter to PhoneNumber `Create` (rent/buy) method to support regulated numbers that require a regulatory compliance application linked at purchase time
+
 ## [7.60.1](https://github.com/plivo/plivo-go/tree/v7.60.1) (2026-05-26)
 **Feature - Profile API DBA field support**
 - Added Doing Business As (DBA) field support to Profile API

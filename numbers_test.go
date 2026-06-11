@@ -131,6 +131,27 @@ func TestPhoneNumberService_Create(t *testing.T) {
 	assertRequest(t, "POST", "PhoneNumber/%s", "123")
 }
 
+func TestPhoneNumberService_CreateWithComplianceApplicationID(t *testing.T) {
+	expectResponse("PhoneNumberCreateResponse.json", 202)
+
+	if _, err := client.PhoneNumbers.Create("123", PhoneNumberCreateParams{
+		ComplianceApplicationID: "12345678901234567890",
+	}); err != nil {
+		panic(err)
+	}
+
+	assertRequest(t, "POST", "PhoneNumber/%s", "123")
+	// compliance_application_id must be serialized to the outbound request body when set.
+	assert.Contains(t, requestBody, "\"compliance_application_id\":\"12345678901234567890\"")
+
+	// omitempty: when unset, the field must NOT appear in the request body.
+	expectResponse("PhoneNumberCreateResponse.json", 202)
+	if _, err := client.PhoneNumbers.Create("123", PhoneNumberCreateParams{}); err != nil {
+		panic(err)
+	}
+	assert.NotContains(t, requestBody, "compliance_application_id")
+}
+
 func TestPhoneNumberService_List(t *testing.T) {
 	expectResponse("PhoneNumberListResponse.json", 200)
 

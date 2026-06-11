@@ -18,6 +18,7 @@ var expectedResponse = ""
 var requestUrl *url.URL
 var requestMethod string
 var requestHeader http.Header
+var requestBody string
 var testAuthId = "AuthId"
 var testAuthToken = "AuthId"
 
@@ -25,6 +26,12 @@ var server = httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *
 	requestUrl = r.URL
 	requestMethod = r.Method
 	requestHeader = r.Header
+	if r.Body != nil {
+		bodyBytes, _ := ioutil.ReadAll(r.Body)
+		requestBody = string(bodyBytes)
+	} else {
+		requestBody = ""
+	}
 	w.WriteHeader(expectedStatusCode)
 	_, _ = w.Write([]byte(expectedResponse))
 
