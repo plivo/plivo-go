@@ -149,7 +149,7 @@ type PhoneNumber struct {
 	VoiceEnabled      bool   `json:"voice_enabled" url:"voice_enabled"`
 	VoiceRate         string `json:"voice_rate" url:"voice_rate"`
 	FallbackNumber    string `json:"fallback_number,omitempty" url:"fallback_number,omitempty"`
-	HAEnabled         bool   `json:"ha_enabled" url:"ha_enabled",omitempty`
+	HAEnabled         bool   `json:"ha_enabled,omitempty" url:"ha_enabled,omitempty"`
 }
 
 type PhoneNumberListParams struct {
@@ -166,9 +166,10 @@ type PhoneNumberListParams struct {
 }
 
 type PhoneNumberCreateParams struct {
-	AppID      string `json:"app_id,omitempty" url:"app_id,omitempty"`
-	CNAMLookup string `json:"cnam_lookup,omitempty" url:"cnam_lookup,omitempty"`
-	HAEnable   *bool  `json:"ha_enable,omitempty" url:"ha_enable,omitempty"`
+	AppID                   string `json:"app_id,omitempty" url:"app_id,omitempty"`
+	CNAMLookup              string `json:"cnam_lookup,omitempty" url:"cnam_lookup,omitempty"`
+	HAEnable                *bool  `json:"ha_enable,omitempty" url:"ha_enable,omitempty"`
+	ComplianceApplicationID string `json:"compliance_application_id,omitempty" url:"compliance_application_id,omitempty"`
 }
 
 type PhoneNumberService struct {
