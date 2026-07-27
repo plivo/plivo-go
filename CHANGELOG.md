@@ -1,4 +1,8 @@
 # Change Log
+## [7.60.4](https://github.com/plivo/plivo-go/tree/v7.60.4) (2026-07-27)
+**Feature - Internal flag support on Endpoint create**
+- Added `Internal` optional parameter to Endpoint `Create` method to mark newly created SIP endpoints as internal at creation time
+
 ## [7.60.2](https://github.com/plivo/plivo-go/tree/v7.60.2) (2026-06-11)
 **Feature - Compliance Application support on PhoneNumber rent API**
 - Added `compliance_application_id` parameter to PhoneNumber `Create` (rent/buy) method to support regulated numbers that require a regulatory compliance application linked at purchase time
