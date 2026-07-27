@@ -1,4 +1,8 @@
 # Change Log
+## [7.60.3](https://github.com/plivo/plivo-go/tree/v7.60.3) (2026-07-27)
+**Feature - Toll-free verification terms, privacy, opt-in and help fields**
+- Added optional `TermsAndConditionsLink`, `PrivacyPolicyLink`, `OptinMessage` and `HelpMessage` parameters to the toll-free verification create and update methods
+
 ## [7.60.2](https://github.com/plivo/plivo-go/tree/v7.60.2) (2026-06-11)
 **Feature - Compliance Application support on PhoneNumber rent API**
 - Added `compliance_application_id` parameter to PhoneNumber `Create` (rent/buy) method to support regulated numbers that require a regulatory compliance application linked at purchase time
