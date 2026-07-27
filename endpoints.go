@@ -26,6 +26,7 @@ type EndpointCreateParams struct {
 	Password string `json:"password,omitempty" url:"password,omitempty"`
 	AppID    string `json:"app_id,omitempty" url:"app_id,omitempty"`
 	Username string `json:"username,omitempty" url:"username,omitempty"`
+	Internal bool   `json:"internal,omitempty" url:"internal,omitempty"`
 }
 
 type EndpointCreateResponse struct {
