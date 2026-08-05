@@ -1,4 +1,11 @@
 # Change Log
+## [7.61.0](https://github.com/plivo/plivo-go/tree/v7.61.0) (2026-08-06)
+**Feature - Caller Reputation profile-first API**
+- Added optional `EnableCallerReputation`, `VettingProvider`, `CallbackURL` and `CallbackMethod` fields to `UpdateProfileRequestParams`, serialized to the `enable_caller_reputation`, `vetting_provider`, `callback_url` and `callback_method` wire keys on Profile update
+- `VettingProvider` accepts the customer-facing carrier keys `"at&t"` and `"t-mobile"` (case-insensitive on the API side)
+- Single profile-level callback URL replaces the earlier per-carrier `callbacks` map; Update Number is now attach-only for CR and never registers a new business
+- Backward-compatible additive struct fields
+
 ## [7.60.3](https://github.com/plivo/plivo-go/tree/v7.60.3) (2026-07-28)
 **Feature - Toll-free verification terms, privacy, opt-in and help fields**
 - Added optional `TermsAndConditionsLink`, `PrivacyPolicyLink`, `OptinMessage` and `HelpMessage` parameters to the toll-free verification create and update methods
