@@ -69,10 +69,10 @@ type UpdateProfileRequestParams struct {
 	AltBusinessID          string             `json:"alt_business_id,omitempty" validate:"max=50"`
 	AltBusinessidType      string             `json:"alt_business_id_type,omitempty" validate:"oneof= DUNS LEI GIIN NONE ''"`
 	DoingBusinessAs        string             `json:"doing_business_as,omitempty" validate:"max=100"`
-	EnableCallerReputation *bool              `json:"enable_caller_reputation,omitempty"`
-	VettingProvider        []string           `json:"vetting_provider,omitempty"`
-	CallbackURL            string             `json:"callback_url,omitempty" validate:"omitempty,url,max=512"`
-	CallbackMethod         string             `json:"callback_method,omitempty" validate:"omitempty,oneof=GET POST"`
+	EnableCallerReputation   *bool    `json:"enable_caller_reputation,omitempty"`
+	CallerReputationCarriers []string `json:"caller_reputation_carriers,omitempty"`
+	URL                      string   `json:"url,omitempty" validate:"omitempty,url,max=512"`
+	Method                   string   `json:"method,omitempty" validate:"omitempty,oneof=GET POST"`
 }
 
 type Profile struct {
