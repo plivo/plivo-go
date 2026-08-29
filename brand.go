@@ -8,7 +8,7 @@ type BrandCreationParams struct {
 	BrandAlias       string  `json:"brand_alias" url:"brand_alias" validate:"required"`
 	Type             string  `json:"brand_type" url:"brand_type" validate:"oneof= STARTER STANDARD ''"`
 	ProfileUUID      string  `json:"profile_uuid" url:"profile_uuid" validate:"required,max=36"`
-	SecondaryVetting *string `json:"secondary_vetting,omitempty" url:"secondary_vetting,omitempty"`
+	SecondaryVetting *bool   `json:"secondary_vetting,omitempty" url:"secondary_vetting,omitempty"`
 	URL              string  `json:"url,omitempty" url:"url,omitempty"`
 	Method           string  `json:"method,omitempty" url:"method,omitempty"`
 }
