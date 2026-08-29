@@ -129,6 +129,8 @@ func (client *BaseClient) ExecuteRequest(request *http.Request, body interface{}
 		return
 	}
 
+	defer response.Body.Close()
+
 	data, err := ioutil.ReadAll(response.Body)
 	if err == nil && data != nil && len(data) > 0 {
 		if isVoiceRequest && response.StatusCode >= 500 {
