@@ -97,6 +97,10 @@ type CallCreateParams struct {
 	MachineDetectionMethod string `json:"machine_detection_method,omitempty" url:"machine_detection_method,omitempty"`
 	SipHeaders             string `json:"sip_headers,omitempty" url:"sip_headers,omitempty"`
 	RingTimeout            int64  `json:"ring_timeout,omitempty" url:"ring_timeout,omitempty"`
+	// RetryOn is a comma-separated list of failure reasons that should trigger the
+	// HA Secondary-Number Retry for this call. Valid values are busy_line, no_answer,
+	// rejected and ring_timeout. When set, it overrides the account-level retry reasons.
+	RetryOn string `json:"retry_on,omitempty" url:"retry_on,omitempty"`
 }
 
 // Stores response for making a call.

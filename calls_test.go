@@ -25,6 +25,27 @@ func TestCallService_Create(t *testing.T) {
 	assertRequest(t, "POST", "Call")
 }
 
+func TestCallService_CreateWithRetryOn(t *testing.T) {
+	expectResponse("CallCreateResponse.json", 202)
+
+	if _, err := client.Calls.Create(CallCreateParams{
+		RetryOn: "busy_line,no_answer",
+	}); err != nil {
+		panic(err)
+	}
+
+	assertRequest(t, "POST", "Call")
+	// retry_on must be serialized to the outbound request body when set.
+	assert.Contains(t, requestBody, "\"retry_on\":\"busy_line,no_answer\"")
+
+	// omitempty: when unset, the field must NOT appear in the request body.
+	expectResponse("CallCreateResponse.json", 202)
+	if _, err := client.Calls.Create(CallCreateParams{}); err != nil {
+		panic(err)
+	}
+	assert.NotContains(t, requestBody, "retry_on")
+}
+
 func TestCallService_Update(t *testing.T) {
 	expectResponse("CallUpdateResponse.json", 202)
 	CallId := "CallId"
