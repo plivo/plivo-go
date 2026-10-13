@@ -1,6 +1,7 @@
 package plivo
 
 import (
+	"encoding/hex"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -457,4 +458,36 @@ func TestCreateWhatsappLocationPass(t *testing.T) {
 	}
 	locaitonCreated, _ := CreateWhatsappLocation(location_data)
 	assert.Equal(t, location, locaitonCreated)
+}
+
+var (
+	scopedTok1    = "PLV" + "obLD1OX2BxgpOktcbX6PkBEiM0RVZneImaq7zN3u_wA"
+	scopedTok2    = "PLV" + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+	scopedNonce   = "01456268273535255990"
+	scopedPostSig = "Kxo1ZuQEWE578HnfEhiJvLjXNzZXYPvkZDKNq9s4kvk="
+)
+
+func scopedPostParams() map[string]string {
+	return map[string]string{
+		"MessageUUID": "6f1c2a90-0d7e-4b1e-9c11-1d2e3f4a5b6c",
+		"Status":      "delivered",
+		"To":          "14155550100",
+	}
+}
+
+func TestDeriveSigningKey(t *testing.T) {
+	assert.Equal(t, "e55b316ef14f5830de74d2cc2ae794b87c6c349f577d2fabd648884afba6c7ca", hex.EncodeToString(DeriveSigningKey(scopedTok1)))
+	assert.Equal(t, "c89d8ad56ac99e1a8def8cecce07ffb55332fe813673be81df8b1297d1206368", hex.EncodeToString(DeriveSigningKey(scopedTok2)))
+}
+
+func TestValidateSignatureV3Scoped(t *testing.T) {
+	postURL := "https://acme.example.com/sms/status"
+	assert.True(t, ValidateSignatureV3Scoped(postURL, scopedNonce, "POST", scopedPostSig, scopedTok1, scopedPostParams()))
+	assert.True(t, ValidateSignatureV3Scoped("https://acme.example.com/answer?From=14155550100&CallUUID=abc", scopedNonce, "GET", "nr+QWHZTVoEP0rWEEWMeWjgKRzfOOuBhJvJqQQ8ZC2s=", scopedTok1))
+	assert.True(t, ValidateSignatureV3Scoped(postURL, scopedNonce, "POST", "bogus,"+scopedPostSig, scopedTok1, scopedPostParams()))
+	assert.False(t, ValidateSignatureV3Scoped(postURL, scopedNonce, "POST", scopedPostSig, scopedTok2, scopedPostParams()))
+	failed := scopedPostParams()
+	failed["Status"] = "failed"
+	assert.False(t, ValidateSignatureV3Scoped(postURL, scopedNonce, "POST", scopedPostSig, scopedTok1, failed))
+	assert.False(t, ValidateSignatureV3(postURL, scopedNonce, "POST", scopedPostSig, scopedTok1, scopedPostParams()))
 }

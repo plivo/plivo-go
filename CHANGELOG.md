@@ -1,4 +1,9 @@
 # Change Log
+## Unreleased
+**Feature - Webhook signature validation for scoped API tokens**
+- Added `ValidateSignatureV3Scoped` to validate `X-Plivo-Signature-V3` on webhooks triggered by scoped API tokens
+- Added `DeriveSigningKey` to derive the HKDF-SHA256 webhook signing key from a scoped token
+
 ## [7.60.1](https://github.com/plivo/plivo-go/tree/v7.60.1) (2026-05-26)
 **Feature - Profile API DBA field support**
 - Added Doing Business As (DBA) field support to Profile API

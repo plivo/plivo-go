@@ -5,6 +5,7 @@ import (
 	"crypto/hmac"
 	"crypto/sha1"
 	"crypto/sha256"
+	"crypto/subtle"
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
@@ -172,6 +173,30 @@ func ValidateSignatureV3(uri, nonce, method, signature, authToken string, params
 	}
 	multipleSignatures := strings.Split(signature, ",")
 	return Find(ComputeSignatureV3(authToken, uri, method, nonce, parameters), multipleSignatures)
+}
+
+func DeriveSigningKey(scopedToken string) []byte {
+	extract := hmac.New(sha256.New, []byte("plivo-scoped-token-v1"))
+	extract.Write([]byte(scopedToken))
+	expand := hmac.New(sha256.New, extract.Sum(nil))
+	expand.Write([]byte("plivo-webhook-signing-v1\x01"))
+	return expand.Sum(nil)
+}
+
+func ValidateSignatureV3Scoped(uri, nonce, method, signature, scopedToken string, params ...map[string]string) bool {
+	parameters := map[string]string{}
+	if len(params) != 0 {
+		parameters = params[0]
+	}
+	mac := hmac.New(sha256.New, DeriveSigningKey(scopedToken))
+	mac.Write([]byte(GenerateUrl(uri, parameters, method) + "." + nonce))
+	expected := []byte(base64.StdEncoding.EncodeToString(mac.Sum(nil)))
+	for _, sig := range strings.Split(signature, ",") {
+		if subtle.ConstantTimeCompare(expected, []byte(sig)) == 1 {
+			return true
+		}
+	}
+	return false
 }
 func CreateWhatsappInteractive(interactiveData string) (interactive Interactive, err error) {
 	err = json.Unmarshal([]byte(interactiveData), &interactive)

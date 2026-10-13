@@ -658,6 +658,22 @@ func main() {
 }
 ```
 
+### Validating webhooks for scoped API tokens
+Webhooks triggered by an API call made with a scoped API token (`PLV...`) are signed with a key derived from that token. Validate them with `ValidateSignatureV3Scoped`, which takes the same arguments as `ValidateSignatureV3` but with the scoped token in place of the auth token:
+
+```go
+valid := plivo.ValidateSignatureV3Scoped(
+	"https://example.com/sms/status",
+	r.Header.Get("X-Plivo-Signature-V3-Nonce"),
+	r.Method,
+	r.Header.Get("X-Plivo-Signature-V3"),
+	scopedToken,
+	params,
+)
+```
+
+`plivo.DeriveSigningKey(scopedToken)` returns the raw 32-byte HMAC-SHA256 key if you need a custom validator.
+
 ### More examples
 Refer to the [Plivo API Reference](https://www.plivo.com/docs/sms/api/overview/) for more examples.
 
