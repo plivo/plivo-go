@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"strings"
 	"time"
 
 	jwt "github.com/golang-jwt/jwt/v5"
@@ -46,6 +47,9 @@ func (acctkn *AccessToken) New(authId string, authToken string, username string,
 	}
 	if len(authToken) == 0 {
 		return errors.New("authToken not found")
+	}
+	if len(authToken) == 46 && strings.HasPrefix(authToken, "PLV") {
+		return errors.New("AccessToken must be signed with the account auth token; scoped API tokens (PLV...) can't sign JWTs. Use the auth token, or create a token with the JWT API (POST /Account/{auth_id}/JWT/Token/)")
 	}
 	acctkn.Key = authToken
 	if len(username) == 0 {
