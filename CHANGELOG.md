@@ -4,6 +4,7 @@
 - Added `ValidateSignatureV3Scoped` to validate `X-Plivo-Signature-V3` on webhooks triggered by scoped API tokens
 - Added `DeriveSigningKey` to derive the HKDF-SHA256 webhook signing key from a scoped token
 - Added `ValidateSignatureV3Keys` to validate against several keys at once (scoped tokens and/or auth token)
+- `ValidateSignatureV3` now also accepts a scoped API token in place of the auth token
 
 ## [7.60.1](https://github.com/plivo/plivo-go/tree/v7.60.1) (2026-05-26)
 **Feature - Profile API DBA field support**

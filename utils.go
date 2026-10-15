@@ -166,7 +166,11 @@ func ComputeSignatureV3(authToken, uri, method string, nonce string, params map[
 	return messageMAC
 }
 
+// ValidateSignatureV3 validates X-Plivo-Signature-V3 with an auth token, or with a scoped API token (PLV..., 46 chars) via DeriveSigningKey.
 func ValidateSignatureV3(uri, nonce, method, signature, authToken string, params ...map[string]string) bool {
+	if len(authToken) == 46 && strings.HasPrefix(authToken, "PLV") {
+		return ValidateSignatureV3Keys(uri, nonce, method, signature, []string{authToken}, params...)
+	}
 	parameters := map[string]string{}
 	if len(params) != 0 {
 		parameters = params[0]

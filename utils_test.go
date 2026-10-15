@@ -489,7 +489,6 @@ func TestValidateSignatureV3Scoped(t *testing.T) {
 	failed := scopedPostParams()
 	failed["Status"] = "failed"
 	assert.False(t, ValidateSignatureV3Scoped(postURL, scopedNonce, "POST", scopedPostSig, scopedTok1, failed))
-	assert.False(t, ValidateSignatureV3(postURL, scopedNonce, "POST", scopedPostSig, scopedTok1, scopedPostParams()))
 }
 
 func TestValidateSignatureV3Keys(t *testing.T) {
@@ -504,4 +503,11 @@ func TestValidateSignatureV3Keys(t *testing.T) {
 	assert.False(t, ValidateSignatureV3Keys(postURL, scopedNonce, "POST", scopedPostSig, []string{}, scopedPostParams()))
 	assert.True(t, ValidateSignatureV3Keys(postURL, scopedNonce, "POST", scopedPostSig, []string{"", scopedTok1}, scopedPostParams()))
 	assert.True(t, ValidateSignatureV3Scoped(postURL, scopedNonce, "POST", authSig, authToken, scopedPostParams()))
+}
+
+func TestValidateSignatureV3AcceptsScopedToken(t *testing.T) {
+	postURL := "https://acme.example.com/sms/status"
+	authSig := ComputeSignatureV3("test-auth-token", postURL, "POST", scopedNonce, scopedPostParams())
+	assert.True(t, ValidateSignatureV3(postURL, scopedNonce, "POST", scopedPostSig+","+authSig, scopedTok1, scopedPostParams()))
+	assert.False(t, ValidateSignatureV3(postURL, scopedNonce, "POST", authSig, scopedTok1, scopedPostParams()))
 }
