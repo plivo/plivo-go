@@ -183,17 +183,37 @@ func DeriveSigningKey(scopedToken string) []byte {
 	return expand.Sum(nil)
 }
 
+// ValidateSignatureV3Scoped validates X-Plivo-Signature-V3 against one key: a scoped API token
+// (PLV..., 46 chars) or an auth token. See ValidateSignatureV3Keys.
 func ValidateSignatureV3Scoped(uri, nonce, method, signature, scopedToken string, params ...map[string]string) bool {
+	return ValidateSignatureV3Keys(uri, nonce, method, signature, []string{scopedToken}, params...)
+}
+
+// ValidateSignatureV3Keys returns true if X-Plivo-Signature-V3 matches any of keys. Keys that are
+// scoped API tokens (PLV..., 46 chars) are verified with DeriveSigningKey; any other key is treated
+// as an auth token. Empty keys are skipped.
+func ValidateSignatureV3Keys(uri, nonce, method, signature string, keys []string, params ...map[string]string) bool {
 	parameters := map[string]string{}
 	if len(params) != 0 {
 		parameters = params[0]
 	}
-	mac := hmac.New(sha256.New, DeriveSigningKey(scopedToken))
-	mac.Write([]byte(GenerateUrl(uri, parameters, method) + "." + nonce))
-	expected := []byte(base64.StdEncoding.EncodeToString(mac.Sum(nil)))
-	for _, sig := range strings.Split(signature, ",") {
-		if subtle.ConstantTimeCompare(expected, []byte(sig)) == 1 {
-			return true
+	message := []byte(GenerateUrl(uri, parameters, method) + "." + nonce)
+	sigs := strings.Split(signature, ",")
+	for _, key := range keys {
+		if key == "" {
+			continue
+		}
+		hmacKey := []byte(key)
+		if len(key) == 46 && strings.HasPrefix(key, "PLV") {
+			hmacKey = DeriveSigningKey(key)
+		}
+		mac := hmac.New(sha256.New, hmacKey)
+		mac.Write(message)
+		expected := []byte(base64.StdEncoding.EncodeToString(mac.Sum(nil)))
+		for _, sig := range sigs {
+			if subtle.ConstantTimeCompare(expected, []byte(sig)) == 1 {
+				return true
+			}
 		}
 	}
 	return false
