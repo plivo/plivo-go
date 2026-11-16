@@ -86,3 +86,44 @@ func TestVerifyService_Validate(t *testing.T) {
 
 	assertRequest(t, "POST", "Verify/Session/%s", "5b40a428-bfc7-4daf-9d06-726c558bf3b8")
 }
+
+func TestVerifyService_Get_INRFields(t *testing.T) {
+	expectResponse("verifySessionGetInrResponse.json", 200)
+	assert := require.New(t)
+	resp, err := client.VerifySession.Get("4124e518-a8c9-4feb-8cff-d86636ba9234")
+	assert.Nil(err)
+	assert.Equal("0.00500", resp.Charges.TotalCharge)
+	assert.Equal("0.41500", resp.Charges.TotalChargeINR)
+	assert.Len(resp.Charges.AttemptCharges, 1)
+	assert.Equal("0.00500", resp.Charges.AttemptCharges[0].Charge)
+	assert.Equal("0.41500", resp.Charges.AttemptCharges[0].ChargeINR)
+	assert.Len(resp.AttemptDetails, 1)
+	assert.NotNil(resp.AttemptDetails[0].AmountINR)
+	assert.InDelta(0.415, *resp.AttemptDetails[0].AmountINR, 1e-9)
+}
+
+func TestVerifyService_List_INRFields(t *testing.T) {
+	expectResponse("verifySessionListInrResponse.json", 200)
+	assert := require.New(t)
+	resp, err := client.VerifySession.List(SessionListParams{})
+	assert.Nil(err)
+	assert.Len(resp.Sessions, 1)
+	session := resp.Sessions[0]
+	assert.Equal("0.41500", session.Charges.TotalChargeINR)
+	assert.Equal("0.41500", session.Charges.AttemptCharges[0].ChargeINR)
+	assert.NotNil(session.AttemptDetails[0].AmountINR)
+	assert.InDelta(0.415, *session.AttemptDetails[0].AmountINR, 1e-9)
+}
+
+func TestVerifyService_List_USDAccountHasNoINRFields(t *testing.T) {
+	expectResponse("verifySessionListResponse.json", 200)
+	assert := require.New(t)
+	resp, err := client.VerifySession.List(SessionListParams{})
+	assert.Nil(err)
+	session := resp.Sessions[0]
+	assert.NotEmpty(session.AttemptDetails)
+	assert.NotEmpty(session.Charges.AttemptCharges)
+	assert.Empty(session.Charges.TotalChargeINR)
+	assert.Empty(session.Charges.AttemptCharges[0].ChargeINR)
+	assert.Nil(session.AttemptDetails[0].AmountINR)
+}

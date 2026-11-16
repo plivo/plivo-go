@@ -1,0 +1,44 @@
+{
+  "api_id": "3c796fab-c610-4b23-930e-471adf6ab16c",
+  "meta": {
+      "limit": 20,
+      "offset": 0,
+      "next": null,
+      "previous": null
+  },
+  "sessions": [
+      {
+          "session_uuid": "7b28af5c-3e25-45e2-be1e-9235e00dc87a",
+          "app_uuid": "3cdec449-a367-435e-b4f9-40d777a7cfcc",
+          "recipient": "919000000002",
+          "channel": "sms",
+          "status": "verified",
+          "count": 1,
+          "attempt_details": [
+              {
+                  "channel": "sms",
+                  "attempt_uuid": "f26731c0-d076-42d3-b678-264b0a610b87",
+                  "status": "delivered",
+                  "amount": 0.005,
+                  "amount_inr": 0.415,
+                  "time": "2026-11-01T10:00:00.000000+05:30"
+              }
+          ],
+          "charges": {
+              "total_charge": "0.00500",
+              "total_charge_inr": "0.41500",
+              "validation_charge": "0.0000",
+              "attempt_charges": [
+                  {
+                      "attempt_uuid": "f26731c0-d076-42d3-b678-264b0a610b87",
+                      "channel": "sms",
+                      "charge": "0.00500",
+                      "charge_inr": "0.41500"
+                  }
+              ]
+          },
+          "created_at": "2026-11-01T10:00:00.000000+05:30",
+          "updated_at": "2026-11-01T10:00:30.000000+05:30"
+      }
+  ]
+}

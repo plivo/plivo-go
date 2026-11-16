@@ -17,14 +17,18 @@ type Number struct {
 	Number                             string `json:"number,omitempty" url:"number,omitempty"`
 	NumberType                         string `json:"number_type,omitempty" url:"number_type,omitempty"`
 	MonthlyRentalRate                  string `json:"monthly_rental_rate,omitempty" url:"monthly_rental_rate,omitempty"`
+	MonthlyRentalRateINR               string `json:"monthly_rental_rate_inr,omitempty" url:"monthly_rental_rate_inr,omitempty"`
 	Application                        string `json:"application,omitempty" url:"application,omitempty"`
 	RenewalDate                        string `json:"renewal_date,omitempty" url:"renewal_date,omitempty"`
 	CNAMLookup                         string `json:"cnam_lookup,omitempty" url:"cnam_lookup,omitempty"`
 	AddedOn                            string `json:"added_on,omitempty" url:"added_on,omitempty"`
 	ResourceURI                        string `json:"resource_uri,omitempty" url:"resource_uri,omitempty"`
 	VoiceRate                          string `json:"voice_rate,omitempty" url:"voice_rate,omitempty"`
+	VoiceRateINR                       string `json:"voice_rate_inr,omitempty" url:"voice_rate_inr,omitempty"`
 	SMSRate                            string `json:"sms_rate,omitempty" url:"sms_rate,omitempty"`
+	SMSRateINR                         string `json:"sms_rate_inr,omitempty" url:"sms_rate_inr,omitempty"`
 	MMSRate                            string `json:"mms_rate,omitempty" url:"mms_rate,omitempty"`
+	MMSRateINR                         string `json:"mms_rate_inr,omitempty" url:"mms_rate_inr,omitempty"`
 	SubAccount                         string `json:"sub_account,omitempty" url:"sub_account,omitempty"`
 	SubAccountName                     string `json:"sub_account_name,omitempty" url:"sub_account_name,omitempty"`
 	TendlcCampaignID                   string `json:"tendlc_campaign_id,omitempty" url:"tendlc_campaign_id,omitempty"`
@@ -129,27 +133,32 @@ func (service *NumberService) Delete(NumberId string) (err error) {
 }
 
 type PhoneNumber struct {
-	Country           string `json:"country" url:"country"`
-	City              string `json:"city" url:"city"`
-	Lata              int    `json:"lata" url:"lata"`
-	MonthlyRentalRate string `json:"monthly_rental_rate" url:"monthly_rental_rate"`
-	Number            string `json:"number" url:"number"`
-	Type              string `json:"type" url:"type"`
-	Prefix            string `json:"prefix" url:"prefix"`
-	RateCenter        string `json:"rate_center" url:"rate_center"`
-	Region            string `json:"region" url:"region"`
-	ResourceURI       string `json:"resource_uri" url:"resource_uri"`
-	Restriction       string `json:"restriction" url:"restriction"`
-	RestrictionText   string `json:"restriction_text" url:"restriction_text"`
-	SetupRate         string `json:"setup_rate" url:"setup_rate"`
-	SmsEnabled        bool   `json:"sms_enabled" url:"sms_enabled"`
-	SmsRate           string `json:"sms_rate" url:"sms_rate"`
-	MmsEnabled        bool   `json:"mms_enabled" url:"mms_enabled"`
-	MmsRate           string `json:"mms_rate" url:"mms_rate"`
-	VoiceEnabled      bool   `json:"voice_enabled" url:"voice_enabled"`
-	VoiceRate         string `json:"voice_rate" url:"voice_rate"`
-	FallbackNumber    string `json:"fallback_number,omitempty" url:"fallback_number,omitempty"`
-	HAEnabled         bool   `json:"ha_enabled,omitempty" url:"ha_enabled,omitempty"`
+	Country              string `json:"country" url:"country"`
+	City                 string `json:"city" url:"city"`
+	Lata                 int    `json:"lata" url:"lata"`
+	MonthlyRentalRate    string `json:"monthly_rental_rate" url:"monthly_rental_rate"`
+	MonthlyRentalRateINR string `json:"monthly_rental_rate_inr,omitempty" url:"monthly_rental_rate_inr,omitempty"`
+	Number               string `json:"number" url:"number"`
+	Type                 string `json:"type" url:"type"`
+	Prefix               string `json:"prefix" url:"prefix"`
+	RateCenter           string `json:"rate_center" url:"rate_center"`
+	Region               string `json:"region" url:"region"`
+	ResourceURI          string `json:"resource_uri" url:"resource_uri"`
+	Restriction          string `json:"restriction" url:"restriction"`
+	RestrictionText      string `json:"restriction_text" url:"restriction_text"`
+	SetupRate            string `json:"setup_rate" url:"setup_rate"`
+	SetupRateINR         string `json:"setup_rate_inr,omitempty" url:"setup_rate_inr,omitempty"`
+	SmsEnabled           bool   `json:"sms_enabled" url:"sms_enabled"`
+	SmsRate              string `json:"sms_rate" url:"sms_rate"`
+	SmsRateINR           string `json:"sms_rate_inr,omitempty" url:"sms_rate_inr,omitempty"`
+	MmsEnabled           bool   `json:"mms_enabled" url:"mms_enabled"`
+	MmsRate              string `json:"mms_rate" url:"mms_rate"`
+	MmsRateINR           string `json:"mms_rate_inr,omitempty" url:"mms_rate_inr,omitempty"`
+	VoiceEnabled         bool   `json:"voice_enabled" url:"voice_enabled"`
+	VoiceRate            string `json:"voice_rate" url:"voice_rate"`
+	VoiceRateINR         string `json:"voice_rate_inr,omitempty" url:"voice_rate_inr,omitempty"`
+	FallbackNumber       string `json:"fallback_number,omitempty" url:"fallback_number,omitempty"`
+	HAEnabled            bool   `json:"ha_enabled,omitempty" url:"ha_enabled,omitempty"`
 }
 
 type PhoneNumberListParams struct {

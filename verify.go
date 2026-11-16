@@ -43,6 +43,7 @@ type AttemptDetails struct {
 	Channel     string    `json:"channel,omitempty"`
 	AttemptUUID string    `json:"attempt_uuid,omitempty"`
 	Status      string    `json:"status,omitempty"`
+	AmountINR   *float64  `json:"amount_inr,omitempty"`
 	BrandName   string    `json:"brand_name,omitempty"`
 	AppHash     string    `json:"app_hash,omitempty"`
 	CodeLength  int       `json:"code_length,omitempty"`
@@ -53,6 +54,7 @@ type AttemptDetails struct {
 
 type Charges struct {
 	TotalCharge      string           `json:"total_charge,omitempty"`
+	TotalChargeINR   string           `json:"total_charge_inr,omitempty"`
 	ValidationCharge string           `json:"validation_charge,omitempty"`
 	AttemptCharges   []AttemptCharges `json:"attempt_charges,omitempty"`
 }
@@ -61,6 +63,7 @@ type AttemptCharges struct {
 	AttemptUUID string `json:"attempt_uuid,omitempty"`
 	Channel     string `json:"channel,omitempty"`
 	Charge      string `json:"charge,omitempty"`
+	ChargeINR   string `json:"charge_inr,omitempty"`
 }
 
 type SessionCreateParams struct {

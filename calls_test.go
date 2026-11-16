@@ -366,3 +366,45 @@ func TestCallService_GetAllStreams(t *testing.T) {
 
 	assertRequest(t, "GET", "Call/%s/Stream", CallID)
 }
+
+func TestCallService_Get_INRFields(t *testing.T) {
+	expectResponse("callGetInrResponse.json", 200)
+
+	call, err := client.Calls.Get("4d04c52e-cea3-4458-bbdb-0bfc314ee7cd")
+	assert.Nil(t, err)
+	assert.Equal(t, "0.15000", call.TotalAmount)
+	assert.Equal(t, "12.52500", call.TotalAmountINR)
+	assert.Equal(t, "0.03000", call.TotalRate)
+	assert.Equal(t, "2.50500", call.TotalRateINR)
+	assert.Equal(t, "32.14750", call.NoiseCancellationAmountINR)
+}
+
+func TestCallService_List_INRFields(t *testing.T) {
+	expectResponse("callListInrResponse.json", 200)
+
+	resp, err := client.Calls.List(CallListParams{})
+	assert.Nil(t, err)
+	assert.Len(t, resp.Objects, 2)
+
+	inrRow := resp.Objects[0]
+	assert.Equal(t, "12.52500", inrRow.TotalAmountINR)
+	assert.Equal(t, "2.50500", inrRow.TotalRateINR)
+	assert.Equal(t, "", inrRow.NoiseCancellationAmountINR)
+
+	usdRow := resp.Objects[1]
+	assert.Equal(t, "0.13600", usdRow.TotalAmount)
+	assert.Empty(t, usdRow.TotalAmountINR)
+	assert.Empty(t, usdRow.TotalRateINR)
+	assert.Empty(t, usdRow.NoiseCancellationAmountINR)
+}
+
+func TestCallService_Get_USDAccountHasNoINRFields(t *testing.T) {
+	expectResponse("CallGetResponse.json", 200)
+
+	call, err := client.Calls.Get("4d04c52e-cea3-4458-bbdb-0bfc314ee7cd")
+	assert.Nil(t, err)
+	assert.Equal(t, "0.03570", call.TotalRate)
+	assert.Empty(t, call.TotalAmountINR)
+	assert.Empty(t, call.TotalRateINR)
+	assert.Empty(t, call.NoiseCancellationAmountINR)
+}

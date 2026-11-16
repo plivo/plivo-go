@@ -44,6 +44,8 @@ type Message struct {
 	MessageDirection                string `json:"message_direction,omitempty" url:"message_direction,omitempty"`
 	MessageState                    string `json:"message_state,omitempty" url:"message_state,omitempty"`
 	TotalAmount                     string `json:"total_amount,omitempty" url:"total_amount,omitempty"`
+	TotalAmountINR                  string `json:"total_amount_inr,omitempty" url:"total_amount_inr,omitempty"`
+	TotalRateINR                    string `json:"total_rate_inr,omitempty" url:"total_rate_inr,omitempty"`
 	MessageUUID                     string `json:"message_uuid,omitempty" url:"message_uuid,omitempty"`
 	MessageTime                     string `json:"message_time,omitempty" url:"message_time,omitempty"`
 	ErrorCode                       string `json:"error_code,omitempty" url:"error_code,omitempty"`
@@ -63,7 +65,9 @@ type Message struct {
 	DLTTemplateCategory             string `json:"dlt_template_category" url:"dlt_template_category,omitempty"`
 	DestinationNetwork              string `json:"destination_network" url:"destination_network,omitempty"`
 	CarrierFeesRate                 string `json:"carrier_fees_rate" url:"carrier_fees_rate,omitempty"`
+	CarrierFeesRateINR              string `json:"carrier_fees_rate_inr,omitempty" url:"carrier_fees_rate_inr,omitempty"`
 	CarrierFees                     string `json:"carrier_fees" url:"carrier_fees,omitempty"`
+	CarrierFeesINR                  string `json:"carrier_fees_inr,omitempty" url:"carrier_fees_inr,omitempty"`
 	Log                             string `json:"log" url:"log,omitempty"`
 	MessageSentTime                 string `json:"message_sent_time" url:"message_sent_time,omitempty"`
 	MessageUpdatedTime              string `json:"message_updated_time" url:"message_updated_time,omitempty"`
