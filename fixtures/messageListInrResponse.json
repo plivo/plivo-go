@@ -1,0 +1,32 @@
+{
+  "api_id": "9506d2c0-3f08-11e7-b886-067c5485c240",
+  "meta": {
+    "limit": 20,
+    "next": null,
+    "offset": 0,
+    "previous": null
+  },
+  "objects": [
+    {
+      "error_code": null,
+      "from_number": "911231231230",
+      "message_direction": "outbound",
+      "message_state": "delivered",
+      "message_time": "2026-11-01 10:00:00+05:30",
+      "message_type": "sms",
+      "message_uuid": "5b40a428-bfc7-4daf-9d06-726c558bf3b8",
+      "resource_uri": "/v1/Account/MAXXXXXXXXXXXXXXXXXX/Message/5b40a428-bfc7-4daf-9d06-726c558bf3b8/",
+      "to_number": "911231231231",
+      "total_amount": "0.00500",
+      "total_amount_inr": "0.41500",
+      "total_rate": "0.00500",
+      "total_rate_inr": "0.41500",
+      "units": 1,
+      "carrier_fees": "0.00200",
+      "carrier_fees_inr": "0.16600",
+      "carrier_fees_rate": "0.00100",
+      "carrier_fees_rate_inr": "0.08300",
+      "error_message": ""
+    }
+  ]
+}

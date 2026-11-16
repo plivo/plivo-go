@@ -170,3 +170,68 @@ func TestPhoneNumberService_List(t *testing.T) {
 
 	assertRequest(t, "GET", "PhoneNumber")
 }
+
+func TestNumberService_Get_INRFields(t *testing.T) {
+	expectResponse("numberGetInrResponse.json", 200)
+
+	number, err := client.Numbers.Get("17609915566")
+	assert.Nil(t, err)
+	assert.Equal(t, "0.80000", number.MonthlyRentalRate)
+	assert.Equal(t, "64.00000", number.MonthlyRentalRateINR)
+	assert.Equal(t, "0.68000", number.VoiceRateINR)
+	assert.Equal(t, "0.20000", number.SMSRateINR)
+	assert.Equal(t, "0.80000", number.MMSRateINR)
+}
+
+func TestNumberService_List_INRFields(t *testing.T) {
+	expectResponse("numberListInrResponse.json", 200)
+
+	resp, err := client.Numbers.List(NumberListParams{})
+	assert.Nil(t, err)
+	assert.Len(t, resp.Objects, 1)
+	assert.Equal(t, "64.00000", resp.Objects[0].MonthlyRentalRateINR)
+	assert.Equal(t, "0.68000", resp.Objects[0].VoiceRateINR)
+	assert.Equal(t, "0.20000", resp.Objects[0].SMSRateINR)
+	assert.Equal(t, "0.80000", resp.Objects[0].MMSRateINR)
+}
+
+func TestNumberService_Get_USDAccountHasNoINRFields(t *testing.T) {
+	expectResponse("NumberGetResponse.json", 200)
+
+	number, err := client.Numbers.Get("17609915566")
+	assert.Nil(t, err)
+	assert.Equal(t, "0.80000", number.MonthlyRentalRate)
+	assert.Empty(t, number.MonthlyRentalRateINR)
+	assert.Empty(t, number.VoiceRateINR)
+	assert.Empty(t, number.SMSRateINR)
+	assert.Empty(t, number.MMSRateINR)
+}
+
+func TestPhoneNumberService_List_INRFields(t *testing.T) {
+	expectResponse("phoneNumberListInrResponse.json", 200)
+
+	resp, err := client.PhoneNumbers.List(PhoneNumberListParams{})
+	assert.Nil(t, err)
+	assert.Len(t, resp.Objects, 1)
+	phoneNumber := resp.Objects[0]
+	assert.Equal(t, "0.50000", phoneNumber.SetupRate)
+	assert.Equal(t, "40.00000", phoneNumber.SetupRateINR)
+	assert.Equal(t, "64.00000", phoneNumber.MonthlyRentalRateINR)
+	assert.Equal(t, "0.64000", phoneNumber.SmsRateINR)
+	assert.Equal(t, "0.80000", phoneNumber.MmsRateINR)
+	assert.Equal(t, "0.40000", phoneNumber.VoiceRateINR)
+}
+
+func TestPhoneNumberService_List_USDAccountHasNoINRFields(t *testing.T) {
+	expectResponse("PhoneNumberListResponse.json", 200)
+
+	resp, err := client.PhoneNumbers.List(PhoneNumberListParams{})
+	assert.Nil(t, err)
+	phoneNumber := resp.Objects[0]
+	assert.Equal(t, "0.80000", phoneNumber.MonthlyRentalRate)
+	assert.Empty(t, phoneNumber.SetupRateINR)
+	assert.Empty(t, phoneNumber.MonthlyRentalRateINR)
+	assert.Empty(t, phoneNumber.SmsRateINR)
+	assert.Empty(t, phoneNumber.MmsRateINR)
+	assert.Empty(t, phoneNumber.VoiceRateINR)
+}

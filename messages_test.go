@@ -117,3 +117,44 @@ func TestMessageService_Create(t *testing.T) {
 
 	assertRequest(t, "POST", "Message")
 }
+
+func TestMessageService_Get_INRFields(t *testing.T) {
+	expectResponse("messageGetInrResponse.json", 200)
+	assert := require.New(t)
+	resp, err := client.Messages.Get("5b40a428-bfc7-4daf-9d06-726c558bf3b8")
+	assert.Nil(err)
+	assert.Equal("0.00500", resp.TotalAmount)
+	assert.Equal("0.41500", resp.TotalAmountINR)
+	assert.Equal("0.00500", resp.TotalRate)
+	assert.Equal("0.41500", resp.TotalRateINR)
+	assert.Equal("0.00200", resp.CarrierFees)
+	assert.Equal("0.16600", resp.CarrierFeesINR)
+	assert.Equal("0.00100", resp.CarrierFeesRate)
+	assert.Equal("0.08300", resp.CarrierFeesRateINR)
+}
+
+func TestMessageService_List_INRFields(t *testing.T) {
+	expectResponse("messageListInrResponse.json", 200)
+	assert := require.New(t)
+	resp, err := client.Messages.List(MessageListParams{})
+	assert.Nil(err)
+	assert.Len(resp.Objects, 1)
+	assert.Equal("0.41500", resp.Objects[0].TotalAmountINR)
+	assert.Equal("0.00500", resp.Objects[0].TotalRate)
+	assert.Equal("0.41500", resp.Objects[0].TotalRateINR)
+	assert.Equal("0.16600", resp.Objects[0].CarrierFeesINR)
+	assert.Equal("0.08300", resp.Objects[0].CarrierFeesRateINR)
+}
+
+func TestMessageService_Get_USDAccountHasNoINRFields(t *testing.T) {
+	expectResponse("messageGetResponse.json", 200)
+	assert := require.New(t)
+	resp, err := client.Messages.Get("5b40a428-bfc7-4daf-9d06-726c558bf3b8")
+	assert.Nil(err)
+	assert.Equal("0.00250", resp.TotalAmount)
+	assert.Equal("0.00250", resp.TotalRate)
+	assert.Empty(resp.TotalAmountINR)
+	assert.Empty(resp.TotalRateINR)
+	assert.Empty(resp.CarrierFeesINR)
+	assert.Empty(resp.CarrierFeesRateINR)
+}

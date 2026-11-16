@@ -1,0 +1,30 @@
+{
+  "api_id": "45ba9d34-1c93-11e4-ad99-22000ac5040c",
+  "meta": {
+    "limit": 20,
+    "next": null,
+    "offset": 0,
+    "previous": null,
+    "total_count": 1
+  },
+  "objects": [
+    {
+      "added_on": "2026-11-01",
+      "carrier": "Plivo",
+      "monthly_rental_rate": "0.80000",
+      "monthly_rental_rate_inr": "64.00000",
+      "mms_enabled": true,
+      "mms_rate": "0.01000",
+      "mms_rate_inr": "0.80000",
+      "number": "17609915566",
+      "number_type": "local",
+      "resource_uri": "/v1/Account/MANWVLYTK4ZWU1YTY4ZT/Number/17609915566/",
+      "sms_enabled": true,
+      "sms_rate": "0.00250",
+      "sms_rate_inr": "0.20000",
+      "voice_enabled": true,
+      "voice_rate": "0.00850",
+      "voice_rate_inr": "0.68000"
+    }
+  ]
+}
