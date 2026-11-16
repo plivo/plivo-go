@@ -1,4 +1,14 @@
 # Change Log
+## [7.62.0](https://github.com/plivo/plivo-go/tree/v7.62.0) (2026-11-16)
+**Feature - INR amount fields on responses for INR-billed accounts**
+- Added `TotalAmountINR`, `TotalRateINR`, `CarrierFeesINR` and `CarrierFeesRateINR` to `Message` (get and list), plus the missing USD partner `TotalRate`
+- Added `TotalAmountINR`, `TotalRateINR` and `NoiseCancellationAmountINR` to `Call` (CDR get and list), plus the missing USD partner `NoiseCancellationAmount`; both noise-cancellation fields can be `""` when the call has no noise-cancellation charge
+- Added `MonthlyRentalRateINR`, `SmsRateINR`, `MmsRateINR` and `VoiceRateINR` to `Number` (rented number get and list)
+- Added `SetupRateINR`, `MonthlyRentalRateINR`, `SmsRateINR`, `MmsRateINR` and `VoiceRateINR` to `PhoneNumber` (number search)
+- Added `TotalChargeINR` to Verify session `Charges`, `ChargeINR` to `AttemptCharges` and `AmountINR` (`*float64`) to `AttemptDetails`, plus the missing USD partner `Amount` (`*float64`)
+- The new INR fields are empty (or `nil`) for USD accounts; existing USD fields are unchanged
+- Backward-compatible additive struct fields
+
 ## [7.61.0](https://github.com/plivo/plivo-go/tree/v7.61.0) (2026-08-19)
 **Feature - Caller Reputation profile-first API**
 - Added optional `EnableCallerReputation`, `CallerReputationCarriers`, `URL` and `Method` fields to `UpdateProfileRequestParams`, serialized to the `enable_caller_reputation`, `caller_reputation_carriers`, `url` and `method` wire keys on Profile update
