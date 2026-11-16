@@ -376,6 +376,7 @@ func TestCallService_Get_INRFields(t *testing.T) {
 	assert.Equal(t, "12.52500", call.TotalAmountINR)
 	assert.Equal(t, "0.03000", call.TotalRate)
 	assert.Equal(t, "2.50500", call.TotalRateINR)
+	assert.Equal(t, "0.38500", call.NoiseCancellationAmount)
 	assert.Equal(t, "32.14750", call.NoiseCancellationAmountINR)
 }
 
@@ -387,6 +388,7 @@ func TestCallService_List_INRFields(t *testing.T) {
 	assert.Len(t, resp.Objects, 2)
 
 	inrRow := resp.Objects[0]
+	assert.Equal(t, "", inrRow.NoiseCancellationAmount)
 	assert.Equal(t, "12.52500", inrRow.TotalAmountINR)
 	assert.Equal(t, "2.50500", inrRow.TotalRateINR)
 	assert.Equal(t, "", inrRow.NoiseCancellationAmountINR)
@@ -404,6 +406,7 @@ func TestCallService_Get_USDAccountHasNoINRFields(t *testing.T) {
 	call, err := client.Calls.Get("4d04c52e-cea3-4458-bbdb-0bfc314ee7cd")
 	assert.Nil(t, err)
 	assert.Equal(t, "0.03570", call.TotalRate)
+	assert.Equal(t, "0.00000", call.NoiseCancellationAmount)
 	assert.Empty(t, call.TotalAmountINR)
 	assert.Empty(t, call.TotalRateINR)
 	assert.Empty(t, call.NoiseCancellationAmountINR)

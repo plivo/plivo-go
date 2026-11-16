@@ -34,6 +34,7 @@ type Call struct {
 	TotalAmountINR             string `json:"total_amount_inr,omitempty" url:"total_amount_inr,omitempty"`
 	TotalRate                  string `json:"total_rate,omitempty" url:"total_rate,omitempty"`
 	TotalRateINR               string `json:"total_rate_inr,omitempty" url:"total_rate_inr,omitempty"`
+	NoiseCancellationAmount    string `json:"noise_cancellation_amount,omitempty" url:"noise_cancellation_amount,omitempty"`
 	NoiseCancellationAmountINR string `json:"noise_cancellation_amount_inr,omitempty" url:"noise_cancellation_amount_inr,omitempty"`
 	StirVerification           string `json:"stir_verification,omitempty" url:"stir_verification,omitempty"`
 	VoiceNetworkGroup          string `json:"voice_network_group,omitempty" url:"voice_network_group,omitempty"`

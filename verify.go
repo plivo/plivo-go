@@ -43,6 +43,7 @@ type AttemptDetails struct {
 	Channel     string    `json:"channel,omitempty"`
 	AttemptUUID string    `json:"attempt_uuid,omitempty"`
 	Status      string    `json:"status,omitempty"`
+	Amount      *float64  `json:"amount,omitempty"`
 	AmountINR   *float64  `json:"amount_inr,omitempty"`
 	BrandName   string    `json:"brand_name,omitempty"`
 	AppHash     string    `json:"app_hash,omitempty"`

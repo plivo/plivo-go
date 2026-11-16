@@ -98,6 +98,8 @@ func TestVerifyService_Get_INRFields(t *testing.T) {
 	assert.Equal("0.00500", resp.Charges.AttemptCharges[0].Charge)
 	assert.Equal("0.41500", resp.Charges.AttemptCharges[0].ChargeINR)
 	assert.Len(resp.AttemptDetails, 1)
+	assert.NotNil(resp.AttemptDetails[0].Amount)
+	assert.InDelta(0.005, *resp.AttemptDetails[0].Amount, 1e-9)
 	assert.NotNil(resp.AttemptDetails[0].AmountINR)
 	assert.InDelta(0.415, *resp.AttemptDetails[0].AmountINR, 1e-9)
 }
@@ -111,6 +113,8 @@ func TestVerifyService_List_INRFields(t *testing.T) {
 	session := resp.Sessions[0]
 	assert.Equal("0.41500", session.Charges.TotalChargeINR)
 	assert.Equal("0.41500", session.Charges.AttemptCharges[0].ChargeINR)
+	assert.NotNil(session.AttemptDetails[0].Amount)
+	assert.InDelta(0.005, *session.AttemptDetails[0].Amount, 1e-9)
 	assert.NotNil(session.AttemptDetails[0].AmountINR)
 	assert.InDelta(0.415, *session.AttemptDetails[0].AmountINR, 1e-9)
 }
@@ -125,5 +129,7 @@ func TestVerifyService_List_USDAccountHasNoINRFields(t *testing.T) {
 	assert.NotEmpty(session.Charges.AttemptCharges)
 	assert.Empty(session.Charges.TotalChargeINR)
 	assert.Empty(session.Charges.AttemptCharges[0].ChargeINR)
+	assert.NotNil(session.AttemptDetails[0].Amount)
+	assert.InDelta(0.0, *session.AttemptDetails[0].Amount, 1e-9)
 	assert.Nil(session.AttemptDetails[0].AmountINR)
 }

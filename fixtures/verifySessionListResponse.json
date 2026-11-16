@@ -19,6 +19,7 @@
                   "channel": "sms",
                   "attempt_uuid": "f26731c0-d076-42d3-b678-264b0a610b87",
                   "status": "failed",
+                  "amount": 0,
                   "time": "2023-07-20T08:02:18.981765Z",
                   "dtmf": 9
               }

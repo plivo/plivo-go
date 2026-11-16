@@ -45,6 +45,7 @@ type Message struct {
 	MessageState                    string `json:"message_state,omitempty" url:"message_state,omitempty"`
 	TotalAmount                     string `json:"total_amount,omitempty" url:"total_amount,omitempty"`
 	TotalAmountINR                  string `json:"total_amount_inr,omitempty" url:"total_amount_inr,omitempty"`
+	TotalRate                       string `json:"total_rate,omitempty" url:"total_rate,omitempty"`
 	TotalRateINR                    string `json:"total_rate_inr,omitempty" url:"total_rate_inr,omitempty"`
 	MessageUUID                     string `json:"message_uuid,omitempty" url:"message_uuid,omitempty"`
 	MessageTime                     string `json:"message_time,omitempty" url:"message_time,omitempty"`
